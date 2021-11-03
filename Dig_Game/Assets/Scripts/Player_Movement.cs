@@ -10,14 +10,10 @@ public class Player_Movement : MonoBehaviour
     public float mJumpPower = 100.0f;
     public float mGravity = -0.5f;
     private float mVerticalVelocity = 0.0f;
+    
+    // Keeping start around for later
+    void Start() {}
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         // Find if we should be going in the positive or negative direction
