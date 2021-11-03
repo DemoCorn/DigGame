@@ -30,7 +30,7 @@ public class Player_Movement : MonoBehaviour
             mVerticalVelocity = 0.0f;
         }
 
-        if (Input.GetKey("w") && transform.position.y <= -4.0f)
+        if (Input.GetKey("space") && transform.position.y <= -4.0f)
         {
             mVerticalVelocity = mJumpPower;
         }
