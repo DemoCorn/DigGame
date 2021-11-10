@@ -37,7 +37,7 @@ public class Player_Attack : MonoBehaviour
             SetAttackVariables(new Vector2(rightAttackOffset.y, -rightAttackOffset.x), new Vector2(rightAttackSize.y, rightAttackSize.x));
         }
 
-        
+        // Check if attack hitbox is active to skip some execution if it's not
         if (mAttackHitbox.enabled)
         {
             List<Collider2D> collisions = new List<Collider2D>();
@@ -45,6 +45,7 @@ public class Player_Attack : MonoBehaviour
             int nCollisionCount = mAttackHitbox.OverlapCollider(new ContactFilter2D(), collisions);
             GameObject collisionObject;
 
+            // Go through all collided objects to damage blocks
             foreach (Collider2D collision in collisions)
             {
                 collisionObject = collision.gameObject;
