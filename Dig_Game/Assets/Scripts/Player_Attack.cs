@@ -13,12 +13,6 @@ public class Player_Attack : MonoBehaviour
 
     void Start()
     {
-        /*
-        GameObject Weapon = new GameObject("Weapon");
-        Weapon.transform.SetParent(gameObject.transform);
-
-        mAttackHitbox = Weapon.AddComponent<BoxCollider2D>();
-        */
         mAttackHitbox = gameObject.AddComponent<BoxCollider2D>();
         mAttackHitbox.enabled = false;
     }
@@ -43,28 +37,24 @@ public class Player_Attack : MonoBehaviour
             SetAttackVariables(new Vector2(rightAttackOffset.y, -rightAttackOffset.x), new Vector2(rightAttackSize.y, rightAttackSize.x));
         }
 
-        List<Collider2D> collisions = new List<Collider2D>();
-
-        //int nCollisionCount = Physics2D.OverlapCollider(mAttackHitbox, new ContactFilter2D(), collisions);
-
-        int nCollisionCount = mAttackHitbox.OverlapCollider(new ContactFilter2D(), collisions);
-        if(nCollisionCount != 0)
+        
+        if (mAttackHitbox.enabled)
         {
-            Debug.Log(nCollisionCount);
-        }
-        GameObject collisionObject;
+            List<Collider2D> collisions = new List<Collider2D>();
 
-        foreach (Collider2D collision in collisions)
-		{
-            Debug.Log("Hit");
-            collisionObject = collision.gameObject;
-            if (collisionObject.tag == "BreakableBlock" && collisionObject.GetComponent<Block>() != null)
-			{
-                collisionObject.GetComponent<Block>().Hit(blockDamage);
+            int nCollisionCount = mAttackHitbox.OverlapCollider(new ContactFilter2D(), collisions);
+            GameObject collisionObject;
+
+            foreach (Collider2D collision in collisions)
+            {
+                collisionObject = collision.gameObject;
+                if (collisionObject.tag == "BreakableBlock" && collisionObject.GetComponent<Block>() != null)
+                {
+                    collisionObject.GetComponent<Block>().Hit(blockDamage);
+                }
             }
-		}
-
-        mAttackHitbox.enabled = false;
+            mAttackHitbox.enabled = false;
+        }
     }
 
     private void SetAttackVariables(Vector2 offset, Vector2 size)
