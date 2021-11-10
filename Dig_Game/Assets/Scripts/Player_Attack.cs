@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player_Attack : MonoBehaviour
 {
     // Variables
+    public float blockDamage = 15.0f; 
+
     private BoxCollider2D mAttackHitbox;
     public Vector2 rightAttackOffset = new Vector2(0.6f, 0.0f);
     public Vector2 rightAttackSize = new Vector2(0.2f, 1.0f);
@@ -35,7 +37,18 @@ public class Player_Attack : MonoBehaviour
             SetAttackVariables(new Vector2(rightAttackOffset.y, -rightAttackOffset.x), new Vector2(rightAttackSize.y, rightAttackSize.x));
         }
 
-        // Do attacking things
+        List<Collider2D> collisions = new List<Collider2D>();
+        int nCollisionCount = mAttackHitbox.OverlapCollider(new ContactFilter2D(), collisions);
+        GameObject collisionObject;
+
+        foreach (Collider2D collision in collisions)
+		{
+            collisionObject = collision.gameObject;
+            if (collisionObject.tag == "BreakableBlock" && collisionObject.GetComponent<Block>() != null)
+			{
+                collisionObject.GetComponent<Block>().Hit(blockDamage);
+            }
+		}
 
         mAttackHitbox.enabled = false;
     }
