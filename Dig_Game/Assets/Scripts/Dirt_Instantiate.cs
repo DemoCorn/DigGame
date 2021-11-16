@@ -27,10 +27,12 @@ public class Dirt_Instantiate : MonoBehaviour
             // 2nd layer
             Instantiate(dirt2Obj, new Vector2(xPos, 0), dirt2Obj.rotation);
             Instantiate(dirt2Obj, new Vector2(xPos, -1), dirt2Obj.rotation);
+            Instantiate(dirt2Obj, new Vector2(xPos, -2), dirt2Obj.rotation);
 
             // 3rd layer
-            Instantiate(dirt3Obj, new Vector2(xPos, -2), dirt3Obj.rotation);
             Instantiate(dirt3Obj, new Vector2(xPos, -3), dirt3Obj.rotation);
+            Instantiate(dirt3Obj, new Vector2(xPos, -4), dirt3Obj.rotation);
+            Instantiate(dirt3Obj, new Vector2(xPos, -5), dirt3Obj.rotation);
         }
     }
 

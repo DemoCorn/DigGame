@@ -33,16 +33,6 @@ public class Player_MovementV2 : MonoBehaviour
         }
         animator.SetBool("Jumping", !IsGrounded());
 
-        if (IsGrounded())
-        {
-            rigidbody.sharedMaterial.friction = 3;
-        }
-        else
-        {
-            rigidbody.sharedMaterial.friction = 0;
-
-        }
-
 
         //Movement
         rigidbody.velocity = new Vector2(movementSpeed * Input.GetAxisRaw("Horizontal"), rigidbody.velocity.y);
