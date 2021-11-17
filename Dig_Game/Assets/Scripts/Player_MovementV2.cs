@@ -7,7 +7,7 @@ public class Player_MovementV2 : MonoBehaviour
     [Header("References")]
     [SerializeField] private CapsuleCollider2D boxCollider;
     [SerializeField] private new Rigidbody2D rigidbody;
-    [SerializeField] private Animator animator;
+    //[SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     [Header("Stats")]
@@ -31,13 +31,13 @@ public class Player_MovementV2 : MonoBehaviour
         {
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
         }
-        animator.SetBool("Jumping", !IsGrounded());
+      //  animator.SetBool("Jumping", !IsGrounded());
 
 
         //Movement
         rigidbody.velocity = new Vector2(movementSpeed * Input.GetAxisRaw("Horizontal"), rigidbody.velocity.y);
         float speed = Mathf.Abs(rigidbody.velocity.x);
-        animator.SetFloat("Speed", speed);
+        //animator.SetFloat("Speed", speed);
 
         if (rigidbody.velocity.x > 0)
         {
