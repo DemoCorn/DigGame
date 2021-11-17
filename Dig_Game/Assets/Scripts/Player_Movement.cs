@@ -21,8 +21,6 @@ public class Player_Movement : MonoBehaviour
         mHitbox = gameObject.AddComponent<BoxCollider2D>();
         mHitbox.size = HitboxSize;
     }
-
-    // Update is called once per frame
     void Update()
     {
         // Find if we should be going in the positive or negative direction
