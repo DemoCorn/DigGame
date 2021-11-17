@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player_MovementV2 : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private CapsuleCollider2D boxCollider;
+    [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private new Rigidbody2D rigidbody;
-    [SerializeField] private Animator animator;
-    [SerializeField] private SpriteRenderer spriteRenderer;
 
     [Header("Stats")]
     [SerializeField] private float movementSpeed = 10;
@@ -17,42 +16,47 @@ public class Player_MovementV2 : MonoBehaviour
     [Header("Layers")]
     [SerializeField] private LayerMask platformLayerMask;
 
-    // Start is called before the first frame update
+    [SerializeField] private float gravity = -0.1f;
+    [SerializeField] private float mVerticalVelocity = 0.0f;
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
+        mVerticalVelocity += gravity;
         //Jump
-        if (IsGrounded() && Input.GetButtonDown("Jump"))
+        //if (isColliding(Vector2.up) || isColliding(Vector2.down))
+        if (isColliding(Vector2.down, new Vector3(0.0f, mVerticalVelocity, 0.0f)))
         {
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
+            mVerticalVelocity = 0.0f;
         }
-        animator.SetBool("Jumping", !IsGrounded());
 
+        if (isColliding(Vector2.down, Vector3.zero) && Input.GetKey("space"))
+        {
+            mVerticalVelocity = jumpForce;
+        }
+
+        // Find if we should be going in the positive or negative direction
+        int nDirection = (Convert.ToInt32(Input.GetKey("d")) - Convert.ToInt32(Input.GetKey("a")));
 
         //Movement
-        rigidbody.velocity = new Vector2(movementSpeed * Input.GetAxisRaw("Horizontal"), rigidbody.velocity.y);
-        float speed = Mathf.Abs(rigidbody.velocity.x);
-        animator.SetFloat("Speed", speed);
+        transform.Translate(movementSpeed * nDirection * Time.deltaTime, mVerticalVelocity * Time.deltaTime, 0.0f);
+    }
 
-        if (rigidbody.velocity.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (rigidbody.velocity.x < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
+    public bool isColliding(Vector2 direction, Vector3 offset)
+    {
+        RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center + offset, boxCollider.bounds.size / 2, 0, direction, .1f, platformLayerMask);
+        //Debug.Log(hit.collider);
+        return hit.collider != null;
     }
 
     public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size / 2, 0, Vector2.down, .4f, platformLayerMask);
-        Debug.Log(hit.collider);
+        //Debug.Log(hit.collider);
         return hit.collider != null;
     }
 }
