@@ -12,15 +12,17 @@ public class Player_Movement : MonoBehaviour
     private float mVerticalVelocity = 0.0f;
     private bool isGrounded = false;
 
-    private BoxCollider2D mHitbox;
+    [SerializeField] private BoxCollider2D mHitbox;
     [SerializeField] private Vector2 HitboxSize = new Vector2(1.0f, 1.0f);
     [SerializeField] private LayerMask platformLayerMask;
 
     // Start is called before the first frame update
     void Start()
     {
+        /*
         mHitbox = gameObject.AddComponent<BoxCollider2D>();
         mHitbox.size = HitboxSize;
+        */
     }
     void Update()
     {
@@ -29,12 +31,8 @@ public class Player_Movement : MonoBehaviour
 
         mVerticalVelocity += gravity;
 
-        // Very basic jump code, should be changed once we have collision
-        if (transform.position.y <= -4.0f)
-        {
-            mVerticalVelocity = 0.0f;
-        }
-        if (Input.GetKey("space") && (transform.position.y <= -4.0f || isGrounded))
+        // Jump Code
+        if (Input.GetKey("space") && isGrounded)
         {
             mVerticalVelocity = jumpPower;
         }
