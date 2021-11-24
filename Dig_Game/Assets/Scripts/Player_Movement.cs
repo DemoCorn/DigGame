@@ -6,14 +6,14 @@ using System;
 public class Player_Movement : MonoBehaviour
 {
     // Member Classes
-    public float speed = 10.0f;
-    public float jumpPower = 100.0f;
-    public float gravity = -0.5f;
+    [SerializeField] private float speed = 10.0f;
+    [SerializeField] private float jumpPower = 100.0f;
+    [SerializeField] private float gravity = -0.5f;
     private float mVerticalVelocity = 0.0f;
     private bool isGrounded = false;
 
     private BoxCollider2D mHitbox;
-    public Vector2 HitboxSize = new Vector2(1.0f, 1.0f);
+    [SerializeField] private Vector2 HitboxSize = new Vector2(1.0f, 1.0f);
     [SerializeField] private LayerMask platformLayerMask;
 
     // Start is called before the first frame update
@@ -48,7 +48,7 @@ public class Player_Movement : MonoBehaviour
             isGrounded = false;
         }
 
-        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.deltaTime + (0.1f * nDirection), mVerticalVelocity * Time.deltaTime)))
+        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.deltaTime + (0.08f * nDirection), mVerticalVelocity * Time.deltaTime)))
         {
             nDirection = 0;
         }
