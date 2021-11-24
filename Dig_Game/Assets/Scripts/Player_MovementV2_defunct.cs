@@ -32,7 +32,7 @@ public class Player_MovementV2 : MonoBehaviour
         {
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
         }
-      //  animator.SetBool("Jumping", !IsGrounded());
+            //animator.SetBool("Jumping", !IsGrounded());
 
 
         //Movement
