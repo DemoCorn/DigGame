@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player_MovementV2 : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private CapsuleCollider2D boxCollider;
+    [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private new Rigidbody2D rigidbody;
     //[SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
@@ -52,7 +53,7 @@ public class Player_MovementV2 : MonoBehaviour
     public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size / 2, 0, Vector2.down, .4f, platformLayerMask);
-        Debug.Log(hit.collider);
+        //Debug.Log(hit.collider);
         return hit.collider != null;
     }
 }

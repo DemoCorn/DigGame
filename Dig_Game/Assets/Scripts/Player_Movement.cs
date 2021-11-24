@@ -6,32 +6,75 @@ using System;
 public class Player_Movement : MonoBehaviour
 {
     // Member Classes
-    public float mSpeed = 10.0f;
-    public float mJumpPower = 100.0f;
-    public float mGravity = -0.5f;
+    [SerializeField] private float speed = 10.0f;
+    [SerializeField] private float jumpPower = 100.0f;
+    [SerializeField] private float gravity = -0.5f;
     private float mVerticalVelocity = 0.0f;
-    
-    // Keeping start around for later
-    void Start() {}
+    private bool isGrounded = false;
 
+    private BoxCollider2D mHitbox;
+    [SerializeField] private Vector2 HitboxSize = new Vector2(1.0f, 1.0f);
+    [SerializeField] private LayerMask platformLayerMask;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        mHitbox = gameObject.AddComponent<BoxCollider2D>();
+        mHitbox.size = HitboxSize;
+    }
     void Update()
     {
         // Find if we should be going in the positive or negative direction
         int nDirection = (Convert.ToInt32(Input.GetKey("d")) - Convert.ToInt32(Input.GetKey("a")));
 
-        mVerticalVelocity += mGravity;
-        
+        mVerticalVelocity += gravity;
+
         // Very basic jump code, should be changed once we have collision
         if (transform.position.y <= -4.0f)
         {
             mVerticalVelocity = 0.0f;
         }
-        if (Input.GetKey("space") && transform.position.y <= -4.0f)
+        if (Input.GetKey("space") && (transform.position.y <= -4.0f || isGrounded))
         {
-            mVerticalVelocity = mJumpPower;
+            mVerticalVelocity = jumpPower;
         }
-        
+        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.deltaTime, mVerticalVelocity * Time.deltaTime)))
+        {
+            isGrounded = mVerticalVelocity <= 0.0f;
+            mVerticalVelocity = 0.0f;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
+        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.deltaTime + (0.08f * nDirection), mVerticalVelocity * Time.deltaTime)))
+        {
+            nDirection = 0;
+        }
+
         // Apply movement
-        transform.Translate(mSpeed * nDirection * Time.deltaTime, mVerticalVelocity * Time.deltaTime, 0.0f);
+        transform.Translate(speed * nDirection * Time.deltaTime, mVerticalVelocity * Time.deltaTime, 0.0f);
+    }
+
+    bool IsCollidingWithBlock(Vector2 offset)
+    {
+        List<Collider2D> collisions = new List<Collider2D>();
+
+        mHitbox.offset = offset;
+
+        int nCollisionCount = mHitbox.OverlapCollider(new ContactFilter2D(), collisions);
+
+        // Go through all collided objects to damage blocks
+        foreach (Collider2D collision in collisions)
+        {
+            if ((platformLayerMask.value & (1 << collision.gameObject.layer)) > 0)
+            {
+                return true;
+            }
+        }
+
+        mHitbox.offset = new Vector2(0.0f, 0.0f);
+        return false;
     }
 }
