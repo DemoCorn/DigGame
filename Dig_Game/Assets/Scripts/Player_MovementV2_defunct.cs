@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player_MovementV2 : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private CapsuleCollider2D boxCollider;
+    [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private new Rigidbody2D rigidbody;
-    [SerializeField] private Animator animator;
-    [SerializeField] private SpriteRenderer spriteRenderer;
 
     [Header("Stats")]
     [SerializeField] private float movementSpeed = 10;
@@ -31,28 +30,16 @@ public class Player_MovementV2 : MonoBehaviour
         {
             rigidbody.velocity = new Vector2(rigidbody.velocity.x, jumpForce);
         }
-        animator.SetBool("Jumping", !IsGrounded());
-
 
         //Movement
-        rigidbody.velocity = new Vector2(movementSpeed * Input.GetAxisRaw("Horizontal"), rigidbody.velocity.y);
-        float speed = Mathf.Abs(rigidbody.velocity.x);
-        animator.SetFloat("Speed", speed);
-
-        if (rigidbody.velocity.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-        else if (rigidbody.velocity.x < 0)
-        {
-            spriteRenderer.flipX = true;
-        }
+        int nDirection = (Convert.ToInt32(Input.GetKey("d")) - Convert.ToInt32(Input.GetKey("a")));
+        rigidbody.velocity = new Vector2(movementSpeed * nDirection, rigidbody.velocity.y);
     }
 
     public bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size / 2, 0, Vector2.down, .4f, platformLayerMask);
-        Debug.Log(hit.collider);
+        //Debug.Log(hit.collider);
         return hit.collider != null;
     }
 }
