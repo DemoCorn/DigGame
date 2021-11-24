@@ -14,6 +14,7 @@ public class Player_Movement : MonoBehaviour
 
     private BoxCollider2D mHitbox;
     public Vector2 HitboxSize = new Vector2(1.0f, 1.0f);
+    [SerializeField] private LayerMask platformLayerMask;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,7 @@ public class Player_Movement : MonoBehaviour
         int nDirection = (Convert.ToInt32(Input.GetKey("d")) - Convert.ToInt32(Input.GetKey("a")));
 
         mVerticalVelocity += gravity;
-        
+
         // Very basic jump code, should be changed once we have collision
         if (transform.position.y <= -4.0f)
         {
@@ -37,23 +38,27 @@ public class Player_Movement : MonoBehaviour
         {
             mVerticalVelocity = jumpPower;
         }
-
-        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.deltaTime, 0.0f)))
-		{
-            nDirection = 0;
-		}
-        if (IsCollidingWithBlock(new Vector2(0.0f, mVerticalVelocity * Time.deltaTime)))
-		{
+        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.deltaTime, mVerticalVelocity * Time.deltaTime)))
+        {
             isGrounded = mVerticalVelocity <= 0.0f;
             mVerticalVelocity = 0.0f;
-		}
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
+        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.deltaTime + (0.1f * nDirection), mVerticalVelocity * Time.deltaTime)))
+        {
+            nDirection = 0;
+        }
 
         // Apply movement
         transform.Translate(speed * nDirection * Time.deltaTime, mVerticalVelocity * Time.deltaTime, 0.0f);
     }
 
     bool IsCollidingWithBlock(Vector2 offset)
-	{
+    {
         List<Collider2D> collisions = new List<Collider2D>();
 
         mHitbox.offset = offset;
@@ -63,7 +68,7 @@ public class Player_Movement : MonoBehaviour
         // Go through all collided objects to damage blocks
         foreach (Collider2D collision in collisions)
         {
-            if (collision.gameObject.tag == "BreakableBlock")
+            if ((platformLayerMask.value & (1 << collision.gameObject.layer)) > 0)
             {
                 return true;
             }

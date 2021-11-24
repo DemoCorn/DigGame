@@ -971,15 +971,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578738067}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90f9ef11a8999234cb8cf9284705aad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpPower: 20
-  gravity: -0.2
+  jumpPower: 30
+  gravity: -0.1
   HitboxSize: {x: 0.8, y: 1}
+  platformLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!212 &578738069
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1079,7 +1082,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578738067}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30fe53bd5cb2f2c488a44e03dc712c07, type: 3}
   m_Name: 
@@ -1087,12 +1090,11 @@ MonoBehaviour:
   boxCollider: {fileID: 578738072}
   rigidbody: {fileID: 0}
   movementSpeed: 10
-  jumpForce: 20
+  jumpForce: 200
+  gravity: -0.1
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  gravity: -0.1
-  mVerticalVelocity: 0
 --- !u!1 &687258020
 GameObject:
   m_ObjectHideFlags: 0
