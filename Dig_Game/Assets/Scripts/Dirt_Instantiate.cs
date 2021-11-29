@@ -8,6 +8,7 @@ public class Dirt_Instantiate : MonoBehaviour
     public Transform dirt1Obj;
     public Transform dirt2Obj;
     public Transform dirt3Obj;
+    public Transform mineral1Obj;
 
 
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class Dirt_Instantiate : MonoBehaviour
         // The second value in each Vector2 is the spacing vertically between tiles
         // Adjust this value according to sprite being used
 
+        // Instantiate dirt
         for (float xPos = -8f; xPos < 8; xPos++)
         {
             // 1st layer
@@ -33,15 +35,24 @@ public class Dirt_Instantiate : MonoBehaviour
             Instantiate(dirt3Obj, new Vector2(xPos, -3), dirt3Obj.rotation);
             Instantiate(dirt3Obj, new Vector2(xPos, -4), dirt3Obj.rotation);
             Instantiate(dirt3Obj, new Vector2(xPos, -5), dirt3Obj.rotation);
+
         }
+
+        // Random Minerals
+
+        for (int x = 0; x < 3; x++)
+        {
+            Instantiate(mineral1Obj, new Vector2(Random.Range(-8, 8), Random.Range(-5, 3)), mineral1Obj.rotation);
+        }
+
     }
 
 
+        // Update is called once per frame
+        void Update()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
+        }
 
-    }
-
+    
 }
