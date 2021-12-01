@@ -19,10 +19,6 @@ public class Player_Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        mHitbox = gameObject.AddComponent<BoxCollider2D>();
-        mHitbox.size = HitboxSize;
-        */
     }
     void Update()
     {

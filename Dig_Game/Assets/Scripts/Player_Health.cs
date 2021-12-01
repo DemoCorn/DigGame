@@ -20,9 +20,10 @@ public class Player_Health : MonoBehaviour
     {
         if (isVulnerable)
         {
-            if (IsCollidingWithEnemy())
+            float nDamageTaken = IsCollidingWithEnemy();
+            if (nDamageTaken > 0.0f)
             {
-                health -= 1.0f;
+                health -= nDamageTaken;
                 if (health <= 0.0f)
                 {
                     gameObject.SetActive(false);
@@ -33,7 +34,7 @@ public class Player_Health : MonoBehaviour
         }
     }
 
-    bool IsCollidingWithEnemy()
+    float IsCollidingWithEnemy()
     {
         List<Collider2D> collisions = new List<Collider2D>();
 
@@ -42,14 +43,14 @@ public class Player_Health : MonoBehaviour
         // Go through all collided objects to see if the position would intersect with an enemy
         foreach (Collider2D collision in collisions)
         {
-            if (collision.gameObject.tag == "Enemy")
+            if (collision.gameObject.tag == "Enemy" && collision.gameObject.GetComponent<Enemy_Damage>() != null)
             {
                 Debug.Log("Player Hit");
-                return true;
+                return collision.gameObject.GetComponent<Enemy_Damage>().damage;
             }
         }
 
-        return false;
+        return 0.0f;
     }
 
     void TurnOffImmunity()
