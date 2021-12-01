@@ -56,7 +56,7 @@ public class Player_Attack : MonoBehaviour
                 }
                 if (collisionObject.tag == "Enemy" && collisionObject.GetComponent<Block>() != null)
                 {
-                    Debug.Log("oop");
+                    Debug.Log("Enemy Hit");
                     collisionObject.GetComponent<Block>().Hit(enemyDamage);
                 }
             }

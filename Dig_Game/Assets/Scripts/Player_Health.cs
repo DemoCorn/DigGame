@@ -39,12 +39,12 @@ public class Player_Health : MonoBehaviour
 
         int nCollisionCount = hitbox.OverlapCollider(new ContactFilter2D(), collisions);
 
-        // Go through all collided objects to see if the new position would intersect with a block
+        // Go through all collided objects to see if the position would intersect with an enemy
         foreach (Collider2D collision in collisions)
         {
-            Debug.Log("oop");
             if (collision.gameObject.tag == "Enemy")
             {
+                Debug.Log("Player Hit");
                 return true;
             }
         }

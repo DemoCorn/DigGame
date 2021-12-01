@@ -266,9 +266,11 @@ GameObject:
   m_Component:
   - component: {fileID: 711122372}
   - component: {fileID: 711122371}
+  - component: {fileID: 711122373}
+  - component: {fileID: 711122374}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,6 +340,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &711122373
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711122370}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &711122374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711122370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e530c0bc73a8d74688dd99d72ad7e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
 --- !u!1 &740593929
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockDamage: 15
+  enemyDamage: 15
   rightAttackOffset: {x: 0.6, y: 0}
   rightAttackSize: {x: 0.2, y: 0.8}
 --- !u!1 &935519402
@@ -513,6 +555,7 @@ GameObject:
   - component: {fileID: 1664942792}
   - component: {fileID: 1664942796}
   - component: {fileID: 1664942793}
+  - component: {fileID: 1664942795}
   - component: {fileID: 1664942794}
   m_Layer: 0
   m_Name: Player
@@ -551,8 +594,7 @@ MonoBehaviour:
   speed: 5
   jumpPower: 17
   gravity: -0.1
-  mHitbox: {fileID: 1664942794}
-  HitboxSize: {x: 0.8, y: 0.95}
+  hitbox: {fileID: 1664942794}
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -582,6 +624,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.95}
   m_EdgeRadius: 0
+--- !u!114 &1664942795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664942791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d75e882043900846aa9f3eb9f9a5b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  immunityTime: 10
+  hitbox: {fileID: 1664942794}
 --- !u!212 &1664942796
 SpriteRenderer:
   m_ObjectHideFlags: 0
