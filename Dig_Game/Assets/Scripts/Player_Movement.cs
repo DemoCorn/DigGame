@@ -9,11 +9,11 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float jumpPower = 100.0f;
     [SerializeField] private float gravity = -0.5f;
+
     private float mVerticalVelocity = 0.0f;
     private bool isGrounded = false;
 
-    [SerializeField] private BoxCollider2D mHitbox;
-    [SerializeField] private Vector2 HitboxSize = new Vector2(1.0f, 1.0f);
+    [SerializeField] private BoxCollider2D hitbox;
     [SerializeField] private LayerMask platformLayerMask;
 
     // Start is called before the first frame update
@@ -59,11 +59,11 @@ public class Player_Movement : MonoBehaviour
     {
         List<Collider2D> collisions = new List<Collider2D>();
 
-        mHitbox.offset = offset;
+        hitbox.offset = offset;
 
-        int nCollisionCount = mHitbox.OverlapCollider(new ContactFilter2D(), collisions);
+        int nCollisionCount = hitbox.OverlapCollider(new ContactFilter2D(), collisions);
 
-        // Go through all collided objects to damage blocks
+        // Go through all collided objects to see if the new position would intersect with a block
         foreach (Collider2D collision in collisions)
         {
             if ((platformLayerMask.value & (1 << collision.gameObject.layer)) > 0)
@@ -72,7 +72,7 @@ public class Player_Movement : MonoBehaviour
             }
         }
 
-        mHitbox.offset = new Vector2(0.0f, 0.0f);
+        hitbox.offset = new Vector2(0.0f, 0.0f);
         return false;
     }
 }
