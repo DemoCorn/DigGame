@@ -57,4 +57,9 @@ public class Player_Health : MonoBehaviour
     {
         isVulnerable = true;
     }
+
+    public float GetHealth()
+    {
+        return health;
+    }
 }

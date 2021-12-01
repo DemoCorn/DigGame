@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 
     public int score = 0;
 
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +29,14 @@ public class GameManager : MonoBehaviour
     {
 
     }
+
     public void AddScore(int scoreToAdd)
     {
         score += scoreToAdd;
+    }
+
+    public float GetPlayerHealth()
+    {
+        return player.GetComponent<Player_Health>().GetHealth();
     }
 }
