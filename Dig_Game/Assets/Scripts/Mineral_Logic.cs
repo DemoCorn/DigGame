@@ -5,22 +5,8 @@ using UnityEngine;
 public class Mineral_Logic : MonoBehaviour
 {
     // Attach to mineral Object
-    
-
-    // Start is called before the first frame update
-    void Start()
+    void OnDisable()
     {
-        
+        GameManager.Instance.AddScore(1);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (gameObject.activeInHierarchy == false)
-        {
-            GameManager.Instance.AddScore(0);
-        }
-    }
-
-
 }
