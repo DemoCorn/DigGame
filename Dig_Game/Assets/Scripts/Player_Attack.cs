@@ -6,6 +6,7 @@ public class Player_Attack : MonoBehaviour
 {
     // Variables
     public float blockDamage = 15.0f; 
+    public float enemyDamage = 15.0f; 
 
     private BoxCollider2D mAttackHitbox;
     public Vector2 rightAttackOffset = new Vector2(0.6f, 0.0f);
@@ -52,6 +53,11 @@ public class Player_Attack : MonoBehaviour
                 if (collisionObject.tag == "BreakableBlock" && collisionObject.GetComponent<Block>() != null)
                 {
                     collisionObject.GetComponent<Block>().Hit(blockDamage);
+                }
+                if (collisionObject.tag == "Enemy" && collisionObject.GetComponent<Block>() != null)
+                {
+                    Debug.Log("Enemy Hit");
+                    collisionObject.GetComponent<Block>().Hit(enemyDamage);
                 }
             }
             mAttackHitbox.enabled = false;
