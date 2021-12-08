@@ -27,6 +27,18 @@ public class Player_Health : MonoBehaviour
                 if (health <= 0.0f)
                 {
                     gameObject.SetActive(false);
+                    GameManager.Instance.lives -= 1;
+                    if(GameManager.Instance.lives > 0)
+                    {
+                        health = 3;
+                        gameObject.transform.position = new Vector3(-3, 5, 0);                        
+                        gameObject.SetActive(true);
+
+                    }
+                    else if(GameManager.Instance.lives <= 0f)
+                    {
+                        print("Player is dead.");
+                    }
                 }
                 isVulnerable = false;
                 Invoke("TurnOffImmunity", immunityTime);

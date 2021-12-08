@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public int score = 0;
+    public int lives = 3;
 
     // Start is called before the first frame update
     void Start()

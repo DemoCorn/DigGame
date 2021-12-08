@@ -19,7 +19,7 @@ public class Dirt_Instantiate : MonoBehaviour
         // Adjust this value according to sprite being used
 
         // Instantiate dirt
-        for (float xPos = -8f; xPos < 8; xPos++)
+        for (float xPos = -20f; xPos < 20; xPos++)
         {
             // 1st layer
             Instantiate(dirt1Obj, new Vector2(xPos, 3), dirt1Obj.rotation);
