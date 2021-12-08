@@ -26,7 +26,7 @@ public class Player_Health : MonoBehaviour
                 health -= nDamageTaken;
                 if (health <= 0.0f)
                 {
-                    gameObject.SetActive(false);
+                    GameManager.Instance.EndGame(false);
                 }
                 isVulnerable = false;
                 Invoke("TurnOffImmunity", immunityTime);
@@ -56,5 +56,10 @@ public class Player_Health : MonoBehaviour
     void TurnOffImmunity()
     {
         isVulnerable = true;
+    }
+
+    public float GetHealth()
+    {
+        return health;
     }
 }
