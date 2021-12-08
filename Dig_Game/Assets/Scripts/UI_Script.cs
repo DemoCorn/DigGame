@@ -17,7 +17,7 @@ public class UI_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pointsText.text = "Score: " + GameManager.Instance.score.ToString();
+        pointsText.text = "Score: " + GameManager.Instance.GetScore().ToString();
         healthText.text = "HP: " + GameManager.Instance.GetPlayerHealth().ToString();
     }
 }

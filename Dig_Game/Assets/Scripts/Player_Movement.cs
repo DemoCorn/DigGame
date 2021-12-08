@@ -22,6 +22,12 @@ public class Player_Movement : MonoBehaviour
     }
     void Update()
     {
+        // Check win condition
+        if (transform.position.y < -40)
+        {
+            GameManager.Instance.EndGame(true);
+        }
+
         // Find if we should be going in the positive or negative direction
         int nDirection = (Convert.ToInt32(Input.GetKey("d")) - Convert.ToInt32(Input.GetKey("a")));
 
