@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1132225888407865466}
   - component: {fileID: 1909495606859961297}
   - component: {fileID: 2415744378453570307}
-  - component: {fileID: -699140785338917511}
-  - component: {fileID: 4979463471613785975}
+  - component: {fileID: 9614845803625262}
+  - component: {fileID: 8675464163186999549}
   m_Layer: 3
   m_Name: Tile
   m_TagString: BreakableBlock
@@ -111,7 +111,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-699140785338917511
+--- !u!114 &9614845803625262
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,11 +120,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1507100362379146241}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac9ded6aacc2b974faf678437d8fb8c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 73d785aec32a1384e8452e85c7e6d993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePos: {x: 0, y: 0}
---- !u!114 &4979463471613785975
+  roomPrefab: {fileID: 756720194266943263, guid: 7742cceef9d77134aaea32141f8b7d41, type: 3}
+--- !u!114 &8675464163186999549
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

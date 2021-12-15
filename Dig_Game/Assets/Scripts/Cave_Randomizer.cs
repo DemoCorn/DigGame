@@ -13,6 +13,7 @@ public class Cave_Randomizer : MonoBehaviour
     public static float tilePosX;
     public static float tilePosY;
     private static bool randomized = false;
+    private static bool isTile;
 
 
     // Start is called before the first frame update
@@ -29,7 +30,7 @@ public class Cave_Randomizer : MonoBehaviour
     void Update()
     {
         tilePos = GetComponent<Transform>().position;
-
+       
         // Middle
         if (tilePos.x == tilePosX && tilePos.y == tilePosY)
         {
@@ -71,7 +72,6 @@ public class Cave_Randomizer : MonoBehaviour
             Destroy(gameObject);
         }
         // BottomRight
-        // TopRight
         if (tilePos.x == tilePosX + 1 && tilePos.y == tilePosY - 1)
         {
             Destroy(gameObject);
@@ -81,8 +81,8 @@ public class Cave_Randomizer : MonoBehaviour
     public void Randomize()
     {
         // Randomizing chosen condition to create opening for both X & Y values of attached tile
-        tilePosX = Random.Range(-4, 4);
-        tilePosY = Random.Range(-2, 2);
+        tilePosX = Random.Range(-25, 25);
+        tilePosY = Random.Range(1, -8);
         randomized = true;
     }
 }
