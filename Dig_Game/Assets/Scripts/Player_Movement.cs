@@ -16,10 +16,6 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private BoxCollider2D hitbox;
     [SerializeField] private LayerMask platformLayerMask;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
     void Update()
     {
         // Check win condition
@@ -57,7 +53,7 @@ public class Player_Movement : MonoBehaviour
         transform.Translate(speed * nDirection * Time.deltaTime, mVerticalVelocity * Time.deltaTime, 0.0f);
     }
 
-    bool IsCollidingWithBlock(Vector2 offset)
+    private bool IsCollidingWithBlock(Vector2 offset)
     {
         List<Collider2D> collisions = new List<Collider2D>();
 
