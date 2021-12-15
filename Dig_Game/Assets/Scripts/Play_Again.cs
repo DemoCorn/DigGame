@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayAgain : MonoBehaviour
+public class Play_Again : MonoBehaviour
 {
     public void Retry()
     {
