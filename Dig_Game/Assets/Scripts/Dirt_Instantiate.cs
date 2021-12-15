@@ -19,30 +19,45 @@ public class Dirt_Instantiate : MonoBehaviour
         // Adjust this value according to sprite being used
 
         // Instantiate dirt
-        for (float xPos = -20f; xPos < 20; xPos++)
+        for (float xPos = -30f; xPos < 30; xPos++)
         {
             // 1st layer
             Instantiate(dirt1Obj, new Vector2(xPos, 3), dirt1Obj.rotation);
             Instantiate(dirt1Obj, new Vector2(xPos, 2), dirt1Obj.rotation);
             Instantiate(dirt1Obj, new Vector2(xPos, 1), dirt1Obj.rotation);
+            Instantiate(dirt1Obj, new Vector2(xPos, 0), dirt1Obj.rotation);
+            Instantiate(dirt1Obj, new Vector2(xPos, -1), dirt1Obj.rotation);
+            Instantiate(dirt1Obj, new Vector2(xPos, -2), dirt1Obj.rotation);
+            Instantiate(dirt1Obj, new Vector2(xPos, -3), dirt1Obj.rotation);
+            Instantiate(dirt1Obj, new Vector2(xPos, -4), dirt1Obj.rotation);
 
             // 2nd layer
-            Instantiate(dirt2Obj, new Vector2(xPos, 0), dirt2Obj.rotation);
-            Instantiate(dirt2Obj, new Vector2(xPos, -1), dirt2Obj.rotation);
-            Instantiate(dirt2Obj, new Vector2(xPos, -2), dirt2Obj.rotation);
+            Instantiate(dirt2Obj, new Vector2(xPos, -5), dirt2Obj.rotation);
+            Instantiate(dirt2Obj, new Vector2(xPos, -6), dirt2Obj.rotation);
+            Instantiate(dirt2Obj, new Vector2(xPos, -7), dirt2Obj.rotation);
+            Instantiate(dirt2Obj, new Vector2(xPos, -8), dirt2Obj.rotation);
+            Instantiate(dirt2Obj, new Vector2(xPos, -9), dirt2Obj.rotation);
+            Instantiate(dirt2Obj, new Vector2(xPos, -10), dirt2Obj.rotation);
+            Instantiate(dirt2Obj, new Vector2(xPos, -11), dirt2Obj.rotation);
+            Instantiate(dirt2Obj, new Vector2(xPos, -12), dirt2Obj.rotation);
 
             // 3rd layer
-            Instantiate(dirt3Obj, new Vector2(xPos, -3), dirt3Obj.rotation);
-            Instantiate(dirt3Obj, new Vector2(xPos, -4), dirt3Obj.rotation);
-            Instantiate(dirt3Obj, new Vector2(xPos, -5), dirt3Obj.rotation);
+            Instantiate(dirt3Obj, new Vector2(xPos, -13), dirt3Obj.rotation);
+            Instantiate(dirt3Obj, new Vector2(xPos, -14), dirt3Obj.rotation);
+            Instantiate(dirt3Obj, new Vector2(xPos, -15), dirt3Obj.rotation);
+            Instantiate(dirt3Obj, new Vector2(xPos, -16), dirt3Obj.rotation);
+            Instantiate(dirt3Obj, new Vector2(xPos, -17), dirt3Obj.rotation);
+            Instantiate(dirt3Obj, new Vector2(xPos, -18), dirt3Obj.rotation);
+            Instantiate(dirt3Obj, new Vector2(xPos, -19), dirt3Obj.rotation);
+            Instantiate(dirt3Obj, new Vector2(xPos, -20), dirt3Obj.rotation);
 
         }
 
         // Random Minerals
 
-        for (int x = 0; x < 3; x++)
+        for (int x = 0; x < 10; x++)
         {
-            Instantiate(mineral1Obj, new Vector2(Random.Range(-8, 8), Random.Range(-5, 3)), mineral1Obj.rotation);
+            Instantiate(mineral1Obj, new Vector2(Random.Range(-30, 30), Random.Range(3, -10)), mineral1Obj.rotation);
         }
 
     }

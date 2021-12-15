@@ -323,7 +323,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &344978609
 MonoBehaviour:
@@ -340,7 +340,7 @@ MonoBehaviour:
   speed: 10
   jumpPower: 100
   gravity: -0.5
-  HitboxSize: {x: 1, y: 1}
+  hitbox: {fileID: 0}
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -357,6 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockDamage: 15
+  enemyDamage: 15
   rightAttackOffset: {x: 0.6, y: 0}
   rightAttackSize: {x: 0.2, y: 1}
 --- !u!1 &519420028
@@ -629,7 +630,7 @@ Transform:
   m_Children:
   - {fileID: 821162277}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1746625265
 GameObject:
@@ -640,8 +641,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1746625267}
-  - component: {fileID: 1746625266}
   - component: {fileID: 1746625268}
+  - component: {fileID: 1746625270}
   m_Layer: 0
   m_Name: GM
   m_TagString: Untagged
@@ -649,22 +650,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1746625266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746625265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2cd715a30181db45970ce32d9baacb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dirt1Obj: {fileID: 3017129044011437658, guid: 6461f494cdb5fe44d854779deb68ef0e, type: 3}
-  dirt2Obj: {fileID: 5434605466870141458, guid: eec123686c6f44448b04f6eb8a2af61d, type: 3}
-  dirt3Obj: {fileID: 2175037945714100739, guid: 145637847d04415419fc24744d03d745, type: 3}
-  mineral1Obj: {fileID: 1890914835683339861, guid: b015609e044563944afafaeac717478d, type: 3}
 --- !u!4 &1746625267
 Transform:
   m_ObjectHideFlags: 0
@@ -677,7 +662,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1746625268
 MonoBehaviour:
@@ -692,6 +677,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+--- !u!114 &1746625270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746625265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bcc9479c1903748bde56c1ed352d7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dirt1Obj: {fileID: 3017129044011437658, guid: 6461f494cdb5fe44d854779deb68ef0e, type: 3}
+  dirt2Obj: {fileID: 5434605466870141458, guid: eec123686c6f44448b04f6eb8a2af61d, type: 3}
+  dirt3Obj: {fileID: 2175037945714100739, guid: 145637847d04415419fc24744d03d745, type: 3}
+  mineral1Obj: {fileID: 1890914835683339861, guid: b015609e044563944afafaeac717478d, type: 3}
 --- !u!1 &2055751952
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +757,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2130517836
 GameObject:
@@ -865,7 +866,7 @@ RectTransform:
   m_Children:
   - {fileID: 220407457}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

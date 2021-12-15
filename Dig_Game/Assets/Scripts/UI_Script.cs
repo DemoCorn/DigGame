@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UI_Script : MonoBehaviour
 {
     public Text pointsText;
-    public Text livesText;
+    public Text healthText;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,7 @@ public class UI_Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pointsText.text = "Score: " + GameManager.Instance.score.ToString();
-        livesText.text = "Lives: " + GameManager.Instance.lives.ToString();
+        pointsText.text = "Score: " + GameManager.Instance.GetScore().ToString();
+        healthText.text = "HP: " + GameManager.Instance.GetPlayerHealth().ToString();
     }
 }

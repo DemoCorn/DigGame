@@ -9,12 +9,6 @@ public class Player_Health : MonoBehaviour
     [SerializeField] private BoxCollider2D hitbox;
     private bool isVulnerable = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -26,19 +20,7 @@ public class Player_Health : MonoBehaviour
                 health -= nDamageTaken;
                 if (health <= 0.0f)
                 {
-                    gameObject.SetActive(false);
-                    GameManager.Instance.lives -= 1;
-                    if(GameManager.Instance.lives > 0)
-                    {
-                        health = 3;
-                        gameObject.transform.position = new Vector3(-3, 5, 0);                        
-                        gameObject.SetActive(true);
-
-                    }
-                    else if(GameManager.Instance.lives <= 0f)
-                    {
-                        print("Player is dead.");
-                    }
+                    GameManager.Instance.EndGame(false);
                 }
                 isVulnerable = false;
                 Invoke("TurnOffImmunity", immunityTime);
@@ -46,7 +28,7 @@ public class Player_Health : MonoBehaviour
         }
     }
 
-    float IsCollidingWithEnemy()
+    private float IsCollidingWithEnemy()
     {
         List<Collider2D> collisions = new List<Collider2D>();
 
@@ -65,8 +47,13 @@ public class Player_Health : MonoBehaviour
         return 0.0f;
     }
 
-    void TurnOffImmunity()
+    private void TurnOffImmunity()
     {
         isVulnerable = true;
+    }
+
+    public float GetHealth()
+    {
+        return health;
     }
 }
