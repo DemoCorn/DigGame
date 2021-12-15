@@ -20,17 +20,14 @@ public class Room_Randomizer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        randomRoomSize = Random.Range(1, 3);
+        // Changed to 2 and 2 from 1 to 3 to avoid crashes in MVP
+        randomRoomSize = 1;
         // Call randomize once if it hasn't already been done
         if (!randomized)
         {
             Randomize();
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         tilePos = GetComponent<Transform>().position;
 
         // Remove existing tiles before inserting prefab
@@ -78,8 +75,8 @@ public class Room_Randomizer : MonoBehaviour
 
         }
 
-        
- 
+
+
 
 
         // Prefab Instantiating
@@ -92,14 +89,20 @@ public class Room_Randomizer : MonoBehaviour
                     Instantiate(roomPrefabSmall, gameObject.transform.position, Quaternion.identity);
                     break;
                 case 2:
-                    Instantiate(roomPrefabSmall, gameObject.transform.position, Quaternion.identity);
+                    Instantiate(roomPrefabMedium, gameObject.transform.position - new Vector3(0, 1, 0), Quaternion.identity);
                     break;
                 case 3:
-                    Instantiate(roomPrefabSmall, gameObject.transform.position, Quaternion.identity);
+                    Instantiate(roomPrefabLarge, gameObject.transform.position, Quaternion.identity);
                     break;
             }
-            
+
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+       
 
     }
 
@@ -107,7 +110,7 @@ public class Room_Randomizer : MonoBehaviour
     {
         // Randomizing chosen condition to create opening for both X & Y values of attached tile
         tilePosX = Random.Range(-22, 22);
-        tilePosY = Random.Range(-1, -3);
+        tilePosY = Random.Range(-3, -10);
         randomized = true;
     }
 
