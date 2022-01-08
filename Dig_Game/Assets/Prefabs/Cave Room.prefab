@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 196363622831513532}
+  - component: {fileID: 5280195633191914527}
   m_Layer: 0
   m_Name: Cave Room
   m_TagString: Untagged
@@ -106,6 +107,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5280195633191914527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2593902307999099743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d947bce0af2cda8499e5b8dd4bdf5445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minX: 0
+  maxX: 0
+  minY: 0
+  maxY: 0
 --- !u!1001 &210750813482279733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1277,6 +1294,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TileDirt1 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 3639696129305948705, guid: 6461f494cdb5fe44d854779deb68ef0e, type: 3}
+      propertyPath: m_TagString
+      value: BottomRightBlock
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6461f494cdb5fe44d854779deb68ef0e, type: 3}
 --- !u!4 &717807201172405403 stripped
@@ -1834,6 +1855,10 @@ PrefabInstance:
     - target: {fileID: 3639696129305948705, guid: 6461f494cdb5fe44d854779deb68ef0e, type: 3}
       propertyPath: m_Name
       value: TileDirt1 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3639696129305948705, guid: 6461f494cdb5fe44d854779deb68ef0e, type: 3}
+      propertyPath: m_TagString
+      value: TopLeftBlock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6461f494cdb5fe44d854779deb68ef0e, type: 3}
