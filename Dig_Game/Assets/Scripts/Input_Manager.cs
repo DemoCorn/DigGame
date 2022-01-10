@@ -29,8 +29,14 @@ public class Input_Manager : MonoBehaviour
 
     public void LoadJson()
     {
+        // If the file doesn't exist, generate one
         if (!File.Exists(FilePath + "Inputs.json"))
         {
+            if (!Directory.Exists(FilePath))
+            {
+                Directory.CreateDirectory(FilePath);
+            }
+            // Default Keybinds
             inputs = new Inputs();
             inputs.left = "a";
             inputs.right = "d";
@@ -56,6 +62,7 @@ public class Input_Manager : MonoBehaviour
         }
         else
         {
+            // Load File
             using (StreamReader file = File.OpenText(FilePath + "Inputs.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();

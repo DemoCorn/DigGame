@@ -17,15 +17,13 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private BoxCollider2D hitbox;
     [SerializeField] private LayerMask platformLayerMask;
 
-    private Inputs inputs;
-
     void Start()
     {
-        Inputs inputs = GameManager.Instance.GetInputs();
     }
 
     void Update()
     {
+        Inputs inputs = GameManager.Instance.GetInputs();
         // Check win condition
         if (transform.position.y < -40)
         {
@@ -42,6 +40,8 @@ public class Player_Movement : MonoBehaviour
         {
             mVerticalVelocity = jumpPower;
         }
+
+        // Vertical Collision
         if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.deltaTime, mVerticalVelocity * Time.deltaTime)))
         {
             isGrounded = mVerticalVelocity <= 0.0f;
@@ -52,6 +52,7 @@ public class Player_Movement : MonoBehaviour
             isGrounded = false;
         }
 
+        // Horizontal Collision
         if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.deltaTime + (0.08f * nDirection), mVerticalVelocity * Time.deltaTime)))
         {
             nDirection = 0;

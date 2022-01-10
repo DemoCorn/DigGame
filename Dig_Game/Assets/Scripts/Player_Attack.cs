@@ -12,17 +12,15 @@ public class Player_Attack : MonoBehaviour
     [SerializeField] Vector2 rightAttackOffset = new Vector2(0.6f, 0.0f);
     [SerializeField] Vector2 rightAttackSize = new Vector2(0.2f, 1.0f);
 
-    private Inputs inputs;
-
     void Start()
     {
         mAttackHitbox = gameObject.AddComponent<BoxCollider2D>();
         mAttackHitbox.enabled = false;
-        Inputs inputs = GameManager.Instance.GetInputs();
     }
 
     void Update()
     {
+        Inputs inputs = GameManager.Instance.GetInputs();
         // Check each key direction to figure out if we should be attacking anywhere
         if (Input.GetKeyDown(inputs.rAttack))
 		{
@@ -55,6 +53,7 @@ public class Player_Attack : MonoBehaviour
                 collisionObject = collision.gameObject;
                 if (collisionObject.GetComponent<Non_Player_Health>() != null)
                 {
+                    // Need either a better way to do prefab loading, or a better way to check if an object should use enemy damage
                     if (collisionObject.tag == "Enemy")
                     {
                         collisionObject.GetComponent<Non_Player_Health>().Hit(enemyDamage);
