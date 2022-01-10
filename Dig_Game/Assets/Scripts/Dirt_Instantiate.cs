@@ -5,14 +5,14 @@ using UnityEngine;
 public class Dirt_Instantiate : MonoBehaviour
 {
     // Attach the dirt tile objects in Unity to these Transforms
-    public GameObject dirt1Obj;
-    public GameObject dirt2Obj;
-    public GameObject dirt3Obj;
-    public GameObject mineral1Obj;
+    [SerializeField] GameObject dirt1Obj;
+    [SerializeField] GameObject dirt2Obj;
+    [SerializeField] GameObject dirt3Obj;
+    [SerializeField] GameObject mineral1Obj;
 
-    public GameObject roomPrefabSmall;
-    public GameObject roomPrefabMedium;
-    public GameObject roomPrefabLarge;
+    [SerializeField] GameObject roomPrefabSmall;
+    [SerializeField] GameObject roomPrefabMedium;
+    [SerializeField] GameObject roomPrefabLarge;
 
     private static int randomRoomSize;
     private static bool randomized = false;

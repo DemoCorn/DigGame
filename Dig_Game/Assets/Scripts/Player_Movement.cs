@@ -5,6 +5,7 @@ using System;
 
 public class Player_Movement : MonoBehaviour
 {
+
     // Member Classes
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float jumpPower = 100.0f;
@@ -16,6 +17,13 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private BoxCollider2D hitbox;
     [SerializeField] private LayerMask platformLayerMask;
 
+    private Inputs inputs;
+
+    void Start()
+    {
+        Inputs inputs = GameManager.Instance.GetInputs();
+    }
+
     void Update()
     {
         // Check win condition
@@ -25,12 +33,12 @@ public class Player_Movement : MonoBehaviour
         }
 
         // Find if we should be going in the positive or negative direction
-        int nDirection = (Convert.ToInt32(Input.GetKey("d")) - Convert.ToInt32(Input.GetKey("a")));
+        int nDirection = (Convert.ToInt32(Input.GetKey(inputs.right)) - Convert.ToInt32(Input.GetKey(inputs.left)));
 
         mVerticalVelocity += gravity;
 
         // Jump Code
-        if (Input.GetKey("space") && isGrounded)
+        if (Input.GetKey(inputs.jump) && isGrounded)
         {
             mVerticalVelocity = jumpPower;
         }
