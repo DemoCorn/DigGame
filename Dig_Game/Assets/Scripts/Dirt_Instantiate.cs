@@ -5,20 +5,20 @@ using UnityEngine;
 public class Dirt_Instantiate : MonoBehaviour
 {
     // Attach the dirt tile objects in Unity to these Transforms
-    [SerializeField] GameObject dirt1Obj;
-    [SerializeField] GameObject dirt2Obj;
-    [SerializeField] GameObject dirt3Obj;
-    [SerializeField] GameObject mineral1Obj;
+    public GameObject dirt1Obj;
+    public GameObject dirt2Obj;
+    public GameObject dirt3Obj;
+    public GameObject mineral1Obj;
 
-    [SerializeField] GameObject roomPrefabSmall;
-    [SerializeField] GameObject roomPrefabMedium;
-    [SerializeField] GameObject roomPrefabLarge;
+    public GameObject[] roomPrefabs; 
 
-    private static int randomRoomSize;
+    private static int randomRoom;
     private static bool randomized = false;
 
     public static float prefabPosX;
     public static float prefabPosY;
+
+    public GetPrefabSize _prefabSizeScript;
 
     // Start is called before the first frame update
     void Start()
@@ -27,19 +27,23 @@ public class Dirt_Instantiate : MonoBehaviour
         // The second value in each Vector2 is the spacing vertically between tiles
         // Adjust this value according to sprite being used
 
-        // Changed to 2 and 2 from 1 to 3 to avoid crashes in MVP
-        randomRoomSize = (int)Random.Range(1.0f, 2.999f);
-        Debug.Log(randomRoomSize);
         // Call randomize once if it hasn't already been done
         if (!randomized)
         {
             Randomize();
         }
+        Debug.Log(randomRoom);
+
 
         // Instantiate dirt
         Transform blockTransform;
         GameObject block;
 
+        // Instantiate roomPrefab and store script min and max values
+        Instantiate(roomPrefabs[randomRoom], new Vector3(prefabPosX, prefabPosY, 0), Quaternion.identity);
+        _prefabSizeScript = FindObjectOfType<GetPrefabSize>();        
+
+        // Instantiate Dirt Blocks
         for (float xPos = -30f; xPos < 30; xPos++)
         {
             for (float yPos = -20; yPos <= 3; yPos++)
@@ -59,48 +63,17 @@ public class Dirt_Instantiate : MonoBehaviour
                     blockTransform = dirt1Obj.transform;
                     block = dirt1Obj;
                 }
-                block = Instantiate(block, new Vector2(xPos, yPos), blockTransform.rotation);
-                
-                switch (randomRoomSize)
+                block = Instantiate(block, new Vector2(xPos, yPos), blockTransform.rotation);            
+
+                // Destroy dirt blocks based on prefab size
+                if ((xPos >= _prefabSizeScript.minX && xPos <= _prefabSizeScript.maxX)
+                    && (yPos >= _prefabSizeScript.minY && yPos <= _prefabSizeScript.maxY))
                 {
-                    case 1:
-                        if ((xPos >= prefabPosX - 6 && yPos >= prefabPosY - 3) && (xPos < prefabPosX + 6 && yPos < prefabPosY + 3))
-                        {
-                            Destroy(block);
-                        }
-                        break;
-
-                    case 2:
-                        if ((xPos >= prefabPosX - 7 && yPos >= prefabPosY - 6) && (xPos < prefabPosX + 7 && yPos < prefabPosY + 6))
-                        {
-                            Destroy(block);
-                        }
-                        break;
-
-                    case 3:
-                        if ((xPos >= prefabPosX - 9 && yPos >= prefabPosY - 8) && (xPos < prefabPosX + 9 && yPos < prefabPosY + 8))
-                        {
-                            Destroy(block);
-                        }
-                        break;
+                    Destroy(block);
                 }
             }
         }
 
-        // Prefab Instantiating
-        switch (randomRoomSize)
-        {
-            case 1:
-                Instantiate(roomPrefabSmall, new Vector3(prefabPosX, prefabPosY, 0) - new Vector3(1, 0, 0), Quaternion.identity);
-                break;
-            case 2:
-                //Instantiate(roomPrefabMedium, new Vector3(prefabPosX, prefabPosY, 0), Quaternion.identity);
-                Instantiate(roomPrefabMedium, new Vector3(prefabPosX, prefabPosY, 0) - new Vector3(0, 1, 0), Quaternion.identity);
-                break;
-            case 3:
-                Instantiate(roomPrefabLarge, new Vector3(prefabPosX, prefabPosY, 0), Quaternion.identity);
-                break;
-        }
 
         int mineralX;
         int mineralY;
@@ -111,28 +84,11 @@ public class Dirt_Instantiate : MonoBehaviour
             mineralY = Random.Range(3, -10);
             block = Instantiate(mineral1Obj, new Vector2(mineralX, mineralY), mineral1Obj.transform.rotation);
 
-            switch (randomRoomSize)
+            // Destroy dirt blocks based on prefab size
+            if ((mineralX >= _prefabSizeScript.minX && mineralX <= _prefabSizeScript.maxX)
+                && (mineralY >= _prefabSizeScript.minY && mineralY <= _prefabSizeScript.maxY))
             {
-                case 1:
-                    if ((mineralX >= prefabPosX - 6 && mineralY >= prefabPosY - 3) && (mineralX < prefabPosX + 6 && mineralY < prefabPosY + 3))
-                    {
-                        Destroy(block);
-                    }
-                    break;
-
-                case 2:
-                    if ((mineralX >= prefabPosX - 7 && mineralY >= prefabPosY - 6) && (mineralX < prefabPosX + 7 && mineralY < prefabPosY + 6))
-                    {
-                        Destroy(block);
-                    }
-                    break;
-
-                case 3:
-                    if ((mineralX >= prefabPosX - 9 && mineralY >= prefabPosY - 8) && (mineralX < prefabPosX + 9 && mineralY < prefabPosY + 8))
-                    {
-                        Destroy(block);
-                    }
-                    break;
+                Destroy(block);
             }
         }
 
@@ -144,6 +100,11 @@ public class Dirt_Instantiate : MonoBehaviour
         prefabPosX = Random.Range(-22, 22);
         prefabPosY = Random.Range(-3, -10);
         randomized = true;
+
+        //Randomize which room out of the array to select
+        // Note - passing min and max INT values into the range overload the function to a (minINCLUSIVE, maxEXCLUSIVE) range.
+        // Note - passing min and max FLOAT values into the range overload the function to a (minINCLUSIVE, maxINCLUSIVE) range.
+        randomRoom = Random.Range(0, roomPrefabs.Length);
     }
 
 }
