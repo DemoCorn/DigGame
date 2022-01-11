@@ -25,11 +25,13 @@ public class Enemy_Movement : MonoBehaviour
     {
         mVerticalVelocity += gravity;
 
+        // Collision With Ground
         if (IsCollidingWithBlock(new Vector2(speed * Time.deltaTime, mVerticalVelocity * Time.deltaTime)))
         {
             mVerticalVelocity = 0.0f;
         }
 
+        // Swap Direction when a wall is hit
         if (IsCollidingWithBlock(new Vector2(speed * Time.deltaTime + (0.08f * mDirection), mVerticalVelocity * Time.deltaTime)))
         {
             speed = -speed;

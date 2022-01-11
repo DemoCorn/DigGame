@@ -5,12 +5,12 @@ using UnityEngine;
 public class Player_Attack : MonoBehaviour
 {
     // Variables
-    public float blockDamage = 15.0f; 
-    public float enemyDamage = 15.0f; 
+    [SerializeField] float blockDamage = 15.0f;
+    [SerializeField] float enemyDamage = 15.0f; 
 
     private BoxCollider2D mAttackHitbox;
-    public Vector2 rightAttackOffset = new Vector2(0.6f, 0.0f);
-    public Vector2 rightAttackSize = new Vector2(0.2f, 1.0f);
+    [SerializeField] Vector2 rightAttackOffset = new Vector2(0.6f, 0.0f);
+    [SerializeField] Vector2 rightAttackSize = new Vector2(0.2f, 1.0f);
 
     void Start()
     {
@@ -20,20 +20,21 @@ public class Player_Attack : MonoBehaviour
 
     void Update()
     {
+        Inputs inputs = GameManager.Instance.GetInputs();
         // Check each key direction to figure out if we should be attacking anywhere
-        if (Input.GetKeyDown("right"))
+        if (Input.GetKeyDown(inputs.rAttack))
 		{
             SetAttackVariables(rightAttackOffset, rightAttackSize);
 		}
-        else if (Input.GetKeyDown("left"))
+        else if (Input.GetKeyDown(inputs.lAttack))
         {
             SetAttackVariables(new Vector2(-rightAttackOffset.x, rightAttackOffset.y), rightAttackSize);
         }
-        else if (Input.GetKeyDown("up"))
+        else if (Input.GetKeyDown(inputs.uAttack))
         {
             SetAttackVariables(new Vector2(rightAttackOffset.y, rightAttackOffset.x), new Vector2(rightAttackSize.y, rightAttackSize.x));
         }
-        else if (Input.GetKeyDown("down"))
+        else if (Input.GetKeyDown(inputs.dAttack))
         {
             SetAttackVariables(new Vector2(rightAttackOffset.y, -rightAttackOffset.x), new Vector2(rightAttackSize.y, rightAttackSize.x));
         }
@@ -50,14 +51,17 @@ public class Player_Attack : MonoBehaviour
             foreach (Collider2D collision in collisions)
             {
                 collisionObject = collision.gameObject;
-                if (collisionObject.tag == "BreakableBlock" && collisionObject.GetComponent<Block>() != null)
+                if (collisionObject.GetComponent<Non_Player_Health>() != null)
                 {
-                    collisionObject.GetComponent<Block>().Hit(blockDamage);
-                }
-                if (collisionObject.tag == "Enemy" && collisionObject.GetComponent<Block>() != null)
-                {
-                    Debug.Log("Enemy Hit");
-                    collisionObject.GetComponent<Block>().Hit(enemyDamage);
+                    // Need either a better way to do prefab loading, or a better way to check if an object should use enemy damage
+                    if (collisionObject.tag == "Enemy")
+                    {
+                        collisionObject.GetComponent<Non_Player_Health>().Hit(enemyDamage);
+                    }
+                    else
+                    {
+                        collisionObject.GetComponent<Non_Player_Health>().Hit(blockDamage);
+                    }
                 }
             }
             mAttackHitbox.enabled = false;
