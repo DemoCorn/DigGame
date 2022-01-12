@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 86096649959398516}
   - component: {fileID: 8571646301769357128}
   - component: {fileID: 6403607492484734690}
+  - component: {fileID: -1035283449442580363}
   m_Layer: 3
   m_Name: Mineral
   m_TagString: BreakableBlock
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -816303195
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7465504349221928740, guid: b3ebba24b6ede5e4cbe34cf340654656, type: 3}
   m_Color: {r: 0.12698466, g: 0.74924004, b: 0.7735849, a: 1}
@@ -102,7 +103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -136,3 +137,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 15
+--- !u!114 &-1035283449442580363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944928219685591244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - items:
+      item: {fileID: 11400000, guid: 5f1dbebd8bcb1264abacdee96a8dfc7d, type: 2}
+      amount: 3
+    percentChance: 100

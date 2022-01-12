@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 28138283}
   - component: {fileID: 28138285}
   - component: {fileID: 28138286}
+  - component: {fileID: 28138287}
   m_Layer: 0
   m_Name: GM
   m_TagString: Untagged
@@ -158,9 +159,9 @@ MonoBehaviour:
   dirt2Obj: {fileID: 5780275949929311849, guid: eec123686c6f44448b04f6eb8a2af61d, type: 3}
   dirt3Obj: {fileID: 392793682563905144, guid: 145637847d04415419fc24744d03d745, type: 3}
   mineral1Obj: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
-  roomPrefabSmall: {fileID: 2593902307999099743, guid: aa6d5eb252cd1984eb63b74cdaaae276, type: 3}
-  roomPrefabMedium: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
-  roomPrefabLarge: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+  roomPrefabs:
+  - {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+  _prefabSizeScript: {fileID: 0}
 --- !u!4 &28138284
 Transform:
   m_ObjectHideFlags: 0
@@ -188,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputManager: {fileID: 28138286}
+  InventoryManager: {fileID: 28138287}
   player: {fileID: 1664942791}
 --- !u!114 &28138286
 MonoBehaviour:
@@ -202,6 +204,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FilePath: Assets/Scripts/JsonFiles/
+--- !u!114 &28138287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28138282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a1393de267a114bb93b7295684cf3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noWeapon: {fileID: 11400000, guid: f80880e50f942b046b4e1c8cc1c973bf, type: 2}
+  noHelmet: {fileID: 11400000, guid: 9e8f1ba75ff728f43a1ded65c9f29d87, type: 2}
+  noChest: {fileID: 11400000, guid: f62ce1be7a1de6f4b864c1703542c6d2, type: 2}
+  noLeggings: {fileID: 11400000, guid: b513c4894aca70042b42707d5584c662, type: 2}
+  test: {fileID: 11400000, guid: d7a6c1125dad5724985facff84e3bcb6, type: 2}
+  test2: {fileID: 11400000, guid: d58b10e3cee72624583e0c164ba9381c, type: 2}
 --- !u!1 &108096529
 GameObject:
   m_ObjectHideFlags: 3
@@ -931,6 +951,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  maxHealth: 3
+  armor: 0
   immunityTime: 10
   hitbox: {fileID: 1664942794}
 --- !u!212 &1664942796

@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player_Health : MonoBehaviour
 {
     [SerializeField] private float health = 3.0f;
+    [SerializeField] private float maxHealth = 3.0f;
+    [SerializeField] private float armor = 0.0f;
     [SerializeField] private float immunityTime = 10.0f;
     [SerializeField] private BoxCollider2D hitbox;
     private bool isVulnerable = true;
@@ -17,7 +19,7 @@ public class Player_Health : MonoBehaviour
             float nDamageTaken = IsCollidingWithEnemy();
             if (nDamageTaken > 0.0f)
             {
-                health -= nDamageTaken;
+                health -= nDamageTaken - armor;
 
                 if (health <= 0.0f)
                 {
@@ -57,5 +59,11 @@ public class Player_Health : MonoBehaviour
     public float GetHealth()
     {
         return health;
+    }
+
+    public void Equip(float healthChange, float armorChange)
+    {
+        maxHealth += healthChange;
+        armor += armorChange;
     }
 }

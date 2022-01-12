@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Input_Manager InputManager;
 
+    [SerializeField] Inventory_Manager InventoryManager;
+
     private int score = 0;
 
     [SerializeField] GameObject player;
@@ -33,6 +35,31 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void EquipPlayer(float healthChange, float armorChange, float attackChange)
+    {
+        Player_Health playerHealth = player.GetComponent<Player_Health>();
+        Player_Attack playerAttack = player.GetComponentInChildren<Player_Attack>();
+
+        if (playerHealth != null)
+        {
+            playerHealth.Equip(healthChange, armorChange);
+        }
+        else
+        {
+            Debug.LogError("No health script on player");
+        }
+
+        if (playerAttack != null)
+        {
+            playerAttack.Equip(attackChange);
+        }
+    }
+
+    public void EditInventory(ItemGroup items)
+    {
+        InventoryManager.EditInventory(items);
     }
 
     public int GetScore()

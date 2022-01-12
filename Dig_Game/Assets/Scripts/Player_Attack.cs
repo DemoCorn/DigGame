@@ -74,4 +74,9 @@ public class Player_Attack : MonoBehaviour
         mAttackHitbox.size = size;
         mAttackHitbox.enabled = true;
 	}
+
+    public void Equip(float attackChange)
+    {
+        enemyDamage += attackChange;
+    }
 }
