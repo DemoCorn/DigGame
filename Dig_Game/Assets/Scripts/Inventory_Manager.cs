@@ -64,7 +64,14 @@ public class Inventory_Manager : MonoBehaviour
         float health = newEquipment.healthModifier - equipment[(int)newEquipment.equipmentType].healthModifier;
         float armor = newEquipment.armorModifier - equipment[(int)newEquipment.equipmentType].armorModifier;
         float damage = newEquipment.attackModifier - equipment[(int)newEquipment.equipmentType].attackModifier;
+
+        if (equipment[(int)newEquipment.equipmentType] != noWeapon && equipment[(int)newEquipment.equipmentType] != noHelmet && equipment[(int)newEquipment.equipmentType] != noChest && equipment[(int)newEquipment.equipmentType] != noLeggings)
+        {
+            EditInventory(new ItemGroup(equipment[(int)newEquipment.equipmentType], 1));
+        }
+
         equipment[(int)newEquipment.equipmentType] = newEquipment;
+
 
         GameManager.Instance.EquipPlayer(health, armor, damage);
     }
