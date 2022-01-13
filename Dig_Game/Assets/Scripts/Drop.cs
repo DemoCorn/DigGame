@@ -9,9 +9,10 @@ public class Drop : MonoBehaviour
     void OnDisable()
     {
         float chance;
+        // Iterate through all drops and generate a random number to see if they happen
         foreach(DropTable drop in drops)
         {
-            chance = Random.Range(0.0f, 100.0f);
+            chance = Random.Range(0.0f, 100.0f); // This should never come up, but putting in 0 for the chance will actually still give it a chance under this implementation
             if (chance <= drop.percentChance)
             {
                 GameManager.Instance.EditInventory(drop.items);
@@ -19,6 +20,7 @@ public class Drop : MonoBehaviour
         }
     }
 
+    // Used to allow designers to edit the chance that an ItemGroup has to drop from any given enemy
     [System.Serializable]
     public class DropTable
     {
