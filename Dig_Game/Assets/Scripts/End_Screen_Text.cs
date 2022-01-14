@@ -5,24 +5,18 @@ using UnityEngine.UI;
 
 public class End_Screen_Text : MonoBehaviour
 {
-    public Text gameText;
+    public Text messageText;
 
     // Start is called before the first frame update
     void Start()
     {
         if(GameManager.Instance.IsWinning())
         {
-            gameText.text = "You Win";
+            messageText.text = "You Win";
         }
         else
         {
-            gameText.text = "You Lose";
+            messageText.text = "You Lose";
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

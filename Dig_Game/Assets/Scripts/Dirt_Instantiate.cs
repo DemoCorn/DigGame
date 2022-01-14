@@ -5,11 +5,20 @@ using UnityEngine;
 public class Dirt_Instantiate : MonoBehaviour
 {
     // Attach the dirt tile objects in Unity to these Transforms
-    public Transform dirt1Obj;
-    public Transform dirt2Obj;
-    public Transform dirt3Obj;
-    public Transform mineral1Obj;
+    public GameObject dirt1Obj;
+    public GameObject dirt2Obj;
+    public GameObject dirt3Obj;
+    public GameObject mineral1Obj;
 
+    public GameObject[] roomPrefabs; 
+
+    private static int randomRoom;
+    private static bool randomized = false;
+
+    public static float prefabPosX;
+    public static float prefabPosY;
+
+    public GetPrefabSize _prefabSizeScript;
 
     // Start is called before the first frame update
     void Start()
@@ -18,56 +27,84 @@ public class Dirt_Instantiate : MonoBehaviour
         // The second value in each Vector2 is the spacing vertically between tiles
         // Adjust this value according to sprite being used
 
+        // Call randomize once if it hasn't already been done
+        if (!randomized)
+        {
+            Randomize();
+        }
+        Debug.Log(randomRoom);
+
+
         // Instantiate dirt
+        Transform blockTransform;
+        GameObject block;
+
+        // Instantiate roomPrefab and store script min and max values
+        Instantiate(roomPrefabs[randomRoom], new Vector3(prefabPosX, prefabPosY, 0), Quaternion.identity);
+        _prefabSizeScript = FindObjectOfType<GetPrefabSize>();        
+
+        // Instantiate Dirt Blocks
         for (float xPos = -30f; xPos < 30; xPos++)
         {
-            // 1st layer
-            Instantiate(dirt1Obj, new Vector2(xPos, 3), dirt1Obj.rotation);
-            Instantiate(dirt1Obj, new Vector2(xPos, 2), dirt1Obj.rotation);
-            Instantiate(dirt1Obj, new Vector2(xPos, 1), dirt1Obj.rotation);
-            Instantiate(dirt1Obj, new Vector2(xPos, 0), dirt1Obj.rotation);
-            Instantiate(dirt1Obj, new Vector2(xPos, -1), dirt1Obj.rotation);
-            Instantiate(dirt1Obj, new Vector2(xPos, -2), dirt1Obj.rotation);
-            Instantiate(dirt1Obj, new Vector2(xPos, -3), dirt1Obj.rotation);
-            Instantiate(dirt1Obj, new Vector2(xPos, -4), dirt1Obj.rotation);
+            for (float yPos = -20; yPos <= 3; yPos++)
+            {
+                if (yPos <= -13)
+                {
+                    blockTransform = dirt3Obj.transform;
+                    block = dirt3Obj;
+                }
+                else if (yPos <= -5)
+                {
+                    blockTransform = dirt2Obj.transform;
+                    block = dirt2Obj;
+                }
+                else
+                {
+                    blockTransform = dirt1Obj.transform;
+                    block = dirt1Obj;
+                }
+                block = Instantiate(block, new Vector2(xPos, yPos), blockTransform.rotation);            
 
-            // 2nd layer
-            Instantiate(dirt2Obj, new Vector2(xPos, -5), dirt2Obj.rotation);
-            Instantiate(dirt2Obj, new Vector2(xPos, -6), dirt2Obj.rotation);
-            Instantiate(dirt2Obj, new Vector2(xPos, -7), dirt2Obj.rotation);
-            Instantiate(dirt2Obj, new Vector2(xPos, -8), dirt2Obj.rotation);
-            Instantiate(dirt2Obj, new Vector2(xPos, -9), dirt2Obj.rotation);
-            Instantiate(dirt2Obj, new Vector2(xPos, -10), dirt2Obj.rotation);
-            Instantiate(dirt2Obj, new Vector2(xPos, -11), dirt2Obj.rotation);
-            Instantiate(dirt2Obj, new Vector2(xPos, -12), dirt2Obj.rotation);
-
-            // 3rd layer
-            Instantiate(dirt3Obj, new Vector2(xPos, -13), dirt3Obj.rotation);
-            Instantiate(dirt3Obj, new Vector2(xPos, -14), dirt3Obj.rotation);
-            Instantiate(dirt3Obj, new Vector2(xPos, -15), dirt3Obj.rotation);
-            Instantiate(dirt3Obj, new Vector2(xPos, -16), dirt3Obj.rotation);
-            Instantiate(dirt3Obj, new Vector2(xPos, -17), dirt3Obj.rotation);
-            Instantiate(dirt3Obj, new Vector2(xPos, -18), dirt3Obj.rotation);
-            Instantiate(dirt3Obj, new Vector2(xPos, -19), dirt3Obj.rotation);
-            Instantiate(dirt3Obj, new Vector2(xPos, -20), dirt3Obj.rotation);
-
+                // Destroy dirt blocks based on prefab size
+                if ((xPos >= _prefabSizeScript.minX && xPos <= _prefabSizeScript.maxX)
+                    && (yPos >= _prefabSizeScript.minY && yPos <= _prefabSizeScript.maxY))
+                {
+                    Destroy(block);
+                }
+            }
         }
 
-        // Random Minerals
 
+        int mineralX;
+        int mineralY;
+        // Random Minerals
         for (int x = 0; x < 10; x++)
         {
-            Instantiate(mineral1Obj, new Vector2(Random.Range(-30, 30), Random.Range(3, -10)), mineral1Obj.rotation);
+            mineralX = Random.Range(-30, 30);
+            mineralY = Random.Range(3, -10);
+            block = Instantiate(mineral1Obj, new Vector2(mineralX, mineralY), mineral1Obj.transform.rotation);
+
+            // Destroy dirt blocks based on prefab size
+            if ((mineralX >= _prefabSizeScript.minX && mineralX <= _prefabSizeScript.maxX)
+                && (mineralY >= _prefabSizeScript.minY && mineralY <= _prefabSizeScript.maxY))
+            {
+                Destroy(block);
+            }
         }
 
     }
 
+    public void Randomize()
+    {
+        // Randomizing chosen condition to create opening for both X & Y values of attached tile
+        prefabPosX = Random.Range(-22, 22);
+        prefabPosY = Random.Range(-3, -10);
+        randomized = true;
 
-        // Update is called once per frame
-        void Update()
-        {
+        //Randomize which room out of the array to select
+        // Note - passing min and max INT values into the range overload the function to a (minINCLUSIVE, maxEXCLUSIVE) range.
+        // Note - passing min and max FLOAT values into the range overload the function to a (minINCLUSIVE, maxINCLUSIVE) range.
+        randomRoom = Random.Range(0, roomPrefabs.Length);
+    }
 
-        }
-
-    
 }
