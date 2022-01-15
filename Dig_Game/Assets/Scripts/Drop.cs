@@ -9,7 +9,7 @@ public class Drop : MonoBehaviour
     void OnDisable()
     {
         float chance;
-        // Iterate through all drops and generate a random number to see if they happen
+        // Iterate through all drops and generate a random number to see if they get added to the inventory
         foreach(DropTable drop in drops)
         {
             chance = Random.Range(0.0f, 100.0f); // This should never come up, but putting in 0 for the chance will actually still give it a chance under this implementation
