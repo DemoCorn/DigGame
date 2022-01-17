@@ -2,30 +2,30 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using Newtonsoft.Json;
 using System;
 
 public class Inventory_Manager : MonoBehaviour
 {
-    [SerializeField] private Equipment noWeapon;
-    [SerializeField] private Equipment noHelmet;
-    [SerializeField] private Equipment noChest;
-    [SerializeField] private Equipment noLeggings;
+    [SerializeField] private Blueprint testBlueprint;
 
-    [SerializeField] private Blueprint test;
-    [SerializeField] private Equipment test2;
+    [SerializeField] private List<ItemGroup> inventory = new List<ItemGroup>();
 
-    private Dictionary<Item, int> inventory = new Dictionary<Item, int>();
-    private Equipment[] equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
+    [SerializeField] private Equipment[] noEquipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
+    [SerializeField] private Equipment[] equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
 
     // Start is called before the first frame update
     void Start()
     {
         // Equip the lack of armor and weapon, needed so that Equip works
-        equipment[0] = noWeapon;
-        equipment[1] = noHelmet;
-        equipment[2] = noChest;
-        equipment[3] = noLeggings;
+        for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
+        {
+            if (equipment[i] == null)
+            {
+                equipment[i] = noEquipment[i];
+            }
+        }
     }
 
     // Update is called once per frame
@@ -34,9 +34,9 @@ public class Inventory_Manager : MonoBehaviour
         // Testing
         if(Input.GetKeyDown("r"))
         {
-            if(Craft(test))
+            if(Craft(testBlueprint))
             {
-                Equip(test2);
+                Equip((Equipment)testBlueprint.result.item);
             }
         }
     }
@@ -44,27 +44,23 @@ public class Inventory_Manager : MonoBehaviour
     public void EditInventory(ItemGroup groupToAdd)
     {
         // Check whether an item needs to be added to the dictionary or the value associated with the key just needs to be changed
-        if(inventory.ContainsKey(groupToAdd.item))
+        int itemPlacement = InventoryHas(groupToAdd.item);
+
+        if (itemPlacement != -1)
         {
-            inventory[groupToAdd.item] += groupToAdd.amount;
+            inventory[itemPlacement].amount += groupToAdd.amount;
 
             // Remove item if there is no more of them
-            if (inventory[groupToAdd.item] < 1)
+            if (inventory[itemPlacement].amount < 1)
             {
-                if (inventory[groupToAdd.item] != 0)
-                {
-                    Debug.LogWarning("Too many items were removed, inventory went into negative items");
-                }
-                inventory.Remove(groupToAdd.item);
+                Assert.AreEqual(0, inventory[itemPlacement].amount, "Too many items were removed, inventory went into negative items");
+                inventory.RemoveAt(itemPlacement);
             }
-        }
-        else if (groupToAdd.amount > 0)
-        {
-            inventory.Add(groupToAdd.item, groupToAdd.amount);
         }
         else
         {
-            Debug.LogWarning("Tried to remove an item that does not exist in the inventory");
+            Assert.IsTrue(groupToAdd.amount > 0, "Tried to remove an item that does not exist in the inventory");
+            inventory.Add(new ItemGroup(groupToAdd.item, groupToAdd.amount));
         }
     }
 
@@ -75,8 +71,14 @@ public class Inventory_Manager : MonoBehaviour
         float fArmor = newEquipment.armorModifier - equipment[(int)newEquipment.equipmentType].armorModifier;
         float fDamage = newEquipment.attackModifier - equipment[(int)newEquipment.equipmentType].attackModifier;
 
-        // if the equipment equiped is not the blank equipment used to make this function work, add it to the inventory
-        if (equipment[(int)newEquipment.equipmentType] != noWeapon && equipment[(int)newEquipment.equipmentType] != noHelmet && equipment[(int)newEquipment.equipmentType] != noChest && equipment[(int)newEquipment.equipmentType] != noLeggings)
+        // if the equipment being equiped is not the blank equipment used to make this function work, remove it from the inventory
+        if (newEquipment != noEquipment[(int)newEquipment.equipmentType])
+        {
+            EditInventory(new ItemGroup(newEquipment, -1));
+        }
+
+        // if the equipment being unequiped is not the blank equipment used to make this function work, add it to the inventory
+        if (equipment[(int)newEquipment.equipmentType] != noEquipment[(int)newEquipment.equipmentType])
         {
             EditInventory(new ItemGroup(equipment[(int)newEquipment.equipmentType], 1));
         }
@@ -93,12 +95,13 @@ public class Inventory_Manager : MonoBehaviour
         // Iterate through all requirements of the blueprint checking if the craft is possible
         foreach (ItemGroup requirements in blueprint.recipe)
         {
-            if (!inventory.ContainsKey(requirements.item))
+            int itemPlacement = InventoryHas(requirements.item);
+            if (itemPlacement == -1)
             {
                 canCraft = false;
                 break;
             }
-            else if (inventory[requirements.item] < requirements.amount)
+            else if (inventory[itemPlacement].amount < requirements.amount)
             {
                 canCraft = false;
                 break;
@@ -112,11 +115,25 @@ public class Inventory_Manager : MonoBehaviour
             {
                 requirement.amount *= -1; // need to swap the amount to negative so that items are removed from the inventory
                 EditInventory(requirement);
+                requirement.amount *= -1; // swap back to maintain the blueprint
             }
             EditInventory(blueprint.result);
             return true;
         }
         return false;
+    }
+
+    // Returns where in the list an item is, if the item does not exist returns -1
+    private int InventoryHas(Item item)
+    {
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (inventory[i].item == item)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }
 

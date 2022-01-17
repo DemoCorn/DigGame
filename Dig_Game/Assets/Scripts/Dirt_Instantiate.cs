@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dirt_Instantiate : MonoBehaviour
 {
     // Attach the dirt tile objects in Unity to these Transforms
+    public GameObject dirtObj;
     public GameObject dirt1Obj;
     public GameObject dirt2Obj;
     public GameObject dirt3Obj;
@@ -36,7 +37,6 @@ public class Dirt_Instantiate : MonoBehaviour
 
 
         // Instantiate dirt
-        Transform blockTransform;
         GameObject block;
 
         // Instantiate roomPrefab and store script min and max values
@@ -48,22 +48,7 @@ public class Dirt_Instantiate : MonoBehaviour
         {
             for (float yPos = -20; yPos <= 3; yPos++)
             {
-                if (yPos <= -13)
-                {
-                    blockTransform = dirt3Obj.transform;
-                    block = dirt3Obj;
-                }
-                else if (yPos <= -5)
-                {
-                    blockTransform = dirt2Obj.transform;
-                    block = dirt2Obj;
-                }
-                else
-                {
-                    blockTransform = dirt1Obj.transform;
-                    block = dirt1Obj;
-                }
-                block = Instantiate(block, new Vector2(xPos, yPos), blockTransform.rotation);            
+                block = Instantiate(dirtObj, new Vector2(xPos, yPos), dirtObj.transform.rotation);            
 
                 // Destroy dirt blocks based on prefab size
                 if ((xPos >= _prefabSizeScript.minX && xPos <= _prefabSizeScript.maxX)

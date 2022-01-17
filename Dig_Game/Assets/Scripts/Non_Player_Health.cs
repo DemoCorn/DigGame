@@ -14,4 +14,9 @@ public class Non_Player_Health : MonoBehaviour
 			gameObject.SetActive(false);
 		}
 	}
+
+	public void SetHealth(float newHealth)
+    {
+		health = newHealth;
+	}
 }
