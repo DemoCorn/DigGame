@@ -676,7 +676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf7c6b388206542a5edbd2c0ead774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score: 0
+  player: {fileID: 344978604}
 --- !u!114 &1746625270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,10 +689,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bcc9479c1903748bde56c1ed352d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dirt1Obj: {fileID: 3017129044011437658, guid: 6461f494cdb5fe44d854779deb68ef0e, type: 3}
-  dirt2Obj: {fileID: 5434605466870141458, guid: eec123686c6f44448b04f6eb8a2af61d, type: 3}
-  dirt3Obj: {fileID: 2175037945714100739, guid: 145637847d04415419fc24744d03d745, type: 3}
-  mineral1Obj: {fileID: 1890914835683339861, guid: b015609e044563944afafaeac717478d, type: 3}
+  dirt1Obj: {fileID: 3639696129305948705, guid: 6461f494cdb5fe44d854779deb68ef0e, type: 3}
+  dirt2Obj: {fileID: 5780275949929311849, guid: eec123686c6f44448b04f6eb8a2af61d, type: 3}
+  dirt3Obj: {fileID: 392793682563905144, guid: 145637847d04415419fc24744d03d745, type: 3}
+  mineral1Obj: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
+  roomPrefabs:
+  - {fileID: 2593902307999099743, guid: aa6d5eb252cd1984eb63b74cdaaae276, type: 3}
+  - {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+  _prefabSizeScript: {fileID: 0}
 --- !u!1 &2055751952
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,6 +796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsText: {fileID: 220407455}
+  healthText: {fileID: 0}
 --- !u!114 &2130517838
 MonoBehaviour:
   m_ObjectHideFlags: 0
