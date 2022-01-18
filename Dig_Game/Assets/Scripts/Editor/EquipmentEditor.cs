@@ -1,15 +1,14 @@
-using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-
-
-[CustomEditor(typeof(Item))]
-public class ItemEditor : UnityEditor.Editor
+[CustomEditor(typeof(Equipment))]
+public class EquipmentEditor : UnityEditor.Editor
 {
     public override Texture2D RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
     {
-        Item item = (Item)target;
+        Equipment item = (Equipment)target;
 
         if (item == null || item.itemSprite == null)
             return null;
