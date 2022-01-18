@@ -8,9 +8,10 @@ public class FlyingEnemy : MonoBehaviour
     public GameObject player;
     public bool attackState = false;
     
-    [Header("Setup")]    
-    public Transform enemyStart;
-    public Transform[] enemyPatrolPath;
+    
+    //OLD MOVEMENT LOGIC
+    //public Transform enemyStart;
+    //public Transform[] enemyPatrolPath;
 
     [Header("Enemy Values")]
     [SerializeField]
@@ -35,20 +36,21 @@ public class FlyingEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
-       
-        if(attackState == true)
-        {
-            Chase();
-            Flip();
-        }
-        else
-        {
-            ReturnToStart();
-        }
-            
-       
+
+
+
+        /**OLD MOVEMENT LOGIC 
+         * if(attackState == true)
+         {
+             Chase();
+             Flip();
+         }
+         else
+         {
+             ReturnToStart();
+         }
+             **/
+
     }
 
     public enum EnemyStates
@@ -59,6 +61,8 @@ public class FlyingEnemy : MonoBehaviour
         wait        
     }
 
+    /** OLD MOVEMENT LOGIC
+     
     private void Chase()
     {   
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);   
@@ -78,5 +82,5 @@ public class FlyingEnemy : MonoBehaviour
     {
         transform.position = Vector2.MoveTowards(transform.position, enemyStart.transform.position, moveSpeed * Time.deltaTime);
     }
-   
+   **/
 }
