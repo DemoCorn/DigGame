@@ -10,6 +10,7 @@ public class Equipment : Item
     public float healthModifier;
     public float armorModifier;
     public float attackModifier;
+    public float digModifier;
 
     new protected const ItemType itemType = ItemType.equipment;
 }

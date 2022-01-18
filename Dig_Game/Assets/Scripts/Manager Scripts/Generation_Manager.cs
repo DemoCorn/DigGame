@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dirt_Instantiate : MonoBehaviour
+public class Generation_Manager : MonoBehaviour
 {
     // Attach the dirt tile objects in Unity to these Transforms
     public GameObject dirtObj;

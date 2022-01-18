@@ -74,6 +74,7 @@ public class Inventory_Manager : MonoBehaviour
             float fHealth = newEquipment.healthModifier - equipment[(int)newEquipment.equipmentType].healthModifier;
             float fArmor = newEquipment.armorModifier - equipment[(int)newEquipment.equipmentType].armorModifier;
             float fDamage = newEquipment.attackModifier - equipment[(int)newEquipment.equipmentType].attackModifier;
+            float fDig = newEquipment.digModifier - equipment[(int)newEquipment.equipmentType].digModifier;
 
             // if the equipment being equiped is not the blank equipment used to make this function work, remove it from the inventory
             if (newEquipment != noEquipment[(int)newEquipment.equipmentType])
@@ -89,7 +90,7 @@ public class Inventory_Manager : MonoBehaviour
 
             // Equip the new armor and change stats accordingly
             equipment[(int)newEquipment.equipmentType] = newEquipment;
-            GameManager.Instance.EquipPlayer(fHealth, fArmor, fDamage);
+            GameManager.Instance.EquipPlayer(fHealth, fArmor, fDamage, fDig);
         }
     }
 
