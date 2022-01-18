@@ -47,14 +47,16 @@ public class Dirt_Loader : MonoBehaviour
         {
         }
 
-        public DirtRange(Sprite objectSprite, int high, int low)
+        public DirtRange(float hp, Sprite objectSprite, int high, int low)
         {
+            health = hp;
             sprite = objectSprite;
             highest = high;
             lowest = low;
         }
         public float health;
         public Sprite sprite;
+
         public float highest;
         public float lowest;
     }
