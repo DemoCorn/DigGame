@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    [SerializeField] Input_Manager InputManager;
+
     private int score = 0;
 
-    public GameObject player;
+    [SerializeField] GameObject player;
 
     private bool isWinning = false;
 
@@ -45,6 +47,11 @@ public class GameManager : MonoBehaviour
     public float GetPlayerHealth()
     {
         return player.GetComponent<Player_Health>().GetHealth();
+    }
+
+    public Inputs GetInputs()
+    {
+        return InputManager.GetInputs();
     }
 
     public bool IsWinning()
