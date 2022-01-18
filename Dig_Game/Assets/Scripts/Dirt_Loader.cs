@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Dirt_Loader : MonoBehaviour
 {
-    [SerializeField] private List<LevelRange> LevelRanges = new List<LevelRange>();
+    [SerializeField] private List<LevelRange> levelRanges = new List<LevelRange>();
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Non_Player_Health health;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach(DirtRange dirtRange in LevelRanges[SceneManager.GetActiveScene().buildIndex].dirtLayers)
+        foreach(DirtRange dirtRange in levelRanges[SceneManager.GetActiveScene().buildIndex].dirtLayers)
         {
             if (gameObject.transform.position.y <= dirtRange.highest && gameObject.transform.position.y >= dirtRange.lowest)
             {
