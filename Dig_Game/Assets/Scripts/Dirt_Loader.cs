@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Dirt_Loader : MonoBehaviour
 {
+    [SerializeField] private bool overrideLayerHealth = false;
     [SerializeField] private List<LevelRange> levelRanges = new List<LevelRange>();
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Non_Player_Health health;
@@ -18,7 +19,10 @@ public class Dirt_Loader : MonoBehaviour
             {
                 spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
                 spriteRenderer.sprite = dirtRange.sprite;
-                health.SetHealth(dirtRange.health);
+                if (!overrideLayerHealth)
+                {
+                    health.SetHealth(dirtRange.health);
+                }
                 break;
             }
         }
@@ -51,6 +55,7 @@ public class Dirt_Loader : MonoBehaviour
         {
             health = hp;
             sprite = objectSprite;
+
             highest = high;
             lowest = low;
         }

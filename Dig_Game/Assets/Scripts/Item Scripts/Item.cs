@@ -16,9 +16,3 @@ public class Item : ScriptableObject
         return itemType;
     }
 }
-
-public enum ItemType
-{
-    item = 0,
-    equipment = 1
-}

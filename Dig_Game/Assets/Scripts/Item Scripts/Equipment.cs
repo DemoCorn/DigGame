@@ -6,17 +6,10 @@ using UnityEngine;
 public class Equipment : Item
 {
     public EquipmentType equipmentType;
+    public PlayerClass classRequirement;
     public float healthModifier;
     public float armorModifier;
     public float attackModifier;
 
     new protected const ItemType itemType = ItemType.equipment;
-}
-
-public enum EquipmentType
-{
-    weapon = 0,
-    head = 1,
-    chest = 2,
-    legs = 3
 }

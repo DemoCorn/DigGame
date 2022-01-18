@@ -14,6 +14,7 @@ public class Inventory_Manager : MonoBehaviour
 
     [SerializeField] private Equipment[] noEquipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
     [SerializeField] private Equipment[] equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
+    [SerializeField] private PlayerClass playerClass = PlayerClass.None;
 
     // Start is called before the first frame update
     void Start()
@@ -66,26 +67,30 @@ public class Inventory_Manager : MonoBehaviour
 
     public void Equip(Equipment newEquipment)
     {
-        // Calculate the change in stats the change in equipment will have
-        float fHealth = newEquipment.healthModifier - equipment[(int)newEquipment.equipmentType].healthModifier;
-        float fArmor = newEquipment.armorModifier - equipment[(int)newEquipment.equipmentType].armorModifier;
-        float fDamage = newEquipment.attackModifier - equipment[(int)newEquipment.equipmentType].attackModifier;
-
-        // if the equipment being equiped is not the blank equipment used to make this function work, remove it from the inventory
-        if (newEquipment != noEquipment[(int)newEquipment.equipmentType])
+        // Check to make sure the player class matches the equipment requirement
+        if (playerClass == newEquipment.classRequirement || newEquipment.classRequirement == PlayerClass.None)
         {
-            EditInventory(new ItemGroup(newEquipment, -1));
-        }
+            // Calculate the change in stats the change in equipment will have
+            float fHealth = newEquipment.healthModifier - equipment[(int)newEquipment.equipmentType].healthModifier;
+            float fArmor = newEquipment.armorModifier - equipment[(int)newEquipment.equipmentType].armorModifier;
+            float fDamage = newEquipment.attackModifier - equipment[(int)newEquipment.equipmentType].attackModifier;
 
-        // if the equipment being unequiped is not the blank equipment used to make this function work, add it to the inventory
-        if (equipment[(int)newEquipment.equipmentType] != noEquipment[(int)newEquipment.equipmentType])
-        {
-            EditInventory(new ItemGroup(equipment[(int)newEquipment.equipmentType], 1));
-        }
+            // if the equipment being equiped is not the blank equipment used to make this function work, remove it from the inventory
+            if (newEquipment != noEquipment[(int)newEquipment.equipmentType])
+            {
+                EditInventory(new ItemGroup(newEquipment, -1));
+            }
 
-        // Equip the new armor and change stats accordingly
-        equipment[(int)newEquipment.equipmentType] = newEquipment;
-        GameManager.Instance.EquipPlayer(fHealth, fArmor, fDamage);
+            // if the equipment being unequiped is not the blank equipment used to make this function work, add it to the inventory
+            if (equipment[(int)newEquipment.equipmentType] != noEquipment[(int)newEquipment.equipmentType])
+            {
+                EditInventory(new ItemGroup(equipment[(int)newEquipment.equipmentType], 1));
+            }
+
+            // Equip the new armor and change stats accordingly
+            equipment[(int)newEquipment.equipmentType] = newEquipment;
+            GameManager.Instance.EquipPlayer(fHealth, fArmor, fDamage);
+        }
     }
 
     public bool Craft(Blueprint blueprint)
@@ -153,4 +158,25 @@ public class ItemGroup
 
     public Item item;
     public int amount;
+}
+public enum ItemType
+{
+    item = 0,
+    equipment = 1
+}
+
+public enum EquipmentType
+{
+    weapon = 0,
+    head = 1,
+    chest = 2,
+    legs = 3
+}
+
+public enum PlayerClass
+{
+    None = 0,
+    Warrior = 1,
+    Rogue = 2,
+    Wizard = 3
 }
