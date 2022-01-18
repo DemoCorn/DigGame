@@ -8,13 +8,13 @@ using System;
 
 public class Inventory_Manager : MonoBehaviour
 {
-    [SerializeField] private Blueprint testBlueprint;
-
+    [SerializeField] private PlayerClass playerClass = PlayerClass.None;
     [SerializeField] private List<ItemGroup> inventory = new List<ItemGroup>();
 
     [SerializeField] private Equipment[] noEquipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
     [SerializeField] private Equipment[] equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
-    [SerializeField] private PlayerClass playerClass = PlayerClass.None;
+
+    [SerializeField] private Blueprint testBlueprint;
 
     // Start is called before the first frame update
     void Start()
