@@ -33,7 +33,7 @@ public class Generation_Manager : MonoBehaviour
         {
             Randomize();
         }
-        Debug.Log(randomRoom);
+        Debug.Log("Generated prefab: " + randomRoom + " from list");
 
 
         // Instantiate dirt
