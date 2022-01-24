@@ -39,13 +39,13 @@ public class FieldOfView : MonoBehaviour
             {
                 // No hit
                 vertex = origin + GetVectorFromAngle(angle) * viewDistance;
-                Debug.Log("NoHit");
+               // Debug.Log("NoHit");
             }
             else
             {
                 // Hit Object
                 vertex = raycastHit2D.point;
-                Debug.Log("Hit");
+                //Debug.Log("Hit");
             }
             vertices[vertexIndex] = vertex;
 
