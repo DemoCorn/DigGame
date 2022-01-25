@@ -14,6 +14,7 @@ public class Inputs
     public string dAttack;
     public string lAttack;
     public string rAttack;
+    public string inventoryOpen;
 }
 
 public class Input_Manager : MonoBehaviour
@@ -45,6 +46,7 @@ public class Input_Manager : MonoBehaviour
             inputs.dAttack = "down";
             inputs.lAttack = "left";
             inputs.rAttack = "right";
+            inputs.inventoryOpen = "e";
             try
             {
                 // Save to file
