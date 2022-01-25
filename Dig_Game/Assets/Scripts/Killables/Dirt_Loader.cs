@@ -13,7 +13,7 @@ public class Dirt_Loader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(DirtRange dirtRange in levelRanges[SceneManager.GetActiveScene().buildIndex].dirtLayers)
+        foreach(DirtRange dirtRange in levelRanges[GameManager.Instance.GetLevelNum()].dirtLayers)
         {
             if (gameObject.transform.position.y <= dirtRange.highest && gameObject.transform.position.y >= dirtRange.lowest)
             {
