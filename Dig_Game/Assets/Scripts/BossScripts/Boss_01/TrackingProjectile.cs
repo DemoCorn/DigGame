@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class TrackingProjectile : MonoBehaviour
 {
-    public float proSpeed = 5f;
-    public float rotateSpeed = 200f;
+    public float proSpeed;
+    public float rotateSpeed;
     public Transform player;
     private Rigidbody2D rb;
     public Transform spawnPosition;
@@ -30,7 +30,7 @@ public class TrackingProjectile : MonoBehaviour
         Vector2 direction = (Vector2)player.position - rb.position;
         direction.Normalize();
         float rotateAmount = Vector3.Cross(direction, transform.up).z;
-        rb.angularVelocity =  - rotateAmount * rotateAmount * rotateSpeed;
+        rb.angularVelocity =  -rotateAmount * rotateSpeed;
         rb.velocity = transform.up * proSpeed;
     }
 
@@ -45,10 +45,11 @@ public class TrackingProjectile : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider other)
+    private void OnTriggerEnter2D()
     {
-      
+        Destroy(gameObject);
     }
+    
 
 
     public void SpawnProjectile()
