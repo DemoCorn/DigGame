@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 
     private bool isWinning = false;
 
+    [SerializeField] int LevelNum;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,5 +89,10 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("Level");
+    }
+
+    public int GetLevelNum()
+    {
+        return LevelNum;
     }
 }
