@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 28138285}
   - component: {fileID: 28138286}
   - component: {fileID: 28138287}
+  - component: {fileID: 28138288}
   m_Layer: 0
   m_Name: GM
   m_TagString: Untagged
@@ -156,9 +157,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dirtObj: {fileID: 6390208895897666119, guid: 5f23c068eb9ecfe4e90a34b501a36a62, type: 3}
-  dirt1Obj: {fileID: 3639696129305948705, guid: 6461f494cdb5fe44d854779deb68ef0e, type: 3}
-  dirt2Obj: {fileID: 5780275949929311849, guid: eec123686c6f44448b04f6eb8a2af61d, type: 3}
-  dirt3Obj: {fileID: 392793682563905144, guid: 145637847d04415419fc24744d03d745, type: 3}
   mineral1Obj: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
   roomPrefabs:
   - {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
@@ -191,8 +189,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputManager: {fileID: 28138286}
   InventoryManager: {fileID: 28138287}
+  GenerationManager: {fileID: 28138283}
+  LayerManager: {fileID: 28138288}
   player: {fileID: 1664942791}
   mainCamera: {fileID: 935519405}
+  LevelNum: 0
 --- !u!114 &28138286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +243,27 @@ MonoBehaviour:
   gridNeeded: 1
   grid: {fileID: 2065234075}
   gridOffset: -3.39
+--- !u!114 &28138288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 28138282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f1def0c72556f04bad2b878b17ef854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelRanges:
+  - layerRange:
+    - highest: 500
+      lowest: -4
+    - highest: -5
+      lowest: -12
+    - highest: -13
+      lowest: -500
+    nLevelNumber: 0
 --- !u!1 &108096529
 GameObject:
   m_ObjectHideFlags: 3
