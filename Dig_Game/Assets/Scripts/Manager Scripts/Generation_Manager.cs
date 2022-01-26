@@ -6,9 +6,6 @@ public class Generation_Manager : MonoBehaviour
 {
     // Attach the dirt tile objects in Unity to these Transforms
     public GameObject dirtObj;
-    public GameObject dirt1Obj;
-    public GameObject dirt2Obj;
-    public GameObject dirt3Obj;
     public GameObject mineral1Obj;
 
     public GameObject[] roomPrefabs; 

@@ -6,22 +6,23 @@ using UnityEngine.SceneManagement;
 public class Dirt_Loader : MonoBehaviour
 {
     [SerializeField] private bool overrideLayerHealth = false;
-    [SerializeField] private List<LevelRange> levelRanges = new List<LevelRange>();
+    [SerializeField] private List<Range> levelRanges = new List<Range>();
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Non_Player_Health health;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach(DirtRange dirtRange in levelRanges[GameManager.Instance.GetLevelNum()].dirtLayers)
+        LevelRange levels = GameManager.Instance.LayerManager.GetLevelRange();
+        for (int i = 0; i < levelRanges[levels.nLevelNumber].dirtLayers.Count; i++)
         {
-            if (gameObject.transform.position.y <= dirtRange.highest && gameObject.transform.position.y >= dirtRange.lowest)
+            if (gameObject.transform.position.y <= levels.layerRange[i].highest && gameObject.transform.position.y >= levels.layerRange[i].lowest)
             {
                 spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
-                spriteRenderer.sprite = dirtRange.sprite;
+                spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[i].sprite;
                 if (!overrideLayerHealth)
                 {
-                    health.SetHealth(dirtRange.health);
+                    health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[i].health);
                 }
                 break;
             }
@@ -29,18 +30,16 @@ public class Dirt_Loader : MonoBehaviour
     }
 
     [System.Serializable]
-    public class LevelRange
+    public class Range
     {
-        public LevelRange()
+        public Range()
         {
         }
 
-        public LevelRange(int lvl, List<DirtRange> dirtRange)
+        public Range(List<DirtRange> dirtRange)
         {
-            level = lvl;
             dirtLayers = dirtRange;
         }
-        public int level;
         public List<DirtRange> dirtLayers = new List<DirtRange>();
     }
 
@@ -51,18 +50,12 @@ public class Dirt_Loader : MonoBehaviour
         {
         }
 
-        public DirtRange(float hp, Sprite objectSprite, int high, int low)
+        public DirtRange(float hp, Sprite objectSprite)
         {
             health = hp;
             sprite = objectSprite;
-
-            highest = high;
-            lowest = low;
         }
         public float health;
         public Sprite sprite;
-
-        public float highest;
-        public float lowest;
     }
 }

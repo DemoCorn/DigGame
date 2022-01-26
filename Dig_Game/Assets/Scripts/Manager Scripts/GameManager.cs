@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    [SerializeField] Input_Manager InputManager;
-
-    [SerializeField] Inventory_Manager InventoryManager;
+    [SerializeField] public Input_Manager InputManager;
+    [SerializeField] public Inventory_Manager InventoryManager;
+    [SerializeField] public Generation_Manager GenerationManager;
+    [SerializeField] public Layer_Manager LayerManager;
 
     [SerializeField] GameObject player;
 
