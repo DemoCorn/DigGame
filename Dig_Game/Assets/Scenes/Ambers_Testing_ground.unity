@@ -383,6 +383,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Puzzle 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3344856001202372012, guid: 25228ce1c2ff05d4fa3454638d2fb31c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25228ce1c2ff05d4fa3454638d2fb31c, type: 3}
 --- !u!1001 &376487130
@@ -589,7 +593,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpPower: 30
+  jumpPower: 20
   gravity: -0.1
   hitbox: {fileID: 1157854020}
   platformLayerMask:
@@ -1224,7 +1228,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1190150898004749563, guid: 25228ce1c2ff05d4fa3454638d2fb31c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 25228ce1c2ff05d4fa3454638d2fb31c, type: 3}
 --- !u!1001 &8796490525652535070
 PrefabInstance:
