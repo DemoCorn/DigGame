@@ -14,7 +14,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject player;
 
+    [SerializeField] Camera mainCamera;
+
     private bool isWinning = false;
+
+    [SerializeField] int LevelNum;
 
     // Start is called before the first frame update
     void Start()
@@ -69,6 +73,11 @@ public class GameManager : MonoBehaviour
         return player.GetComponent<Player_Health>().GetHealth();
     }
 
+    public Vector3 GetCameraPosition()
+    {
+        return mainCamera.transform.position;
+    }
+
     public Inputs GetInputs()
     {
         return InputManager.GetInputs();
@@ -87,5 +96,10 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("Level");
+    }
+
+    public int GetLevelNum()
+    {
+        return LevelNum;
     }
 }
