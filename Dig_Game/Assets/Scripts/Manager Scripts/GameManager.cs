@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    [SerializeField] Input_Manager InputManager;
-
-    [SerializeField] Inventory_Manager InventoryManager;
+    [SerializeField] public Input_Manager InputManager;
+    [SerializeField] public Inventory_Manager InventoryManager;
+    [SerializeField] public Layer_Manager LayerManager;
+    [SerializeField] public Generation_Manager GenerationManager;
 
     [SerializeField] GameObject player;
 
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int LevelNum;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (Instance == null)
         {
