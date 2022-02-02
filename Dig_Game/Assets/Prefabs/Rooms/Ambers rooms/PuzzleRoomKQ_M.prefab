@@ -387,10 +387,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d947bce0af2cda8499e5b8dd4bdf5445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lowestX: -7
+  highestX: 6
+  lowestY: -5
+  highestY: 6
   minX: 0
   maxX: 0
   minY: 0
   maxY: 0
+  yOffset: 0
+  xOffset: 0
 --- !u!1 &3965730569084617393
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,7 +2020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1044155829553452034, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
       propertyPath: m_TagString
-      value: TopLeftBlock
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4917588611354021226, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
       propertyPath: m_RootOrder
@@ -6366,7 +6372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1044155829553452034, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
       propertyPath: m_TagString
-      value: BottomRightBlock
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4917588611354021226, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
       propertyPath: m_RootOrder
