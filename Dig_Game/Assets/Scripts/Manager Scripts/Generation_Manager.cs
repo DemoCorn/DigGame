@@ -8,9 +8,9 @@ public class Generation_Manager : MonoBehaviour
 
     // Attach the dirt tile objects in Unity to these Transforms
     public GameObject dirtObj;
-    public List<OreRange> oreRanges;
+    public List<LevelOre> oreLevelRanges;
 
-    public GameObject[] roomPrefabs; 
+    public List<LevelPrefab> levelPrefabs;
 
     private static int randomRoom;
     private static bool randomized = false;
@@ -20,12 +20,16 @@ public class Generation_Manager : MonoBehaviour
 
     public GetPrefabSize _prefabSizeScript;
 
+    private HashSet<KeyValuePair<int, int>> reservedSpaces = new HashSet<KeyValuePair<int, int>>();
+
     // Start is called before the first frame update
     public void Start()
     {
         // xPos will determine the amount of spaces horizontally we want to span
         // The second value in each Vector2 is the spacing vertically between tiles
         // Adjust this value according to sprite being used
+
+        KeyValuePair<float, float> height = GameManager.Instance.LayerManager.GetLevelHeight();
 
         // Call randomize once if it hasn't already been done
         if (!randomized)
@@ -35,69 +39,108 @@ public class Generation_Manager : MonoBehaviour
         Debug.Log("Generated prefab: " + randomRoom + " from list");
 
         // Instantiate dirt
-        GameObject oreType;
         int mineralX;
         int mineralY;
         int oreAmount;
-
-        // Instantiate roomPrefab and store script min and max values
-        GameObject room = Instantiate(roomPrefabs[randomRoom], new Vector3(prefabPosX, prefabPosY, 0), Quaternion.identity);
-        _prefabSizeScript = FindObjectOfType<GetPrefabSize>();
-
-        if (_prefabSizeScript.maxX >= levelWidth)
-        {
-            room.transform.position = new Vector3(room.transform.position.x - (_prefabSizeScript.maxX - (levelWidth - 1)), room.transform.position.y, room.transform.position.z);
-            _prefabSizeScript.minX -= _prefabSizeScript.maxX - (levelWidth - 1);
-            _prefabSizeScript.maxX = levelWidth - 1;
-        }
-        else if(_prefabSizeScript.minX < 0)
-        {
-            room.transform.position = new Vector3(room.transform.position.x - (_prefabSizeScript.minX), room.transform.position.y, room.transform.position.z);
-            _prefabSizeScript.maxX -= _prefabSizeScript.minX;
-            _prefabSizeScript.minX = 0;
-        }
+        GameObject room;
+        bool reserved = false;
 
         LevelRange levels = GameManager.Instance.LayerManager.GetLevelRange();
-        for(int i = 0; i < levels.layerRange.Count; i++)
+        List<PrefabRange> prefabRanges = levelPrefabs[levels.nLevelNumber].prefabAtLevel;
+        List<OreRange> oreRanges = oreLevelRanges[levels.nLevelNumber].oreAtLevel;
+        for (int i = 0; i < levels.layerRange.Count; i++)
         {
+            randomRoom = Random.Range(0, prefabRanges[i].prefabAtLayer.Count);
+            _prefabSizeScript = roomPrefabs[randomRoom].GetComponent<GetPrefabSize>();
+            do
+            {
+                reserved = false;
+                prefabPosX = Random.Range(0, levelWidth);
+                prefabPosY = Random.Range((int)height.Key, (int)height.Value);
+
+                if (prefabPosX + _prefabSizeScript.highestX + _prefabSizeScript.xOffset >= levelWidth)
+                {
+                    prefabPosX -= (prefabPosX + _prefabSizeScript.highestX) - (levelWidth - 1);
+                }
+                else if (prefabPosX + _prefabSizeScript.lowestX + _prefabSizeScript.xOffset < 0)
+                {
+                    prefabPosX -= (prefabPosX + _prefabSizeScript.lowestX);
+                }
+
+                if (prefabPosY + _prefabSizeScript.highestY + _prefabSizeScript.yOffset > height.Value)
+                {
+                    prefabPosY -= (prefabPosY + _prefabSizeScript.highestY) - (height.Value);
+                }
+                else if (prefabPosY + _prefabSizeScript.lowestY + _prefabSizeScript.yOffset < height.Key)
+                {
+                    prefabPosY -= (prefabPosY + _prefabSizeScript.lowestY) - (height.Key);
+                }
+
+                for (int x = (int)(_prefabSizeScript.lowestX + _prefabSizeScript.xOffset); x <= (int)(_prefabSizeScript.highestX + _prefabSizeScript.xOffset); x++)
+                {
+                    for (int y = (int)(_prefabSizeScript.lowestY + _prefabSizeScript.yOffset); y <= (_prefabSizeScript.highestY + _prefabSizeScript.yOffset); y++)
+                    {
+                        if (CheckReserved((int)prefabPosX + x, (int)prefabPosY + y))
+                        {
+                            reserved = true;
+                            break;
+                        }
+
+                    }
+                    if (reserved)
+                    {
+                        break;
+                    }
+                }
+                if (!reserved)
+                {
+                    for (int x = (int)(_prefabSizeScript.lowestX + _prefabSizeScript.xOffset); x <= (int)(_prefabSizeScript.highestX + _prefabSizeScript.xOffset); x++)
+                    {
+                        for (int y = (int)(_prefabSizeScript.lowestY + _prefabSizeScript.yOffset); y <= (_prefabSizeScript.highestY + _prefabSizeScript.yOffset); y++)
+                        {
+                            ReserveSpace((int)prefabPosX + x, (int)prefabPosY + y);
+                        }
+                    }
+                    room = Instantiate(roomPrefabs[randomRoom], new Vector3(prefabPosX, prefabPosY, 0), Quaternion.identity);
+                }
+            } while (reserved);
+
+
+
+            foreach (OreType ore in oreRanges[i].oreAtLayer)
+            {
+                // Random Minerals
+                oreAmount = Random.Range(ore.lowestOreAmount, ore.highestOreAmount + 1);
+
+                for (int j = 0; j < oreAmount; j++)
+                {
+                    mineralX = Random.Range(0, levelWidth);
+                    mineralY = Random.Range((int) levels.layerRange[i].lowest, (int) levels.layerRange[i].highest + 1);
+
+                    // Destroy dirt blocks based on prefab size
+                    if (!CheckReserved(mineralX, mineralY))
+                    {
+                        ReserveSpace(mineralX, mineralY);
+                        Instantiate(ore.ore, new Vector2(mineralX, mineralY), ore.ore.transform.rotation);
+                    }
+                    else
+                    {
+                        j -= 1;
+                        continue;
+                    }
+                }
+            }
+
             // Instantiate Dirt Blocks
             for (float xPos = 0f; xPos < levelWidth; xPos++)
             {
                 for (float yPos = levels.layerRange[i].lowest; yPos <= levels.layerRange[i].highest; yPos++)
                 {
                     // Place around the prefab
-                    if ((((xPos < _prefabSizeScript.minX && xPos < _prefabSizeScript.maxX))
-                        || (xPos > _prefabSizeScript.minX && xPos > _prefabSizeScript.maxX))
-                        || ((yPos < _prefabSizeScript.minY && yPos < _prefabSizeScript.maxY)
-                        || (yPos > _prefabSizeScript.minY && yPos > _prefabSizeScript.maxY)))
+                    if (!CheckReserved((int) xPos, (int) yPos))
                     {
                         Instantiate(dirtObj, new Vector2(xPos, yPos), dirtObj.transform.rotation);
                     }
-                }
-            }
-
-            oreAmount = Random.Range(oreRanges[i].lowestOreAmount, oreRanges[i].highestOreAmount + 1);
-
-            // Random Minerals
-            for (int j = 0; j < oreAmount; j++)
-            {
-                mineralX = Random.Range(0, levelWidth);
-                mineralY = Random.Range((int) levels.layerRange[i].lowest, (int) levels.layerRange[i].highest + 1);
-
-                oreType = oreRanges[i].oreAtLayer[Random.Range(0, oreRanges[i].oreAtLayer.Count)];
-
-                // Destroy dirt blocks based on prefab size
-                if ((((mineralX < _prefabSizeScript.minX && mineralX < _prefabSizeScript.maxX))
-                    || (mineralX > _prefabSizeScript.minX && mineralX > _prefabSizeScript.maxX))
-                    || ((mineralY < _prefabSizeScript.minY && mineralY < _prefabSizeScript.maxY)
-                    || (mineralY > _prefabSizeScript.minY && mineralY > _prefabSizeScript.maxY)))
-                {
-                    Instantiate(oreType, new Vector2(mineralX, mineralY), oreType.transform.rotation);
-                }
-                else
-                {
-                    j -= 1;
-                    continue;
                 }
             }
         }
@@ -112,9 +155,31 @@ public class Generation_Manager : MonoBehaviour
         randomRoom = Random.Range(0, roomPrefabs.Length);
 
         // Randomizing chosen condition to create opening for both X & Y values of attached tile
-        prefabPosX = Random.Range(0, levelWidth);
-        prefabPosY = Random.Range(-3, -10);
         randomized = true;
+    }
+
+    private bool ReserveSpace(int x, int y)
+    {
+        return reservedSpaces.Add(new KeyValuePair<int, int>(x, y));
+    }
+    
+    private bool CheckReserved(int x, int y)
+    {
+        return reservedSpaces.Contains(new KeyValuePair<int, int>(x, y));
+    }
+    // Ore Classes --------------------------------------------------------------------------------------------------
+    [System.Serializable]
+    public class LevelOre
+    {
+        public LevelOre()
+        {
+        }
+
+        public LevelOre(List<OreRange> oreLayer)
+        {
+            oreAtLevel = oreLayer;
+        }
+        public List<OreRange> oreAtLevel = new List<OreRange>();
     }
 
     [System.Serializable]
@@ -124,14 +189,73 @@ public class Generation_Manager : MonoBehaviour
         {
         }
 
-        public OreRange(List<GameObject> oreLayer, int nLow, int nHigh)
+        public OreRange(List<OreType> oreLayer, int nLow, int nHigh)
         {
             oreAtLayer = oreLayer;
+        }
+        public List<OreType> oreAtLayer = new List<OreType>();
+    }
+
+    [System.Serializable]
+    public class OreType
+    {
+        public OreType()
+        {
+
+        }
+
+        public OreType(GameObject newOre, int nLow, int nHigh)
+        {
+            ore = newOre;
             lowestOreAmount = nLow;
             highestOreAmount = nHigh;
         }
-        public List<GameObject> oreAtLayer = new List<GameObject>();
+
+        public GameObject ore;
         public int lowestOreAmount;
         public int highestOreAmount;
+    }
+
+    // Prefab Classes --------------------------------------------------------------------------------------------------
+    [System.Serializable]
+    public class LevelPrefab
+    {
+        public LevelPrefab()
+        {
+        }
+
+        public LevelPrefab(List<PrefabRange> layers)
+        {
+            prefabAtLevel = layers;
+        }
+        public List<PrefabRange> prefabAtLevel = new List<PrefabRange>();
+    }
+
+    [System.Serializable]
+    public class PrefabRange
+    {
+        public PrefabRange()
+        {
+        }
+
+        public PrefabRange(List<PrefabType> prefabs)
+        {
+            prefabAtLayer = prefabs;
+        }
+        public List<PrefabType> prefabAtLayer = new List<PrefabType>();
+    }
+
+    [System.Serializable]
+    public class PrefabType
+    {
+        public PrefabType()
+        {
+        }
+
+        public PrefabType(GameObject newPrefab)
+        {
+            prefab = newPrefab;
+        }
+        GameObject prefab;
     }
 }
