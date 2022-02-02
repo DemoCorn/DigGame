@@ -5,28 +5,36 @@ using UnityEngine;
 public class GetPrefabSize : MonoBehaviour
 {
     //Variables used for for looping to determine room needed to instantiate prefab into the world.
-    public float minX;
-    public float maxX;
-    public float minY;
-    public float maxY;
+    public float lowestX;
+    public float highestX;
+    public float lowestY;
+    public float highestY;
 
-    private GameObject topLeftBlock;
-    private GameObject bottomRightBlock;
+    [HideInInspector] public float minX;
+    [HideInInspector] public float maxX;
+    [HideInInspector] public float minY;
+    [HideInInspector] public float maxY;
+
+    [Header("Advanced Options")]
+    public float yOffset = 0.0f;
+    public float xOffset = 0.0f;
         
 
     void OnEnable()
     {
-        //Find the corresponding TopLeft and BottomRight blocks through the use of tagging them in Unity first.
-        topLeftBlock = GameObject.FindWithTag("TopLeftBlock");
-        bottomRightBlock = GameObject.FindWithTag("BottomRightBlock");   
+        Transform position = gameObject.transform;
+
+        if (yOffset != 0.0f || xOffset != 0.0f)
+        {
+            OffsetFix(position);
+        }
 
         //Save positions into our variables that we will use later
-        minX = topLeftBlock.transform.position.x;
-        maxY = topLeftBlock.transform.position.y;
-        maxX = bottomRightBlock.transform.position.x;
-        minY = bottomRightBlock.transform.position.y;
-        
-        
+        minX = position.position.x + lowestX;
+        maxX = position.position.x + highestX;
+        minY = position.position.y + lowestY;
+        maxY = position.position.y + highestY;
+
         //// DEBUGGING
         //Debug.Log("TopLeftBlock = " + topLeftBlock);
         //Debug.Log("Topleftblock X value = " + minX);
@@ -37,8 +45,12 @@ public class GetPrefabSize : MonoBehaviour
     }
 
  
-    void Update()
+    private void OffsetFix(Transform position)
     {
-
+        position.position = new Vector3 (position.position.x + xOffset, position.position.y + yOffset, position.position.z);
+        lowestX += xOffset;
+        highestX += xOffset;
+        lowestY += yOffset;
+        highestY += yOffset;
     }
 }
