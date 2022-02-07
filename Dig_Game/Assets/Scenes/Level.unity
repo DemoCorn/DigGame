@@ -162,19 +162,75 @@ MonoBehaviour:
   - oreAtLevel:
     - oreAtLayer:
       - ore: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
-        lowestOreAmount: 30
-        highestOreAmount: 50
+        lowestOreAmount: 20
+        highestOreAmount: 40
     - oreAtLayer:
       - ore: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
-        lowestOreAmount: 0
-        highestOreAmount: 3
+        lowestOreAmount: 20
+        highestOreAmount: 40
     - oreAtLayer:
       - ore: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
-        lowestOreAmount: 0
-        highestOreAmount: 3
-  roomPrefabs:
-  - {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
-  _prefabSizeScript: {fileID: 0}
+        lowestOreAmount: 20
+        highestOreAmount: 40
+  levelScatters:
+  - scatterAtLevel:
+    - scatterAtLayer:
+      - scatterObject: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
+        scatterChance: 100
+        scatterChanceDegredation: 25
+        lowestScatterAmount: 1
+        highestScatterAmount: 1
+      - scatterObject: {fileID: 1044155829553452034, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
+        scatterChance: 100
+        scatterChanceDegredation: 50
+        lowestScatterAmount: 1
+        highestScatterAmount: 1
+    - scatterAtLayer:
+      - scatterObject: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
+        scatterChance: 100
+        scatterChanceDegredation: 25
+        lowestScatterAmount: 1
+        highestScatterAmount: 1
+    - scatterAtLayer:
+      - scatterObject: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
+        scatterChance: 100
+        scatterChanceDegredation: 25
+        lowestScatterAmount: 1
+        highestScatterAmount: 1
+  puzzlePrefabs:
+  - prefabAtLevel:
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
+  treasurePrefabs:
+  - prefabAtLevel:
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
 --- !u!4 &28138284
 Transform:
   m_ObjectHideFlags: 0
