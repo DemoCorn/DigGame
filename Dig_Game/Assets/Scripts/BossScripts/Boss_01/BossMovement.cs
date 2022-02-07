@@ -36,6 +36,7 @@ public class BossMovement : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Teleport();
+            Debug.Log("Player");
         }
     }
 }
