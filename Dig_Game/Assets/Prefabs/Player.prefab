@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 467219914926618068}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4285715, y: 1, z: 1}
   m_Children:
   - {fileID: 2930945031054445531}
   m_Father: {fileID: 2930945032110987289}
@@ -57,8 +57,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2930945031054445528}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.75, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.095, y: 0.18, z: 0}
+  m_LocalScale: {x: 0.08564113, y: 0.086609, z: 0.1348}
   m_Children: []
   m_Father: {fileID: 5669870714994354081}
   m_RootOrder: 0
@@ -119,12 +119,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9368b5592268edd4db40a5df6b999ce6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08e3f258f1816f749bdc715dfec537df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.781, y: 0.781}
+  m_Size: {x: 7.81, y: 7.81}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 2930945032110987293}
   - component: {fileID: 2930945032110987288}
   - component: {fileID: 2930945032110987290}
-  - component: {fileID: 381800230213540627}
+  - component: {fileID: 6962552966710310077}
   - component: {fileID: 2930945032110987291}
   m_Layer: 0
   m_Name: Player
@@ -254,7 +254,7 @@ MonoBehaviour:
   armor: 0
   immunityTime: 10
   hitbox: {fileID: 2930945032110987291}
---- !u!114 &381800230213540627
+--- !u!114 &6962552966710310077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,9 +263,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2930945032110987286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47c6658c7b601fe4589632627b25525b, type: 3}
+  m_Script: {fileID: 11500000, guid: ea5fe05099e86434bbf6b2ba7006ab0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fieldOfView: {fileID: 0}
 --- !u!61 &2930945032110987291
 BoxCollider2D:
   m_ObjectHideFlags: 0
