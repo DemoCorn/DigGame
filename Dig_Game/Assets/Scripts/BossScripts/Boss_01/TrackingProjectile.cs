@@ -9,18 +9,22 @@ public class TrackingProjectile : MonoBehaviour
     public float proSpeed;
     public float rotateSpeed;
     public Transform player;
+    
+
     private Rigidbody2D rb;
-    public Transform spawnPosition;
 
     public float cooldownTimer;
     public float cooldownRequirement;
-    
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         cooldownTimer = 0;
+
        
     }
 
@@ -33,27 +37,27 @@ public class TrackingProjectile : MonoBehaviour
         rb.angularVelocity =  -rotateAmount * rotateSpeed;
         rb.velocity = transform.up * proSpeed;
     }
-
-    private void Update()
+    void Update()
     {
         cooldownTimer += Time.deltaTime;
         if (cooldownTimer >= cooldownRequirement)
         {
-            SpawnProjectile();
+            Destroy(gameObject);
             cooldownTimer = 0;
         }
     }
 
 
-    private void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Destroy(gameObject);
+        Debug.Log(other.name);
+        if (other.gameObject.tag == ("Player"))
+        {
+            //Damage Player
+            Destroy(gameObject);
+        }  
+       
     }
     
 
-
-    public void SpawnProjectile()
-    {
-        Instantiate(rb, spawnPosition.position, spawnPosition.rotation);
-    }
 }
