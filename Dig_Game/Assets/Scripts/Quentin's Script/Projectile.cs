@@ -18,10 +18,18 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         transform.position += moveDir * moveSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward, moveDir);
+        StartCoroutine(DestoryShot());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Destroy(gameObject);
+    }
+
+    IEnumerator DestoryShot()
+    {
+        yield return new WaitForSecondsRealtime(3);
         Destroy(gameObject);
     }
 }

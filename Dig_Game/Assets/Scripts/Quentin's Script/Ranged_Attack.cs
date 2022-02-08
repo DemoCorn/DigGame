@@ -7,11 +7,9 @@ public class Ranged_Attack : MonoBehaviour
     public Projectile shotToFire;
     public Transform shotPoint;
 
-    int bulletsAvailable = 5;
-    float reloadTimer = 0;
 
     //cooldown
-    public float cd = 1.5f;
+    public float cd;
     private float nextFireTime = 0;
 
     // Start is called before the first frame update
@@ -24,13 +22,6 @@ public class Ranged_Attack : MonoBehaviour
     void Update()
     {
         Vector2 cursorLocation = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
-
-        if (bulletsAvailable <= 0)
-        {
-            reloadTimer += Time.deltaTime;
-
-
-        }
 
         if (Time.time > nextFireTime)
         {
