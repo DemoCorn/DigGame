@@ -156,24 +156,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bcc9479c1903748bde56c1ed352d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelWidth: 60
+  levelWidth: 120
   dirtObj: {fileID: 6390208895897666119, guid: 5f23c068eb9ecfe4e90a34b501a36a62, type: 3}
-  oreRanges:
-  - oreAtLayer:
-    - {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
-    lowestOreAmount: 0
-    highestOreAmount: 3
-  - oreAtLayer:
-    - {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
-    lowestOreAmount: 0
-    highestOreAmount: 3
-  - oreAtLayer:
-    - {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
-    lowestOreAmount: 0
-    highestOreAmount: 3
-  roomPrefabs:
-  - {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
-  _prefabSizeScript: {fileID: 0}
+  oreLevelRanges:
+  - oreAtLevel:
+    - oreAtLayer:
+      - ore: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
+        lowestOreAmount: 20
+        highestOreAmount: 40
+    - oreAtLayer:
+      - ore: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
+        lowestOreAmount: 20
+        highestOreAmount: 40
+    - oreAtLayer:
+      - ore: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
+        lowestOreAmount: 20
+        highestOreAmount: 40
+  levelScatters:
+  - scatterAtLevel:
+    - scatterAtLayer:
+      - scatterObject: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
+        scatterChance: 100
+        scatterChanceDegredation: 25
+        lowestScatterAmount: 1
+        highestScatterAmount: 1
+      - scatterObject: {fileID: 1044155829553452034, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
+        scatterChance: 100
+        scatterChanceDegredation: 50
+        lowestScatterAmount: 1
+        highestScatterAmount: 1
+    - scatterAtLayer:
+      - scatterObject: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
+        scatterChance: 100
+        scatterChanceDegredation: 25
+        lowestScatterAmount: 1
+        highestScatterAmount: 1
+    - scatterAtLayer:
+      - scatterObject: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
+        scatterChance: 100
+        scatterChanceDegredation: 25
+        lowestScatterAmount: 1
+        highestScatterAmount: 1
+  puzzlePrefabs:
+  - prefabAtLevel:
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
+  treasurePrefabs:
+  - prefabAtLevel:
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
+    - prefabAtLayer:
+      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 100
+      lowestPrefabAmount: 1
+      highestPrefabAmount: 1
 --- !u!4 &28138284
 Transform:
   m_ObjectHideFlags: 0
@@ -270,12 +327,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelRanges:
   - layerRange:
-    - highest: 3
-      lowest: -4
-    - highest: -5
-      lowest: -12
-    - highest: -13
+    - highest: 0
       lowest: -20
+    - highest: -21
+      lowest: -40
+    - highest: -41
+      lowest: -60
     nLevelNumber: 0
 --- !u!1 &108096529
 GameObject:
