@@ -16,7 +16,8 @@ public class EnemyAI : MonoBehaviour
     [Tooltip("How often the enemy will attack")]
     public float attackDelay = 3f;
     public GameObject spawnOffset;
-    public GameObject damageField; 
+    public GameObject damageField;
+
     
 
     [Header("Custom Behaviour")]
@@ -157,7 +158,7 @@ public class EnemyAI : MonoBehaviour
             behaviour = BehaviourStates.Roam;
         }
        **/
-
+        
        //Control Pathfinding depending on the current behaviour state
        switch (behaviour)
         {
