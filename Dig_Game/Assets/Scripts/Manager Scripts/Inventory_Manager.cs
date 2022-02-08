@@ -45,12 +45,13 @@ public class Inventory_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        /*
         if (Input.GetKeyDown(inputs.inventoryOpen))
         {
             inventoryScreen.SetActive(!inventoryScreen.activeSelf);
         }
 
+        
         if (inventoryScreen.activeSelf)
         {
             if (gridNeeded)
@@ -73,6 +74,7 @@ public class Inventory_Manager : MonoBehaviour
                 }
             }
         }
+        */
 
         // Testing
         if(Input.GetKeyDown("r"))
