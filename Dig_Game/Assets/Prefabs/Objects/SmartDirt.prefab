@@ -12,21 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba6307b1622afed4e8b6e67cd3f8ac76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jaggedRange: 1
+  overrideLayerHealth: 0
   levelRanges:
-  - level: 0
-    dirtLayers:
+  - dirtLayers:
     - health: 15
       sprite: {fileID: -1631164333299321304, guid: 6eca5c7055621dc49a5e6fdc9c82b7d1, type: 3}
-      highest: 500
-      lowest: -4
     - health: 15
       sprite: {fileID: 5460573542627417499, guid: 6eca5c7055621dc49a5e6fdc9c82b7d1, type: 3}
-      highest: -5
-      lowest: -12
     - health: 15
       sprite: {fileID: -2583609528573096823, guid: 6eca5c7055621dc49a5e6fdc9c82b7d1, type: 3}
-      highest: -13
-      lowest: -500
   spriteRenderer: {fileID: 6213624750413161879}
   health: {fileID: 3756475257731004091}
 --- !u!1001 &5495762538630821446
