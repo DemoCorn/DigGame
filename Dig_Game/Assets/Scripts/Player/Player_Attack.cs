@@ -39,6 +39,13 @@ public class Player_Attack : MonoBehaviour
             SetAttackVariables(new Vector2(rightAttackOffset.y, -rightAttackOffset.x), new Vector2(rightAttackSize.y, rightAttackSize.x));
         }
 
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Attack();
+        }
+
+
         // Check if attack hitbox is active to skip some execution if it's not
         if (mAttackHitbox.enabled)
         {
@@ -66,6 +73,7 @@ public class Player_Attack : MonoBehaviour
             }
             mAttackHitbox.enabled = false;
         }
+
     }
 
     private void SetAttackVariables(Vector2 offset, Vector2 size)
@@ -74,6 +82,11 @@ public class Player_Attack : MonoBehaviour
         mAttackHitbox.size = size;
         mAttackHitbox.enabled = true;
 	}
+
+    public void Attack()
+    {
+        mAttackHitbox.enabled = true;
+    }
 
     public void Equip(float attackChange, float digChange)
     {

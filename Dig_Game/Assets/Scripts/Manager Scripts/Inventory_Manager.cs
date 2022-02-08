@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
-using Newtonsoft.Json;
 using System;
 
 public class Inventory_Manager : MonoBehaviour
@@ -45,12 +44,13 @@ public class Inventory_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        /*
         if (Input.GetKeyDown(inputs.inventoryOpen))
         {
             inventoryScreen.SetActive(!inventoryScreen.activeSelf);
         }
 
+        
         if (inventoryScreen.activeSelf)
         {
             if (gridNeeded)
@@ -73,6 +73,7 @@ public class Inventory_Manager : MonoBehaviour
                 }
             }
         }
+        */
 
         // Testing
         if(Input.GetKeyDown("r"))
