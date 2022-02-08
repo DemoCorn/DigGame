@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
-using Newtonsoft.Json;
 using System;
 
 public class Inventory_Manager : MonoBehaviour
