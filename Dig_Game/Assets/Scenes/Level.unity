@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bcc9479c1903748bde56c1ed352d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelWidth: 60
+  levelWidth: 120
   dirtObj: {fileID: 6390208895897666119, guid: 5f23c068eb9ecfe4e90a34b501a36a62, type: 3}
   oreLevelRanges:
   - oreAtLevel:
@@ -326,12 +326,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelRanges:
   - layerRange:
-    - highest: 3
-      lowest: -4
-    - highest: -5
-      lowest: -12
-    - highest: -13
+    - highest: 0
       lowest: -20
+    - highest: -21
+      lowest: -40
+    - highest: -41
+      lowest: -60
     nLevelNumber: 0
 --- !u!1 &63677081
 GameObject:
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 63677082}
   - component: {fileID: 63677084}
   - component: {fileID: 63677083}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1140,7 +1140,7 @@ GameObject:
   - component: {fileID: 1304607151}
   - component: {fileID: 1304607150}
   - component: {fileID: 1304607149}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1310,7 +1310,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1328360886}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Aim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1491,7 +1491,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1997885372}
   - component: {fileID: 1997885371}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1575,7 +1575,7 @@ GameObject:
   - component: {fileID: 2003243267}
   - component: {fileID: 2003243266}
   - component: {fileID: 2003243265}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: FieldOfView_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
