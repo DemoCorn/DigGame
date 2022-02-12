@@ -6,21 +6,25 @@ using UnityEngine;
 
 public class TrackingProjectile : MonoBehaviour
 {
-    public float proSpeed = 5f;
-    public float rotateSpeed = 200f;
+    public float proSpeed;
+    public float rotateSpeed;
     public Transform player;
+    
+
     private Rigidbody2D rb;
-    public Transform spawnPosition;
 
     public float cooldownTimer;
     public float cooldownRequirement;
-    
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         cooldownTimer = 0;
+
        
     }
 
@@ -30,29 +34,30 @@ public class TrackingProjectile : MonoBehaviour
         Vector2 direction = (Vector2)player.position - rb.position;
         direction.Normalize();
         float rotateAmount = Vector3.Cross(direction, transform.up).z;
-        rb.angularVelocity =  - rotateAmount * rotateAmount * rotateSpeed;
+        rb.angularVelocity =  -rotateAmount * rotateSpeed;
         rb.velocity = transform.up * proSpeed;
     }
-
-    private void Update()
+    void Update()
     {
         cooldownTimer += Time.deltaTime;
         if (cooldownTimer >= cooldownRequirement)
         {
-            SpawnProjectile();
+            Destroy(gameObject);
             cooldownTimer = 0;
         }
     }
 
 
-    private void OnTriggerEnter2D(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-      
+        Debug.Log(other.name);
+        if (other.gameObject.tag == ("Player"))
+        {
+            //Damage Player
+            Destroy(gameObject);
+        }  
+       
     }
+    
 
-
-    public void SpawnProjectile()
-    {
-        Instantiate(rb, spawnPosition.position, spawnPosition.rotation);
-    }
 }
