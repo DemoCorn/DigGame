@@ -25,7 +25,7 @@ public class Player_Movement : MonoBehaviour
     {
         Inputs inputs = GameManager.Instance.GetInputs();
         // Check win condition
-        if (transform.position.y < -40)
+        if (transform.position.y < GameManager.Instance.LayerManager.GetLevelHeight().Key - 5)
         {
             GameManager.Instance.EndGame(true);
         }
