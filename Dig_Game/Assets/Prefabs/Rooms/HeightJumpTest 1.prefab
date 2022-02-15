@@ -235,7 +235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5684753017790731680}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1148834, y: -3.8731585, z: -9.038069}
+  m_LocalPosition: {x: -2.92, y: -3.8731585, z: -9.038069}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5684753017694357153}
@@ -352,7 +352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5684753018507848287}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1148834, y: -3.8731585, z: 0.96193135}
+  m_LocalPosition: {x: -2.92, y: -3.8731585, z: 0.96193135}
   m_LocalScale: {x: 0.7, y: 1, z: 1}
   m_Children:
   - {fileID: 5684753017825977723}
@@ -518,11 +518,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bcc9479c1903748bde56c1ed352d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelWidth: 60
   dirtObj: {fileID: 6390208895897666119, guid: 5f23c068eb9ecfe4e90a34b501a36a62, type: 3}
-  dirt1Obj: {fileID: 3639696129305948705, guid: 6461f494cdb5fe44d854779deb68ef0e, type: 3}
-  dirt2Obj: {fileID: 5780275949929311849, guid: eec123686c6f44448b04f6eb8a2af61d, type: 3}
-  dirt3Obj: {fileID: 392793682563905144, guid: 145637847d04415419fc24744d03d745, type: 3}
-  mineral1Obj: {fileID: 6944928219685591244, guid: b015609e044563944afafaeac717478d, type: 3}
+  oreRanges: []
   roomPrefabs:
   - {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
   _prefabSizeScript: {fileID: 0}
@@ -540,6 +538,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputManager: {fileID: 5684753019216713189}
   InventoryManager: {fileID: 5684753019216713210}
+  LayerManager: {fileID: 0}
+  GenerationManager: {fileID: 0}
   player: {fileID: 5684753018507848287}
   mainCamera: {fileID: 5684753019304107574}
   LevelNum: 0
@@ -619,7 +619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5684753019304107573}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1148834, y: -3.8731585, z: -9.038069}
+  m_LocalPosition: {x: -2.92, y: -3.8731585, z: -9.038069}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3706142917020788808}
