@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8a1393de267a114bb93b7295684cf3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerClass: 1
+  playerClass: 2
   inventory: []
   noEquipment:
   - {fileID: 11400000, guid: f80880e50f942b046b4e1c8cc1c973bf, type: 2}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 63677084}
   - component: {fileID: 63677083}
   m_Layer: 8
-  m_Name: Weapon
+  m_Name: Pickaxe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1140,6 +1140,7 @@ GameObject:
   - component: {fileID: 1304607151}
   - component: {fileID: 1304607150}
   - component: {fileID: 1304607149}
+  - component: {fileID: 1304607156}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1301,6 +1302,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldOfView: {fileID: 2003243267}
+--- !u!114 &1304607156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304607148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6efbf93c2baf5d041b052485a7ea2763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipment:
+  - {fileID: 63677081}
+  - {fileID: 1943159339}
+  currentlyEquiped: 0
 --- !u!1 &1328360885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,6 +1346,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 63677082}
+  - {fileID: 1943159341}
   m_Father: {fileID: 1304607154}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1492,8 +1510,10 @@ GameObject:
   - component: {fileID: 1943159341}
   - component: {fileID: 1943159340}
   - component: {fileID: 1943159342}
-  m_Layer: 0
-  m_Name: Square
+  - component: {fileID: 1943159343}
+  - component: {fileID: 1943159344}
+  m_Layer: 8
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1539,8 +1559,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 806bf15a4258f7b4188e231ad80c2a4a, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: cbf3936067c3f4b4980b8aeabd45e952, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1557,12 +1577,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943159339}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1958, y: 4.8719, z: 0}
-  m_LocalScale: {x: 0.19157602, y: 0.24886765, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.897, y: 0.213, z: 0}
+  m_LocalScale: {x: 0.17906882, y: 0.11232806, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 1328360886}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1943159342
 Animator:
@@ -1583,6 +1603,45 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1943159343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943159339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0827b30f10e47f34a9a93f3d0f51a666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+--- !u!61 &1943159344
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943159339}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.06, y: 10.09}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.06, y: 10.09}
+  m_EdgeRadius: 0
 --- !u!1 &1997885370
 GameObject:
   m_ObjectHideFlags: 0
