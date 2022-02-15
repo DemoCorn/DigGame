@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - TopLeftBlock
   - BottomRightBlock
+  - isPickedUp
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -16,9 +18,11 @@ TagManager:
   - Platform
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Shot
+  - Mask
+  - BehindMask
+  - Black
   - 
   - 
   - 
@@ -48,4 +52,7 @@ TagManager:
     locked: 0
   - name: Mineral
     uniqueID: 3478664101
+    locked: 0
+  - name: UI
+    uniqueID: 666644605
     locked: 0

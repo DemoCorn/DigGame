@@ -2,7 +2,6 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Newtonsoft.Json;
 using System;
 
 public class Inputs
@@ -14,6 +13,7 @@ public class Inputs
     public string dAttack;
     public string lAttack;
     public string rAttack;
+    public string inventoryOpen;
 }
 
 public class Input_Manager : MonoBehaviour
@@ -45,14 +45,12 @@ public class Input_Manager : MonoBehaviour
             inputs.dAttack = "down";
             inputs.lAttack = "left";
             inputs.rAttack = "right";
+            inputs.inventoryOpen = "e";
             try
             {
                 // Save to file
-                using (StreamWriter file = File.CreateText(FilePath + "Inputs.json"))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
-                    serializer.Serialize(file, inputs);
-                }
+                string json = JsonUtility.ToJson(inputs);
+                System.IO.File.WriteAllText(FilePath + "Inputs.json", json);
 
             }
             catch (Exception ex)
@@ -63,11 +61,8 @@ public class Input_Manager : MonoBehaviour
         else
         {
             // Load File
-            using (StreamReader file = File.OpenText(FilePath + "Inputs.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                inputs = (Inputs)serializer.Deserialize(file, typeof(Inputs));
-            }
+            string json = File.ReadAllText(FilePath + "Inputs.json");
+            inputs = JsonUtility.FromJson<Inputs>(json);
         }
     }
     

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using Newtonsoft.Json;
+using UnityEngine.UI;
 using System;
 
 public class Inventory_Manager : MonoBehaviour
@@ -15,6 +15,15 @@ public class Inventory_Manager : MonoBehaviour
     [SerializeField] private Equipment[] equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
 
     [SerializeField] private Blueprint testBlueprint;
+    /*
+    [SerializeField] private GameObject inventoryScreen;
+    [SerializeField] private List<InventorySpace> inventorySlots = new List<InventorySpace>();
+
+    [SerializeField] private bool gridNeeded = true;
+    [SerializeField] private GameObject grid;
+    [SerializeField] private float gridOffset = 0.0f;
+    */
+    private Inputs inputs;
 
     // Start is called before the first frame update
     void Start()
@@ -27,18 +36,49 @@ public class Inventory_Manager : MonoBehaviour
                 equipment[i] = noEquipment[i];
             }
         }
+        inputs = GameManager.Instance.GetInputs();
+
+        //inventoryScreen.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
+        if (Input.GetKeyDown(inputs.inventoryOpen))
+        {
+            inventoryScreen.SetActive(!inventoryScreen.activeSelf);
+        }
+
+        
+        if (inventoryScreen.activeSelf)
+        {
+            if (gridNeeded)
+            {
+                grid.transform.position = new Vector3(GameManager.Instance.GetCameraPosition().x + gridOffset, GameManager.Instance.GetCameraPosition().y, GameManager.Instance.GetCameraPosition().y);
+            }
+            for (int i = 0; i < inventorySlots.Count; i++)
+            {
+                if (inventory.Count > i)
+                {
+                    inventorySlots[i].slotImage.sprite = inventory[i].item.itemSprite;
+                    inventorySlots[i].slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                    inventorySlots[i].amountText.text = inventory[i].amount.ToString();
+                }
+                else
+                {
+                    inventorySlots[i].slotImage.sprite = null;
+                    inventorySlots[i].slotImage.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+                    inventorySlots[i].amountText.text = "";
+                }
+            }
+        }
+        */
+
         // Testing
         if(Input.GetKeyDown("r"))
         {
-            if(Craft(testBlueprint))
-            {
-                Equip((Equipment)testBlueprint.result.item);
-            }
+            Craft(testBlueprint);
         }
     }
 
@@ -141,6 +181,14 @@ public class Inventory_Manager : MonoBehaviour
         }
         return -1;
     }
+
+    public void ClickEquip(int slotNum)
+    {
+        if (inventory[slotNum].item is Equipment)
+        {
+            Equip((Equipment)inventory[slotNum].item);
+        }
+    }
 }
 
 // This is basically just an Item int pair however those don't show up in the unity editor, this will
@@ -160,6 +208,24 @@ public class ItemGroup
     public Item item;
     public int amount;
 }
+
+[System.Serializable]
+public class InventorySpace
+{
+    public InventorySpace()
+    {
+    }
+
+    public InventorySpace(Image key, Text value)
+    {
+        slotImage = key;
+        amountText = value;
+    }
+
+    public Image slotImage;
+    public Text amountText;
+}
+
 public enum ItemType
 {
     item = 0,
