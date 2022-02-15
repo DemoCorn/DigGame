@@ -15,14 +15,14 @@ public class Inventory_Manager : MonoBehaviour
     [SerializeField] private Equipment[] equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
 
     [SerializeField] private Blueprint testBlueprint;
-
+    /*
     [SerializeField] private GameObject inventoryScreen;
     [SerializeField] private List<InventorySpace> inventorySlots = new List<InventorySpace>();
 
     [SerializeField] private bool gridNeeded = true;
     [SerializeField] private GameObject grid;
     [SerializeField] private float gridOffset = 0.0f;
-
+    */
     private Inputs inputs;
 
     // Start is called before the first frame update
@@ -38,7 +38,7 @@ public class Inventory_Manager : MonoBehaviour
         }
         inputs = GameManager.Instance.GetInputs();
 
-        inventoryScreen.SetActive(false);
+        //inventoryScreen.SetActive(false);
     }
 
     // Update is called once per frame

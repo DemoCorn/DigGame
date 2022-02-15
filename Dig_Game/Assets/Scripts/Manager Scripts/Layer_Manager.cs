@@ -18,6 +18,14 @@ public class Layer_Manager : MonoBehaviour
     {
         return LevelRanges[GameManager.Instance.GetLevelNum()];
     }
+
+    public KeyValuePair<float, float> GetLevelHeight()
+    {
+        LevelRange levelRange = GetLevelRange();
+        float fLowest = levelRange.layerRange[levelRange.layerRange.Count - 1].lowest;
+        float fHighest = levelRange.layerRange[0].highest;
+        return new KeyValuePair<float, float>(fLowest, fHighest);
+    }
 }
 
 [System.Serializable]
