@@ -27,7 +27,7 @@ public class Ranged_Attack : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire2"))
             {
-                Debug.Log("asa");
+               
                 Vector2 moveDirection = (cursorLocation - (Vector2)transform.position).normalized;
                 Instantiate(shotToFire, shotPoint.position, shotPoint.rotation).moveDir = moveDirection;
 
