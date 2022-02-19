@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2455066309270868345}
   - component: {fileID: 3046378215472864268}
-  - component: {fileID: 1190150898004749563}
   m_Layer: 0
-  m_Name: Puzzle 4
+  m_Name: tutorial 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,26 +89,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d947bce0af2cda8499e5b8dd4bdf5445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lowestX: 0
+  highestX: 10
+  lowestY: -9
+  highestY: 0
   minX: 0
   maxX: 0
   minY: 0
   maxY: 0
---- !u!114 &1190150898004749563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3344856001202372012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d947bce0af2cda8499e5b8dd4bdf5445, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minX: 0
-  maxX: 0
-  minY: 0
-  maxY: 0
+  yOffset: 0
+  xOffset: 0
 --- !u!1001 &206118432487394007
 PrefabInstance:
   m_ObjectHideFlags: 0

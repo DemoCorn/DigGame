@@ -189,6 +189,11 @@ public class Inventory_Manager : MonoBehaviour
             Equip((Equipment)inventory[slotNum].item);
         }
     }
+
+    public PlayerClass getPlayerClass()
+    {
+        return playerClass;
+    }
 }
 
 // This is basically just an Item int pair however those don't show up in the unity editor, this will
