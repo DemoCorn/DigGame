@@ -8,6 +8,10 @@ public class Projectile : MonoBehaviour
     public Rigidbody2D theRB;
     public Vector3 moveDir;
 
+    public int Damage = 20;
+
+ 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +28,21 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "Player")
+        {
+            ;
+        }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<TemEnemyScript>().TakeDamage(Damage);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+       
     }
 
     IEnumerator DestoryShot()
