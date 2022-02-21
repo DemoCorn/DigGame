@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class Non_Player_Health : MonoBehaviour
 {
+	[SerializeField] ParticleSystem particle;
 	[SerializeField] float health = 15.0f;
 	[SerializeField] float immunityTime = 0.0f;
+	SpriteRenderer sprite;
+	BoxCollider2D collider;
 	bool mImmune = false;
+
+    private void Awake()
+    {
+		particle = GetComponentInChildren<ParticleSystem>();
+		sprite = GetComponent<SpriteRenderer>();
+		collider = GetComponent<BoxCollider2D>();
+    }
 
     public void Hit(float fDamage)
 	{
@@ -15,8 +25,12 @@ public class Non_Player_Health : MonoBehaviour
 			health -= fDamage;
 			if (health <= 0)
 			{
-				gameObject.SetActive(false);
+				StartCoroutine(Destroy());
 			}
+			else if(particle)
+            {
+				particle.Play();
+            }
 			mImmune = true;
 			Invoke("StopImmunity", immunityTime);
 		}
@@ -31,4 +45,17 @@ public class Non_Player_Health : MonoBehaviour
     {
 		health = newHealth;
 	}
+
+	private IEnumerator Destroy()
+    {
+		if (particle)
+		{
+			particle.Play();
+		}
+
+		sprite.enabled = false;
+		collider.enabled = false;
+		yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
+		Destroy(gameObject);
+    }
 }
