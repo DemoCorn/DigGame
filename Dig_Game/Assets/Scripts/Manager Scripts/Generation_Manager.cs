@@ -14,6 +14,8 @@ public class Generation_Manager : MonoBehaviour
     public List<LevelPrefab> puzzlePrefabs;
     public List<LevelPrefab> treasurePrefabs;
 
+    public int maxRoomSpawnAttempts = 500;
+
     public static float prefabPosX;
     public static float prefabPosY;
 
@@ -123,8 +125,15 @@ public class Generation_Manager : MonoBehaviour
                     prefabPercent -= prefabRange.prefabAtLayer[k].chance;
                 }
             }
+            int runTimes = 0;
             do
             {
+                if (runTimes >= maxRoomSpawnAttempts)
+                {
+                    Debug.LogWarning("Generation Manager was unable to instantiate " + prefabRange.prefabAtLayer[randomRoom].prefab.name);
+                    break;
+                }
+
                 reserved = false;
                 prefabPosX = Random.Range(0, levelWidth);
                 prefabPosY = Random.Range((int)levels.layerRange[layer].lowest, (int)levels.layerRange[layer].highest);

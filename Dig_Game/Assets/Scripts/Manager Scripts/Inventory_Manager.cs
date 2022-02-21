@@ -14,6 +14,8 @@ public class Inventory_Manager : MonoBehaviour
     [SerializeField] private Equipment[] noEquipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
     [SerializeField] private Equipment[] equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
 
+    [SerializeField] private List<UnlockableBlueprint> blueprints = new List<UnlockableBlueprint>();
+
     [SerializeField] private Blueprint testBlueprint;
     /*
     [SerializeField] private GameObject inventoryScreen;
@@ -76,7 +78,7 @@ public class Inventory_Manager : MonoBehaviour
         */
 
         // Testing
-        if(Input.GetKeyDown("r"))
+        if (Input.GetKeyDown("r"))
         {
             Craft(testBlueprint);
         }
@@ -182,17 +184,26 @@ public class Inventory_Manager : MonoBehaviour
         return -1;
     }
 
-    public void ClickEquip(int slotNum)
-    {
-        if (inventory[slotNum].item is Equipment)
-        {
-            Equip((Equipment)inventory[slotNum].item);
-        }
-    }
-
     public PlayerClass getPlayerClass()
     {
         return playerClass;
+    }
+
+    public void AddBlueprint(Blueprint blueprint)
+    {
+        foreach (UnlockableBlueprint currentBlueprint in blueprints)
+        {
+            if (currentBlueprint.blueprint == blueprint)
+            {
+                currentBlueprint.isUnlocked = true;
+                break;
+            }
+        }
+    }
+
+    public List<ItemGroup> GetInventory()
+    {
+        return inventory;
     }
 }
 
@@ -231,6 +242,23 @@ public class InventorySpace
     public Text amountText;
 }
 
+[System.Serializable]
+public class UnlockableBlueprint
+{
+    public UnlockableBlueprint()
+    {
+    }
+
+    public UnlockableBlueprint(Blueprint key, bool value)
+    {
+        blueprint = key;
+        isUnlocked = value;
+    }
+
+    public Blueprint blueprint;
+    public bool isUnlocked;
+}
+
 public enum ItemType
 {
     item = 0,
@@ -239,7 +267,7 @@ public enum ItemType
 
 public enum EquipmentType
 {
-    weapon = 0,
+    pickaxe = 0,
     head = 1,
     chest = 2,
     legs = 3
