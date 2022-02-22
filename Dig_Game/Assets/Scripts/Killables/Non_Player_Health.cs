@@ -7,18 +7,19 @@ public class Non_Player_Health : MonoBehaviour
 	[SerializeField] ParticleSystem particle;
 	[SerializeField] float health = 15.0f;
 	[SerializeField] float immunityTime = 0.0f;
+	[SerializeField] float spawnNewEnemyChance = 10.0f;
 	SpriteRenderer sprite;
-	BoxCollider2D collider;
-	bool mImmune = false;
+	BoxCollider2D boxCollider;
+	[HideInInspector] public bool mImmune = false;
 
     private void Awake()
     {
 		particle = GetComponentInChildren<ParticleSystem>();
 		sprite = GetComponent<SpriteRenderer>();
-		collider = GetComponent<BoxCollider2D>();
+		boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    public void Hit(float fDamage)
+	public void Hit(float fDamage)
 	{
 		if (!mImmune)
 		{
@@ -51,11 +52,12 @@ public class Non_Player_Health : MonoBehaviour
 		if (particle)
 		{
 			particle.Play();
+			sprite.enabled = false;
+			boxCollider.enabled = false;
+			yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
 		}
 
-		sprite.enabled = false;
-		collider.enabled = false;
-		yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
 		Destroy(gameObject);
     }
+
 }

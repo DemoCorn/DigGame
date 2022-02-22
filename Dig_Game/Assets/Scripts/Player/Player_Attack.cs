@@ -60,7 +60,8 @@ public class Player_Attack : MonoBehaviour
                 collisionObject = collision.gameObject;
                 if (collisionObject.GetComponent<Non_Player_Health>() != null)
                 {
-                    // Need either a better way to do prefab loading, or a better way to check if an object should use enemy damage
+                    Debug.Log(collisionObject.name);
+                    //Need either a better way to do prefab loading, or a better way to check if an object should use enemy damage
                     if (collisionObject.tag == "Enemy")
                     {
                         collisionObject.GetComponent<Non_Player_Health>().Hit(enemyDamage);
