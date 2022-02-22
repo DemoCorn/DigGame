@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossHealth : MonoBehaviour
+public class BossStunScript : MonoBehaviour
 {
-    public static float bossMaxHP = 100;
-    public static float bossHP;
+    public GameObject boss;
 
+    public Transform player;
     public bool isStunned;
 
     public float stunTimer;
@@ -16,6 +16,8 @@ public class BossHealth : MonoBehaviour
     void Start()
     {
         stunTimer = 0;
+        boss.GetComponent<Non_Player_Health>().enabled = false;
+
     }
 
     // Update is called once per frame
@@ -28,10 +30,15 @@ public class BossHealth : MonoBehaviour
             {
                 stunTimer = 0;
                 //player can now damage
+                boss.GetComponent<Non_Player_Health>().enabled = true;
+                
 
                 if (stunTimer == stunRequirement)
                 {
                     isStunned = false;
+                    boss.GetComponent<Non_Player_Health>().enabled = false;
+                    
+
                 }
 
             }
