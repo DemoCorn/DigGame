@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cec9b45d86e6b947afacfa9fe3507fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
+  speed: 1.5
   attackRange: 3
-  projectileRange: 0
+  projectileRange: 5
 --- !u!1102 &-6473851835772480226
 AnimatorState:
   serializedVersion: 6
@@ -56,7 +56,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4833443281547869180}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 5580913580895300626}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -136,9 +137,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_TransitionDuration: 0.94268656
+  m_TransitionOffset: 0.018112717
+  m_ExitTime: 0.40484735
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -246,14 +247,28 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.42678586
-  m_TransitionOffset: 0.1556123
-  m_ExitTime: 0.7755104
+  m_TransitionDuration: 0.6219204
+  m_TransitionOffset: 0.34729958
+  m_ExitTime: 0.95349497
   m_HasExitTime: 1
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!114 &5580913580895300626
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 745ea3ebdb9289f4d9db350c22714617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 4218307459389753704, guid: 20c5390b27df06b4ca006fe97f74a0b5, type: 3}
+  spawnPosition: {fileID: 0}
 --- !u!1107 &6040054632190825030
 AnimatorStateMachine:
   serializedVersion: 6
@@ -274,7 +289,7 @@ AnimatorStateMachine:
     m_Position: {x: 570, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2550126993124658966}
-    m_Position: {x: 1040, y: -120, z: 0}
+    m_Position: {x: 1320, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6439692933644822261}
     m_Position: {x: 330, y: -10, z: 0}
