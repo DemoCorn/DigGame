@@ -17,14 +17,6 @@ public class Inventory_Manager : MonoBehaviour
     [SerializeField] private List<UnlockableBlueprint> blueprints = new List<UnlockableBlueprint>();
 
     [SerializeField] private Blueprint testBlueprint;
-    /*
-    [SerializeField] private GameObject inventoryScreen;
-    [SerializeField] private List<InventorySpace> inventorySlots = new List<InventorySpace>();
-
-    [SerializeField] private bool gridNeeded = true;
-    [SerializeField] private GameObject grid;
-    [SerializeField] private float gridOffset = 0.0f;
-    */
     private Inputs inputs;
 
     // Start is called before the first frame update
@@ -46,37 +38,6 @@ public class Inventory_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(inputs.inventoryOpen))
-        {
-            inventoryScreen.SetActive(!inventoryScreen.activeSelf);
-        }
-
-        
-        if (inventoryScreen.activeSelf)
-        {
-            if (gridNeeded)
-            {
-                grid.transform.position = new Vector3(GameManager.Instance.GetCameraPosition().x + gridOffset, GameManager.Instance.GetCameraPosition().y, GameManager.Instance.GetCameraPosition().y);
-            }
-            for (int i = 0; i < inventorySlots.Count; i++)
-            {
-                if (inventory.Count > i)
-                {
-                    inventorySlots[i].slotImage.sprite = inventory[i].item.itemSprite;
-                    inventorySlots[i].slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                    inventorySlots[i].amountText.text = inventory[i].amount.ToString();
-                }
-                else
-                {
-                    inventorySlots[i].slotImage.sprite = null;
-                    inventorySlots[i].slotImage.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-                    inventorySlots[i].amountText.text = "";
-                }
-            }
-        }
-        */
-
         // Testing
         if (Input.GetKeyDown("r"))
         {
@@ -134,6 +95,11 @@ public class Inventory_Manager : MonoBehaviour
             equipment[(int)newEquipment.equipmentType] = newEquipment;
             GameManager.Instance.EquipPlayer(fHealth, fArmor, fDamage, fDig);
         }
+    }
+
+    public void Unequip(EquipmentType equipment)
+    {
+        Equip(noEquipment[(int)equipment]);
     }
 
     public bool Craft(Blueprint blueprint)
@@ -204,6 +170,11 @@ public class Inventory_Manager : MonoBehaviour
     public List<ItemGroup> GetInventory()
     {
         return inventory;
+    }
+
+    public Equipment[] GetEquipment()
+    {
+        return equipment;
     }
 }
 
