@@ -112,7 +112,7 @@ public class EnemyAI : MonoBehaviour
         {
             behaviour = BehaviourStates.Wait;
             waitTimer += 1 * Time.fixedDeltaTime;
-            Debug.Log(waitTimer);
+            //Debug.Log(waitTimer);
         }
 
         /**Enemy set to roam if the player in not within distance and 
@@ -353,5 +353,8 @@ public class EnemyAI : MonoBehaviour
             path = p;
             currentWaypoint = 0;
         }
-    }    
+    }
+
+
+
 }
