@@ -128,6 +128,7 @@ public class Generation_Manager : MonoBehaviour
             int runTimes = 0;
             do
             {
+                runTimes++;
                 if (runTimes >= maxRoomSpawnAttempts)
                 {
                     Debug.LogWarning("Generation Manager was unable to instantiate " + prefabRange.prefabAtLayer[randomRoom].prefab.name);
