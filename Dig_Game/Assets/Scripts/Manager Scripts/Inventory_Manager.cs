@@ -176,6 +176,11 @@ public class Inventory_Manager : MonoBehaviour
     {
         return equipment;
     }
+
+    public UnlockableBlueprint GetBlueprint(int index)
+    {
+        return blueprints[index];
+    }
 }
 
 // This is basically just an Item int pair however those don't show up in the unity editor, this will

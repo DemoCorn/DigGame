@@ -258,6 +258,7 @@ MonoBehaviour:
         chance: 100
       lowestPrefabAmount: 0
       highestPrefabAmount: 0
+  maxRoomSpawnAttempts: 500
 --- !u!4 &28138284
 Transform:
   m_ObjectHideFlags: 0
@@ -328,7 +329,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  blueprints: []
+  blueprints:
+  - blueprint: {fileID: 11400000, guid: d7a6c1125dad5724985facff84e3bcb6, type: 2}
+    isUnlocked: 0
   testBlueprint: {fileID: 11400000, guid: d7a6c1125dad5724985facff84e3bcb6, type: 2}
 --- !u!114 &28138288
 MonoBehaviour:
