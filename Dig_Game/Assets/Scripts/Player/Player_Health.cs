@@ -9,7 +9,16 @@ public class Player_Health : MonoBehaviour
     [SerializeField] private float armor = 0.0f;
     [SerializeField] private float immunityTime = 10.0f;
     [SerializeField] private BoxCollider2D hitbox;
+    Vector3 startPosition;
+    GameObject nextPlayer;
     private bool isVulnerable = true;
+    bool hasDied;
+    bool hasRetired;
+
+    private void Start()
+    {
+        startPosition = gameObject.transform.position;
+    }
 
     // Update is called once per frame
     void Update()
@@ -61,6 +70,7 @@ public class Player_Health : MonoBehaviour
 
                 if (health <= 0.0f)
                 {
+                    Die();
                     GameManager.Instance.EndGame(false);
                 }
 
@@ -74,6 +84,31 @@ public class Player_Health : MonoBehaviour
     {
         maxHealth += healthChange;
         armor += armorChange;
+    }
+
+    public void Die()
+    {
+        // Make player lose Inventory and Equipment
+        FindObjectOfType<Inventory_Manager>().DieReset();
+        // Make a new player
+        GameObject newEnemy = (GameObject)Instantiate(nextPlayer, startPosition, Quaternion.identity);
+        // Set to a new random class
+        FindObjectOfType<Inventory_Manager>().RandomizeClass();
+        // Destroy old player
+        Destroy(gameObject);
+        // TO-DO:Point Camera to newPlayer
+        
+
+    }
+
+    public void Retire()
+    {
+        // Make a new player
+        GameObject newEnemy = (GameObject)Instantiate(nextPlayer, startPosition, Quaternion.identity);
+        // Set to a new random class
+        FindObjectOfType<Inventory_Manager>().RandomizeClass();
+        // Destroy old player
+        Destroy(gameObject);
     }
   
 }
