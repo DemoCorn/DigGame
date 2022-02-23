@@ -14,15 +14,9 @@ public class Inventory_Manager : MonoBehaviour
     [SerializeField] private Equipment[] noEquipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
     [SerializeField] private Equipment[] equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
 
-    [SerializeField] private Blueprint testBlueprint;
-    /*
-    [SerializeField] private GameObject inventoryScreen;
-    [SerializeField] private List<InventorySpace> inventorySlots = new List<InventorySpace>();
+    [SerializeField] private List<UnlockableBlueprint> blueprints = new List<UnlockableBlueprint>();
 
-    [SerializeField] private bool gridNeeded = true;
-    [SerializeField] private GameObject grid;
-    [SerializeField] private float gridOffset = 0.0f;
-    */
+    [SerializeField] private Blueprint testBlueprint;
     private Inputs inputs;
 
     // Start is called before the first frame update
@@ -44,39 +38,8 @@ public class Inventory_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(inputs.inventoryOpen))
-        {
-            inventoryScreen.SetActive(!inventoryScreen.activeSelf);
-        }
-
-        
-        if (inventoryScreen.activeSelf)
-        {
-            if (gridNeeded)
-            {
-                grid.transform.position = new Vector3(GameManager.Instance.GetCameraPosition().x + gridOffset, GameManager.Instance.GetCameraPosition().y, GameManager.Instance.GetCameraPosition().y);
-            }
-            for (int i = 0; i < inventorySlots.Count; i++)
-            {
-                if (inventory.Count > i)
-                {
-                    inventorySlots[i].slotImage.sprite = inventory[i].item.itemSprite;
-                    inventorySlots[i].slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                    inventorySlots[i].amountText.text = inventory[i].amount.ToString();
-                }
-                else
-                {
-                    inventorySlots[i].slotImage.sprite = null;
-                    inventorySlots[i].slotImage.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-                    inventorySlots[i].amountText.text = "";
-                }
-            }
-        }
-        */
-
         // Testing
-        if(Input.GetKeyDown("r"))
+        if (Input.GetKeyDown("r"))
         {
             Craft(testBlueprint);
         }
@@ -134,6 +97,11 @@ public class Inventory_Manager : MonoBehaviour
         }
     }
 
+    public void Unequip(EquipmentType equipment)
+    {
+        Equip(noEquipment[(int)equipment]);
+    }
+
     public bool Craft(Blueprint blueprint)
     {
         bool canCraft = true;
@@ -182,17 +150,31 @@ public class Inventory_Manager : MonoBehaviour
         return -1;
     }
 
-    public void ClickEquip(int slotNum)
-    {
-        if (inventory[slotNum].item is Equipment)
-        {
-            Equip((Equipment)inventory[slotNum].item);
-        }
-    }
-
     public PlayerClass getPlayerClass()
     {
         return playerClass;
+    }
+
+    public void AddBlueprint(Blueprint blueprint)
+    {
+        foreach (UnlockableBlueprint currentBlueprint in blueprints)
+        {
+            if (currentBlueprint.blueprint == blueprint)
+            {
+                currentBlueprint.isUnlocked = true;
+                break;
+            }
+        }
+    }
+
+    public List<ItemGroup> GetInventory()
+    {
+        return inventory;
+    }
+
+    public Equipment[] GetEquipment()
+    {
+        return equipment;
     }
 }
 
@@ -231,6 +213,23 @@ public class InventorySpace
     public Text amountText;
 }
 
+[System.Serializable]
+public class UnlockableBlueprint
+{
+    public UnlockableBlueprint()
+    {
+    }
+
+    public UnlockableBlueprint(Blueprint key, bool value)
+    {
+        blueprint = key;
+        isUnlocked = value;
+    }
+
+    public Blueprint blueprint;
+    public bool isUnlocked;
+}
+
 public enum ItemType
 {
     item = 0,
@@ -239,7 +238,7 @@ public enum ItemType
 
 public enum EquipmentType
 {
-    weapon = 0,
+    pickaxe = 0,
     head = 1,
     chest = 2,
     legs = 3

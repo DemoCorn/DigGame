@@ -17,18 +17,7 @@ public class Player_Health : MonoBehaviour
         if (isVulnerable)
         {
             float nDamageTaken = IsCollidingWithEnemy();
-            if (nDamageTaken > 0.0f)
-            {
-                health -= nDamageTaken - armor;
-
-                if (health <= 0.0f)
-                {
-                    GameManager.Instance.EndGame(false);
-                }
-
-                isVulnerable = false;
-                Invoke("TurnOffImmunity", immunityTime);
-            }
+            TakeDamage(nDamageTaken);
         }
         
     }
@@ -60,6 +49,25 @@ public class Player_Health : MonoBehaviour
     public float GetHealth()
     {
         return health;
+    }
+
+    public void TakeDamage(float fDamage)
+    {
+        if (isVulnerable)
+        {
+            if (fDamage > 0.0f)
+            {
+                health -= fDamage - armor;
+
+                if (health <= 0.0f)
+                {
+                    GameManager.Instance.EndGame(false);
+                }
+
+                isVulnerable = false;
+                Invoke("TurnOffImmunity", immunityTime);
+            }
+        }
     }
 
     public void Equip(float healthChange, float armorChange)

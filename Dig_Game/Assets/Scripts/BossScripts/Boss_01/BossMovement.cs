@@ -5,7 +5,6 @@ using UnityEngine;
 public class BossMovement : MonoBehaviour
 {
     public GameObject boss;
-    public Vector2 position1;
     public Vector2[] bossPositions = new Vector2[4];
     int index;
     public Vector2 currentPosition;
