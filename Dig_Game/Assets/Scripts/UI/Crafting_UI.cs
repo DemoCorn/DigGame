@@ -7,8 +7,16 @@ public class Crafting_UI : MonoBehaviour
 {
     [SerializeField] private List<GameObject> slotObjects = new List<GameObject>();
     private List<CraftingSlot> slotSpaces = new List<CraftingSlot>();
+    private List<CraftingSlot> defaultSlotSpaces = new List<CraftingSlot>();
+
     [SerializeField] private GameObject resultObject;
     private CraftingSlot resultSpace;
+    private CraftingSlot defaultResultSpace;
+
+    private Blueprint currentBlueprint;
+
+    public GameObject blueprintButton;
+    public GameObject blueprintList;
 
     // Start is called before the first frame update
     void Start()
@@ -18,31 +26,45 @@ public class Crafting_UI : MonoBehaviour
             slotSpaces.Add(new CraftingSlot(slotObjects[i].GetComponentInChildren<Image>(), slotObjects[i].GetComponentInChildren<Text>(), i));
         }
         resultSpace = new CraftingSlot(resultObject.GetComponentInChildren<Image>(), resultObject.GetComponentInChildren<Text>(), 0);
-    }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown("f"))
+        GameObject newButton;
+        List<UnlockableBlueprint> blueprints = GameManager.Instance.InventoryManager.GetBlueprints();
+        Blueprint_UI bpUI;
+
+        newButton = blueprintButton;
+        bpUI = newButton.GetComponent<Blueprint_UI>();
+        bpUI.blueprint = blueprints[0];
+        newButton.GetComponentInChildren<Text>().text = bpUI.blueprint.blueprint.result.item.itemName;
+
+        for (int i = 1; i < blueprints.Count; i++)
         {
-            ChooseBlueprint(0);
+            newButton = Instantiate(blueprintButton, blueprintList.transform);
+            bpUI = newButton.GetComponent<Blueprint_UI>();
+            bpUI.blueprint = blueprints[i];
+            newButton.GetComponentInChildren<Text>().text = bpUI.blueprint.blueprint.result.item.itemName;
+            newButton.GetComponentInChildren<Button>().interactable = false;
         }
+
+        defaultSlotSpaces = new List<CraftingSlot>(slotSpaces);
+        defaultResultSpace = new CraftingSlot(resultSpace);
     }
 
-    public void ChooseBlueprint(int blueprintIndex)
+    public void ChooseBlueprint(Blueprint_UI blueprintUI)
     {
-        UnlockableBlueprint blueprint = GameManager.Instance.InventoryManager.GetBlueprint(blueprintIndex);
-
-        resultSpace.slotImage.sprite = blueprint.blueprint.result.item.itemSprite;
+        Blueprint blueprint = blueprintUI.blueprint.blueprint;
+        resultSpace.slotImage.sprite = blueprint.result.item.itemSprite;
         resultSpace.slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-        resultSpace.amountText.text = blueprint.blueprint.result.item.itemName;
+
+        Debug.LogWarning("Crafting_UI is only using name for the text someone needs to figure out the formatting we want and then delete this warning from the code"); // Delete this line once resultSpace.amountText.text isn't just using blueprint.result.item.itemName
+        resultSpace.amountText.text = blueprint.result.item.itemName;
 
         foreach (CraftingSlot slot in slotSpaces)
         {
-            if (blueprint.blueprint.recipe.Count > slot.slotIndex)
+            if (blueprint.recipe.Count > slot.slotIndex)
             {
-                slot.slotImage.sprite = blueprint.blueprint.recipe[slot.slotIndex].item.itemSprite;
+                slot.slotImage.sprite = blueprint.recipe[slot.slotIndex].item.itemSprite;
                 slot.slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                slot.amountText.text = blueprint.blueprint.recipe[slot.slotIndex].item.itemName + ": " + blueprint.blueprint.recipe[slot.slotIndex].amount.ToString();
+                slot.amountText.text = blueprint.recipe[slot.slotIndex].item.itemName + ": " + blueprint.recipe[slot.slotIndex].amount.ToString();
             }
             else
             {
@@ -50,12 +72,32 @@ public class Crafting_UI : MonoBehaviour
                 slot.amountText.text = "";
             }
         }
+
+        currentBlueprint = blueprint;
+    }
+
+    private void OnDisable()
+    {
+        slotSpaces = defaultSlotSpaces;
+        resultSpace = defaultResultSpace;
+    }
+
+    public void Craft()
+    {
+        GameManager.Instance.InventoryManager.Craft(currentBlueprint);
     }
 
     public class CraftingSlot
     {
         public CraftingSlot()
         {
+        }
+
+        public CraftingSlot(CraftingSlot slot)
+        {
+            slotImage = slot.slotImage;
+            amountText = slot.amountText;
+            slotIndex = slot.slotIndex;
         }
 
         public CraftingSlot(Image image, Text text, int index)

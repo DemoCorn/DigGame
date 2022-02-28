@@ -177,9 +177,9 @@ public class Inventory_Manager : MonoBehaviour
         return equipment;
     }
 
-    public UnlockableBlueprint GetBlueprint(int index)
+    public ref List<UnlockableBlueprint> GetBlueprints()
     {
-        return blueprints[index];
+        return ref blueprints;
     }
 }
 
