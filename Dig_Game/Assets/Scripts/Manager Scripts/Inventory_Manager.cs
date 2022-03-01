@@ -280,7 +280,8 @@ public enum EquipmentType
     pickaxe = 0,
     head = 1,
     chest = 2,
-    legs = 3
+    legs = 3,
+    boots = 4
 }
 
 public enum PlayerClass
