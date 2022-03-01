@@ -23,9 +23,13 @@ public class Generation_Manager : MonoBehaviour
 
     private HashSet<KeyValuePair<int, int>> reservedSpaces = new HashSet<KeyValuePair<int, int>>();
 
+    [SerializeField] private GameObject craftingTable;
+
     // Start is called before the first frame update
     public void Start()
     {
+        Instantiate(craftingTable, new Vector3(30.0f, 1.0f, 0.0f), Quaternion.identity);
+
         int mineralX;
         int mineralY;
         int oreAmount;

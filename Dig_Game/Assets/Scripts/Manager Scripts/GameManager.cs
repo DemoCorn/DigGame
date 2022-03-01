@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Inventory_Manager InventoryManager;
     [SerializeField] public Layer_Manager LayerManager;
     [SerializeField] public Generation_Manager GenerationManager;
+    [SerializeField] public UI_Manager UIManager;
 
     [SerializeField] GameObject player;
 
