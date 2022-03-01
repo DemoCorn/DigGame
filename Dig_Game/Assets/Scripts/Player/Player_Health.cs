@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Player_Health : MonoBehaviour
 {
@@ -11,13 +12,16 @@ public class Player_Health : MonoBehaviour
     [SerializeField] private BoxCollider2D hitbox;
     Vector3 startPosition;
     GameObject nextPlayer;
+    CinemachineVirtualCamera vCam;
     private bool isVulnerable = true;
     bool hasDied;
     bool hasRetired;
 
     private void Start()
     {
+        nextPlayer = gameObject;
         startPosition = gameObject.transform.position;
+        vCam = GameObject.FindGameObjectWithTag("VCam").GetComponent<CinemachineVirtualCamera>(); ;
     }
 
     // Update is called once per frame
@@ -91,22 +95,26 @@ public class Player_Health : MonoBehaviour
         // Make player lose Inventory and Equipment
         FindObjectOfType<Inventory_Manager>().DieReset();
         // Make a new player
-        GameObject newEnemy = (GameObject)Instantiate(nextPlayer, startPosition, Quaternion.identity);
+        GameObject newPlayer = (GameObject)Instantiate(nextPlayer, startPosition, Quaternion.identity);
         // Set to a new random class
         FindObjectOfType<Inventory_Manager>().RandomizeClass();
+        // Point Camera to newPlayer
+        vCam.LookAt = nextPlayer.transform;
+        vCam.Follow = nextPlayer.transform;
         // Destroy old player
         Destroy(gameObject);
-        // TO-DO:Point Camera to newPlayer
         
-
     }
 
     public void Retire()
     {
         // Make a new player
-        GameObject newEnemy = (GameObject)Instantiate(nextPlayer, startPosition, Quaternion.identity);
+        GameObject newPlayer = (GameObject)Instantiate(nextPlayer, startPosition, Quaternion.identity);
         // Set to a new random class
         FindObjectOfType<Inventory_Manager>().RandomizeClass();
+        // Point Camera to newPlayer
+        vCam.LookAt = newPlayer.transform;
+        vCam.Follow = newPlayer.transform;
         // Destroy old player
         Destroy(gameObject);
     }
