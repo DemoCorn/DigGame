@@ -9,6 +9,8 @@ using System;
 public class Inventory_Manager : MonoBehaviour
 {
     [SerializeField] private PlayerClass playerClass = PlayerClass.None;
+    private PlayerClass lastClass;
+
     [SerializeField] private List<ItemGroup> inventory = new List<ItemGroup>();
 
     [SerializeField] private Equipment[] noEquipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
@@ -31,6 +33,11 @@ public class Inventory_Manager : MonoBehaviour
             }
         }
         inputs = GameManager.Instance.GetInputs();
+
+        // Randomize class
+        playerClass = (PlayerClass)(int)UnityEngine.Random.Range(1, System.Enum.GetValues(typeof(PlayerClass)).Length);
+        // Remember last class so it won't repeat upon death
+        lastClass = playerClass;
 
         //inventoryScreen.SetActive(false);
     }
@@ -180,6 +187,33 @@ public class Inventory_Manager : MonoBehaviour
     public ref List<UnlockableBlueprint> GetBlueprints()
     {
         return ref blueprints;
+    }
+
+    public void DieReset()
+    {
+        equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
+        // Equip the lack of armor and weapon, needed so that Equip works
+        for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
+        {
+            if (equipment[i] == null)
+            {
+                equipment[i] = noEquipment[i];
+            }
+        }
+        inputs = GameManager.Instance.GetInputs();
+
+        inventory.Clear();
+    }
+
+    public void RandomizeClass()
+    {
+        // Make sure last class is not repeated
+        while (lastClass == playerClass)
+        {
+            playerClass = (PlayerClass)(int)UnityEngine.Random.Range(1, System.Enum.GetValues(typeof(PlayerClass)).Length);
+        }
+        // Save last class
+        lastClass = playerClass;
     }
 }
 
