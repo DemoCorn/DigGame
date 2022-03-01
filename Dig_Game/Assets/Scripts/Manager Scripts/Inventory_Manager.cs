@@ -190,10 +190,7 @@ public class Inventory_Manager : MonoBehaviour
         // Equip the lack of armor and weapon, needed so that Equip works
         for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
         {
-            if (equipment[i] == null)
-            {
-                equipment[i] = noEquipment[i];
-            }
+            Unequip(equipment[i].equipmentType);
         }
         inputs = GameManager.Instance.GetInputs();
 
