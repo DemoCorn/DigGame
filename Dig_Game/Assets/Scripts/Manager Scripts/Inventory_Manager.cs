@@ -184,6 +184,11 @@ public class Inventory_Manager : MonoBehaviour
         return equipment;
     }
 
+    public ref List<UnlockableBlueprint> GetBlueprints()
+    {
+        return ref blueprints;
+    }
+
     public void DieReset()
     {
         equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
