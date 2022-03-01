@@ -26,6 +26,10 @@ public class UI_Manager : MonoBehaviour
         {
             menuScript.OpenCloseMenu(UIMenu.inventory);
         }
+        else if (Input.GetKeyDown("q"))
+        {
+            menuScript.OpenCloseMenu(UIMenu.equipment);
+        }
     }
 }
 
