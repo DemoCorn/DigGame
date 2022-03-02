@@ -55,8 +55,7 @@ public class TrackingProjectile : MonoBehaviour
         {
             //Damage Player
             Destroy(gameObject);
-        }  
-       
+        }
     }
     
 
