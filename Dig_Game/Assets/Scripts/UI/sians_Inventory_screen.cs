@@ -9,6 +9,8 @@ public class sians_Inventory_screen : MonoBehaviour
     public GameObject mainscreen;
     public GameObject settingstab;
     public GameObject Equipmentscreen;
+
+    private UIMenu currentMenu = UIMenu.hud;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,10 +20,28 @@ public class sians_Inventory_screen : MonoBehaviour
         Equipmentscreen.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OpenCloseMenu(UIMenu menu)
     {
-
+        if (menu == UIMenu.hud || currentMenu == menu)
+        {
+            CloseMenu();
+            currentMenu = UIMenu.hud;
+        }
+        else if (menu == UIMenu.inventory)
+        {
+            EquipmentOpen();
+            currentMenu = menu;
+        }
+        else if (menu == UIMenu.equipment)
+        {
+            OpenInventory();
+            currentMenu = menu;
+        }
+        else if (menu == UIMenu.settings)
+        {
+            SettingsOpen();
+            currentMenu = menu;
+        }
     }
 
     public void OpenInventory()

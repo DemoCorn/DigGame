@@ -22,7 +22,7 @@ public class Input_Manager : MonoBehaviour
     private Inputs inputs;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         LoadJson();
     }
