@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FallingBlock : MonoBehaviour
 {
-    public bool objectTrigger = true;
+    [HideInInspector] public bool objectTrigger = false;
     public float speed;
     public float yValue;
     public float xValue;

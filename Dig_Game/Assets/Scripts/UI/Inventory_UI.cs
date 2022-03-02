@@ -11,6 +11,7 @@ public class Inventory_UI : MonoBehaviour
 
     [SerializeField] private GameObject[] equipmentObjects = new GameObject[Enum.GetNames(typeof(EquipmentType)).Length];
     private InventorySpace[] equipmentSlots = new InventorySpace[Enum.GetNames(typeof(EquipmentType)).Length];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,29 +19,13 @@ public class Inventory_UI : MonoBehaviour
         {
             inventoryButtons.Add(new InventorySpace(slotObjects[i].GetComponentInChildren<Image>(), slotObjects[i].GetComponentInChildren<Text>(), i));
         }
-        /*
-        for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
-        {
-            equipmentSlots[i] = new InventorySpace(slotObjects[i].GetComponentInChildren<Image>(), slotObjects[i].GetComponentInChildren<Text>(), i);
-        }
-        */
     }
 
     // Update is called once per frame
     void Update()
     {
-        Equipment[] equipment = GameManager.Instance.InventoryManager.GetEquipment();
         List<ItemGroup> inventory = GameManager.Instance.InventoryManager.GetInventory();
 
-        /*
-        for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
-        {
-            if (equipment[i] != null && equipmentSlots[i] != null)
-            {
-                equipmentSlots[i].slotImage.sprite = equipment[i].itemSprite;
-            }
-        }
-        */
         for (int i = 0; i < inventoryButtons.Count; i++)
         {
             if (inventory.Count > i)
