@@ -22,7 +22,7 @@ public class DebrisScript : MonoBehaviour
     {
         if (other.gameObject.tag ==("Boss"))
         {
-            other.GetComponent<BossHealth>().isStunned = true;
+            other.GetComponent<BossStunScript>().isStunned = true;
         }
     }
 

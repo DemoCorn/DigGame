@@ -14,6 +14,8 @@ public class Generation_Manager : MonoBehaviour
     public List<LevelPrefab> puzzlePrefabs;
     public List<LevelPrefab> treasurePrefabs;
 
+    public int maxRoomSpawnAttempts = 500;
+
     public static float prefabPosX;
     public static float prefabPosY;
 
@@ -21,9 +23,13 @@ public class Generation_Manager : MonoBehaviour
 
     private HashSet<KeyValuePair<int, int>> reservedSpaces = new HashSet<KeyValuePair<int, int>>();
 
+    [SerializeField] private GameObject craftingTable;
+
     // Start is called before the first frame update
     public void Start()
     {
+        Instantiate(craftingTable, new Vector3(30.0f, 1.0f, 0.0f), Quaternion.identity);
+
         int mineralX;
         int mineralY;
         int oreAmount;
@@ -123,8 +129,16 @@ public class Generation_Manager : MonoBehaviour
                     prefabPercent -= prefabRange.prefabAtLayer[k].chance;
                 }
             }
+            int runTimes = 0;
             do
             {
+                runTimes++;
+                if (runTimes >= maxRoomSpawnAttempts)
+                {
+                    Debug.LogWarning("Generation Manager was unable to instantiate " + prefabRange.prefabAtLayer[randomRoom].prefab.name);
+                    break;
+                }
+
                 reserved = false;
                 prefabPosX = Random.Range(0, levelWidth);
                 prefabPosY = Random.Range((int)levels.layerRange[layer].lowest, (int)levels.layerRange[layer].highest);
