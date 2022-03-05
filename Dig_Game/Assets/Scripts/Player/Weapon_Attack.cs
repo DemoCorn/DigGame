@@ -19,7 +19,9 @@ public class Weapon_Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        Inputs inputs = GameManager.Instance.GetInputs();
+
+        if (Input.GetKeyDown((KeyCode) inputs.attack))
         {
             mHitbox.enabled = true;
             mAnimator.SetInteger("Class", (int)GameManager.Instance.InventoryManager.getPlayerClass());
@@ -49,5 +51,10 @@ public class Weapon_Attack : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Equip(float attackChange)
+    {
+        damage += attackChange;
     }
 }
