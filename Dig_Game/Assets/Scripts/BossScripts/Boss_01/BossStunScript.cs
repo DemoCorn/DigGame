@@ -28,20 +28,26 @@ public class BossStunScript : MonoBehaviour
             stunTimer += Time.deltaTime;
             if (stunTimer <= stunRequirement)
             {
-                stunTimer = 0;
+                
                 //player can now damage
                 boss.GetComponent<Non_Player_Health>().enabled = true;
-                
-
-                if (stunTimer == stunRequirement)
-                {
-                    isStunned = false;
-                    boss.GetComponent<Non_Player_Health>().enabled = false;
-                    
-
-                }
 
             }
+            if (stunTimer >= stunRequirement)
+            {
+                isStunned = false;
+                boss.GetComponent<Non_Player_Health>().enabled = false;
+                stunTimer = 0;
+
+            }
+        }
+
+    }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == ("Debris"))
+        {
+            isStunned = true;
         }
     }
 }
