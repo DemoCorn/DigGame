@@ -24,15 +24,19 @@ public class DamageField : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
             return;
 
-        if (collision.gameObject.CompareTag("Player"))
+
+        ///NEEDS TO REFERENCE THE ACTUAL PLAYER'S HEALTH
+        ///THIS ONLY REFERENCE'S THE TEST PLAYER SCRIPT
+
+         /*if (collision.gameObject.CompareTag("Player"))
         {
-          TestMovement player = collision.GetComponent<TestMovement>();
+         TestMovement player = collision.GetComponent<TestMovement>();
           if(player != null)
             {
                 player.TakeDamage(enemyDamage);
                 SelfDestruct();
             }
-        }
+        }*/
         
         SelfDestruct();        
     }
