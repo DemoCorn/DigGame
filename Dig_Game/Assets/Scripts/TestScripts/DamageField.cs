@@ -12,8 +12,8 @@ public class DamageField : MonoBehaviour
     {
         
         GetParent();
-        enemyDamage = GetComponentInParent<EnemyAI>().attackDamage;
-        if(GetComponentInParent<EnemyAI>().attackDamage <= 0)
+        enemyDamage = GetComponentInParent<EnemyStats>().damage;
+        if(GetComponentInParent<EnemyStats>().damage <= 0)
         {
             enemyDamage = GetComponentInParent<EnemyProjectiles>().attackDamage;
         }

@@ -11,14 +11,10 @@ public class EnemyAI : MonoBehaviour
     public MovementType movement;
     [Tooltip("How this enemy will attack")]
     public AttackType attackType;
-    [Tooltip("How much damage the enemy will do (Set to 0 if the enemy is using projectiles)")]
-    public float attackDamage = 10;
-    [Tooltip("How often the enemy will attack")]
-    public float attackDelay = 3f;
+
+    private float attackDelay = 3f;
     public GameObject spawnOffset;
     public GameObject damageField;
-
-    
 
     [Header("Custom Behaviour")]
     [Tooltip("If turned on the enemy will follow the player when they're within a specified range.")]
@@ -28,22 +24,19 @@ public class EnemyAI : MonoBehaviour
     [Tooltip("If turned on the enemy will turn to face the player's direction")]
     public bool directionLookEnabled = true;
 
-    [Header("Physics")]
-    [Tooltip("Enemy Movement Speed")]
-    public float speed = 200f;
-    [Tooltip("How high the enemy will jump")]
-    public float jumpModifier = 0.3f;
-    [Tooltip("How high the player needs to be before the enemy will jump")]
-    public float jumpHeightRequirement = 0.8f;
+    [Header("Physics")]    
+    private float speed = 200f;    
+    private float jumpModifier = 0.3f;    
+    private float jumpHeightRequirement = 0.8f;
     private float groundCheckOffset = 0.1f;
 
     [Header("Pathfinding")]
     private GameObject player;
     private Transform target;
     [Tooltip("The range the enemy will start to follow the player")]
-    public float activateDistance = 50f;
+    private float activateDistance = 50f;
     [Tooltip("The range the enemy will start to prompt attacks towards the player")]
-    public float attackRange = 10f;
+    private float attackRange = 10f;
     private static Vector3 startingPosition;
     private Vector3 roamingPosition;
     private float nextWaypointDistance = 3f;
@@ -69,15 +62,23 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D rb;
     [Header("Graphics")]
     public GameObject enemyGFX;
-    public Animator animator;
     
 
+    private EnemyStats enemyStats;
+
+    private void Awake()
+    {
+        GetPlayer();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         /**Startup**/{
-            GetPlayer();
+            GetStats();
+            //GetGFX();
+            
+            
             damageField.SetActive(false);
             behaviour = BehaviourStates.Roam;
             seeker = GetComponent<Seeker>();
@@ -95,6 +96,7 @@ public class EnemyAI : MonoBehaviour
             EnemyGFX();
             SetSpawnOffset();
         }
+        Debug.Log(player.name);
 
         //Attack if player is within range
         if (canAttack == true && TargetInAttackRange())
@@ -112,7 +114,7 @@ public class EnemyAI : MonoBehaviour
         {
             behaviour = BehaviourStates.Wait;
             waitTimer += 1 * Time.fixedDeltaTime;
-            Debug.Log(waitTimer);
+            //Debug.Log(waitTimer);
         }
 
         /**Enemy set to roam if the player in not within distance and 
@@ -139,25 +141,6 @@ public class EnemyAI : MonoBehaviour
     }
     private void UpdatePath()
     {
-       /** if (behaviour == BehaviourStates.Roam)
-        {
-            Vector3 roamingPosition = GetRoamingPosition();
-            if (seeker.IsDone())
-            {
-                seeker.StartPath(rb.position, roamingPosition, OnPathComplete);
-            }
-        }
-
-        if (followEnabled && TargetInDistance() && seeker.IsDone())
-        {
-            behaviour = BehaviourStates.Follow;
-            seeker.StartPath(rb.position, target.position, OnPathComplete);
-        }
-        else
-        {
-            behaviour = BehaviourStates.Roam;
-        }
-       **/
         
        //Control Pathfinding depending on the current behaviour state
        switch (behaviour)
@@ -191,12 +174,29 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+
+    /************************Startup*******************************/
+    private void GetStats()
+    {
+        enemyStats = GetComponent<EnemyStats>();
+        attackDelay = enemyStats.attackDelay;
+        speed = enemyStats.speed;
+        jumpModifier = enemyStats.jumpHeight;
+    }
+    private void GetGFX()
+    {
+        enemyGFX = GetComponentInChildren<GameObject>();
+    }
+
     //PathFinding Behavior
     private GameObject GetPlayer()
     {
         player = GameObject.FindWithTag("Player");
+        
         return player;
     }
+
+
     private static Vector3 GetRoamingPositionXY()
     {
         Vector3 direction = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1)).normalized;

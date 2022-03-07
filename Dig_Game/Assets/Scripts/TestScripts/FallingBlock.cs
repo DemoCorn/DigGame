@@ -19,8 +19,7 @@ public class FallingBlock : MonoBehaviour
 
     public void Start()
     {
-        moveVector = new Vector3(xValue, yValue, 0);
-        Debug.Log(moveVector);
+        moveVector = new Vector3(xValue, yValue, 0);        
     }
 
     private void Update()
