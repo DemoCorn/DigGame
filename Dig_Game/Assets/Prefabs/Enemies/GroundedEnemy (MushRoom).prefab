@@ -159,6 +159,7 @@ GameObject:
   - component: {fileID: 3188068599224919507}
   - component: {fileID: 3188068599224919504}
   - component: {fileID: 3188068599224919505}
+  - component: {fileID: -3015251013298832485}
   m_Layer: 0
   m_Name: GroundedEnemy (MushRoom)
   m_TagString: Enemy
@@ -275,3 +276,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-3015251013298832485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188068599224919519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - items:
+      item: {fileID: 11400000, guid: 2ac85d0d280b3c44ba985ca0b36a63d3, type: 2}
+      amount: 2
+    percentChance: 5
+  blueprintDrops: []
+  dropBlueprints: 0
