@@ -773,7 +773,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498051500}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: -10}
+  m_LocalPosition: {x: 3.92, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1690,7 +1690,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1532002273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: -10}
+  m_LocalPosition: {x: 3.92, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3399491}
@@ -1743,7 +1743,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   blueprints: []
-  testBlueprint: {fileID: 11400000, guid: d7a6c1125dad5724985facff84e3bcb6, type: 2}
 --- !u!114 &2059090336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1876,6 +1875,7 @@ MonoBehaviour:
       lowestPrefabAmount: 1
       highestPrefabAmount: 1
   maxRoomSpawnAttempts: 500
+  craftingTable: {fileID: 0}
 --- !u!114 &2059090339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1892,6 +1892,7 @@ MonoBehaviour:
   InventoryManager: {fileID: 2059090335}
   LayerManager: {fileID: 2059090336}
   GenerationManager: {fileID: 2059090338}
+  UIManager: {fileID: 0}
   player: {fileID: 2080190363}
   mainCamera: {fileID: 498051501}
   LevelNum: 0
@@ -2002,7 +2003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpPower: 20
-  gravity: -0.1
+  gravity: 0
   hitbox: {fileID: 2080190364}
   platformLayerMask:
     serializedVersion: 2
@@ -2079,7 +2080,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080190363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalPosition: {x: 3.92, y: 5, z: 0}
   m_LocalScale: {x: 0.7, y: 1, z: 1}
   m_Children:
   - {fileID: 1508016655}
