@@ -296,11 +296,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3116610461661973768}
-  - component: {fileID: 3116610461661973770}
+  - component: {fileID: -4048986514336806753}
   - component: {fileID: 3116610461661973769}
   - component: {fileID: 3116610461661973764}
   - component: {fileID: 3116610461661973771}
-  - component: {fileID: -3577641699971850785}
+  - component: {fileID: 3116610461661973770}
   m_Layer: 0
   m_Name: FlyingEnemy (VampireBat)
   m_TagString: Untagged
@@ -324,7 +324,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3116610461661973770
+--- !u!114 &-4048986514336806753
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -333,25 +333,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3116610461661973775}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Script: {fileID: 11500000, guid: 663e035ead3cd2e4bb33f7c8706ddc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
-  drawGizmos: 1
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 3
-    exactEndPoint: 3
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  graphMask:
-    value: -1
+  health: 0
+  damage: 10
+  attackDelay: 5
+  speed: 200
+  jumpHeight: 0.5
+  activateDistance: 50
+  attackRange: 10
 --- !u!114 &3116610461661973769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,20 +357,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: 0
   attackType: 0
-  attackDamage: 10
-  attackDelay: 2
   spawnOffset: {fileID: 3116610460359717305}
   damageField: {fileID: 3116610461485406329}
   followEnabled: 1
   jumpEnabled: 1
   directionLookEnabled: 1
-  speed: 300
-  jumpModifier: 0.3
-  jumpHeightRequirement: 0.8
-  activateDistance: 15
-  attackRange: 5
   enemyGFX: {fileID: 3116610461116525757}
-  animator: {fileID: 3116610461116525759}
 --- !u!58 &3116610461661973764
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -417,7 +400,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-3577641699971850785
+--- !u!114 &3116610461661973770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -426,13 +409,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 3116610461661973775}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drops:
-  - items:
-      item: {fileID: 11400000, guid: 41cfe408fab503a409e1df17c362487f, type: 2}
-      amount: 1
-    percentChance: 5
-  blueprintDrops: []
-  dropBlueprints: 0
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
