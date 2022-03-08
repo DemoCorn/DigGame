@@ -259,6 +259,7 @@ MonoBehaviour:
       lowestPrefabAmount: 0
       highestPrefabAmount: 0
   maxRoomSpawnAttempts: 500
+  craftingTable: {fileID: 7371438573855639348, guid: 7c0f19cdba14f9f47a205c761dc1927f, type: 3}
 --- !u!4 &28138284
 Transform:
   m_ObjectHideFlags: 0
@@ -289,6 +290,7 @@ MonoBehaviour:
   InventoryManager: {fileID: 28138287}
   LayerManager: {fileID: 28138288}
   GenerationManager: {fileID: 28138283}
+  UIManager: {fileID: 28138289}
   player: {fileID: 1304607148}
   mainCamera: {fileID: 935519405}
   LevelNum: 0
@@ -324,14 +326,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e8f1ba75ff728f43a1ded65c9f29d87, type: 2}
   - {fileID: 11400000, guid: f62ce1be7a1de6f4b864c1703542c6d2, type: 2}
   - {fileID: 11400000, guid: b513c4894aca70042b42707d5584c662, type: 2}
+  - {fileID: 11400000, guid: efcbf3e1788b2bb418a19552c9c80868, type: 2}
   equipment:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   blueprints:
   - blueprint: {fileID: 11400000, guid: d7a6c1125dad5724985facff84e3bcb6, type: 2}
-    isUnlocked: 0
+    isUnlocked: 1
   - blueprint: {fileID: 11400000, guid: d7a6c1125dad5724985facff84e3bcb6, type: 2}
     isUnlocked: 0
   - blueprint: {fileID: 11400000, guid: d7a6c1125dad5724985facff84e3bcb6, type: 2}
@@ -373,6 +377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuPrefab: {fileID: 1486475501730190030, guid: 1439f9dd466d93044b90ad490c39d34a, type: 3}
+  onCraftingTable: 0
 --- !u!1 &63677081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,7 +1440,7 @@ GameObject:
   - component: {fileID: 1704843302}
   m_Layer: 0
   m_Name: CM vcam1
-  m_TagString: Untagged
+  m_TagString: VCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
