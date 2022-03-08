@@ -7,17 +7,18 @@ public class FallingBlockTrigger : MonoBehaviour
     public GameObject[] fallingObjects;
     public bool switc = true;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnDisable()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        foreach (GameObject i in fallingObjects)
         {
-            switc = true;
-        } 
+            i.GetComponent<FallingBlock>().objectTrigger = true;
+        }
     }
-
+    /*
     private void Update()
     {
-        if(switc == true) {
+        if(switc == true) 
+        {
             switc = false;
             foreach (GameObject i in fallingObjects)
             {
@@ -26,4 +27,5 @@ public class FallingBlockTrigger : MonoBehaviour
         }
         
     }
+    */
 }

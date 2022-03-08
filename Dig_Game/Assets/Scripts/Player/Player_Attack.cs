@@ -21,26 +21,8 @@ public class Player_Attack : MonoBehaviour
     void Update()
     {
         Inputs inputs = GameManager.Instance.GetInputs();
-        // Check each key direction to figure out if we should be attacking anywhere
-        if (Input.GetKeyDown(inputs.rAttack))
-		{
-            SetAttackVariables(rightAttackOffset, rightAttackSize);
-		}
-        else if (Input.GetKeyDown(inputs.lAttack))
-        {
-            SetAttackVariables(new Vector2(-rightAttackOffset.x, rightAttackOffset.y), rightAttackSize);
-        }
-        else if (Input.GetKeyDown(inputs.uAttack))
-        {
-            SetAttackVariables(new Vector2(rightAttackOffset.y, rightAttackOffset.x), new Vector2(rightAttackSize.y, rightAttackSize.x));
-        }
-        else if (Input.GetKeyDown(inputs.dAttack))
-        {
-            SetAttackVariables(new Vector2(rightAttackOffset.y, -rightAttackOffset.x), new Vector2(rightAttackSize.y, rightAttackSize.x));
-        }
 
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown((KeyCode)inputs.attack))
         {
             Attack();
         }
@@ -60,7 +42,8 @@ public class Player_Attack : MonoBehaviour
                 collisionObject = collision.gameObject;
                 if (collisionObject.GetComponent<Non_Player_Health>() != null)
                 {
-                    // Need either a better way to do prefab loading, or a better way to check if an object should use enemy damage
+                    Debug.Log(collisionObject.name);
+                    //Need either a better way to do prefab loading, or a better way to check if an object should use enemy damage
                     if (collisionObject.tag == "Enemy")
                     {
                         collisionObject.GetComponent<Non_Player_Health>().Hit(enemyDamage);
@@ -76,21 +59,13 @@ public class Player_Attack : MonoBehaviour
 
     }
 
-    private void SetAttackVariables(Vector2 offset, Vector2 size)
-	{
-        mAttackHitbox.offset = offset;
-        mAttackHitbox.size = size;
-        mAttackHitbox.enabled = true;
-	}
-
     public void Attack()
     {
         mAttackHitbox.enabled = true;
     }
 
-    public void Equip(float attackChange, float digChange)
+    public void Equip(float digChange)
     {
-        enemyDamage += attackChange;
         blockDamage += digChange;
     }
 }

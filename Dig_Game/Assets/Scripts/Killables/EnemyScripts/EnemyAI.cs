@@ -353,5 +353,8 @@ public class EnemyAI : MonoBehaviour
             path = p;
             currentWaypoint = 0;
         }
-    }    
+    }
+
+
+
 }

@@ -123,7 +123,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e530c0bc73a8d74688dd99d72ad7e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 0}
   health: 15
+  immunityTime: 0
+  spawnNewEnemyChance: 10
+  mImmune: 0
 --- !u!114 &-1035283449442580363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,3 +145,5 @@ MonoBehaviour:
       item: {fileID: 11400000, guid: d2904b7619d90044e8f1304544491e45, type: 2}
       amount: 3
     percentChance: 100
+  blueprintDrops: []
+  dropBlueprints: 1

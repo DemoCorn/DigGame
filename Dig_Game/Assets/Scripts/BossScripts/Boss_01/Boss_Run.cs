@@ -8,6 +8,8 @@ public class Boss_Run : StateMachineBehaviour
     public float attackRange = 3.0f;
     public float projectileRange = 10.0f;
 
+    
+
     Transform player;
     Rigidbody2D rb;
 
@@ -22,18 +24,29 @@ public class Boss_Run : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.GetComponent<Boss_2Movement>().LookAtPlayer();
+
         Vector2 target = new Vector2(player.position.x, rb.position.y);
         Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
         rb.MovePosition(newPos);
+
+        
+
+
         if (Vector2.Distance(player.position, rb.position) <= attackRange)
         {
+            animator.SetInteger("AttackIndex", Random.Range(0, 3));
             animator.SetTrigger("Attack");
         }
 
-       // if (Vector2.Distance(player.position, rb.position) >= projectileRange)
-       // {
-       //     animator.SetTrigger("BurstProjectile");
-       // }
+        if (Vector2.Distance(player.position, rb.position) >= projectileRange)
+        {
+            animator.SetTrigger("BurstProjectile");
+        }
+
+
+
+
 
     }
 
@@ -41,7 +54,8 @@ public class Boss_Run : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.ResetTrigger("Attack");
-       // animator.ResetTrigger("BurstProjectile");
+       
+        animator.ResetTrigger("BurstProjectile");
     }
 
    
