@@ -10,11 +10,15 @@ public class Generation_Manager : MonoBehaviour
     public GameObject dirtObj;
     
     [Header("Small generation prefabs")]
+    [Tooltip("Ore that will spawn in a given level")]
     public List<LevelOre> oreLevelRanges;
+    [Tooltip("Scatter objects that will spawn in a given level")]
     public List<LevelScatter> levelScatters;
 
     [Header("Large generation prefabs")]
+    [Tooltip("Room prefabs that will spawn in a given level")]
     public List<LevelPrefab> puzzlePrefabs;
+    [Tooltip("Room prefabs that will spawn in a given level")]
     public List<LevelPrefab> treasurePrefabs;
 
     [Header("Crash Protection")]
@@ -294,6 +298,7 @@ public class Generation_Manager : MonoBehaviour
         {
             oreAtLevel = oreLayer;
         }
+        [Tooltip("Ore that will spawn in a given Layer")]
         public List<OreRange> oreAtLevel = new List<OreRange>();
     }
 
@@ -308,6 +313,7 @@ public class Generation_Manager : MonoBehaviour
         {
             oreAtLayer = oreLayer;
         }
+        [Tooltip("Ore that will spawn in a given Layer")]
         public List<OreType> oreAtLayer = new List<OreType>();
     }
 
