@@ -191,8 +191,6 @@ public class Inventory_Manager : MonoBehaviour
 
     public void DieReset()
     {
-        equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
-        // Equip the lack of armor and weapon, needed so that Equip works
         for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
         {
             Unequip(equipment[i].equipmentType);
