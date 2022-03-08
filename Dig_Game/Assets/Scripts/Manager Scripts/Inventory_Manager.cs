@@ -9,14 +9,16 @@ using System;
 public class Inventory_Manager : MonoBehaviour
 {
     [SerializeField] private PlayerClass playerClass = PlayerClass.None;
+    private PlayerClass lastClass;
+
     [SerializeField] private List<ItemGroup> inventory = new List<ItemGroup>();
 
+    [Header("Equipment")]
     [SerializeField] private Equipment[] noEquipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
     [SerializeField] private Equipment[] equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
 
     [SerializeField] private List<UnlockableBlueprint> blueprints = new List<UnlockableBlueprint>();
 
-    [SerializeField] private Blueprint testBlueprint;
     private Inputs inputs;
 
     // Start is called before the first frame update
@@ -32,17 +34,10 @@ public class Inventory_Manager : MonoBehaviour
         }
         inputs = GameManager.Instance.GetInputs();
 
-        //inventoryScreen.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Testing
-        if (Input.GetKeyDown("r"))
-        {
-            Craft(testBlueprint);
-        }
+        // Randomize class
+        playerClass = (PlayerClass)(int)UnityEngine.Random.Range(1, System.Enum.GetValues(typeof(PlayerClass)).Length);
+        // Remember last class so it won't repeat upon death
+        lastClass = playerClass;
     }
 
     public void EditInventory(ItemGroup groupToAdd)
@@ -176,6 +171,38 @@ public class Inventory_Manager : MonoBehaviour
     {
         return equipment;
     }
+
+    public ref List<UnlockableBlueprint> GetBlueprints()
+    {
+        return ref blueprints;
+    }
+
+    public void DieReset()
+    {
+        equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
+        // Equip the lack of armor and weapon, needed so that Equip works
+        for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
+        {
+            if (equipment[i] == null)
+            {
+                equipment[i] = noEquipment[i];
+            }
+        }
+        inputs = GameManager.Instance.GetInputs();
+
+        inventory.Clear();
+    }
+
+    public void RandomizeClass()
+    {
+        // Make sure last class is not repeated
+        while (lastClass == playerClass)
+        {
+            playerClass = (PlayerClass)(int)UnityEngine.Random.Range(1, System.Enum.GetValues(typeof(PlayerClass)).Length);
+        }
+        // Save last class
+        lastClass = playerClass;
+    }
 }
 
 // This is basically just an Item int pair however those don't show up in the unity editor, this will
@@ -241,7 +268,8 @@ public enum EquipmentType
     pickaxe = 0,
     head = 1,
     chest = 2,
-    legs = 3
+    legs = 3,
+    gauntlets = 4
 }
 
 public enum PlayerClass

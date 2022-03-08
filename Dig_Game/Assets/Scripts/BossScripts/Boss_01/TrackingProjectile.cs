@@ -9,7 +9,7 @@ public class TrackingProjectile : MonoBehaviour
     public float proSpeed;
     public float rotateSpeed;
     public Transform player;
-    
+    public BoxCollider2D hitbox;
 
     private Rigidbody2D rb;
 
@@ -45,6 +45,7 @@ public class TrackingProjectile : MonoBehaviour
             Destroy(gameObject);
             cooldownTimer = 0;
         }
+        
     }
 
 
@@ -54,9 +55,18 @@ public class TrackingProjectile : MonoBehaviour
         if (other.gameObject.tag == ("Player"))
         {
             //Damage Player
+            //Destroy(gameObject);
+            hitbox.enabled = hitbox;
+            
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D hitbox)
+    {
+        if (hitbox.gameObject.tag ==("Player"))
+        {
             Destroy(gameObject);
         }
     }
-    
+
 
 }
