@@ -10,6 +10,8 @@ public class UI_Manager : MonoBehaviour
 
     private Inputs inputs;
 
+    public bool onCraftingTable = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,14 @@ public class UI_Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(inputs.inventoryOpen))
         {
-            menuScript.OpenCloseMenu(UIMenu.inventory);
+            if (onCraftingTable)
+            {
+                menuScript.OpenCloseMenu(UIMenu.equipment);
+            }
+            else
+            {
+                menuScript.OpenCloseMenu(UIMenu.inventory);
+            }
         }
     }
 }
