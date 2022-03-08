@@ -5,22 +5,35 @@ using UnityEngine;
 public class BossMovement : MonoBehaviour
 {
     public GameObject boss;
-    public Vector2[] bossPositions = new Vector2[4];
+    public Vector2[] bossPositions = new Vector2[6];
     int index;
     public Vector2 currentPosition;
+    public bool inRadius;
+
+    public float teleportCooldown;
+    public float teleportCooldownRequirment;
 
 
     // Start is called before the first frame update
     void Start()
     {
         Teleport();
-        
+        teleportCooldown = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
+        if (inRadius == true)
+        {
+            teleportCooldown += Time.deltaTime;
+            if (teleportCooldown >= teleportCooldownRequirment)
+            {
+                Teleport();
+                inRadius = false;
+                teleportCooldown = 0;
+            }
+        }
     }
 
     void Teleport()
@@ -34,8 +47,9 @@ public class BossMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Teleport();
-            Debug.Log("Player");
+            //Teleport();
+            //Debug.Log("Player");
+            inRadius = true;
         }
     }
 }
