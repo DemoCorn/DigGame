@@ -31,9 +31,9 @@ public class Equipment_UI : MonoBehaviour
         }
     }
 
-    public void Unequip(EquipmentType slotType)
+    public void Unequip(int slotType)
     {
-        GameManager.Instance.InventoryManager.Unequip(slotType);
+        GameManager.Instance.InventoryManager.Unequip((EquipmentType)slotType);
     }
 
     public class EquipmentSpace

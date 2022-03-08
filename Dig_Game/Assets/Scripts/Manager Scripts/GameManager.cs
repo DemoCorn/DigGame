@@ -8,20 +8,23 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-    [SerializeField] public Input_Manager InputManager;
-    [SerializeField] public Inventory_Manager InventoryManager;
-    [SerializeField] public Layer_Manager LayerManager;
-    [SerializeField] public Generation_Manager GenerationManager;
 
+    [Header("Other Managers")]
+    public Input_Manager InputManager;
+    public Inventory_Manager InventoryManager;
+    public Layer_Manager LayerManager;
+    public Generation_Manager GenerationManager;
+    public UI_Manager UIManager;
+
+    [Header("Objects")]
     [SerializeField] GameObject player;
-
     [SerializeField] Camera mainCamera;
+
+    [Header("Misc")]
+    [SerializeField] int LevelNum;
 
     private bool isWinning = false;
 
-    [SerializeField] int LevelNum;
-
-    // Start is called before the first frame update
     void Awake()
     {
         if (Instance == null)
@@ -34,16 +37,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    // Changes stats for different player scripts
     public void EquipPlayer(float healthChange, float armorChange, float attackChange, float digChange)
     {
         Player_Health playerHealth = player.GetComponent<Player_Health>();
         Player_Attack playerAttack = player.GetComponentInChildren<Player_Attack>();
+        Weapon_Attack weaponAttack = player.GetComponentInChildren<Weapon_Attack>();
 
         if (playerHealth != null)
         {
@@ -56,19 +55,24 @@ public class GameManager : MonoBehaviour
 
         if (playerAttack != null)
         {
-            playerAttack.Equip(attackChange, digChange);
+            playerAttack.Equip(digChange);
         }
         else
         {
-            Debug.LogError("No attack script on player");
+            Debug.LogError("No player attack script on player");
+        }
+
+        if (playerAttack != null)
+        {
+            playerAttack.Equip(attackChange);
+        }
+        else
+        {
+            Debug.LogError("No weapon attack script on player");
         }
     }
 
-    public void EditInventory(ItemGroup items)
-    {
-        InventoryManager.EditInventory(items);
-    }
-
+    // Various get functions
     public float GetPlayerHealth()
     {
         return player.GetComponent<Player_Health>().GetHealth();
@@ -89,6 +93,12 @@ public class GameManager : MonoBehaviour
         return isWinning;
     }
 
+    public int GetLevelNum()
+    {
+        return LevelNum;
+    }
+
+    // Scene Control Functions
     public void EndGame(bool Winning)
     {
         isWinning = Winning;
@@ -97,10 +107,5 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene("Level");
-    }
-
-    public int GetLevelNum()
-    {
-        return LevelNum;
     }
 }

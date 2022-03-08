@@ -33,7 +33,7 @@ public class Drop : MonoBehaviour
             {
                 if (chance <= drop.percentChance)
                 {
-                    GameManager.Instance.EditInventory(drop.items);
+                    GameManager.Instance.InventoryManager.EditInventory(drop.items);
                 }
                 else
                 {

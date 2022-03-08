@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4218307459389753707}
   - component: {fileID: -2271233964746119365}
   - component: {fileID: -4529244789304021153}
+  - component: {fileID: 3137572944450002617}
   m_Layer: 0
   m_Name: ProjectileTracking
   m_TagString: Enemy
@@ -122,6 +123,7 @@ MonoBehaviour:
   proSpeed: 4
   rotateSpeed: 150
   player: {fileID: 0}
+  hitbox: {fileID: 3137572944450002617}
   cooldownTimer: 0
   cooldownRequirement: 7
 --- !u!114 &-2271233964746119365
@@ -162,4 +164,30 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1.0496607, y: 2.091047}
+  m_EdgeRadius: 0
+--- !u!61 &3137572944450002617
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4218307459389753704}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.02218318}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 2}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1296847, y: 2.187704}
   m_EdgeRadius: 0
