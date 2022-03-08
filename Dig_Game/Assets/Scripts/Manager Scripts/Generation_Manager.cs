@@ -6,30 +6,38 @@ public class Generation_Manager : MonoBehaviour
 {
     public int levelWidth = 60;
 
-    // Attach the dirt tile objects in Unity to these Transforms
+    
     public GameObject dirtObj;
+    
+    [Header("Small generation prefabs")]
+    [Tooltip("Ore that will spawn in a given level")]
     public List<LevelOre> oreLevelRanges;
+    [Tooltip("Scatter objects that will spawn in a given level")]
     public List<LevelScatter> levelScatters;
 
+    [Header("Large generation prefabs")]
+    [Tooltip("Room prefabs that will spawn in a given level")]
     public List<LevelPrefab> puzzlePrefabs;
+    [Tooltip("Room prefabs that will spawn in a given level")]
     public List<LevelPrefab> treasurePrefabs;
 
+    [Header("Crash Protection")]
     public int maxRoomSpawnAttempts = 500;
 
-    public static float prefabPosX;
-    public static float prefabPosY;
+    [Header("Misc")]
+    [SerializeField] private GameObject craftingTable;
 
     private GetPrefabSize _prefabSizeScript;
-
     private HashSet<KeyValuePair<int, int>> reservedSpaces = new HashSet<KeyValuePair<int, int>>();
 
-    [SerializeField] private GameObject craftingTable;
 
     // Start is called before the first frame update
     public void Start()
     {
+        // Temporary crafting table spawn just to have it
         Instantiate(craftingTable, new Vector3(30.0f, 1.0f, 0.0f), Quaternion.identity);
 
+        // local variable set up
         int mineralX;
         int mineralY;
         int oreAmount;
@@ -41,11 +49,15 @@ public class Generation_Manager : MonoBehaviour
         LevelRange levels = GameManager.Instance.LayerManager.GetLevelRange();
         List<ScatterRange> scatterRanges = levelScatters[levels.nLevelNumber].scatterAtLevel;
         List<OreRange> oreRanges = oreLevelRanges[levels.nLevelNumber].oreAtLevel;
+
+        // loop to generate layers
         for (int i = 0; i < levels.layerRange.Count; i++)
         {
+            // Generate large prefabs
             GenerateRooms(puzzlePrefabs[levels.nLevelNumber].prefabAtLevel[i], levels, i);
             GenerateRooms(treasurePrefabs[levels.nLevelNumber].prefabAtLevel[i], levels, i);
 
+            // Generate scatter objects
             foreach (ScatterType scatterType in scatterRanges[i].scatterAtLayer)
             {
                 scatterAmount = Random.Range(scatterType.lowestScatterAmount, scatterType.highestScatterAmount + 1);
@@ -68,6 +80,7 @@ public class Generation_Manager : MonoBehaviour
                 }
             }
 
+            // Generate Minerals
             foreach (OreType ore in oreRanges[i].oreAtLayer)
             {
                 // Random Minerals
@@ -91,12 +104,11 @@ public class Generation_Manager : MonoBehaviour
                 }
             }
 
-            // Instantiate Dirt Blocks
+            // Generate dirt blocks
             for (float xPos = 0f; xPos < levelWidth; xPos++)
             {
                 for (float yPos = levels.layerRange[i].lowest; yPos <= levels.layerRange[i].highest; yPos++)
                 {
-                    // Place around the prefab
                     if (!CheckReserved((int) xPos, (int) yPos))
                     {
                         Instantiate(dirtObj, new Vector2(xPos, yPos), dirtObj.transform.rotation);
@@ -106,32 +118,45 @@ public class Generation_Manager : MonoBehaviour
         }
 
     }
+
+    // Generates prefabs larger than 1x1
     private void GenerateRooms(PrefabRange prefabRange, LevelRange levels, int layer)
     {
-        int randomRoom = 0;
+        // Local Variable set up
+        float prefabPosX;
+        float prefabPosY;
         KeyValuePair<float, float> height = GameManager.Instance.LayerManager.GetLevelHeight();
-        bool reserved = false;
+
+        int randomRoom = 0;
         int prefabAmount = Random.Range(prefabRange.lowestPrefabAmount, prefabRange.highestPrefabAmount + 1);
-        for (int j = 0; j < prefabAmount; j++)
+
+        bool reserved = false;
+
+        //Generation start
+        for (int i = 0; i < prefabAmount; i++)
         {
+            // Choose a random prefab
             float prefabPercent = Random.Range(0.0f, 100.0f);
-            for (int k = 0; k < prefabRange.prefabAtLayer.Count; k++)
+            for (int j = 0; j < prefabRange.prefabAtLayer.Count; j++)
             {
-                if (prefabPercent <= prefabRange.prefabAtLayer[k].chance)
+                if (prefabPercent <= prefabRange.prefabAtLayer[j].chance)
                 {
-                    randomRoom = k;
+                    randomRoom = j;
                     _prefabSizeScript = prefabRange.prefabAtLayer[randomRoom].prefab.GetComponent<GetPrefabSize>();
                     Debug.Log("Generated prefab: " + randomRoom + " from list");
                     break;
                 }
                 else
                 {
-                    prefabPercent -= prefabRange.prefabAtLayer[k].chance;
+                    prefabPercent -= prefabRange.prefabAtLayer[j].chance;
                 }
             }
+
+            // try to place the level
             int runTimes = 0;
             do
             {
+                // Crash protection, if a place for the level can't be found the loop will eventually stop
                 runTimes++;
                 if (runTimes >= maxRoomSpawnAttempts)
                 {
@@ -139,28 +164,35 @@ public class Generation_Manager : MonoBehaviour
                     break;
                 }
 
+                // Choose a position to spawn the prefab
                 reserved = false;
                 prefabPosX = Random.Range(0, levelWidth);
                 prefabPosY = Random.Range((int)levels.layerRange[layer].lowest, (int)levels.layerRange[layer].highest);
 
+                // Make sure the prefab will not generate outside of the level bounds
+                // Check for overly high x
                 if (prefabPosX + _prefabSizeScript.highestX + _prefabSizeScript.xOffset >= levelWidth)
                 {
                     prefabPosX -= (prefabPosX + _prefabSizeScript.highestX) - (levelWidth - 1);
                 }
+                // Check for overly low x
                 else if (prefabPosX + _prefabSizeScript.lowestX + _prefabSizeScript.xOffset < 0)
                 {
                     prefabPosX -= (prefabPosX + _prefabSizeScript.lowestX);
                 }
 
+                // Check for overly high y
                 if (prefabPosY + _prefabSizeScript.highestY + _prefabSizeScript.yOffset > height.Value)
                 {
                     prefabPosY -= (prefabPosY + _prefabSizeScript.highestY) - (height.Value);
                 }
+                // Check for overly low y
                 else if (prefabPosY + _prefabSizeScript.lowestY + _prefabSizeScript.yOffset < height.Key)
                 {
                     prefabPosY -= (prefabPosY + _prefabSizeScript.lowestY) - (height.Key);
                 }
 
+                // Check if any spot the prefab would generate on is already reserved
                 for (int x = (int)(_prefabSizeScript.lowestX + _prefabSizeScript.xOffset); x <= (int)(_prefabSizeScript.highestX + _prefabSizeScript.xOffset); x++)
                 {
                     for (int y = (int)(_prefabSizeScript.lowestY + _prefabSizeScript.yOffset); y <= (_prefabSizeScript.highestY + _prefabSizeScript.yOffset); y++)
@@ -177,6 +209,8 @@ public class Generation_Manager : MonoBehaviour
                         break;
                     }
                 }
+
+                // Reserve all spaces the prefab is now on
                 if (!reserved)
                 {
                     for (int x = (int)(_prefabSizeScript.lowestX + _prefabSizeScript.xOffset); x <= (int)(_prefabSizeScript.highestX + _prefabSizeScript.xOffset); x++)
@@ -194,15 +228,19 @@ public class Generation_Manager : MonoBehaviour
 
     private void GenerateScatter(ScatterType scatter, int xPosition, int yPosition, int iteration = 0)
     {
+        // Local variable set up
         KeyValuePair<float, float> height = GameManager.Instance.LayerManager.GetLevelHeight();
 
         float roll = Random.Range(0.0f, 100.0f);
         float chance = scatter.scatterChance;
+
+        // lower chance based on how many times GenerateScatter has been called
         for (int i = 0; i < iteration; i++)
         {
             chance -= chance * (scatter.scatterChanceDegredation / 100.0f);
         }
 
+        // Try to generate in 4 directions
         if (roll <= chance)
         {
             // +1 X
@@ -260,6 +298,7 @@ public class Generation_Manager : MonoBehaviour
         {
             oreAtLevel = oreLayer;
         }
+        [Tooltip("Ore that will spawn in a given Layer")]
         public List<OreRange> oreAtLevel = new List<OreRange>();
     }
 
@@ -274,6 +313,7 @@ public class Generation_Manager : MonoBehaviour
         {
             oreAtLayer = oreLayer;
         }
+        [Tooltip("Ore that will spawn in a given Layer")]
         public List<OreType> oreAtLayer = new List<OreType>();
     }
 

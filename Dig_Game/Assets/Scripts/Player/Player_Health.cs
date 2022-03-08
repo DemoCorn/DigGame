@@ -92,31 +92,22 @@ public class Player_Health : MonoBehaviour
 
     public void Die()
     {
-        // Make player lose Inventory and Equipment
-        FindObjectOfType<Inventory_Manager>().DieReset();
+        if (!hasRetired)
+        {
+            // Make player lose Inventory and Equipment
+            GameManager.Instance.InventoryManager.DieReset();         
+        }
         // Make a new player
         GameObject newPlayer = (GameObject)Instantiate(nextPlayer, startPosition, Quaternion.identity);
         // Set to a new random class
-        FindObjectOfType<Inventory_Manager>().RandomizeClass();
-        // Point Camera to newPlayer
-        vCam.LookAt = nextPlayer.transform;
-        vCam.Follow = nextPlayer.transform;
-        // Destroy old player
-        Destroy(gameObject);
-        
-    }
-
-    public void Retire()
-    {
-        // Make a new player
-        GameObject newPlayer = (GameObject)Instantiate(nextPlayer, startPosition, Quaternion.identity);
-        // Set to a new random class
-        FindObjectOfType<Inventory_Manager>().RandomizeClass();
+        GameManager.Instance.InventoryManager.RandomizeClass();
         // Point Camera to newPlayer
         vCam.LookAt = newPlayer.transform;
         vCam.Follow = newPlayer.transform;
         // Destroy old player
         Destroy(gameObject);
+        
     }
-  
+
+      
 }
