@@ -33,7 +33,6 @@ public class Player_Health : MonoBehaviour
             TakeDamage(nDamageTaken);
         }
 
-
         TestDeath();
 
     }
@@ -77,6 +76,7 @@ public class Player_Health : MonoBehaviour
 
                 if (health <= 0.0f)
                 {
+                    Debug.Log(health);
                     Die(false);
                     GameManager.Instance.EndGame(false);
                 }
