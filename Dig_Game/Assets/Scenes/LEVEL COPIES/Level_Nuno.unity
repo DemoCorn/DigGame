@@ -256,6 +256,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3188068599224919519, guid: 76231b8f67a581b48b95e374e239c326, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3188068597730942756, guid: 76231b8f67a581b48b95e374e239c326, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 76231b8f67a581b48b95e374e239c326, type: 3}
@@ -326,6 +330,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &661958162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7198606299500459605, guid: adbff63e35ffccf4eb8cc9cee48289b1, type: 3}
+  m_PrefabInstance: {fileID: 902238387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &661958163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661958162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fad129a4e967034182b42848c01d23c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldTimeMin: 2
+  shieldTimeMax: 4
+  shieldDelayMin: 2
+  shieldDelayMax: 4
 --- !u!1 &663439718
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,7 +707,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9137863414344116859, guid: adbff63e35ffccf4eb8cc9cee48289b1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: adbff63e35ffccf4eb8cc9cee48289b1, type: 3}
 --- !u!1 &910486379
 GameObject:
@@ -1447,7 +1473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d75e882043900846aa9f3eb9f9a5b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 50
   maxHealth: 3
   armor: 0
   immunityTime: 10
