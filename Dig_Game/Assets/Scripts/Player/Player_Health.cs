@@ -78,7 +78,7 @@ public class Player_Health : MonoBehaviour
                 {
                     Debug.Log(health);
                     Die(false);
-                    GameManager.Instance.EndGame(false);
+                    //GameManager.Instance.EndGame(false);
                 }
 
                 isVulnerable = false;

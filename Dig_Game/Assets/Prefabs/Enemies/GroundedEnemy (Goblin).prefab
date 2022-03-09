@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7198606299500459600}
   - component: {fileID: 7198606299500459607}
   - component: {fileID: 7198606299500459602}
+  - component: {fileID: 8790011785552155921}
+  - component: {fileID: 9137863414344116859}
   m_Layer: 9
   m_Name: GroundedEnemy (Goblin)
   m_TagString: Enemy
@@ -141,6 +143,36 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &8790011785552155921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7198606299500459605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e530c0bc73a8d74688dd99d72ad7e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 0}
+  health: 15
+  immunityTime: 0
+  spawnNewEnemyChance: 10
+  mImmune: 0
+--- !u!114 &9137863414344116859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7198606299500459605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d1d8ddd18e75f845a4da182106de11c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHit: 0
 --- !u!1 &7198606299871670294
 GameObject:
   m_ObjectHideFlags: 0
