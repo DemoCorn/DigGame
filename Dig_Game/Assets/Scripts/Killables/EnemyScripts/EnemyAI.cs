@@ -96,7 +96,7 @@ public class EnemyAI : MonoBehaviour
             EnemyGFX();
             SetSpawnOffset();
         }
-        Debug.Log(player.name);
+        //Debug.Log(player.name);
 
         //Attack if player is within range
         if (canAttack == true && TargetInAttackRange())
@@ -335,6 +335,10 @@ public class EnemyAI : MonoBehaviour
     }
     private void SetSpawnOffset()
     {
+        if (spawnOffset == null)
+        {
+            spawnOffset = new GameObject();
+        }
         if (target.position.x >= 0.01f)
         {
             spawnOffset.transform.position = new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y, 0);

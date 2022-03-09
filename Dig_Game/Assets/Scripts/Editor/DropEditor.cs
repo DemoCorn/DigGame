@@ -13,6 +13,7 @@ public class DropEditor : UnityEditor.Editor
         SerializedProperty list;
 
         drop.dropBlueprints = EditorGUILayout.Toggle("Drop Blueprints", drop.dropBlueprints);
+        drop.heapDrop = EditorGUILayout.Toggle("Drops are more than 100%", drop.heapDrop);
         serializedObject.ApplyModifiedProperties();
 
         if(drop.dropBlueprints)
@@ -21,7 +22,7 @@ public class DropEditor : UnityEditor.Editor
         }
         else
         {
-            list = seObject.FindProperty("drops");
+            list = seObject.FindProperty("itemDrops");
         }
 
         EditorGUILayout.PropertyField(list, true);
