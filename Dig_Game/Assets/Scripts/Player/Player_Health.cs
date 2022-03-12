@@ -32,7 +32,10 @@ public class Player_Health : MonoBehaviour
             float nDamageTaken = IsCollidingWithEnemy();
             TakeDamage(nDamageTaken);
         }
-        
+
+
+        TestDeath();
+
     }
 
     private float IsCollidingWithEnemy()
@@ -74,7 +77,7 @@ public class Player_Health : MonoBehaviour
 
                 if (health <= 0.0f)
                 {
-                    Die();
+                    Die(false);
                     GameManager.Instance.EndGame(false);
                 }
 
@@ -90,33 +93,32 @@ public class Player_Health : MonoBehaviour
         armor += armorChange;
     }
 
-    public void Die()
+    public void Die(bool hasRetired)
     {
-        // Make player lose Inventory and Equipment
-        FindObjectOfType<Inventory_Manager>().DieReset();
-        // Make a new player
-        GameObject newPlayer = (GameObject)Instantiate(nextPlayer, startPosition, Quaternion.identity);
+        if (!hasRetired)
+        {
+            // Make player lose Inventory and Equipment
+            GameManager.Instance.InventoryManager.DieReset();         
+        }
+       
         // Set to a new random class
-        FindObjectOfType<Inventory_Manager>().RandomizeClass();
-        // Point Camera to newPlayer
-        vCam.LookAt = nextPlayer.transform;
-        vCam.Follow = nextPlayer.transform;
-        // Destroy old player
-        Destroy(gameObject);
-        
+        GameManager.Instance.InventoryManager.RandomizeClass();
+  
+        // Reset / Respawn player
+        transform.position = startPosition;
+
     }
 
-    public void Retire()
+    public void TestDeath()
     {
-        // Make a new player
-        GameObject newPlayer = (GameObject)Instantiate(nextPlayer, startPosition, Quaternion.identity);
-        // Set to a new random class
-        FindObjectOfType<Inventory_Manager>().RandomizeClass();
-        // Point Camera to newPlayer
-        vCam.LookAt = newPlayer.transform;
-        vCam.Follow = newPlayer.transform;
-        // Destroy old player
-        Destroy(gameObject);
+        if (Input.GetKeyDown(KeyCode.X))
+        {        
+            Die(false);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Die(true);
+        }
     }
-  
+      
 }
