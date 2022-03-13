@@ -32,7 +32,10 @@ public class Player_Health : MonoBehaviour
             float nDamageTaken = IsCollidingWithEnemy();
             TakeDamage(nDamageTaken);
         }
-        
+
+
+        TestDeath();
+
     }
 
     private float IsCollidingWithEnemy()
@@ -74,7 +77,7 @@ public class Player_Health : MonoBehaviour
 
                 if (health <= 0.0f)
                 {
-                    Die();
+                    Die(false);
                     GameManager.Instance.EndGame(false);
                 }
 
@@ -90,24 +93,32 @@ public class Player_Health : MonoBehaviour
         armor += armorChange;
     }
 
-    public void Die()
+    public void Die(bool hasRetired)
     {
         if (!hasRetired)
         {
             // Make player lose Inventory and Equipment
             GameManager.Instance.InventoryManager.DieReset();         
         }
-        // Make a new player
-        GameObject newPlayer = (GameObject)Instantiate(nextPlayer, startPosition, Quaternion.identity);
+       
         // Set to a new random class
         GameManager.Instance.InventoryManager.RandomizeClass();
-        // Point Camera to newPlayer
-        vCam.LookAt = newPlayer.transform;
-        vCam.Follow = newPlayer.transform;
-        // Destroy old player
-        Destroy(gameObject);
-        
+  
+        // Reset / Respawn player
+        transform.position = startPosition;
+
     }
 
+    public void TestDeath()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {        
+            Die(false);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Die(true);
+        }
+    }
       
 }
