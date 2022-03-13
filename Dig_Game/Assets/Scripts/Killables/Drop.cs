@@ -6,14 +6,47 @@ public class Drop : MonoBehaviour
 {
     [SerializeField] public ItemDropTable itemDrops;
     [SerializeField] public BlueprintDropTable blueprintDrops;
+
+    [SerializeField] public List<ItemDropByLayer> itemDropByLevel = new List<ItemDropByLayer>();
+    [SerializeField] public List<BlueprintDropByLayer> blueprintDropByLevel = new List<BlueprintDropByLayer>();
+
     public bool dropBlueprints = false;
-    public bool heapDrop = false;
+    private bool heapDrop = false;
+    public bool smartDrop = false;
     private float maxChance = 100.0f;
 
     private void Start()
     {
-       if (heapDrop)
-       {
+        if (smartDrop)
+        {
+            SmartDropSetup();
+        }
+
+        if (dropBlueprints)
+        {
+            for (int i = 0; i < blueprintDrops.drops.Count; i++)
+            {
+                if (GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprintDrops.drops[i].blueprint))
+                {
+                    blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
+                    i--;
+                }
+            }
+
+            if (blueprintDrops.drops.Count == 0)
+            {
+                Destroy(gameObject);
+            }
+
+            heapDrop = blueprintDrops.heapDrop;
+        }
+        else
+        {
+            heapDrop = itemDrops.heapDrop;
+        }
+
+        if (heapDrop)
+        {
             maxChance = 0.0f;
             if (dropBlueprints)
             {
@@ -29,19 +62,7 @@ public class Drop : MonoBehaviour
                     maxChance += drop.percentChance;
                 }
             }
-       }
-
-       if (dropBlueprints)
-       {
-            for(int i = 0; i < blueprintDrops.drops.Count; i++)
-            {
-                if (GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprintDrops.drops[i].blueprint))
-                {
-                    blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
-                    i--;
-                }
-            }
-       }
+        }
     }
 
     void OnDisable()
@@ -52,15 +73,18 @@ public class Drop : MonoBehaviour
         // Iterate through all drops and generate a random number to see if they get added to the inventory
         if (dropBlueprints)
         {
-            foreach (BlueprintTable blueprint in blueprintDrops.drops)
+            if (blueprintDrops.drops.Count != 0)
             {
-                if (chance <= blueprint.percentChance)
+                foreach (BlueprintTable blueprint in blueprintDrops.drops)
                 {
-                    GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
-                }
-                else
-                {
-                    chance -= blueprint.percentChance;
+                    if (chance <= blueprint.percentChance)
+                    {
+                        GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
+                    }
+                    else
+                    {
+                        chance -= blueprint.percentChance;
+                    }
                 }
             }
         }
@@ -78,5 +102,60 @@ public class Drop : MonoBehaviour
                 }
             }
         }
+    }
+
+    void SmartDropSetup()
+    {
+        LevelRange levels = GameManager.Instance.LayerManager.GetLevelRange();
+        if (dropBlueprints)
+        {
+            for (int i = 0; i < blueprintDropByLevel[levels.nLevelNumber].blueprintAtLayer.Count; i++)
+            {
+                if (gameObject.transform.position.y <= levels.layerRange[i].highest && gameObject.transform.position.y >= levels.layerRange[i].lowest)
+                {
+                    blueprintDrops = blueprintDropByLevel[levels.nLevelNumber].blueprintAtLayer[i];
+                    break;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < itemDropByLevel[levels.nLevelNumber].itemAtLayer.Count; i++)
+            {
+                if (gameObject.transform.position.y <= levels.layerRange[i].highest && gameObject.transform.position.y >= levels.layerRange[i].lowest)
+                {
+                    itemDrops = itemDropByLevel[levels.nLevelNumber].itemAtLayer[i];
+                    break;
+                }
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class ItemDropByLayer
+    {
+        public ItemDropByLayer()
+        {
+        }
+
+        public ItemDropByLayer(List<ItemDropTable> layers)
+        {
+            itemAtLayer = layers;
+        }
+        public List<ItemDropTable> itemAtLayer = new List<ItemDropTable>();
+    }
+
+    [System.Serializable]
+    public class BlueprintDropByLayer
+    {
+        public BlueprintDropByLayer()
+        {
+        }
+
+        public BlueprintDropByLayer(List<BlueprintDropTable> layers)
+        {
+            blueprintAtLayer = layers;
+        }
+        public List<BlueprintDropTable> blueprintAtLayer = new List<BlueprintDropTable>();
     }
 }

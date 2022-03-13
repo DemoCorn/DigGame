@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "DropTables", menuName = "DropTables/BlueprintDropTable", order = 1)]
 public class BlueprintDropTable : ScriptableObject
 {
+    public bool heapDrop = false;
     [SerializeField] public List<BlueprintTable> drops = new List<BlueprintTable>();
 }
 
