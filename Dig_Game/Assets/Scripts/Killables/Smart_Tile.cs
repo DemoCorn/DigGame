@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Dirt_Loader : MonoBehaviour
+public class Smart_Tile : MonoBehaviour
 {
     [SerializeField] private int jaggedRange = 2;
 

@@ -102,7 +102,6 @@ public class EnemyAI : MonoBehaviour
                 FlipByVelocity();
             }
         }
-        
 
         //Attack if player is within range
         if (canAttack == true && TargetInAttackRange())
@@ -338,7 +337,13 @@ public class EnemyAI : MonoBehaviour
         {
             enemyGFX.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-
+    }
+    private void SetSpawnOffset()
+    {
+        if (spawnOffset == null)
+        {
+            spawnOffset = new GameObject();
+        }
         if (target.position.x >= 0.01f)
         {
             spawnOffset.transform.position = new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y, 0);

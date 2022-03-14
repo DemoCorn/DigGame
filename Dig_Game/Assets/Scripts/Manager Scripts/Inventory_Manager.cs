@@ -152,14 +152,25 @@ public class Inventory_Manager : MonoBehaviour
 
     public void AddBlueprint(Blueprint blueprint)
     {
-        foreach (UnlockableBlueprint currentBlueprint in blueprints)
+        UnlockableBlueprint addblueprint = blueprints.Find(x => x.blueprint == blueprint);
+
+        if (addblueprint != null)
         {
-            if (currentBlueprint.blueprint == blueprint)
-            {
-                currentBlueprint.isUnlocked = true;
-                break;
-            }
+            addblueprint.isUnlocked = true;
         }
+        Debug.LogWarning("Blueprint dropped not contained in Inventory_Manager");
+    }
+
+    public bool BlueprintUnlocked(Blueprint blueprint)
+    {
+        UnlockableBlueprint returnvalue = blueprints.Find(x => x.blueprint == blueprint);
+
+        if (returnvalue != null)
+        {
+            return returnvalue.isUnlocked;
+        }
+        Debug.LogWarning("Blueprint in drop script not contained in Inventory_Manager");
+        return false;
     }
 
     public List<ItemGroup> GetInventory()
