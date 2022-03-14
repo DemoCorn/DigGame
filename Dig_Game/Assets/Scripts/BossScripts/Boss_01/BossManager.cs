@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossManager : MonoBehaviour
 {
     public GameObject boss1;
-    public GameObject boss1Hitbox;
+    
 
     public GameObject boss2;
 
@@ -17,10 +17,14 @@ public class BossManager : MonoBehaviour
 
     public void Update()
     {
-        if (boss1.activeInHierarchy == false)
+        if (boss1 == null)
         {
             boss2.SetActive(true);
             
+        }
+        if (boss2 == null)
+        {
+            Debug.Log("You Win");
         }
     }
 
