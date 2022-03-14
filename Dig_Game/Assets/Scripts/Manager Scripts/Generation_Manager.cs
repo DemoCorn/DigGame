@@ -10,11 +10,15 @@ public class Generation_Manager : MonoBehaviour
     public GameObject dirtObj;
     
     [Header("Small generation prefabs")]
+    [Tooltip("Ore that will spawn in a given level")]
     public List<LevelOre> oreLevelRanges;
+    [Tooltip("Scatter objects that will spawn in a given level")]
     public List<LevelScatter> levelScatters;
 
     [Header("Large generation prefabs")]
+    [Tooltip("Room prefabs that will spawn in a given level")]
     public List<LevelPrefab> puzzlePrefabs;
+    [Tooltip("Room prefabs that will spawn in a given level")]
     public List<LevelPrefab> treasurePrefabs;
 
     [Header("Crash Protection")]
@@ -294,6 +298,7 @@ public class Generation_Manager : MonoBehaviour
         {
             oreAtLevel = oreLayer;
         }
+        [Tooltip("Ore that will spawn in a given Layer")]
         public List<OreRange> oreAtLevel = new List<OreRange>();
     }
 
@@ -308,6 +313,7 @@ public class Generation_Manager : MonoBehaviour
         {
             oreAtLayer = oreLayer;
         }
+        [Tooltip("List of all ores that will spawn")]
         public List<OreType> oreAtLayer = new List<OreType>();
     }
 
@@ -343,6 +349,7 @@ public class Generation_Manager : MonoBehaviour
         {
             prefabAtLevel = layers;
         }
+        [Tooltip("Room prefab that will spawn in a given Layer")]
         public List<PrefabRange> prefabAtLevel = new List<PrefabRange>();
     }
 
@@ -359,6 +366,7 @@ public class Generation_Manager : MonoBehaviour
             lowestPrefabAmount = nLow;
             highestPrefabAmount = nHigh;
         }
+        [Tooltip("List of all room prefabs that will spawn")]
         public List<PrefabType> prefabAtLayer = new List<PrefabType>();
         public int lowestPrefabAmount;
         public int highestPrefabAmount;
@@ -391,6 +399,7 @@ public class Generation_Manager : MonoBehaviour
         {
             scatterAtLevel = layers;
         }
+        [Tooltip("Scatter objects that will spawn in a given Layer")]
         public List<ScatterRange> scatterAtLevel = new List<ScatterRange>();
     }
 
@@ -405,6 +414,7 @@ public class Generation_Manager : MonoBehaviour
         {
             scatterAtLayer = scatters;
         }
+        [Tooltip("List of all scatter objects that will spawn")]
         public List<ScatterType> scatterAtLayer = new List<ScatterType>();
     }
 

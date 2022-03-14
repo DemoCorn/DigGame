@@ -10,7 +10,7 @@ public class UI_Manager : MonoBehaviour
 
     private Inputs inputs;
 
-    public bool onCraftingTable = false;
+    [HideInInspector] public bool onCraftingTable = false;
 
     // Start is called before the first frame update
     void Start()

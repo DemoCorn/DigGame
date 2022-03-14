@@ -4,32 +4,93 @@ using UnityEngine;
 
 public class Drop : MonoBehaviour
 {
-    [SerializeField] public List<DropTable> drops = new List<DropTable>();
-    [SerializeField] public List<BlueprintTable> blueprintDrops = new List<BlueprintTable>();
+    [SerializeField] public ItemDropTable itemDrops;
+    [SerializeField] public BlueprintDropTable blueprintDrops;
+
+    [SerializeField] public List<ItemDropByLayer> itemDropByLevel = new List<ItemDropByLayer>();
+    [SerializeField] public List<BlueprintDropByLayer> blueprintDropByLevel = new List<BlueprintDropByLayer>();
+
     public bool dropBlueprints = false;
+    private bool heapDrop = false;
+    public bool smartDrop = false;
+    private float maxChance = 100.0f;
+
+    private void Start()
+    {
+        if (smartDrop)
+        {
+            SmartDropSetup();
+        }
+
+        if (dropBlueprints)
+        {
+            for (int i = 0; i < blueprintDrops.drops.Count; i++)
+            {
+                if (GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprintDrops.drops[i].blueprint))
+                {
+                    blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
+                    i--;
+                }
+            }
+
+            if (blueprintDrops.drops.Count == 0)
+            {
+                Destroy(gameObject);
+            }
+
+            heapDrop = blueprintDrops.heapDrop;
+        }
+        else
+        {
+            heapDrop = itemDrops.heapDrop;
+        }
+
+        if (heapDrop)
+        {
+            maxChance = 0.0f;
+            if (dropBlueprints)
+            {
+                foreach (BlueprintTable blueprint in blueprintDrops.drops)
+                {
+                    maxChance += blueprint.percentChance;
+                }
+            }
+            else
+            {
+                foreach (DropTable drop in itemDrops.drops)
+                {
+                    maxChance += drop.percentChance;
+                }
+            }
+        }
+    }
 
     void OnDisable()
     {
         float chance;
-        chance = Random.Range(0.0f, 100.0f); // This should never come up, but putting in 0 for the chance will actually still give it a chance under this implementation
+        chance = Random.Range(0.0f, maxChance); // This should never come up, but putting in 0 for the chance will actually still give it a chance under this implementation
+
         // Iterate through all drops and generate a random number to see if they get added to the inventory
         if (dropBlueprints)
         {
-            foreach (BlueprintTable blueprint in blueprintDrops)
+            if (blueprintDrops.drops.Count != 0)
             {
-                if (chance <= blueprint.percentChance)
+                foreach (BlueprintTable blueprint in blueprintDrops.drops)
                 {
-                    GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
-                }
-                else
-                {
-                    chance -= blueprint.percentChance;
+                    if (chance <= blueprint.percentChance)
+                    {
+                        GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
+                    }
+                    else
+                    {
+                        chance -= blueprint.percentChance;
+                    }
                 }
             }
         }
         else
         {
-            foreach (DropTable drop in drops)
+            foreach (DropTable drop in itemDrops.drops)
             {
                 if (chance <= drop.percentChance)
                 {
@@ -43,38 +104,58 @@ public class Drop : MonoBehaviour
         }
     }
 
-    // Used to allow designers to edit the chance that an ItemGroup has to drop from any given enemy
-    [System.Serializable]
-    public class DropTable
+    void SmartDropSetup()
     {
-        public DropTable()
+        LevelRange levels = GameManager.Instance.LayerManager.GetLevelRange();
+        if (dropBlueprints)
         {
+            for (int i = 0; i < blueprintDropByLevel[levels.nLevelNumber].blueprintAtLayer.Count; i++)
+            {
+                if (gameObject.transform.position.y <= levels.layerRange[i].highest && gameObject.transform.position.y >= levels.layerRange[i].lowest)
+                {
+                    blueprintDrops = blueprintDropByLevel[levels.nLevelNumber].blueprintAtLayer[i];
+                    break;
+                }
+            }
         }
-
-        public DropTable(ItemGroup key, int value)
+        else
         {
-            items = key;
-            percentChance = value;
+            for (int i = 0; i < itemDropByLevel[levels.nLevelNumber].itemAtLayer.Count; i++)
+            {
+                if (gameObject.transform.position.y <= levels.layerRange[i].highest && gameObject.transform.position.y >= levels.layerRange[i].lowest)
+                {
+                    itemDrops = itemDropByLevel[levels.nLevelNumber].itemAtLayer[i];
+                    break;
+                }
+            }
         }
-
-        public ItemGroup items;
-        public float percentChance;
     }
 
     [System.Serializable]
-    public class BlueprintTable
+    public class ItemDropByLayer
     {
-        public BlueprintTable()
+        public ItemDropByLayer()
         {
         }
 
-        public BlueprintTable(Blueprint key, int value)
+        public ItemDropByLayer(List<ItemDropTable> layers)
         {
-            blueprint = key;
-            percentChance = value;
+            itemAtLayer = layers;
+        }
+        public List<ItemDropTable> itemAtLayer = new List<ItemDropTable>();
+    }
+
+    [System.Serializable]
+    public class BlueprintDropByLayer
+    {
+        public BlueprintDropByLayer()
+        {
         }
 
-        public Blueprint blueprint;
-        public float percentChance;
+        public BlueprintDropByLayer(List<BlueprintDropTable> layers)
+        {
+            blueprintAtLayer = layers;
+        }
+        public List<BlueprintDropTable> blueprintAtLayer = new List<BlueprintDropTable>();
     }
 }

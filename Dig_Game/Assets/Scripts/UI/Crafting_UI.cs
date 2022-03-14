@@ -18,6 +18,14 @@ public class Crafting_UI : MonoBehaviour
     public GameObject blueprintButton;
     public GameObject blueprintList;
 
+    /*
+    public Text itemNameText;
+    public Text classReqText;
+    public Text hpText;
+    public Text defText;
+    public Text atkText;
+    public Text digText;
+    */
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +65,8 @@ public class Crafting_UI : MonoBehaviour
 
         Debug.LogWarning("Crafting_UI is only using name for the text someone needs to figure out the formatting we want and then delete this warning from the code"); // Delete this line once resultSpace.amountText.text isn't just using blueprint.result.item.itemName
         resultSpace.amountText.text = blueprint.result.item.itemName;
+        //itemNameText.text = blueprint.result.item.name;
+        
 
         foreach (CraftingSlot slot in slotSpaces)
         {
