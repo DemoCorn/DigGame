@@ -6,7 +6,7 @@ public class Non_Player_Health : MonoBehaviour
 {
 	[SerializeField] ParticleSystem particle;
 	[SerializeField] float health = 15.0f;
-	[SerializeField] float immunityTime = 0.0f;	
+	[SerializeField] float immunityTime = 0.0f;
 	SpriteRenderer sprite;
 	BoxCollider2D boxCollider;
 	[HideInInspector] public bool mImmune = false;
