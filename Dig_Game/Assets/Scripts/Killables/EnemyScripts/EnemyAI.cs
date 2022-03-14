@@ -93,10 +93,15 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     { 
         /**Flip**/{
-            EnemyGFX();
-            SetSpawnOffset();
+            if(attackType == AttackType.Ranged)
+            {
+                FlipByTargetLocation();
+            }
+            else if(attackType == AttackType.Melee)
+            {
+                FlipByVelocity();
+            }
         }
-        //Debug.Log(player.name);
 
         //Attack if player is within range
         if (canAttack == true && TargetInAttackRange())
@@ -322,7 +327,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     //Flip GFX && Damage field spawn location
-    private void EnemyGFX()
+    private void FlipByTargetLocation()
     {
         if (target.position.x >= 0.01f)
         {
@@ -345,9 +350,31 @@ public class EnemyAI : MonoBehaviour
         }
         else if (target.position.x <= -0.01f)
         {
-            spawnOffset.transform.position = new Vector3(gameObject.transform.position.x - 0.5f, gameObject.transform.position.y, 0);            
+            spawnOffset.transform.position = new Vector3(gameObject.transform.position.x - 0.5f, gameObject.transform.position.y, 0);
         }
     }
+
+    private void FlipByVelocity()
+    {
+        if (rb.velocity.x >= 0.01f)
+        {
+            enemyGFX.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (rb.velocity.x <= -0.01f)
+        {
+            enemyGFX.transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+
+        if (rb.velocity.x >= 0.01f)
+        {
+            spawnOffset.transform.position = new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y, 0);
+        }
+        else if (rb.velocity.x <= -0.01f)
+        {
+            spawnOffset.transform.position = new Vector3(gameObject.transform.position.x - 0.5f, gameObject.transform.position.y, 0);
+        }
+    }
+    
 
     //Path Complete
     private void OnPathComplete(Path p)
