@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5668964802323611302}
   - component: {fileID: 1727876224613837104}
   m_Layer: 0
-  m_Name: Copper_Mineral
+  m_Name: Starmetal_Mineral
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,13 +48,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drops:
   - items:
-      item: {fileID: 11400000, guid: 2ac85d0d280b3c44ba985ca0b36a63d3, type: 2}
+      item: {fileID: 11400000, guid: d7fe78cd54536ba46a0750a804dfb926, type: 2}
       amount: 1
-    percentChance: 70
+    percentChance: 80
   - items:
-      item: {fileID: 11400000, guid: 2ac85d0d280b3c44ba985ca0b36a63d3, type: 2}
-      amount: 3
-    percentChance: 30
+      item: {fileID: 11400000, guid: d7fe78cd54536ba46a0750a804dfb926, type: 2}
+      amount: 2
+    percentChance: 20
   blueprintDrops:
   - blueprint: {fileID: 11400000, guid: 9726165057f13c04db17253c7937c5a2, type: 2}
     percentChance: 30
@@ -195,12 +195,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e14ff258e457b44f90373a180c8801c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d9d5020a5b2e0a7449f292d989e64af1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.28}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -223,8 +223,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.87, y: 3}
-    newSize: {x: 0.32, y: 0.28}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
