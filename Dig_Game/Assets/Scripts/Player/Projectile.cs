@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<TemEnemyScript>().TakeDamage(Damage);
+            collision.gameObject.GetComponent<Non_Player_Health>().Hit(Damage);
             Destroy(gameObject);
         }
         else

@@ -40,7 +40,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3188068597730942754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78beb63114fd7304abe159a33c06ad1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0834917e7aca1d54f944320f2fd57aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   contact: 0
@@ -160,6 +160,7 @@ GameObject:
   - component: {fileID: 3188068599224919504}
   - component: {fileID: 3188068599224919505}
   - component: {fileID: 3188068599224919506}
+  - component: {fileID: 1138231551494259614}
   m_Layer: 0
   m_Name: GroundedEnemy (MushRoom)
   m_TagString: Enemy
@@ -287,3 +288,20 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &1138231551494259614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3188068599224919519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e530c0bc73a8d74688dd99d72ad7e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 0}
+  health: 15
+  immunityTime: 0
+  spawnNewEnemyChance: 0
+  mImmune: 0

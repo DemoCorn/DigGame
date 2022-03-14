@@ -21,24 +21,11 @@ public class DamageField : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
-            return;
-
-
-        ///NEEDS TO REFERENCE THE ACTUAL PLAYER'S HEALTH
-        ///THIS ONLY REFERENCE'S THE TEST PLAYER SCRIPT
-
-         if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-         Player_Health player = collision.GetComponent<Player_Health>();
-          if(player != null)
-            {
-                
-                SelfDestruct();
-            }
+            collision.gameObject.GetComponent<Player_Health>().TakeDamage(enemyDamage);
         }
-        
-        SelfDestruct();        
+         
     }
 
     private void SelfDestruct()
