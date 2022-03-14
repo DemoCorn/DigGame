@@ -25,8 +25,9 @@ public class Ranged_Attack : MonoBehaviour
 
         if (Time.time > nextFireTime)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire2"))
             {
+               
                 Vector2 moveDirection = (cursorLocation - (Vector2)transform.position).normalized;
                 Instantiate(shotToFire, shotPoint.position, shotPoint.rotation).moveDir = moveDirection;
 

@@ -9,10 +9,7 @@ public class Inputs
     public string left;
     public string right;
     public string jump;
-    public string uAttack;
-    public string dAttack;
-    public string lAttack;
-    public string rAttack;
+    public int attack;
     public string inventoryOpen;
 }
 
@@ -22,7 +19,7 @@ public class Input_Manager : MonoBehaviour
     private Inputs inputs;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         LoadJson();
     }
@@ -41,10 +38,7 @@ public class Input_Manager : MonoBehaviour
             inputs.left = "a";
             inputs.right = "d";
             inputs.jump = "space";
-            inputs.uAttack = "up";
-            inputs.dAttack = "down";
-            inputs.lAttack = "left";
-            inputs.rAttack = "right";
+            inputs.attack = ((int)KeyCode.Mouse0);
             inputs.inventoryOpen = "e";
             try
             {

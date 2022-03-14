@@ -4,18 +4,41 @@ using UnityEngine;
 
 public class Drop : MonoBehaviour
 {
-    [SerializeField] private List<DropTable> drops = new List<DropTable>();
+    [SerializeField] public List<DropTable> drops = new List<DropTable>();
+    [SerializeField] public List<BlueprintTable> blueprintDrops = new List<BlueprintTable>();
+    public bool dropBlueprints = false;
 
     void OnDisable()
     {
         float chance;
+        chance = Random.Range(0.0f, 100.0f); // This should never come up, but putting in 0 for the chance will actually still give it a chance under this implementation
         // Iterate through all drops and generate a random number to see if they get added to the inventory
-        foreach(DropTable drop in drops)
+        if (dropBlueprints)
         {
-            chance = Random.Range(0.0f, 100.0f); // This should never come up, but putting in 0 for the chance will actually still give it a chance under this implementation
-            if (chance <= drop.percentChance)
+            foreach (BlueprintTable blueprint in blueprintDrops)
             {
-                GameManager.Instance.EditInventory(drop.items);
+                if (chance <= blueprint.percentChance)
+                {
+                    GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
+                }
+                else
+                {
+                    chance -= blueprint.percentChance;
+                }
+            }
+        }
+        else
+        {
+            foreach (DropTable drop in drops)
+            {
+                if (chance <= drop.percentChance)
+                {
+                    GameManager.Instance.InventoryManager.EditInventory(drop.items);
+                }
+                else
+                {
+                    chance -= drop.percentChance;
+                }
             }
         }
     }
@@ -35,6 +58,23 @@ public class Drop : MonoBehaviour
         }
 
         public ItemGroup items;
+        public float percentChance;
+    }
+
+    [System.Serializable]
+    public class BlueprintTable
+    {
+        public BlueprintTable()
+        {
+        }
+
+        public BlueprintTable(Blueprint key, int value)
+        {
+            blueprint = key;
+            percentChance = value;
+        }
+
+        public Blueprint blueprint;
         public float percentChance;
     }
 }
