@@ -17,8 +17,43 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private BoxCollider2D hitbox;
     [SerializeField] private LayerMask platformLayerMask;
 
+    private int nDirection = 0;
+    private bool isJumping = false;
+
     void Start()
     {
+    }
+
+    private void FixedUpdate()
+    {
+        mVerticalVelocity += gravity;
+
+        // Jump Code
+        if (isJumping)
+        {
+            mVerticalVelocity = jumpPower;
+            isJumping = false;
+        }
+
+        // Vertical Collision
+        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime, mVerticalVelocity * Time.fixedDeltaTime)))
+        {
+            isGrounded = mVerticalVelocity <= 0.0f;
+            mVerticalVelocity = 0.0f;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
+        // Horizontal Collision
+        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime + (0.08f * nDirection), mVerticalVelocity * Time.fixedDeltaTime)))
+        {
+            nDirection = 0;
+        }
+
+        // Apply movement
+        transform.Translate(speed * nDirection * Time.fixedDeltaTime, mVerticalVelocity * Time.fixedDeltaTime, 0.0f);
     }
 
     void Update()
@@ -31,35 +66,13 @@ public class Player_Movement : MonoBehaviour
         }
 
         // Find if we should be going in the positive or negative direction
-        int nDirection = (Convert.ToInt32(Input.GetKey(inputs.right)) - Convert.ToInt32(Input.GetKey(inputs.left)));
-
-        mVerticalVelocity += gravity;
+        nDirection = (Convert.ToInt32(Input.GetKey(inputs.right)) - Convert.ToInt32(Input.GetKey(inputs.left)));
 
         // Jump Code
         if (Input.GetKey(inputs.jump) && isGrounded)
         {
-            mVerticalVelocity = jumpPower;
+            isJumping = true;
         }
-
-        // Vertical Collision
-        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.deltaTime, mVerticalVelocity * Time.deltaTime)))
-        {
-            isGrounded = mVerticalVelocity <= 0.0f;
-            mVerticalVelocity = 0.0f;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-
-        // Horizontal Collision
-        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.deltaTime + (0.08f * nDirection), mVerticalVelocity * Time.deltaTime)))
-        {
-            nDirection = 0;
-        }
-
-        // Apply movement
-        transform.Translate(speed * nDirection * Time.deltaTime, mVerticalVelocity * Time.deltaTime, 0.0f);
     }
 
     private bool IsCollidingWithBlock(Vector2 offset)
