@@ -26,6 +26,7 @@ public class Generation_Manager : MonoBehaviour
 
     [Header("Misc")]
     [SerializeField] private GameObject craftingTable;
+    [SerializeField] private GameObject invisibleWall;
 
     private GetPrefabSize _prefabSizeScript;
     private HashSet<KeyValuePair<int, int>> reservedSpaces = new HashSet<KeyValuePair<int, int>>();
@@ -49,6 +50,12 @@ public class Generation_Manager : MonoBehaviour
         LevelRange levels = GameManager.Instance.LayerManager.GetLevelRange();
         List<ScatterRange> scatterRanges = levelScatters[levels.nLevelNumber].scatterAtLevel;
         List<OreRange> oreRanges = oreLevelRanges[levels.nLevelNumber].oreAtLevel;
+
+        for (int i = -30; i <= 100; i++)
+        {
+            Instantiate(invisibleWall, new Vector2(-1, i), invisibleWall.transform.rotation);
+            Instantiate(invisibleWall, new Vector2(levelWidth, i), invisibleWall.transform.rotation);
+        }
 
         // loop to generate layers
         for (int i = 0; i < levels.layerRange.Count; i++)
