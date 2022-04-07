@@ -10,6 +10,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float jumpPower = 100.0f;
     [SerializeField] private float gravity = -0.5f;
+    [SerializeField] private float holdJumpMultiplier = 1.5f;
 
     private float mVerticalVelocity = 0.0f;
     private bool isGrounded = false;
@@ -19,6 +20,7 @@ public class Player_Movement : MonoBehaviour
 
     private int nDirection = 0;
     private bool isJumping = false;
+    private bool maintainJump = false;
 
     void Start()
     {
@@ -26,7 +28,19 @@ public class Player_Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        mVerticalVelocity += gravity;
+        if (mVerticalVelocity < 0.0f)
+        {
+            maintainJump = false;
+        }
+
+        if (maintainJump)
+        {
+            mVerticalVelocity += (gravity/ holdJumpMultiplier);
+        }
+        else
+        {
+            mVerticalVelocity += gravity;
+        }
 
         // Jump Code
         if (isJumping)
@@ -38,8 +52,19 @@ public class Player_Movement : MonoBehaviour
         // Vertical Collision
         if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime, mVerticalVelocity * Time.fixedDeltaTime)))
         {
+            float offset = 0.0f;
+            float offsetDirection = 1.0f;
+            if (mVerticalVelocity <= 0.0f)
+            {
+                offsetDirection = -1.0f;
+            }
+
+            while (!IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime, (offset + (0.1f * offsetDirection)) * Time.fixedDeltaTime)))
+            {
+                offset += (0.1f * offsetDirection);
+            }
             isGrounded = mVerticalVelocity <= 0.0f;
-            mVerticalVelocity = 0.0f;
+            mVerticalVelocity = offset;
         }
         else
         {
@@ -47,7 +72,7 @@ public class Player_Movement : MonoBehaviour
         }
 
         // Horizontal Collision
-        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime + (0.08f * nDirection), mVerticalVelocity * Time.fixedDeltaTime)))
+        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime + (0.0429f * nDirection), mVerticalVelocity * Time.fixedDeltaTime)))
         {
             nDirection = 0;
         }
@@ -69,9 +94,14 @@ public class Player_Movement : MonoBehaviour
         nDirection = (Convert.ToInt32(Input.GetKey(inputs.right)) - Convert.ToInt32(Input.GetKey(inputs.left)));
 
         // Jump Code
-        if (Input.GetKey(inputs.jump) && isGrounded)
+        if (Input.GetKeyDown(inputs.jump) && isGrounded)
         {
             isJumping = true;
+            maintainJump = true;
+        }
+        else if (!Input.GetKey(inputs.jump) && maintainJump)
+        {
+            maintainJump = false;
         }
     }
 
