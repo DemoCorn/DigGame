@@ -14,7 +14,8 @@ public class Player_Attack : MonoBehaviour
 
     void Start()
     {
-        mAttackHitbox = gameObject.AddComponent<BoxCollider2D>();
+        //mAttackHitbox = gameObject.AddComponent<BoxCollider2D>();
+        mAttackHitbox = gameObject.GetComponent<BoxCollider2D>();
         mAttackHitbox.enabled = false;
     }
 
