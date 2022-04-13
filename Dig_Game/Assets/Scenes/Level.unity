@@ -211,36 +211,50 @@ MonoBehaviour:
   puzzlePrefabs:
   - prefabAtLevel:
     - prefabAtLayer:
-      - prefab: {fileID: 6749147659175099730, guid: cdeb1282584bd7643ba2b390e7987760, type: 3}
-        chance: 35
-      - prefab: {fileID: 4114383104072446273, guid: a75e9455f49ed2045a409f1e86703435, type: 3}
-        chance: 15
-      - prefab: {fileID: 3344856001202372012, guid: 25228ce1c2ff05d4fa3454638d2fb31c, type: 3}
-        chance: 30
-      - prefab: {fileID: 826521705406044088, guid: b06cd676682d358448342e0ce1fa7e3c, type: 3}
-        chance: 20
-      lowestPrefabAmount: 2
-      highestPrefabAmount: 4
-    - prefabAtLayer:
+      - prefab: {fileID: 2734855924217135799, guid: 28c87b9859ef6cb44902cfefffc1d3ef, type: 3}
+        chance: 16
+      - prefab: {fileID: 1369951406909997202, guid: b4503bbcff39a7f49bf401a197e26d41, type: 3}
+        chance: 16
+      - prefab: {fileID: 610549146720825899, guid: 43ed80b407e08354895cb71312d56c72, type: 3}
+        chance: 16
       - prefab: {fileID: 3450606333928925651, guid: 9c93b1501cb223f41b8ef1905de853db, type: 3}
-        chance: 33
-      - prefab: {fileID: 423464913790848564, guid: cd18be2c2e858b14f8f0ef883c106201, type: 3}
-        chance: 33
-      - prefab: {fileID: 4469372050109965790, guid: 08be259e12e0ca7479752367e48f9d2e, type: 3}
-        chance: 34
-      lowestPrefabAmount: 2
-      highestPrefabAmount: 3
-    - prefabAtLayer:
-      - prefab: {fileID: 3965730568648611284, guid: 873e46dcc74ad504abea7ab2d0629119, type: 3}
+        chance: 16
+      - prefab: {fileID: 3382236149935243935, guid: a88fa0c7a6803664c9eff3231ee69e24, type: 3}
+        chance: 16
+      - prefab: {fileID: 4963509067880829265, guid: d8067220fa546504289b496d73eff3ce, type: 3}
         chance: 20
-      - prefab: {fileID: 4114383104072446273, guid: a75e9455f49ed2045a409f1e86703435, type: 3}
-        chance: 30
-      - prefab: {fileID: 2704512958830098143, guid: 08e187fce4f9fda49a7c77be173f2122, type: 3}
-        chance: 15
-      - prefab: {fileID: 4469372050109965790, guid: 08be259e12e0ca7479752367e48f9d2e, type: 3}
-        chance: 35
-      lowestPrefabAmount: 2
-      highestPrefabAmount: 4
+      lowestPrefabAmount: 6
+      highestPrefabAmount: 6
+    - prefabAtLayer:
+      - prefab: {fileID: 764283046824559446, guid: 35042d088852ec94097367c720ceec03, type: 3}
+        chance: 16
+      - prefab: {fileID: 764283046824559446, guid: 35042d088852ec94097367c720ceec03, type: 3}
+        chance: 16
+      - prefab: {fileID: 1309404672147610875, guid: 809e49b28e2c4a948984eb757be6fc2f, type: 3}
+        chance: 16
+      - prefab: {fileID: 8091421877877949897, guid: 945b59f1b59a48c47a52d9eb824925f9, type: 3}
+        chance: 16
+      - prefab: {fileID: 8031348622080125276, guid: 0bf3ef5af80455446a66de22f2e3dfa5, type: 3}
+        chance: 16
+      - prefab: {fileID: 4005616079979166210, guid: d2e7facacd2db51488ad2ee355321b36, type: 3}
+        chance: 20
+      lowestPrefabAmount: 6
+      highestPrefabAmount: 6
+    - prefabAtLayer:
+      - prefab: {fileID: 2695175033380899479, guid: faf6e759ebb2fa14497d9614875b58e7, type: 3}
+        chance: 16
+      - prefab: {fileID: 7608618180693977728, guid: 91b6a14f2b51140449756b232ce13160, type: 3}
+        chance: 16
+      - prefab: {fileID: 4005616079979166210, guid: d2e7facacd2db51488ad2ee355321b36, type: 3}
+        chance: 16
+      - prefab: {fileID: 1309404672147610875, guid: 809e49b28e2c4a948984eb757be6fc2f, type: 3}
+        chance: 16
+      - prefab: {fileID: 7251239055465783395, guid: a9bab01c1ce9cd84ebda1493135d598d, type: 3}
+        chance: 16
+      - prefab: {fileID: 3144035503624598055, guid: 0b565cd9f68219d46b371496f2dc141a, type: 3}
+        chance: 20
+      lowestPrefabAmount: 6
+      highestPrefabAmount: 6
   treasurePrefabs:
   - prefabAtLevel:
     - prefabAtLayer:
@@ -320,11 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerClass: 2
-  inventory:
-  - item: {fileID: 11400000, guid: d528f76ed3839a64e821eb282609d8d9, type: 2}
-    amount: 0
-  - item: {fileID: 11400000, guid: d528f76ed3839a64e821eb282609d8d9, type: 2}
-    amount: 0
+  inventory: []
   noEquipment:
   - {fileID: 11400000, guid: f80880e50f942b046b4e1c8cc1c973bf, type: 2}
   - {fileID: 11400000, guid: 9e8f1ba75ff728f43a1ded65c9f29d87, type: 2}
@@ -434,7 +444,6 @@ MonoBehaviour:
     isUnlocked: 0
   - blueprint: {fileID: 11400000, guid: 248fc780b25c0304cb224cde8680dd72, type: 2}
     isUnlocked: 0
-  testBlueprint: {fileID: 11400000, guid: d7a6c1125dad5724985facff84e3bcb6, type: 2}
 --- !u!114 &28138288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -688,7 +697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACAn+tvgRvbegIAAC8FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMFy2jAQ/RVG58JYYALurQVCekjChHZy8UVYa6xBljySHCAZ/r0r2WCXnhBvd9++fVr5iwhlK8icNmsj+LPmQL4PiD+Tb4Mu+AQnttdqKz7hmvMuuCt8Egs5b8wJjTj1ZVaX4IzIfqi99MkRgrUSuTbliu9hoa2zCOdMWsCQ0c5XK4S+BuSEP8PEl5zxNJ750yeekmhwwWMGyoHpUuPZKJnMaRzP2oohjUbRJKHTCW0rh3Q0S6Y0HlO6GkYPgaZWmWRlBdzP1LElScsypSFN4bRthmfLtJTCtlKJO1fBijd29kZwwXDsoI2OJggUIPaF80P0S1/z3IJrXTHsvBQG/Ws4yU/dmFoye2hUfTBZ+y7zoKehfP4vOmzk5kaXT9euNPIdXCGyAyrMmHU9z/vwsic8WHNk8sB2Et4LUC96bXStOAadqX1pbWG87P7eBlsUkB06vJF6B9ZV5/X1iqPbNQ0ulzD7aSFFufOhUdwAW6mD12EvwOCt/ELBYWtsS4GoV/HHwm+2769XG3gUxjoMtVMqL2+na+NTySp45qep3UIbBQFuRVegmHTnDdK4+wu8i/Xa3kUemX9IbfM2dn0fdyUB7vKj6C600cfbZdlCH5/BFq+1k0JBJ9oHXtCnhVaq2a++J9eybW1ylvXK9rXg/64WGfNdNIcZy+dRPmPAh1E8gXy6ozR+iDI+yUjYPaFwTiY3jdDWHrw11ZEr3LPr92WwNqwKu84NO67FZ6l7lguV621mANRrw3ATDgab4IvkKy7QoC04J1S4b/KVEqmzA/D0RpSGSVcnZ1jasaSkEh/aeSQli/BBSYmHb7u8MfAh4OibX8ku5PIXUEsDBBQAAAgIAACAn+vpJL6JbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSSUUqSgUWqeWKahUGaeWJqiq6BiXFqmmmSoaGJmUFyinGyUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACAn+tvgRvbegIAAC8FAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACAn+vpJL6JbQAAAHgAAAAJACQAAAAAAAAAAAAAAMcCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAfwMAAAAA
+    dataString: UEsDBBQAAAgIAACAn+vV/vceaQIAACIFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAU/CuMzoWxgQborSWE9JCECenk4ouQnrEGWfJIcoBk+O99kmXsUi7I+752V8/+IkLZCpjTZm0Ef9IcyI8B8WfybdAFH+FE91ptxSe0Oe+Cu8In0ZDzSp3QiKe+zOoSnBHsp9pLn5wgWCuRa1Ou+B6W2jqLcE6lBQwZ7Xy1QuhrQE74N1z4kjOexjN/+sTTIhlc8MhAOTBd6nQ2Wkzm6XQ6ixXDcTJK/C9dxMqmsFZM0rIC7lV09eldOyoOUCgwpngxTEspbGRH3LkK6l/p2WvngqLSQCcdTRAoQOwL53n3S1/y3IKLRhh6vhcGLWt6kl+68bGk9tDQ+qCy9lPmgU/T8um/6DAN4dzo8rGdmiZ+gisEOyBDRq3r2dyH73vEgzdHKg90J+G9APWs10bXimPQmdqX1hbG993jVdiyAHbo8IbqDVhXndmt1e2deg2XoP20lKLc+dBo2gBbqYPXYRXA4K38RsJhUWxsgahn8cfCG933NyoGHoSxDkNRpfL0dro2PpWsgmdeTe2W2igIcCRdgaLSnTfYxt1e4E2sN/Ym8kD9uxOHx1j7StyUBLjLT5Kb0EYfr5dlC318Alu81E4KBR1pH3hGn5ZaqWa/+p60Zdva5JT1yva14P+uFhnzXTKHGc3nST6jwIfJdAL5912aTu8SxieMhN0TCnVSuWmIRnvw1lTXXOGetZ+UwdrQKuw6N/S4Fp+l7lkuVK63zACol6bDlTgYHIJvJF9xgQZtwTmhwn2Tr4xIzQ7As2ujLChdnZyhWdclI5X40M4jGVmGb0hGPHzd5Y2BDwFHP7xtdiGXv1BLAwQUAAAICAAAgJ/r6SS+iW0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0klFKkoFFqnlimoVBmnliaoqugYlxapppkqGhiZlBcopxslIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAgJ/r1f73HmkCAAAiBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAgJ/r6SS+iW0AAAB4AAAACQAkAAAAAAAAAAAAAAC2AgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAG4DAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1386,8 +1395,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpPower: 15
-  gravity: -0.1
+  jumpPower: 7.5
+  gravity: -0.3
+  holdJumpMultiplier: 1.5
   hitbox: {fileID: 1304607149}
   platformLayerMask:
     serializedVersion: 2
@@ -1888,8 +1898,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997885370}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1000, y: 100, z: 1}
+  m_LocalPosition: {x: 0, y: -38.5522, z: 0}
+  m_LocalScale: {x: 1000, y: 177.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10

@@ -7,14 +7,25 @@ public class Blueprint_UI : MonoBehaviour
 {
     [HideInInspector] public UnlockableBlueprint blueprint;
     private Button button;
+    private Text text;
 
     public void Start()
     {
         button = GetComponentInChildren<Button>();
+        text = GetComponentInChildren<Text>();
     }
 
     public void Update()
     {
-        button.interactable = blueprint.isUnlocked;
+        if (blueprint.isUnlocked)
+        {
+            button.interactable = true;
+            text.text = blueprint.blueprint.result.item.itemName;
+        }
+        else
+        {
+            button.interactable = false;
+            text.text = "???";
+        }
     }
 }

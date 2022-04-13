@@ -3,28 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/*
 [CustomEditor(typeof(Drop))]
 public class DropEditor : UnityEditor.Editor
 {
     public override void OnInspectorGUI()
     {
         Drop drop = (Drop)target;
-        SerializedObject seObject = new SerializedObject(target);
+        SerializedObject soObject = new SerializedObject(target);
         SerializedProperty list;
 
+        drop.smartDrop = EditorGUILayout.Toggle("Use Smart Drop", drop.smartDrop);
         drop.dropBlueprints = EditorGUILayout.Toggle("Drop Blueprints", drop.dropBlueprints);
+
         serializedObject.ApplyModifiedProperties();
 
-        if(drop.dropBlueprints)
+        if (drop.smartDrop)
         {
-            list = seObject.FindProperty("blueprintDrops");
+            if (drop.dropBlueprints)
+            {
+                list = soObject.FindProperty("blueprintDropByLevel");
+            }
+            else
+            {
+                list = soObject.FindProperty("itemDropByLevel");
+            }
+
+            EditorGUILayout.PropertyField(list, true);
         }
         else
         {
-            list = seObject.FindProperty("drops");
-        }
+            if (drop.dropBlueprints)
+            {
+                drop.blueprintDrops = (BlueprintDropTable)EditorGUILayout.ObjectField("Blueprint Drops", drop.blueprintDrops, typeof(BlueprintDropTable), true);
 
-        EditorGUILayout.PropertyField(list, true);
+                //drop.blueprintDrops = seObject.FindProperty("blueprintDrops");
+                //drop.blueprintDrops = (BlueprintDropTable)list;
+            }
+            else
+            {
+                drop.itemDrops = (ItemDropTable)EditorGUILayout.ObjectField("Item Drops", drop.itemDrops, typeof(ItemDropTable), true);
+            }
+        }
 
     }
 }
+*/

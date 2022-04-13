@@ -96,7 +96,7 @@ public class EnemyAI : MonoBehaviour
             EnemyGFX();
             SetSpawnOffset();
         }
-        Debug.Log(player.name);
+        //Debug.Log(player.name);
 
         //Attack if player is within range
         if (canAttack == true && TargetInAttackRange())
