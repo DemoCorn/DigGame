@@ -1364,6 +1364,7 @@ GameObject:
   - component: {fileID: 1882284740}
   - component: {fileID: 1882284739}
   - component: {fileID: 1882284738}
+  - component: {fileID: 1882284744}
   m_Layer: 0
   m_Name: GM
   m_TagString: Untagged
@@ -1547,7 +1548,7 @@ MonoBehaviour:
       highestPrefabAmount: 0
   maxRoomSpawnAttempts: 500
   craftingTable: {fileID: 7371438573855639348, guid: 7c0f19cdba14f9f47a205c761dc1927f, type: 3}
-  invisibleWall: {fileID: 0}
+  invisibleWall: {fileID: 4071543850415877738, guid: 0a636dd3805f48046a0576ec84c929c6, type: 3}
 --- !u!114 &1882284742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1564,7 +1565,7 @@ MonoBehaviour:
   InventoryManager: {fileID: 1882284738}
   LayerManager: {fileID: 1882284739}
   GenerationManager: {fileID: 1882284741}
-  UIManager: {fileID: 0}
+  UIManager: {fileID: 1882284744}
   player: {fileID: 1647577625}
   mainCamera: {fileID: 1710675037}
   LevelNum: 0
@@ -1582,6 +1583,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1882284744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882284737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5fc11114fd0604999ef061d5fbbceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPrefab: {fileID: 748893407}
+  onCraftingTable: 0
 --- !u!1001 &2874597764676864750
 PrefabInstance:
   m_ObjectHideFlags: 0
