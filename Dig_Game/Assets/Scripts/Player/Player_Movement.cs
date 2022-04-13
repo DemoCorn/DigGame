@@ -72,7 +72,7 @@ public class Player_Movement : MonoBehaviour
         }
 
         // Horizontal Collision
-        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime + (0.0429f * nDirection), mVerticalVelocity * Time.fixedDeltaTime)))
+        if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime + (0.08f * nDirection), mVerticalVelocity * Time.fixedDeltaTime)))
         {
             nDirection = 0;
         }

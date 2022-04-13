@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Drop : MonoBehaviour
 {
@@ -67,38 +68,41 @@ public class Drop : MonoBehaviour
 
     void OnDisable()
     {
-        float chance;
-        chance = Random.Range(0.0f, maxChance); // This should never come up, but putting in 0 for the chance will actually still give it a chance under this implementation
-
-        // Iterate through all drops and generate a random number to see if they get added to the inventory
-        if (dropBlueprints)
+        if (SceneManager.GetActiveScene().isLoaded)
         {
-            if (blueprintDrops.drops.Count != 0)
+            float chance;
+            chance = Random.Range(0.0f, maxChance); // This should never come up, but putting in 0 for the chance will actually still give it a chance under this implementation
+
+            // Iterate through all drops and generate a random number to see if they get added to the inventory
+            if (dropBlueprints)
             {
-                foreach (BlueprintTable blueprint in blueprintDrops.drops)
+                if (blueprintDrops.drops.Count != 0)
                 {
-                    if (chance <= blueprint.percentChance)
+                    foreach (BlueprintTable blueprint in blueprintDrops.drops)
                     {
-                        GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
-                    }
-                    else
-                    {
-                        chance -= blueprint.percentChance;
+                        if (chance <= blueprint.percentChance)
+                        {
+                            GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
+                        }
+                        else
+                        {
+                            chance -= blueprint.percentChance;
+                        }
                     }
                 }
             }
-        }
-        else
-        {
-            foreach (DropTable drop in itemDrops.drops)
+            else
             {
-                if (chance <= drop.percentChance)
+                foreach (DropTable drop in itemDrops.drops)
                 {
-                    GameManager.Instance.InventoryManager.EditInventory(drop.items);
-                }
-                else
-                {
-                    chance -= drop.percentChance;
+                    if (chance <= drop.percentChance)
+                    {
+                        GameManager.Instance.InventoryManager.EditInventory(drop.items);
+                    }
+                    else
+                    {
+                        chance -= drop.percentChance;
+                    }
                 }
             }
         }
