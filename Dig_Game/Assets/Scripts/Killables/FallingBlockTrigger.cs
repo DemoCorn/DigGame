@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FallingBlockTrigger : MonoBehaviour
 {
@@ -9,23 +10,12 @@ public class FallingBlockTrigger : MonoBehaviour
 
     private void OnDisable()
     {
-        foreach (GameObject i in fallingObjects)
+        if (SceneManager.GetActiveScene().isLoaded)
         {
-            i.GetComponent<FallingBlock>().objectTrigger = true;
-        }
-    }
-    /*
-    private void Update()
-    {
-        if(switc == true) 
-        {
-            switc = false;
             foreach (GameObject i in fallingObjects)
             {
                 i.GetComponent<FallingBlock>().objectTrigger = true;
             }
         }
-        
     }
-    */
 }
