@@ -10,8 +10,8 @@ public class Crafting_UI : MonoBehaviour
     private List<CraftingSlot> defaultSlotSpaces = new List<CraftingSlot>();
 
     [SerializeField] private GameObject resultObject;
-    private CraftingSlot resultSpace;
-    private CraftingSlot defaultResultSpace;
+    private ResultSlot resultSpace;
+    private ResultSlot defaultResultSpace;
 
     private Blueprint currentBlueprint;
 
@@ -33,7 +33,8 @@ public class Crafting_UI : MonoBehaviour
         {
             slotSpaces.Add(new CraftingSlot(slotObjects[i].GetComponentInChildren<Image>(), slotObjects[i].GetComponentInChildren<Text>(), i));
         }
-        resultSpace = new CraftingSlot(resultObject.GetComponentInChildren<Image>(), resultObject.GetComponentInChildren<Text>(), 0);
+        ResultSlotText resultText = resultObject.GetComponentInChildren<ResultSlotText>();
+        resultSpace = new ResultSlot(resultObject.GetComponentInChildren<Image>(), resultText.nameText, resultText.hpText, resultText.defenceText, resultText.digText, resultText.attackText);
 
         GameObject newButton;
         List<UnlockableBlueprint> blueprints = GameManager.Instance.InventoryManager.GetBlueprints();
@@ -54,7 +55,7 @@ public class Crafting_UI : MonoBehaviour
         }
 
         defaultSlotSpaces = new List<CraftingSlot>(slotSpaces);
-        defaultResultSpace = new CraftingSlot(resultSpace);
+        defaultResultSpace = new ResultSlot(resultSpace);
     }
 
     public void ChooseBlueprint(Blueprint_UI blueprintUI)
@@ -63,9 +64,15 @@ public class Crafting_UI : MonoBehaviour
         resultSpace.slotImage.sprite = blueprint.result.item.itemSprite;
         resultSpace.slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
 
-        Debug.LogWarning("Crafting_UI is only using name for the text someone needs to figure out the formatting we want and then delete this warning from the code"); // Delete this line once resultSpace.amountText.text isn't just using blueprint.result.item.itemName
-        resultSpace.amountText.text = blueprint.result.item.itemName;
-        //itemNameText.text = blueprint.result.item.name;
+        resultSpace.nameText.text = blueprint.result.amount + " " + blueprint.result.item.itemName;
+        if (blueprint.result.item is Equipment)
+        {
+            Equipment resultItem = (Equipment)blueprint.result.item;
+            resultSpace.hpText.text = "HP: " + resultItem.healthModifier;
+            resultSpace.defenceText.text = "Def: " + resultItem.armorModifier;
+            resultSpace.digText.text = "Dig: " + resultItem.digModifier;
+            resultSpace.attackText.text = "Atk: " + resultItem.attackModifier;
+        }
         
 
         foreach (CraftingSlot slot in slotSpaces)
@@ -120,5 +127,39 @@ public class Crafting_UI : MonoBehaviour
         public Image slotImage;
         public Text amountText;
         public int slotIndex;
+    }
+
+    public class ResultSlot
+    {
+        public ResultSlot()
+        {
+        }
+
+        public ResultSlot(ResultSlot slot)
+        {
+            slotImage = slot.slotImage;
+            nameText = slot.nameText;
+            hpText = slot.hpText;
+            defenceText = slot.defenceText;
+            digText = slot.digText;
+            attackText = slot.attackText;
+        }
+
+        public ResultSlot(Image image, Text name, Text HP, Text defence, Text dig, Text attack)
+        {
+            slotImage = image;
+            nameText = name;
+            hpText = HP;
+            defenceText = defence;
+            digText = dig;
+            attackText = attack;
+        }
+
+        public Image slotImage;
+        public Text nameText;
+        public Text hpText;
+        public Text defenceText;
+        public Text digText;
+        public Text attackText;
     }
 }

@@ -18,8 +18,6 @@ public class EnemySpawn : MonoBehaviour
                 Instantiate(levelRanges[levels.nLevelNumber].enemyLayer[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, gameObject.transform);
             }
         }
-
-        Destroy(gameObject);
     }
 
     [System.Serializable]

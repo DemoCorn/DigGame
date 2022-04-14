@@ -59,7 +59,7 @@ public class Player_Movement : MonoBehaviour
                 offsetDirection = -1.0f;
             }
 
-            while (!IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime, (offset + (0.1f * offsetDirection)) * Time.fixedDeltaTime)))
+            while (!IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime, (offset + (0.3f * offsetDirection)) * Time.fixedDeltaTime)))
             {
                 offset += (0.1f * offsetDirection);
             }
