@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: -472539967477829826}
   - component: {fileID: 5668964802323611302}
   - component: {fileID: 1727876224613837104}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Diamond_Mineral
-  m_TagString: Untagged
+  m_TagString: BreakableBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,115 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drops:
-  - items:
-      item: {fileID: 11400000, guid: d74dd24bc332e01479fd4dbc72b041c7, type: 2}
-      amount: 1
-    percentChance: 80
-  - items:
-      item: {fileID: 11400000, guid: d74dd24bc332e01479fd4dbc72b041c7, type: 2}
-      amount: 2
-    percentChance: 20
-  blueprintDrops:
-  - blueprint: {fileID: 11400000, guid: 9726165057f13c04db17253c7937c5a2, type: 2}
-    percentChance: 30
-  - blueprint: {fileID: 11400000, guid: fcfd3bd4082ed52418109a209d2ee1c2, type: 2}
-    percentChance: 30
-  - blueprint: {fileID: 11400000, guid: 4579431e23acfc440bf860fa75352fc2, type: 2}
-    percentChance: 30
-  - blueprint: {fileID: 11400000, guid: 5de60c9dee73e8747bd1fa2fdcd96be9, type: 2}
-    percentChance: 30
-  - blueprint: {fileID: 11400000, guid: 2933e79990a9adc48b3acde44563abf1, type: 2}
-    percentChance: 30
-  - blueprint: {fileID: 11400000, guid: 2933e79990a9adc48b3acde44563abf1, type: 2}
-    percentChance: 30
-  - blueprint: {fileID: 11400000, guid: d5d7b4fb0800f25479fbd04d16483c3b, type: 2}
-    percentChance: 25
-  - blueprint: {fileID: 11400000, guid: 0ab556dfaadd3d74eaed9e25e57b282e, type: 2}
-    percentChance: 25
-  - blueprint: {fileID: 11400000, guid: 6d7205684cdb8e848a4ae84a157b914c, type: 2}
-    percentChance: 25
-  - blueprint: {fileID: 11400000, guid: cc634931418ad3749a3c76de0d246344, type: 2}
-    percentChance: 25
-  - blueprint: {fileID: 11400000, guid: 25c0275ca286e1c4fad0d1298160f114, type: 2}
-    percentChance: 25
-  - blueprint: {fileID: 11400000, guid: 1aa23da9a2258dc45bf336ae276ab0e7, type: 2}
-    percentChance: 25
-  - blueprint: {fileID: 11400000, guid: 5743b142bf68af445b690014b8a48ba6, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: 1fe7bfaf7ac8e5646a2e9a2e99f74c46, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: 03f04fad9726bff4ca9147d89861b8e4, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: 17c314af41e8b2b41bf47557f862ae4b, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: 059caf9dfed2b7b4c96915061becb74f, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: 5b6355b847a37cf4abe96c6e3ce09bbd, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: 13e5023bdcb6bc94c9cce0ec0ebe1b9c, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: ff21c07ef94360d42a269043927611b4, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: db1bea7984787b7449874bd531740a16, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: 1ca7aeefd18c78e47903e660ee39ac26, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: ccd37a776904c674283451bcbfc3280f, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: 3b83a1871db56a047b90c40262d8e414, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: 22a0475857e9f8e408c5216fc0bc5a0b, type: 2}
-    percentChance: 20
-  - blueprint: {fileID: 11400000, guid: db183851a88148e4e9827127d6e7a086, type: 2}
-    percentChance: 20
-  - blueprint: {fileID: 11400000, guid: 0c9a119448d7cae458c3663f62dcd17f, type: 2}
-    percentChance: 20
-  - blueprint: {fileID: 11400000, guid: df0f304f8112b1145acf49ee22224ac3, type: 2}
-    percentChance: 20
-  - blueprint: {fileID: 11400000, guid: 5169d02e9dd7ad940980f8476e728044, type: 2}
-    percentChance: 20
-  - blueprint: {fileID: 11400000, guid: 430876bb19e825f428f93e195f2fed5d, type: 2}
-    percentChance: 20
-  - blueprint: {fileID: 11400000, guid: ca65eafecd2cb924cbda8cae8dbfbd9a, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: 735aabf7e5ba8cd4ca254befabf3f4cf, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: 6c46191aaecfea74d8fffd1529181f81, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: ab2b87ae7a85fc949b083b086bb08861, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: 7bf0a630d7bd2fa4197faf384aa3a679, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: 3150515c99f798743ba374927315348a, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: d4f4ef42e5c2ab8438c66deab5b60344, type: 2}
-    percentChance: 5
-  - blueprint: {fileID: 11400000, guid: d97b415fd415ae444854c9b3d7517fc6, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: 2f8c671d8c7fc6440b03a9fb191d75a5, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: 7c3cdc4bd9ab8cd449c940c4c3f2c018, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: effa04f8af2cec541b0e9f1a424bc6bf, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: 6a8b960330f7b4a4c886434fbf0b3041, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: 035f171ebee6ce14dab801bb307ccdd0, type: 2}
-    percentChance: 10
-  - blueprint: {fileID: 11400000, guid: 73ac812e7a64ffa4ea60fcf4d8023347, type: 2}
-    percentChance: 15
-  - blueprint: {fileID: 11400000, guid: 3c497f44e0d970a4fa1c2fb96d62392d, type: 2}
-    percentChance: 15
-  - blueprint: {fileID: 11400000, guid: 49cbffbfb7b09a846855334da3c78011, type: 2}
-    percentChance: 15
-  - blueprint: {fileID: 11400000, guid: 3e27a8f5b836ad0439e156dd7b844fda, type: 2}
-    percentChance: 15
-  - blueprint: {fileID: 11400000, guid: d29efd40ab39f9a49ba8a0d4aac28a39, type: 2}
-    percentChance: 15
-  - blueprint: {fileID: 11400000, guid: 248fc780b25c0304cb224cde8680dd72, type: 2}
-    percentChance: 15
+  itemDrops: {fileID: 11400000, guid: 3ecdbe9a37ccfa74387311604acbf577, type: 2}
+  blueprintDrops: {fileID: 0}
+  itemDropByLevel: []
+  blueprintDropByLevel: []
   dropBlueprints: 0
+  smartDrop: 0
 --- !u!212 &-472539967477829826
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -247,5 +144,4 @@ MonoBehaviour:
   particle: {fileID: 0}
   health: 15
   immunityTime: 0
-  spawnNewEnemyChance: 0
   mImmune: 0
