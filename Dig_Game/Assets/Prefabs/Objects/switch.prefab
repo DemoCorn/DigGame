@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1132225888407865466}
   - component: {fileID: 1909495606859961297}
   - component: {fileID: 2415744378453570307}
-  - component: {fileID: 8675464163186999549}
+  - component: {fileID: 5418533596736143634}
   m_Layer: 3
   m_Name: switch
   m_TagString: BreakableBlock
@@ -110,7 +110,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8675464163186999549
+--- !u!114 &5418533596736143634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,7 +119,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1507100362379146241}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e530c0bc73a8d74688dd99d72ad7e81, type: 3}
+  m_Script: {fileID: 11500000, guid: a4f090d223767044faa25203b90412bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 15
+  fallingObjects: []
+  switc: 1
