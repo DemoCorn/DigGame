@@ -63,7 +63,6 @@ public class Crafting_UI : MonoBehaviour
         Blueprint blueprint = blueprintUI.blueprint.blueprint;
         resultSpace.slotImage.sprite = blueprint.result.item.itemSprite;
         resultSpace.slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-
         resultSpace.nameText.text = blueprint.result.amount + " " + blueprint.result.item.itemName;
         if (blueprint.result.item is Equipment)
         {
