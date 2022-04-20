@@ -19,7 +19,6 @@ public class EnemySpawn : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
     }
 
     [System.Serializable]
