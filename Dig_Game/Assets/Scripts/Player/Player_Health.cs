@@ -66,6 +66,11 @@ public class Player_Health : MonoBehaviour
         return health;
     }
 
+    public float GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
     public void TakeDamage(float fDamage)
     {
         if (isVulnerable)
