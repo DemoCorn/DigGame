@@ -1,80 +1,165 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Drop : MonoBehaviour
 {
-    [SerializeField] public List<DropTable> drops = new List<DropTable>();
-    [SerializeField] public List<BlueprintTable> blueprintDrops = new List<BlueprintTable>();
+    [SerializeField] public ItemDropTable itemDrops;
+    [SerializeField] public BlueprintDropTable blueprintDrops;
+
+    [SerializeField] public List<ItemDropByLayer> itemDropByLevel = new List<ItemDropByLayer>();
+    [SerializeField] public List<BlueprintDropByLayer> blueprintDropByLevel = new List<BlueprintDropByLayer>();
+
     public bool dropBlueprints = false;
+    private bool heapDrop = false;
+    public bool smartDrop = false;
+    private float maxChance = 100.0f;
+
+    private void Start()
+    {
+        if (smartDrop)
+        {
+            SmartDropSetup();
+        }
+
+        if (dropBlueprints)
+        {
+            for (int i = 0; i < blueprintDrops.drops.Count; i++)
+            {
+                if (GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprintDrops.drops[i].blueprint))
+                {
+                    blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
+                    i--;
+                }
+            }
+
+            if (blueprintDrops.drops.Count == 0)
+            {
+                Destroy(gameObject);
+            }
+
+            heapDrop = blueprintDrops.heapDrop;
+        }
+        else
+        {
+            heapDrop = itemDrops.heapDrop;
+        }
+
+        if (heapDrop)
+        {
+            maxChance = 0.0f;
+            if (dropBlueprints)
+            {
+                foreach (BlueprintTable blueprint in blueprintDrops.drops)
+                {
+                    maxChance += blueprint.percentChance;
+                }
+            }
+            else
+            {
+                foreach (DropTable drop in itemDrops.drops)
+                {
+                    maxChance += drop.percentChance;
+                }
+            }
+        }
+    }
 
     void OnDisable()
     {
-        float chance;
-        chance = Random.Range(0.0f, 100.0f); // This should never come up, but putting in 0 for the chance will actually still give it a chance under this implementation
-        // Iterate through all drops and generate a random number to see if they get added to the inventory
+        if (SceneManager.GetActiveScene().isLoaded)
+        {
+            float chance;
+            chance = Random.Range(0.0f, maxChance); // This should never come up, but putting in 0 for the chance will actually still give it a chance under this implementation
+
+            // Iterate through all drops and generate a random number to see if they get added to the inventory
+            if (dropBlueprints)
+            {
+                if (blueprintDrops.drops.Count != 0)
+                {
+                    foreach (BlueprintTable blueprint in blueprintDrops.drops)
+                    {
+                        if (chance <= blueprint.percentChance)
+                        {
+                            GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
+                        }
+                        else
+                        {
+                            chance -= blueprint.percentChance;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (DropTable drop in itemDrops.drops)
+                {
+                    if (chance <= drop.percentChance)
+                    {
+                        GameManager.Instance.InventoryManager.EditInventory(drop.items);
+                    }
+                    else
+                    {
+                        chance -= drop.percentChance;
+                    }
+                }
+            }
+        }
+    }
+
+    void SmartDropSetup()
+    {
+        LevelRange levels = GameManager.Instance.LayerManager.GetLevelRange();
         if (dropBlueprints)
         {
-            foreach (BlueprintTable blueprint in blueprintDrops)
+            for (int i = 0; i < blueprintDropByLevel[levels.nLevelNumber].blueprintAtLayer.Count; i++)
             {
-                if (chance <= blueprint.percentChance)
+                if (gameObject.transform.position.y <= levels.layerRange[i].highest && gameObject.transform.position.y >= levels.layerRange[i].lowest)
                 {
-                    GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
-                }
-                else
-                {
-                    chance -= blueprint.percentChance;
+                    blueprintDrops = blueprintDropByLevel[levels.nLevelNumber].blueprintAtLayer[i];
+                    break;
                 }
             }
         }
         else
         {
-            foreach (DropTable drop in drops)
+            for (int i = 0; i < itemDropByLevel[levels.nLevelNumber].itemAtLayer.Count; i++)
             {
-                if (chance <= drop.percentChance)
+                if (gameObject.transform.position.y <= levels.layerRange[i].highest && gameObject.transform.position.y >= levels.layerRange[i].lowest)
                 {
-                    GameManager.Instance.InventoryManager.EditInventory(drop.items);
-                }
-                else
-                {
-                    chance -= drop.percentChance;
+                    itemDrops = itemDropByLevel[levels.nLevelNumber].itemAtLayer[i];
+                    break;
                 }
             }
         }
     }
 
-    // Used to allow designers to edit the chance that an ItemGroup has to drop from any given enemy
     [System.Serializable]
-    public class DropTable
+    public class ItemDropByLayer
     {
-        public DropTable()
+        public ItemDropByLayer()
         {
         }
 
-        public DropTable(ItemGroup key, int value)
+        public ItemDropByLayer(List<ItemDropTable> layers)
         {
-            items = key;
-            percentChance = value;
+            itemAtLayer = layers;
         }
-
-        public ItemGroup items;
-        public float percentChance;
+        public List<ItemDropTable> itemAtLayer = new List<ItemDropTable>();
     }
 
     [System.Serializable]
-    public class BlueprintTable
+    public class BlueprintDropByLayer
     {
-        public BlueprintTable()
+        public BlueprintDropByLayer()
         {
         }
 
-        public BlueprintTable(Blueprint key, int value)
+        public BlueprintDropByLayer(List<BlueprintDropTable> layers)
         {
-            blueprint = key;
-            percentChance = value;
+            blueprintAtLayer = layers;
         }
-
-        public Blueprint blueprint;
-        public float percentChance;
+        public List<BlueprintDropTable> blueprintAtLayer = new List<BlueprintDropTable>();
     }
 }

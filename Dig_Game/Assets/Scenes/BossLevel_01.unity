@@ -229,7 +229,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  testBlueprint: {fileID: 11400000, guid: d7a6c1125dad5724985facff84e3bcb6, type: 2}
+  blueprints: []
 --- !u!114 &82269298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +280,7 @@ MonoBehaviour:
   InventoryManager: {fileID: 82269297}
   LayerManager: {fileID: 82269298}
   GenerationManager: {fileID: 0}
+  UIManager: {fileID: 0}
   player: {fileID: 1699959923}
   mainCamera: {fileID: 1304493781}
   LevelNum: 0
@@ -719,7 +720,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -790,8 +791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
   health: 100
-  immunityTime: 0
-  spawnNewEnemyChance: 10
+  immunityTime: 1
   mImmune: 0
 --- !u!114 &418631755
 MonoBehaviour:
@@ -4784,7 +4784,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1992186177}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45116982e45b2004cb197ac43e3e4517, type: 3}
+  m_Script: {fileID: 11500000, guid: da4e5feb48ea7d947b1635c2e5762bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1699959931}
@@ -4804,5 +4804,4 @@ MonoBehaviour:
   particle: {fileID: 0}
   health: 100
   immunityTime: 1
-  spawnNewEnemyChance: 10
   mImmune: 0
