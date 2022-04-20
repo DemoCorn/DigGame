@@ -296,7 +296,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &28138285
 MonoBehaviour:
@@ -693,7 +693,7 @@ Transform:
   m_LocalScale: {x: 1.35, y: 2.05, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &530428003
 MonoBehaviour:
@@ -814,7 +814,7 @@ RectTransform:
   m_Children:
   - {fileID: 813156106}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1017,7 +1017,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &935519407
 MonoBehaviour:
@@ -1131,7 +1131,7 @@ Transform:
   m_LocalScale: {x: 5.60214, y: 1.2494, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1178742625 stripped
 GameObject:
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipment:
   - {fileID: 1216534249}
-  - {fileID: 0}
+  - {fileID: 997970977}
   currentlyEquiped: 0
 --- !u!114 &1178742627
 MonoBehaviour:
@@ -1182,7 +1182,7 @@ MonoBehaviour:
   maxHealth: 100
   armor: 0
   immunityTime: 1
-  hitbox: {fileID: 0}
+  hitbox: {fileID: 1178742631}
 --- !u!114 &1178742629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1195,80 +1195,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f9ef11a8999234cb8cf9284705aad3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  jumpPower: 100
-  gravity: -0.5
-  holdJumpMultiplier: 1.5
-  hitbox: {fileID: 0}
-  platformLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  animator: {fileID: 0}
---- !u!4 &1178742633
+  spriteResolvers:
+  - {fileID: 560281964883296810}
+--- !u!4 &1178742633 stripped
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321167217}
+  m_GameObject: {fileID: 1178742625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 0.7, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1870006316}
+  - {fileID: 407740030}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1178742640 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 560281965986540865, guid: 0bd3b241f5445e24f9b986ec7992e5ab, type: 3}
-  m_PrefabInstance: {fileID: 560281964883296808}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1216534249
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1216534250}
-  m_Layer: 0
-  m_Name: 
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1216534250
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1216534249}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1321167217
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1178742633}
-  m_Layer: 0
-  m_Name: Recovery GameObject (1178742633)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1704843301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1304,8 +1254,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 1178742640}
-  m_Follow: {fileID: 1178742640}
+  m_LookAt: {fileID: 1178742633}
+  m_Follow: {fileID: 1178742633}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 4.74
@@ -1334,7 +1284,7 @@ Transform:
   m_Children:
   - {fileID: 108096530}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1804288853
 GameObject:
@@ -1416,7 +1366,7 @@ Transform:
   m_LocalScale: {x: 2.6965325, y: 1.2600199, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1997885370
 GameObject:
@@ -1498,7 +1448,7 @@ Transform:
   m_LocalScale: {x: 1000, y: 177.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2003243264
 GameObject:
@@ -1595,7 +1545,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107444075
 GameObject:
@@ -1661,7 +1611,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &560281964883296808
 PrefabInstance:
@@ -1729,10 +1679,6 @@ PrefabInstance:
     - target: {fileID: 560281965986540873, guid: 0bd3b241f5445e24f9b986ec7992e5ab, type: 3}
       propertyPath: m_Name
       value: Player 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 560281965986540877, guid: 0bd3b241f5445e24f9b986ec7992e5ab, type: 3}
-      propertyPath: jumpPower
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 560281965986540878, guid: 0bd3b241f5445e24f9b986ec7992e5ab, type: 3}
       propertyPath: fieldOfView
