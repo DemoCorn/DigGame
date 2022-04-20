@@ -102,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.28}
+    oldSize: {x: 0.8, y: 0.7}
     newSize: {x: 0.32, y: 0.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -142,6 +142,15 @@ MonoBehaviour:
   itemDrops: {fileID: 11400000, guid: c3eb6943b6e31a74faeff1f982c9d949, type: 2}
   blueprintDrops: {fileID: 0}
   itemDropByLevel: []
-  blueprintDropByLevel: []
+  blueprintDropByLevel:
+  - blueprintAtLayer:
+    - {fileID: 0}
+  - blueprintAtLayer:
+    - {fileID: 0}
+    - {fileID: 0}
+  - blueprintAtLayer:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   dropBlueprints: 0
   smartDrop: 0
