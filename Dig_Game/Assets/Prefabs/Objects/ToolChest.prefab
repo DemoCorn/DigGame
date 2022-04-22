@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5557133971733432199}
   - component: {fileID: 3753705888259009942}
   m_Layer: 0
-  m_Name: Chest
+  m_Name: ToolChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.28}
+    oldSize: {x: 0.8, y: 0.7}
     newSize: {x: 0.32, y: 0.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -142,6 +142,10 @@ MonoBehaviour:
   itemDrops: {fileID: 11400000, guid: c3eb6943b6e31a74faeff1f982c9d949, type: 2}
   blueprintDrops: {fileID: 0}
   itemDropByLevel: []
-  blueprintDropByLevel: []
-  dropBlueprints: 0
-  smartDrop: 0
+  blueprintDropByLevel:
+  - blueprintAtLayer:
+    - {fileID: 11400000, guid: a0883e65991b43c4fb08a27a699f11a8, type: 2}
+    - {fileID: 11400000, guid: 3402ef4f0f24f1f4eab27617dcb58e87, type: 2}
+    - {fileID: 11400000, guid: 24192c76378894245807bf9c0a87359a, type: 2}
+  dropBlueprints: 1
+  smartDrop: 1
