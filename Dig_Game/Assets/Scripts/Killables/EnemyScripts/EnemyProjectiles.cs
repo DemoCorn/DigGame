@@ -117,4 +117,14 @@ public class EnemyProjectiles : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         return player;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Invoke("DestroyGameObject", 0.3f);
+    }
+
+    public void DestroyGameObject()
+    {
+        Destroy(gameObject);
+    }
 }

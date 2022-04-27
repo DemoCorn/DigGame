@@ -95,9 +95,25 @@ public class Player_Movement : MonoBehaviour
         // Find if we should be going in the positive or negative direction
         nDirection = (Convert.ToInt32(Input.GetKey(inputs.right)) - Convert.ToInt32(Input.GetKey(inputs.left)));
 
-        //Animation     
-        animator.SetFloat("Speed", Mathf.Abs(nDirection));
+        //Animation
+        if (nDirection > 0)
+        {
+            animator.SetBool("Run_Right", true);
+        }
+        else
+        {
+            animator.SetBool("Run_Right", false);
+        }
+        if (nDirection < 0)
+        {
+            animator.SetBool("Run_Left", true);
+        }
+        else
+        {
+            animator.SetBool("Run_Left", false);
+        }
 
+       
 
 
 
