@@ -25,7 +25,7 @@ public class Switch : MonoBehaviour
             
             foreach(var resolver in FindObjectsOfType<SpriteResolver>())
             {
-                resolver.SetCategoryAndLabel(resolver.GetCategory(), "Helmet");
+                resolver.SetCategoryAndLabel(resolver.GetCategory(), "helmet1");
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/*
 [CustomEditor(typeof(Drop))]
 public class DropEditor : UnityEditor.Editor
 {
@@ -47,3 +48,4 @@ public class DropEditor : UnityEditor.Editor
 
     }
 }
+*/
