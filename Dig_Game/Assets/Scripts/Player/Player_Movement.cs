@@ -113,7 +113,7 @@ public class Player_Movement : MonoBehaviour
             animator.SetBool("Run_Left", false);
         }
 
-        Debug.Log(nDirection);
+       
 
 
 
