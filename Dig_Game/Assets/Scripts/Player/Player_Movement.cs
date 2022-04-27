@@ -17,6 +17,8 @@ public class Player_Movement : MonoBehaviour
 
     [SerializeField] private BoxCollider2D hitbox;
     [SerializeField] private LayerMask platformLayerMask;
+    [SerializeField] private Animator animator;
+    
 
     private int nDirection = 0;
     private bool isJumping = false;
@@ -59,7 +61,7 @@ public class Player_Movement : MonoBehaviour
                 offsetDirection = -1.0f;
             }
 
-            while (!IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime, (offset + (0.1f * offsetDirection)) * Time.fixedDeltaTime)))
+            while (!IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime, (offset + (0.3f * offsetDirection)) * Time.fixedDeltaTime)))
             {
                 offset += (0.1f * offsetDirection);
             }
@@ -92,6 +94,13 @@ public class Player_Movement : MonoBehaviour
 
         // Find if we should be going in the positive or negative direction
         nDirection = (Convert.ToInt32(Input.GetKey(inputs.right)) - Convert.ToInt32(Input.GetKey(inputs.left)));
+
+        //Animation     
+        animator.SetFloat("Speed", Mathf.Abs(nDirection));
+
+
+
+
 
         // Jump Code
         if (Input.GetKeyDown(inputs.jump) && isGrounded)
