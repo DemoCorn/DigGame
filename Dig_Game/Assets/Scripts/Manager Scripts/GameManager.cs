@@ -77,6 +77,10 @@ public class GameManager : MonoBehaviour
     {
         return player.GetComponent<Player_Health>().GetHealth();
     }
+    public float GetPlayerMaxHealth()
+    {
+        return player.GetComponent<Player_Health>().GetMaxHealth();
+    }
 
     public Vector3 GetCameraPosition()
     {

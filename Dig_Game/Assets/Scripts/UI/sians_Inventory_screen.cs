@@ -10,6 +10,8 @@ public class sians_Inventory_screen : MonoBehaviour
     public GameObject settingstab;
     public GameObject Equipmentscreen;
 
+    public HPCog healthCog;
+
     private UIMenu currentMenu = UIMenu.hud;
     // Start is called before the first frame update
     void Start()
