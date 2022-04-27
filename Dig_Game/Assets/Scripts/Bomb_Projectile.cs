@@ -28,7 +28,8 @@ public class Bomb_Projectile : MonoBehaviour
         Inputs inputs = GameManager.Instance.GetInputs();
         if (Input.GetKeyDown((KeyCode)inputs.attack))
         {
-            Instantiate()
+            //Missing the item needed to instantiate. 
+            //Instantiate();
         }
 
         if (!thrown)
