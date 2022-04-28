@@ -61,6 +61,15 @@ public class Player_Health : MonoBehaviour
         isVulnerable = true;
     }
 
+    public void Heal(float HealthUp)
+    {
+        health += HealthUp;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
+
     public float GetHealth()
     {
         return health;
@@ -69,6 +78,11 @@ public class Player_Health : MonoBehaviour
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public float GetDefence()
+    {
+        return armor;
     }
 
     public void TakeDamage(float fDamage)

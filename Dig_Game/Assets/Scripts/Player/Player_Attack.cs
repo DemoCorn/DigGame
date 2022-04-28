@@ -68,4 +68,9 @@ public class Player_Attack : MonoBehaviour
     {
         blockDamage += digChange;
     }
+
+    public float GetDig()
+    {
+        return blockDamage;
+    }
 }

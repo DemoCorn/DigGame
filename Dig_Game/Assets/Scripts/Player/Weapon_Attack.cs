@@ -57,4 +57,9 @@ public class Weapon_Attack : MonoBehaviour
     {
         damage += attackChange;
     }
+
+    public float GetAttack()
+    {
+        return damage;
+    }
 }

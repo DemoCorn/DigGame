@@ -56,20 +56,118 @@ public class GameManager : MonoBehaviour
         if (playerAttack != null)
         {
             playerAttack.Equip(digChange);
+            playerAttack.Equip(attackChange);
         }
         else
         {
             Debug.LogError("No player attack script on player");
         }
 
-        if (playerAttack != null)
+        if (weaponAttack != null)
         {
-            playerAttack.Equip(attackChange);
+            weaponAttack.Equip(attackChange);
         }
         else
         {
             Debug.LogError("No weapon attack script on player");
         }
+    }
+
+    public void BuffPlayer(float healthChange, float armorChange, float attackChange, float digChange, float SpeedChange, float duration = 60.0f)
+    {
+        Player_Health playerHealth = player.GetComponent<Player_Health>();
+        Player_Attack playerAttack = player.GetComponentInChildren<Player_Attack>();
+        Weapon_Attack weaponAttack = player.GetComponentInChildren<Weapon_Attack>();
+        Player_Movement playerMove = player.GetComponent<Player_Movement>();
+
+        if (playerHealth != null)
+        {
+            playerHealth.Equip(healthChange, armorChange);
+        }
+        else
+        {
+            Debug.LogError("No health script on player");
+        }
+
+        if (playerAttack != null)
+        {
+            playerAttack.Equip(digChange);
+        }
+        else
+        {
+            Debug.LogError("No player attack script on player");
+        }
+
+        if (weaponAttack != null)
+        {
+            weaponAttack.Equip(attackChange);
+        }
+        else
+        {
+            Debug.LogError("No weapon attack script on player");
+        }
+
+        if (playerMove != null)
+        {
+            playerMove.Equip(SpeedChange);
+        }
+        else
+        {
+            Debug.LogError("No movement script on player");
+        }
+
+        StartCoroutine(DebuffPlayer(healthChange, armorChange, attackChange, digChange, SpeedChange, duration));
+    }
+
+    IEnumerator DebuffPlayer(float healthChange, float armorChange, float attackChange, float digChange, float SpeedChange, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Player_Health playerHealth = player.GetComponent<Player_Health>();
+        Player_Attack playerAttack = player.GetComponentInChildren<Player_Attack>();
+        Weapon_Attack weaponAttack = player.GetComponentInChildren<Weapon_Attack>();
+        Player_Movement playerMove = player.GetComponent<Player_Movement>();
+
+        if (playerHealth != null)
+        {
+            playerHealth.Equip(-healthChange, -armorChange);
+        }
+        else
+        {
+            Debug.LogError("No health script on player");
+        }
+
+        if (playerAttack != null)
+        {
+            playerAttack.Equip(-digChange);
+        }
+        else
+        {
+            Debug.LogError("No player attack script on player");
+        }
+
+        if (weaponAttack != null)
+        {
+            weaponAttack.Equip(-attackChange);
+        }
+        else
+        {
+            Debug.LogError("No weapon attack script on player");
+        }
+
+        if (playerMove != null)
+        {
+            playerMove.Equip(-SpeedChange);
+        }
+        else
+        {
+            Debug.LogError("No movement script on player");
+        }
+    }
+
+    public void HealPlayer(float heal)
+    {
+        player.GetComponent<Player_Health>().Heal(heal);
     }
 
     // Various get functions
@@ -80,6 +178,21 @@ public class GameManager : MonoBehaviour
     public float GetPlayerMaxHealth()
     {
         return player.GetComponent<Player_Health>().GetMaxHealth();
+    }
+
+    public float GetPlayerAttack()
+    {
+        return player.GetComponentInChildren<Weapon_Attack>().GetAttack();
+    }
+
+    public float GetPlayerArmor()
+    {
+        return player.GetComponent<Player_Health>().GetDefence();
+    }
+
+    public float GetPlayerDig()
+    {
+        return player.GetComponentInChildren<Player_Attack>().GetDig();
     }
 
     public Vector3 GetCameraPosition()
