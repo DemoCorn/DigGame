@@ -63,14 +63,4 @@ public class Player_Attack : MonoBehaviour
     {
         mAttackHitbox.enabled = true;
     }
-
-    public void Equip(float digChange)
-    {
-        blockDamage += digChange;
-    }
-
-    public float GetDig()
-    {
-        return blockDamage;
-    }
 }
