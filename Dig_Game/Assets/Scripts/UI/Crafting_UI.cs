@@ -18,15 +18,6 @@ public class Crafting_UI : MonoBehaviour
     public GameObject blueprintButton;
     public GameObject blueprintList;
 
-    /*
-    public Text itemNameText;
-    public Text classReqText;
-    public Text hpText;
-    public Text defText;
-    public Text atkText;
-    public Text digText;
-    */
-    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < slotObjects.Count; i++)
@@ -43,6 +34,7 @@ public class Crafting_UI : MonoBehaviour
         newButton = blueprintButton;
         bpUI = newButton.GetComponent<Blueprint_UI>();
         bpUI.blueprint = blueprints[0];
+        bpUI.index = 0;
         newButton.GetComponentInChildren<Text>().text = bpUI.blueprint.blueprint.result.item.itemName;
 
         for (int i = 1; i < blueprints.Count; i++)
@@ -50,6 +42,7 @@ public class Crafting_UI : MonoBehaviour
             newButton = Instantiate(blueprintButton, blueprintList.transform);
             bpUI = newButton.GetComponent<Blueprint_UI>();
             bpUI.blueprint = blueprints[i];
+            bpUI.index = i;
             newButton.GetComponentInChildren<Text>().text = bpUI.blueprint.blueprint.result.item.itemName;
             newButton.GetComponentInChildren<Button>().interactable = false;
         }

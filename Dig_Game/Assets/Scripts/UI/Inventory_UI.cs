@@ -12,6 +12,10 @@ public class Inventory_UI : MonoBehaviour
     [SerializeField] private GameObject[] equipmentObjects = new GameObject[Enum.GetNames(typeof(EquipmentType)).Length];
     private InventorySpace[] equipmentSlots = new InventorySpace[Enum.GetNames(typeof(EquipmentType)).Length];
 
+    [SerializeField] private Text descriptionBox;
+    [SerializeField] private Vector3 descriptionBoxOffset;
+    int currentHoverIndex = -1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,14 +45,41 @@ public class Inventory_UI : MonoBehaviour
                 inventoryButtons[i].amountText.text = "";
             }
         }
+
+        if (currentHoverIndex > -1)
+        {
+            descriptionBox.transform.position = Input.mousePosition + descriptionBoxOffset;
+        }
     }
 
     public void ClickEquip(int slotNum)
     {
         List<ItemGroup> inventory = GameManager.Instance.InventoryManager.GetInventory();
-        if (inventory[slotNum].item is Equipment)
+        if (inventory.Count > slotNum)
         {
-            GameManager.Instance.InventoryManager.Equip((Equipment)inventory[slotNum].item);
+            if (inventory[slotNum].item is Equipment)
+            {
+                GameManager.Instance.InventoryManager.Equip((Equipment)inventory[slotNum].item);
+            }
+        }
+    }
+
+    public void PointerEnter(int slotNum)
+    {
+        List<ItemGroup> inventory = GameManager.Instance.InventoryManager.GetInventory();
+        if (inventory.Count > slotNum)
+        {
+            currentHoverIndex = slotNum;
+            descriptionBox.text = inventory[slotNum].item.itemDescription;
+        }
+    }
+
+    public void PointerExit(int slotNum)
+    {
+        if (currentHoverIndex == slotNum)
+        {
+            currentHoverIndex = -1;
+            descriptionBox.text = "";
         }
     }
 
