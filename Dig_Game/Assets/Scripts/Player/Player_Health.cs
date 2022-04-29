@@ -16,6 +16,7 @@ public class Player_Health : MonoBehaviour
     private bool isVulnerable = true;
     bool hasDied;
     bool hasRetired;
+    private bool revive = false;
 
     private void Start()
     {
@@ -85,6 +86,11 @@ public class Player_Health : MonoBehaviour
         return armor;
     }
 
+    public void SetRevive(bool rev)
+    {
+        revive = rev;
+    }
+
     public void TakeDamage(float fDamage)
     {
         if (isVulnerable)
@@ -116,6 +122,11 @@ public class Player_Health : MonoBehaviour
     {
         if (!hasRetired)
         {
+            if (revive)
+            {
+                health = maxHealth / 2;
+                return;
+            }
             // Make player lose Inventory and Equipment
             GameManager.Instance.InventoryManager.DieReset();         
         }

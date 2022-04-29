@@ -5,8 +5,12 @@ using UnityEngine;
 public class SpeedPotion : UsableEffect
 {
     public float speedBoost = 5.0f;
-    override public void Activate()
+    float activeTime = 60.0f;
+    float cooldownTime = 60.0f;
+
+    override public float Activate()
     {
-        GameManager.Instance.BuffPlayer(0.0f, 0.0f, 0.0f, 0.0f, speedBoost);
+        GameManager.Instance.BuffPlayer(0.0f, 0.0f, 0.0f, 0.0f, speedBoost, activeTime);
+        return cooldownTime;
     }
 }

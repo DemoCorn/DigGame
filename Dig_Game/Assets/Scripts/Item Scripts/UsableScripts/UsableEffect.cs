@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class UsableEffect : MonoBehaviour
 {
-    virtual public void Activate()
+    virtual public float Activate()
     {
         Debug.LogWarning("Usable Item should not use usable effect script directly");
+        return 0.0f;
     }
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class TestUsable : UsableEffect
 {
-    override public void Activate()
+    override public float Activate()
     {
         Debug.LogWarning("Test");
+        return 0.0f;
     }
 }

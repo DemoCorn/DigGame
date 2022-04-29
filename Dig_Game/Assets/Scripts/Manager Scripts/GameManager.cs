@@ -135,6 +135,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ActivatePlayerRevive(float time)
+    {
+        player.GetComponent<Player_Health>().SetRevive(true);
+        StartCoroutine(DeactivatePlayerRevive(time));
+    }
+
+    IEnumerator DeactivatePlayerRevive(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        player.GetComponent<Player_Health>().SetRevive(false);
+    }
+
     public void HealPlayer(float heal)
     {
         player.GetComponent<Player_Health>().Heal(heal);
