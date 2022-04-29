@@ -41,8 +41,7 @@ public class GameManager : MonoBehaviour
     public void EquipPlayer(float healthChange, float armorChange, float attackChange, float digChange)
     {
         Player_Health playerHealth = player.GetComponent<Player_Health>();
-        Player_Attack playerAttack = player.GetComponentInChildren<Player_Attack>();
-        Weapon_Attack weaponAttack = player.GetComponentInChildren<Weapon_Attack>();
+        Player_WeaponStats playerAim = player.GetComponentInChildren<Player_WeaponStats>();
 
         if (playerHealth != null)
         {
@@ -53,31 +52,21 @@ public class GameManager : MonoBehaviour
             Debug.LogError("No health script on player");
         }
 
-        if (playerAttack != null)
+        if (playerAim != null)
         {
-            playerAttack.Equip(digChange);
-            playerAttack.Equip(attackChange);
+            playerAim.Equip(attackChange, digChange);
         }
         else
         {
-            Debug.LogError("No player attack script on player");
-        }
-
-        if (weaponAttack != null)
-        {
-            weaponAttack.Equip(attackChange);
-        }
-        else
-        {
-            Debug.LogError("No weapon attack script on player");
+            Debug.LogError("No player aim script on player");
         }
     }
 
+    // Buff and Debuff lines
     public void BuffPlayer(float healthChange, float armorChange, float attackChange, float digChange, float SpeedChange, float duration = 60.0f)
     {
         Player_Health playerHealth = player.GetComponent<Player_Health>();
-        Player_Attack playerAttack = player.GetComponentInChildren<Player_Attack>();
-        Weapon_Attack weaponAttack = player.GetComponentInChildren<Weapon_Attack>();
+        Player_WeaponStats playerAim = player.GetComponentInChildren<Player_WeaponStats>();
         Player_Movement playerMove = player.GetComponent<Player_Movement>();
 
         if (playerHealth != null)
@@ -89,22 +78,13 @@ public class GameManager : MonoBehaviour
             Debug.LogError("No health script on player");
         }
 
-        if (playerAttack != null)
+        if (playerAim != null)
         {
-            playerAttack.Equip(digChange);
+            playerAim.Equip(attackChange, digChange);
         }
         else
         {
-            Debug.LogError("No player attack script on player");
-        }
-
-        if (weaponAttack != null)
-        {
-            weaponAttack.Equip(attackChange);
-        }
-        else
-        {
-            Debug.LogError("No weapon attack script on player");
+            Debug.LogError("No player aim script on player");
         }
 
         if (playerMove != null)
@@ -124,8 +104,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         Player_Health playerHealth = player.GetComponent<Player_Health>();
-        Player_Attack playerAttack = player.GetComponentInChildren<Player_Attack>();
-        Weapon_Attack weaponAttack = player.GetComponentInChildren<Weapon_Attack>();
+        Player_WeaponStats playerAim = player.GetComponentInChildren<Player_WeaponStats>();
         Player_Movement playerMove = player.GetComponent<Player_Movement>();
 
         if (playerHealth != null)
@@ -137,22 +116,13 @@ public class GameManager : MonoBehaviour
             Debug.LogError("No health script on player");
         }
 
-        if (playerAttack != null)
+        if (playerAim != null)
         {
-            playerAttack.Equip(-digChange);
+            playerAim.Equip(-attackChange, -digChange);
         }
         else
         {
-            Debug.LogError("No player attack script on player");
-        }
-
-        if (weaponAttack != null)
-        {
-            weaponAttack.Equip(-attackChange);
-        }
-        else
-        {
-            Debug.LogError("No weapon attack script on player");
+            Debug.LogError("No player aim script on player");
         }
 
         if (playerMove != null)
@@ -182,7 +152,7 @@ public class GameManager : MonoBehaviour
 
     public float GetPlayerAttack()
     {
-        return player.GetComponentInChildren<Weapon_Attack>().GetAttack();
+        return player.GetComponentInChildren<Player_WeaponStats>().GetAttack();
     }
 
     public float GetPlayerArmor()
@@ -192,7 +162,7 @@ public class GameManager : MonoBehaviour
 
     public float GetPlayerDig()
     {
-        return player.GetComponentInChildren<Player_Attack>().GetDig();
+        return player.GetComponentInChildren<Player_WeaponStats>().GetDig();
     }
 
     public Vector3 GetCameraPosition()
