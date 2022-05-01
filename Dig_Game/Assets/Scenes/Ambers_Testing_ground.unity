@@ -674,10 +674,12 @@ MonoBehaviour:
   speed: 5
   jumpPower: 20
   gravity: -0.1
+  holdJumpMultiplier: 1.5
   hitbox: {fileID: 1454317239}
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  animator: {fileID: 0}
 --- !u!114 &1454317243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,3 +1256,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &4628539784762695578
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6483014151242061671, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_Name
+      value: Treasure room 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558753987762702839, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558753987762702839, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558753987762702839, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558753987762702839, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558753987762702839, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558753987762702839, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558753987762702839, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558753987762702839, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558753987762702839, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558753987762702839, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558753987762702839, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 37af1ba412c71924ba40551504bd9067, type: 3}
