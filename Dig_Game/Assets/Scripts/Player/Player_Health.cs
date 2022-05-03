@@ -105,10 +105,13 @@ public class Player_Health : MonoBehaviour
             // Make player lose Inventory and Equipment
             GameManager.Instance.InventoryManager.DieReset();         
         }
-       
+
+        // Reset Health
+        health = maxHealth;
+
         // Set to a new random class
         GameManager.Instance.InventoryManager.RandomizeClass();
-  
+        
         // Reset / Respawn player
         transform.position = startPosition;
 
