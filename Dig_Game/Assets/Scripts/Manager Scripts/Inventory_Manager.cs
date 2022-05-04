@@ -21,9 +21,15 @@ public class Inventory_Manager : MonoBehaviour
 
     private Inputs inputs;
 
+    private ItemNotifyScript itemNotifyScript;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        itemNotifyScript = GetComponent<ItemNotifyScript>();
+
+
         // Equip the lack of armor and weapon, needed so that Equip works
         for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
         {
@@ -157,6 +163,8 @@ public class Inventory_Manager : MonoBehaviour
         if (addblueprint != null)
         {
             addblueprint.isUnlocked = true;
+            itemNotifyScript.DisplayItemNotificationUI();
+            Debug.Log(addblueprint.blueprint.result.item.name);
         }
         Debug.LogWarning("Blueprint dropped not contained in Inventory_Manager");
     }
