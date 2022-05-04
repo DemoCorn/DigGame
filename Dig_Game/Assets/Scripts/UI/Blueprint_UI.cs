@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Blueprint_UI : MonoBehaviour
 {
     [HideInInspector] public UnlockableBlueprint blueprint;
+    public int index;
     private Button button;
     private Text text;
 
@@ -21,11 +22,13 @@ public class Blueprint_UI : MonoBehaviour
         {
             button.interactable = true;
             text.text = blueprint.blueprint.result.item.itemName;
+            transform.SetSiblingIndex(index);
         }
         else
         {
             button.interactable = false;
             text.text = "???";
+            transform.SetSiblingIndex(GameManager.Instance.InventoryManager.GetBlueprints().Count);
         }
     }
 }
