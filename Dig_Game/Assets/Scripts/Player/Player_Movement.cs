@@ -150,4 +150,9 @@ public class Player_Movement : MonoBehaviour
         hitbox.offset = new Vector2(0.0f, 0.0f);
         return false;
     }
+
+    public void Equip(float movementChange)
+    {
+        speed += movementChange;
+    }
 }

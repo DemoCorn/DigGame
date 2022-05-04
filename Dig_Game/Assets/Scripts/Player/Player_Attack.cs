@@ -5,12 +5,12 @@ using UnityEngine;
 public class Player_Attack : MonoBehaviour
 {
     // Variables
-    [SerializeField] float blockDamage = 15.0f;
-    [SerializeField] float enemyDamage = 15.0f; 
+    [SerializeField] float enemyDamage = 1.0f; 
 
     private BoxCollider2D mAttackHitbox;
     [SerializeField] Vector2 rightAttackOffset = new Vector2(0.6f, 0.0f);
     [SerializeField] Vector2 rightAttackSize = new Vector2(0.2f, 1.0f);
+    [SerializeField] Player_WeaponStats stats;
 
     public Animator dAnimator;
     void Start()
@@ -51,7 +51,7 @@ public class Player_Attack : MonoBehaviour
                     }
                     else
                     {
-                        collisionObject.GetComponent<Non_Player_Health>().Hit(blockDamage);
+                        collisionObject.GetComponent<Non_Player_Health>().Hit(stats.GetDig());
                     }
                 }
             }
@@ -68,10 +68,5 @@ public class Player_Attack : MonoBehaviour
     {
         mAttackHitbox.enabled = true;
         dAnimator.SetBool("PlayAnimation", true);
-    }
-
-    public void Equip(float digChange)
-    {
-        blockDamage += digChange;
     }
 }
