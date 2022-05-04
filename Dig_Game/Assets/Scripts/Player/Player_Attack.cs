@@ -12,6 +12,7 @@ public class Player_Attack : MonoBehaviour
     [SerializeField] Vector2 rightAttackOffset = new Vector2(0.6f, 0.0f);
     [SerializeField] Vector2 rightAttackSize = new Vector2(0.2f, 1.0f);
 
+    public Animator dAnimator;
     void Start()
     {
         //mAttackHitbox = gameObject.AddComponent<BoxCollider2D>();
@@ -56,12 +57,17 @@ public class Player_Attack : MonoBehaviour
             }
             mAttackHitbox.enabled = false;
         }
+        if(mAttackHitbox.enabled == false)
+        {
+            dAnimator.SetBool("EndAnimation", false);
+        }
 
     }
 
     public void Attack()
     {
         mAttackHitbox.enabled = true;
+        dAnimator.SetBool("PlayAnimation", true);
     }
 
     public void Equip(float digChange)
