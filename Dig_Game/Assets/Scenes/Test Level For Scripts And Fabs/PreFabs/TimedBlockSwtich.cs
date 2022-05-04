@@ -15,24 +15,27 @@ public class TimedBlockSwtich : MonoBehaviour
 
 
     // Start is called before the first frame update
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collider2D collision)
     {
-        Block = GameObject.FindGameObjectWithTag("InvisibleBlock").GetComponent<TimedBlocks>();
 
 
-        Block.isvisible = false;
+
+
+        Debug.Log("collided With Trigger");
+
+        Block.setVisible(false);
 
     }
 
 
     private void Start()
     {
+        enabled = true;
 
-       
-        Block = GameObject.FindGameObjectWithTag("Block").GetComponent<TimedBlocks>();
+       Block = GameObject.FindGameObjectWithTag("Block").GetComponent<TimedBlocks>();
 
 
-        Block.setVisible(false);
+      //  Block.setVisible(false);
 
 
 
@@ -42,6 +45,22 @@ public class TimedBlockSwtich : MonoBehaviour
 
 
     }
+
+
+    private void Update()
+    {
+
+
+        //Block.TimerFunction();
+
+
+
+
+
+
+    }
+
+
 
 
 

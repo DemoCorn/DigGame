@@ -12,7 +12,7 @@ public class DonutPlatform : MonoBehaviour
 
     private Vector2 pos;
 
- 
+
     [SerializeField] public float PlatformRespawnTime;
 
     private Renderer rend;
@@ -42,12 +42,12 @@ public class DonutPlatform : MonoBehaviour
 
 
 
-     private void ObjectMoveUp()
+    private void ObjectMoveUp()
     {
-        
+
         transform.Translate(0, UpSpeed, 0);
     }
-        
+
 
 
 
@@ -65,7 +65,7 @@ public class DonutPlatform : MonoBehaviour
             StartCoroutine(waitbeforeSpawn());
 
 
-          //  Debug.Log("Spawned");
+            //  Debug.Log("Spawned");
 
 
             transform.position = pos;
@@ -74,7 +74,7 @@ public class DonutPlatform : MonoBehaviour
 
             fallen = false;
 
-           // Debug.Log(pos);
+            // Debug.Log(pos);
 
             GetComponent<Collider2D>().enabled = true;
 
@@ -90,32 +90,32 @@ public class DonutPlatform : MonoBehaviour
 
         if (fallspeed < 0)
         {
-        //    ObjectMoveUp();
+            //    ObjectMoveUp();
         }
     }
 
 
 
 
-    
+
 
 
 
 
     void OnCollisionEnter2D(Collision2D col)
     {
-      //  Debug.Log("Collision2");
+        //  Debug.Log("Collision2");
 
 
-      //  Debug.Log("disabled");
+        //  Debug.Log("disabled");
         GetComponent<Collider2D>().enabled = false;
 
 
-     //   Debug.Log("destroy");
+        //   Debug.Log("destroy");
         rend.enabled = false;
 
 
-        if (col.collider.CompareTag("Player")==true)
+        if (col.collider.CompareTag("Player") == true)
         {
             Debug.Log("Collision");
             StartCoroutine(Fall());
@@ -135,7 +135,7 @@ public class DonutPlatform : MonoBehaviour
     IEnumerator Fall()
     {
 
-      //  Debug.Log("Collision3");
+        //  Debug.Log("Collision3");
         yield return new WaitForSeconds(falldelay);
 
         rbgd.gravityScale = fallspeed;
@@ -147,9 +147,16 @@ public class DonutPlatform : MonoBehaviour
     IEnumerator waitbeforeSpawn()
     {
         yield return new WaitForSeconds(PlatformRespawnTime);
-       // Debug.Log("spawning");
-        
+        // Debug.Log("spawning");
+
     }
+
+
+
+
+
+
+
 
 
 

@@ -10,10 +10,10 @@ public class TimedBlocks : MonoBehaviour
     private Renderer rend;
 
     [SerializeField] public bool isvisible;
-   
-    
+    [SerializeField] public float AppearTime;
 
 
+    private float currenttime = 0f;
 
 
 
@@ -26,13 +26,26 @@ public class TimedBlocks : MonoBehaviour
 
         isvisible = true;
 
-       
 
 
 
+     
 
 
     }
+
+
+
+  
+
+
+
+
+
+
+
+
+
 
     public void setVisible(bool val)
     {
@@ -44,6 +57,7 @@ public class TimedBlocks : MonoBehaviour
 
         else
         {
+            Debug.Log("SetVisible Toggled to Disable");
             isvisible = false;
         }
     }
@@ -61,14 +75,20 @@ public class TimedBlocks : MonoBehaviour
 
         else
         {
-            {
-                VisibleInteractable();
-            }   
+
+            VisibleInteractable();
+
         }
 
 
 
+        ///for testing purposes
 
+
+
+
+
+        //TimerFunction();
 
 
 
@@ -102,15 +122,29 @@ public class TimedBlocks : MonoBehaviour
 
     public void InVisibleNONInteractable()
     {
-        Debug.Log("activated");
-       
+      //  Debug.Log("activated");
+
 
         rend.enabled = false;
         GetComponent<Collider2D>().enabled = false;
+
+
+
     }
 
 
+    public void TimerFunction()
+    {
 
+        currenttime += Time.deltaTime;
+
+        if (currenttime >= AppearTime)
+        {
+            currenttime = 0;
+            InVisibleNONInteractable();
+            isvisible = false;
+        }
+    }    
 
 
 }
