@@ -5,7 +5,7 @@ using System;
 
 public class Weapon_Attack : MonoBehaviour
 {
-    [SerializeField] float damage = 10.0f;
+    [SerializeField] Player_WeaponStats stats;
     Animator mAnimator;
     Collider2D mHitbox;
 
@@ -47,14 +47,9 @@ public class Weapon_Attack : MonoBehaviour
                 collisionObject = collision.gameObject;
                 if (collisionObject.GetComponent<Non_Player_Health>() != null && collisionObject.tag == "Enemy")
                 {
-                    collisionObject.GetComponent<Non_Player_Health>().Hit(damage);
+                    collisionObject.GetComponent<Non_Player_Health>().Hit(stats.GetAttack());
                 }
             }
         }
-    }
-
-    public void Equip(float attackChange)
-    {
-        damage += attackChange;
     }
 }
