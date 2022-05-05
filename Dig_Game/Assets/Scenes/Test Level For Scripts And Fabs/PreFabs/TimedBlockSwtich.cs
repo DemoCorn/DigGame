@@ -15,7 +15,7 @@ public class TimedBlockSwtich : MonoBehaviour
 
 
     // Start is called before the first frame update
-    private void OnCollisionEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
 
 

@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DonutPlatform : MonoBehaviour
+
 {
-
-
     private Rigidbody2D rbgd;
+
 
     [SerializeField] public float falldelay;
 
     private Vector2 pos;
-
 
     [SerializeField] public float PlatformRespawnTime;
 
@@ -22,9 +21,7 @@ public class DonutPlatform : MonoBehaviour
     [SerializeField] public float fallspeed;
     [SerializeField] public float UpSpeed;
 
-
-
-
+    private BoxCollider2D BoxColl;
 
 
 
@@ -36,11 +33,12 @@ public class DonutPlatform : MonoBehaviour
         rend = GetComponent<Renderer>();
         fallen = false;
 
-        rbgd.gravityScale = fallspeed;
+        rbgd.gravityScale = 0;
+
+        Debug.Log("Collision1");
+
+        BoxColl = GetComponent<BoxCollider2D>();
     }
-
-
-
 
     private void ObjectMoveUp()
     {
@@ -48,22 +46,11 @@ public class DonutPlatform : MonoBehaviour
         transform.Translate(0, UpSpeed, 0);
     }
 
-
-
-
-
-
-
-
     private void SpawnNewPlatform()
     {
 
         if (fallen == true)
         {
-
-
-            StartCoroutine(waitbeforeSpawn());
-
 
             //  Debug.Log("Spawned");
 
@@ -92,43 +79,52 @@ public class DonutPlatform : MonoBehaviour
         {
             //    ObjectMoveUp();
         }
+
+        if (CheckGrounded())
+        {
+            Debug.Log("Collision");
+
+            StartCoroutine("Fall", falldelay);
+
+        }
+        else
+        {
+            GetComponent<Collider2D>().enabled = false;
+
+
+            //   Debug.Log("destroy");
+            rend.enabled = false;
+
+            rbgd.gravityScale = 0;
+
+            fallen = true;
+
+            Invoke("SpawnNewPlatform", PlatformRespawnTime);
+        }
     }
-
-
-
-
-
-
-
 
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        //  Debug.Log("Collision2");
+          Debug.Log("Collision2");
 
 
         //  Debug.Log("disabled");
-        GetComponent<Collider2D>().enabled = false;
 
 
-        //   Debug.Log("destroy");
-        rend.enabled = false;
+        //if (col.collider.CompareTag("Player") == true)
+        //{
+        //    Debug.Log("Collision");
+
+        //    Invoke("Fall", falldelay);
 
 
-        if (col.collider.CompareTag("Player") == true)
-        {
-            Debug.Log("Collision");
-            StartCoroutine(Fall());
+            
+
+        //}
 
 
-        }
-
-        fallen = true;
-
-
-
-        SpawnNewPlatform();
-
+        
     }
 
 
@@ -152,7 +148,19 @@ public class DonutPlatform : MonoBehaviour
     }
 
 
+    private bool CheckGrounded()
+    {
+        Debug.Log("ground check!");
+        RaycastHit2D hit = Physics2D.BoxCast(BoxColl.bounds.center, BoxColl.bounds.size, 0f, Vector2.up, 0.5f);
 
+        //if (!hit)
+        //    Debug.Log("HIT none");
+        //Debug.Log(hit.transform.name);
+
+        return hit;
+
+
+    }
 
 
 
