@@ -302,11 +302,11 @@ MonoBehaviour:
   puzzlePrefabs:
   - prefabAtLevel:
     - prefabAtLayer:
-      - prefab: {fileID: 2577846991387606324, guid: fa86937679170cd458e859f274281396, type: 3}
+      - prefab: {fileID: 5148206451478495240, guid: 0616aa8cc8f10e944ad1d02f1fe78219, type: 3}
         chance: 33
-      - prefab: {fileID: 2577846991387606324, guid: fa86937679170cd458e859f274281396, type: 3}
+      - prefab: {fileID: 5148206451478495240, guid: 0616aa8cc8f10e944ad1d02f1fe78219, type: 3}
         chance: 33
-      - prefab: {fileID: 3144035503624598055, guid: 0b565cd9f68219d46b371496f2dc141a, type: 3}
+      - prefab: {fileID: 5148206451478495240, guid: 0616aa8cc8f10e944ad1d02f1fe78219, type: 3}
         chance: 33
       lowestPrefabAmount: 3
       highestPrefabAmount: 3
@@ -12075,6 +12075,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1778476842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3374675329224379049, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
+  m_PrefabInstance: {fileID: 1848959716}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1778476853 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3374675329224379041, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
+  m_PrefabInstance: {fileID: 1848959716}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1804288853
 GameObject:
   m_ObjectHideFlags: 0
@@ -12219,6 +12229,26 @@ PrefabInstance:
     - target: {fileID: 3374675329224379049, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374675329351976864, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: 0.004985869
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374675329351976864, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
+      propertyPath: m_Bounds.m_Center.y
+      value: -0.000050872564
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374675329913611635, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -0.0009255037
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374675330182855104, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: 0.07889345
+      objectReference: {fileID: 0}
+    - target: {fileID: 3374675330429189769, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
+      propertyPath: m_Bounds.m_Center.x
+      value: -0.0011404753
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
