@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            ManagerLoad();
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -42,6 +43,8 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<Camera>();
+
+        GenerationManager.Generate();
     }
 
     // Changes stats for different player scripts
