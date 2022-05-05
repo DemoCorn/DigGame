@@ -11,10 +11,10 @@ public class Non_Player_Health : MonoBehaviour
 	BoxCollider2D boxCollider;
 	[HideInInspector] public bool mImmune = false;
 
-    private void Awake()
+    private void Start()
     {
 		particle = GetComponentInChildren<ParticleSystem>();
-		sprite = GetComponent<SpriteRenderer>();
+		sprite = GetComponentInChildren<SpriteRenderer>();
 		boxCollider = GetComponent<BoxCollider2D>();
     }
 
