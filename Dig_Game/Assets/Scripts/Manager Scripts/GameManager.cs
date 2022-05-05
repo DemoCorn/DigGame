@@ -30,11 +30,18 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(this.gameObject);
         }
+    }
+
+    public void ManagerLoad()
+    {
+        player = GameObject.FindGameObjectsWithTag("Player")[0];
+        mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<Camera>();
     }
 
     // Changes stats for different player scripts
