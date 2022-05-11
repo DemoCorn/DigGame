@@ -5,13 +5,14 @@ using TMPro;
 
 public class Dialog : MonoBehaviour
 {
-    public TextMeshProUGUI textDisplay;
+    private TextMeshProUGUI textDisplay;
     public string[] sentences;
     private int index;
     public float typingSpeed;
 
-    public GameObject continueButton;
+    //public GameObject continueButton;
     public GameObject dialogPanel;
+    public string dialogPanelTag;
     public SpriteRenderer sprite;
 
     
@@ -22,6 +23,9 @@ public class Dialog : MonoBehaviour
     private void Start()
     {
         //click = GameObject.FindWithTag("Click").GetComponent<AudioSource>();
+        dialogPanel = GameObject.FindWithTag("GrandpaDialog");
+        textDisplay = dialogPanel.GetComponentInChildren<TextMeshProUGUI>();
+        InvokeRepeating("FindVariables", 0.3f, 0.1f);
     }
   
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,7 +34,8 @@ public class Dialog : MonoBehaviour
         {
             //click.Play();
             active = false;
-            dialogPanel.SetActive(true);
+            dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
+            //dialogPanel.SetActive(true);
             StartCoroutine(Type());
             Debug.LogWarning(" vvv This line(35) needs to be updated to stop player movement while the player is in dialog.");
             //PlayerMovement.canMove = false;            
@@ -39,9 +44,9 @@ public class Dialog : MonoBehaviour
 
     private void Update()
     {
-        if (textDisplay.text == sentences[index])
+        if (textDisplay.text == sentences[index] && Input.GetKeyDown(KeyCode.Q))
         {
-            continueButton.SetActive(true);
+            NextSentence();
         }
     }
 
@@ -58,9 +63,8 @@ public class Dialog : MonoBehaviour
     public void NextSentence()
     {
         next = false;
-        continueButton.SetActive(false);
 
-        click.Play();
+        //click.Play();
 
         if (index < sentences.Length - 1)
         {
@@ -71,11 +75,18 @@ public class Dialog : MonoBehaviour
         else
         {
             textDisplay.text = "";
-            continueButton.SetActive(false);
-            dialogPanel.SetActive(false);
+            dialogPanel.GetComponent<>() = Color.clear;
+            //dialogPanel.SetActive(false);
             sprite.color = Color.clear;
             Debug.LogWarning(" vvv This line(77) needs to be updated to allow player movement after they are done in dialog.");
             //PlayerMovement.canMove = true;
         }
+    }
+
+    public void FindVariables()
+    {
+        dialogPanel = GameObject.FindWithTag("GrandpaDialog");
+        //dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
+        textDisplay = dialogPanel.GetComponentInChildren<TextMeshProUGUI>();
     }
 }
