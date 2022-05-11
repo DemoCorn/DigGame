@@ -31,12 +31,13 @@ public class Generation_Manager : MonoBehaviour
     private GetPrefabSize _prefabSizeScript;
     private HashSet<KeyValuePair<int, int>> reservedSpaces = new HashSet<KeyValuePair<int, int>>();
 
-
-    // Start is called before the first frame update
-    public void Start()
+    public void Generate()
     {
         // Temporary crafting table spawn just to have it
         Instantiate(craftingTable, new Vector3(30.0f, 1.0f, 0.0f), Quaternion.identity);
+
+        // Clear the reserved spaces for level reloads
+        reservedSpaces.Clear();
 
         // local variable set up
         int mineralX;
