@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hit_Rear_Enemy : MonoBehaviour
 {
     [HideInInspector] public bool isHit;
+    public Non_Player_Health health;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -12,6 +13,6 @@ public class Hit_Rear_Enemy : MonoBehaviour
         isHit = true;
         //Debug.Log("REAR HIT");
 
-        transform.parent.GetComponent<Non_Player_Health>().mImmune = false;
+        health.mImmune = false;
     }
 }

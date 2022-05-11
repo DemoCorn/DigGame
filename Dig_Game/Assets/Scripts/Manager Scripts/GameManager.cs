@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<Camera>();
 
         GenerationManager.Generate();
+        UIManager.BootUp();
     }
 
     // Changes stats for different player scripts
@@ -207,7 +208,31 @@ public class GameManager : MonoBehaviour
         return LevelNum;
     }
 
+    public Collider2D GetSwordCollider()
+    {
+        return player.transform.Find("Aim/Weapon").GetComponent<Player_WeaponStats>().GetWeaponHitbox();
+    }
+
     // Scene Control Functions
+    public void Reset()
+    {
+        StartCoroutine("ResetLevel", 0);
+    }
+
+    private IEnumerator ResetLevel(int nScene)
+    {
+        AsyncOperation load = SceneManager.LoadSceneAsync(nScene, LoadSceneMode.Single);
+
+        while (!load.isDone)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForEndOfFrame();
+
+        ManagerLoad();
+    }
+
     public void EndGame(bool Winning)
     {
         isWinning = Winning;

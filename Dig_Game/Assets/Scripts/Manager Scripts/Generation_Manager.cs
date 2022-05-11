@@ -36,6 +36,9 @@ public class Generation_Manager : MonoBehaviour
         // Temporary crafting table spawn just to have it
         Instantiate(craftingTable, new Vector3(30.0f, 1.0f, 0.0f), Quaternion.identity);
 
+        // Clear the reserved spaces for level reloads
+        reservedSpaces.Clear();
+
         // local variable set up
         int mineralX;
         int mineralY;
