@@ -136,9 +136,9 @@ public class Player_Health : MonoBehaviour
 
         // Set to a new random class
         GameManager.Instance.InventoryManager.RandomizeClass();
-        
+
         // Reset / Respawn player
-        transform.position = startPosition;
+        GameManager.Instance.Reset();
 
     }
 
