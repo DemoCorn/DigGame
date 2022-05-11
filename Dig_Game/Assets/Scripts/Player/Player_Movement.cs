@@ -55,6 +55,7 @@ public class Player_Movement : MonoBehaviour
         if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime, mVerticalVelocity * Time.fixedDeltaTime)))
         {
             float offset = 0.0f;
+            /*
             float offsetDirection = 1.0f;
             if (mVerticalVelocity <= 0.0f)
             {
@@ -65,6 +66,8 @@ public class Player_Movement : MonoBehaviour
             {
                 offset += (0.1f * offsetDirection);
             }
+            */
+
             isGrounded = mVerticalVelocity <= 0.0f;
             mVerticalVelocity = offset;
         }
@@ -149,5 +152,10 @@ public class Player_Movement : MonoBehaviour
 
         hitbox.offset = new Vector2(0.0f, 0.0f);
         return false;
+    }
+
+    public void Equip(float movementChange)
+    {
+        speed += movementChange;
     }
 }
