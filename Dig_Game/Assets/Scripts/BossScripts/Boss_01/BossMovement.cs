@@ -9,6 +9,7 @@ public class BossMovement : MonoBehaviour
     int index;
     public Vector2 currentPosition;
     public bool inRadius;
+    public ParticleSystem teleportParticles;
 
     public float teleportCooldown;
     public float teleportCooldownRequirment;
@@ -41,6 +42,7 @@ public class BossMovement : MonoBehaviour
         index = Random.Range(0, bossPositions.Length);
         currentPosition = bossPositions[index];
         transform.position = currentPosition;
+        teleportParticles.Play();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

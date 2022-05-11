@@ -17,6 +17,8 @@ public class Player_Movement : MonoBehaviour
 
     [SerializeField] private BoxCollider2D hitbox;
     [SerializeField] private LayerMask platformLayerMask;
+    [SerializeField] private Animator animator;
+    
 
     private int nDirection = 0;
     private bool isJumping = false;
@@ -53,16 +55,19 @@ public class Player_Movement : MonoBehaviour
         if (IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime, mVerticalVelocity * Time.fixedDeltaTime)))
         {
             float offset = 0.0f;
+            /*
             float offsetDirection = 1.0f;
             if (mVerticalVelocity <= 0.0f)
             {
                 offsetDirection = -1.0f;
             }
 
-            while (!IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime, (offset + (0.1f * offsetDirection)) * Time.fixedDeltaTime)))
+            while (!IsCollidingWithBlock(new Vector2(speed * nDirection * Time.fixedDeltaTime, (offset + (0.3f * offsetDirection)) * Time.fixedDeltaTime)))
             {
                 offset += (0.1f * offsetDirection);
             }
+            */
+
             isGrounded = mVerticalVelocity <= 0.0f;
             mVerticalVelocity = offset;
         }
@@ -92,6 +97,29 @@ public class Player_Movement : MonoBehaviour
 
         // Find if we should be going in the positive or negative direction
         nDirection = (Convert.ToInt32(Input.GetKey(inputs.right)) - Convert.ToInt32(Input.GetKey(inputs.left)));
+
+        //Animation
+        if (nDirection > 0)
+        {
+            animator.SetBool("Run_Right", true);
+        }
+        else
+        {
+            animator.SetBool("Run_Right", false);
+        }
+        if (nDirection < 0)
+        {
+            animator.SetBool("Run_Left", true);
+        }
+        else
+        {
+            animator.SetBool("Run_Left", false);
+        }
+
+       
+
+
+
 
         // Jump Code
         if (Input.GetKeyDown(inputs.jump) && isGrounded)
@@ -124,5 +152,10 @@ public class Player_Movement : MonoBehaviour
 
         hitbox.offset = new Vector2(0.0f, 0.0f);
         return false;
+    }
+
+    public void Equip(float movementChange)
+    {
+        speed += movementChange;
     }
 }

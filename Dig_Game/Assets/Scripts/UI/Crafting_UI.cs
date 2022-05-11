@@ -10,30 +10,22 @@ public class Crafting_UI : MonoBehaviour
     private List<CraftingSlot> defaultSlotSpaces = new List<CraftingSlot>();
 
     [SerializeField] private GameObject resultObject;
-    private CraftingSlot resultSpace;
-    private CraftingSlot defaultResultSpace;
+    private ResultSlot resultSpace;
+    private ResultSlot defaultResultSpace;
 
     private Blueprint currentBlueprint;
 
     public GameObject blueprintButton;
     public GameObject blueprintList;
 
-    /*
-    public Text itemNameText;
-    public Text classReqText;
-    public Text hpText;
-    public Text defText;
-    public Text atkText;
-    public Text digText;
-    */
-    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < slotObjects.Count; i++)
         {
             slotSpaces.Add(new CraftingSlot(slotObjects[i].GetComponentInChildren<Image>(), slotObjects[i].GetComponentInChildren<Text>(), i));
         }
-        resultSpace = new CraftingSlot(resultObject.GetComponentInChildren<Image>(), resultObject.GetComponentInChildren<Text>(), 0);
+        ResultSlotText resultText = resultObject.GetComponentInChildren<ResultSlotText>();
+        resultSpace = new ResultSlot(resultObject.GetComponentInChildren<Image>(), resultText.nameText, resultText.hpText, resultText.defenceText, resultText.digText, resultText.attackText);
 
         GameObject newButton;
         List<UnlockableBlueprint> blueprints = GameManager.Instance.InventoryManager.GetBlueprints();
@@ -42,6 +34,7 @@ public class Crafting_UI : MonoBehaviour
         newButton = blueprintButton;
         bpUI = newButton.GetComponent<Blueprint_UI>();
         bpUI.blueprint = blueprints[0];
+        bpUI.index = 0;
         newButton.GetComponentInChildren<Text>().text = bpUI.blueprint.blueprint.result.item.itemName;
 
         for (int i = 1; i < blueprints.Count; i++)
@@ -49,12 +42,13 @@ public class Crafting_UI : MonoBehaviour
             newButton = Instantiate(blueprintButton, blueprintList.transform);
             bpUI = newButton.GetComponent<Blueprint_UI>();
             bpUI.blueprint = blueprints[i];
+            bpUI.index = i;
             newButton.GetComponentInChildren<Text>().text = bpUI.blueprint.blueprint.result.item.itemName;
             newButton.GetComponentInChildren<Button>().interactable = false;
         }
 
         defaultSlotSpaces = new List<CraftingSlot>(slotSpaces);
-        defaultResultSpace = new CraftingSlot(resultSpace);
+        defaultResultSpace = new ResultSlot(resultSpace);
     }
 
     public void ChooseBlueprint(Blueprint_UI blueprintUI)
@@ -62,10 +56,36 @@ public class Crafting_UI : MonoBehaviour
         Blueprint blueprint = blueprintUI.blueprint.blueprint;
         resultSpace.slotImage.sprite = blueprint.result.item.itemSprite;
         resultSpace.slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        resultSpace.nameText.text = blueprint.result.amount + " " + blueprint.result.item.itemName;
+        if (blueprint.result.item is Equipment)
+        {
+            Equipment[] CurrentEquiped = GameManager.Instance.InventoryManager.GetEquipment();
+            Equipment resultItem = (Equipment)blueprint.result.item;
+            float statchange;
 
-        Debug.LogWarning("Crafting_UI is only using name for the text someone needs to figure out the formatting we want and then delete this warning from the code"); // Delete this line once resultSpace.amountText.text isn't just using blueprint.result.item.itemName
-        resultSpace.amountText.text = blueprint.result.item.itemName;
-        //itemNameText.text = blueprint.result.item.name;
+            resultSpace.hpText.text = "HP: " + resultItem.healthModifier;
+            statchange = resultItem.healthModifier - CurrentEquiped[(int)resultItem.equipmentType].healthModifier;
+            resultSpace.hpText.text += " (" + (statchange >= 0.0f ? ("+" + statchange.ToString()) : statchange.ToString()) + ")";
+
+            resultSpace.defenceText.text = "Def: " + resultItem.armorModifier;
+            statchange = resultItem.armorModifier - CurrentEquiped[(int)resultItem.equipmentType].armorModifier;
+            resultSpace.defenceText.text += " (" + (statchange >= 0.0f ? ("+" + statchange.ToString()) : statchange.ToString()) + ")";
+
+            resultSpace.digText.text = "Dig: " + resultItem.digModifier;
+            statchange = resultItem.digModifier - CurrentEquiped[(int)resultItem.equipmentType].digModifier;
+            resultSpace.digText.text += " (" + (statchange >= 0.0f ? ("+" + statchange.ToString()) : statchange.ToString()) + ")";
+
+            resultSpace.attackText.text = "Atk: " + resultItem.attackModifier;
+            statchange = resultItem.attackModifier - CurrentEquiped[(int)resultItem.equipmentType].attackModifier;
+            resultSpace.attackText.text += " (" + (statchange >= 0.0f ? ("+" + statchange.ToString()) : statchange.ToString()) + ")";
+        }
+        else
+        {
+            resultSpace.hpText.text = "";
+            resultSpace.defenceText.text = "";
+            resultSpace.digText.text = "";
+            resultSpace.attackText.text = "";
+        }
         
 
         foreach (CraftingSlot slot in slotSpaces)
@@ -120,5 +140,39 @@ public class Crafting_UI : MonoBehaviour
         public Image slotImage;
         public Text amountText;
         public int slotIndex;
+    }
+
+    public class ResultSlot
+    {
+        public ResultSlot()
+        {
+        }
+
+        public ResultSlot(ResultSlot slot)
+        {
+            slotImage = slot.slotImage;
+            nameText = slot.nameText;
+            hpText = slot.hpText;
+            defenceText = slot.defenceText;
+            digText = slot.digText;
+            attackText = slot.attackText;
+        }
+
+        public ResultSlot(Image image, Text name, Text HP, Text defence, Text dig, Text attack)
+        {
+            slotImage = image;
+            nameText = name;
+            hpText = HP;
+            defenceText = defence;
+            digText = dig;
+            attackText = attack;
+        }
+
+        public Image slotImage;
+        public Text nameText;
+        public Text hpText;
+        public Text defenceText;
+        public Text digText;
+        public Text attackText;
     }
 }

@@ -14,7 +14,7 @@ public class UpdateGraph : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("UpdateScan", 0, 5f);
+        InvokeRepeating("UpdateScan", 0, 0.5f);
     }
 
     // Update is called once per frame

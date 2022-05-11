@@ -25,7 +25,7 @@ public class Smart_Tile : MonoBehaviour
             if (gameObject.transform.position.y + offset <= levels.layerRange[i].highest && gameObject.transform.position.y + offset >= levels.layerRange[i].lowest)
             {
                 spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
-                spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[i].sprite;
+                spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[i].sprite[Random.Range(0, levelRanges[levels.nLevelNumber].dirtLayers[i].sprite.Count)];
                 if (!overrideLayerHealth)
                 {
                     health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[i].health);
@@ -41,7 +41,7 @@ public class Smart_Tile : MonoBehaviour
             if (gameObject.transform.position.y <= levels.layerRange[0].highest && gameObject.transform.position.y >= levels.layerRange[0].lowest)
             {
                 spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
-                spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[0].sprite;
+                spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[0].sprite[Random.Range(0, levelRanges[levels.nLevelNumber].dirtLayers[0].sprite.Count)];
                 if (!overrideLayerHealth)
                 {
                     health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[0].health);
@@ -51,7 +51,7 @@ public class Smart_Tile : MonoBehaviour
             else if (gameObject.transform.position.y <= levels.layerRange[levels.layerRange.Count - 1].highest && gameObject.transform.position.y >= levels.layerRange[levels.layerRange.Count - 1].lowest)
             {
                 spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
-                spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[levels.layerRange.Count - 1].sprite;
+                spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[levels.layerRange.Count - 1].sprite[Random.Range(0, levelRanges[levels.nLevelNumber].dirtLayers[levels.layerRange.Count - 1].sprite.Count)];
                 if (!overrideLayerHealth)
                 {
                     health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[levels.layerRange.Count - 1].health);
@@ -82,12 +82,12 @@ public class Smart_Tile : MonoBehaviour
         {
         }
 
-        public DirtRange(float hp, Sprite objectSprite)
+        public DirtRange(float hp, List<Sprite> objectSprite)
         {
             health = hp;
             sprite = objectSprite;
         }
         public float health;
-        public Sprite sprite;
+        public List<Sprite> sprite = new List<Sprite>();
     }
 }
