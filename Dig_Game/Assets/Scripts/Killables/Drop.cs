@@ -16,8 +16,14 @@ public class Drop : MonoBehaviour
     public bool smartDrop = false;
     private float maxChance = 100.0f;
 
+    //Item Notification
+    private ItemNotifyScript itemNotifyScript;
+
+
     private void Start()
     {
+        itemNotifyScript = GetComponent<ItemNotifyScript>();
+
         if (smartDrop)
         {
             SmartDropSetup();
@@ -83,6 +89,7 @@ public class Drop : MonoBehaviour
                         if (chance <= blueprint.percentChance)
                         {
                             GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
+                            itemNotifyScript.DisplayItemNotificationUI();
                         }
                         else
                         {
@@ -106,6 +113,8 @@ public class Drop : MonoBehaviour
                 }
             }
         }
+
+        //Notify player what they've picked up. 
     }
 
     void SmartDropSetup()
