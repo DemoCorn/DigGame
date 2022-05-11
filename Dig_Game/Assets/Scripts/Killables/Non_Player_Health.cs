@@ -25,7 +25,7 @@ public class Non_Player_Health : MonoBehaviour
 			health -= fDamage;
 			if (health <= 0)
 			{
-				DestroyObject();
+				StartCoroutine(Destroy());
 			}
 			else if(particle)
             {
@@ -46,19 +46,17 @@ public class Non_Player_Health : MonoBehaviour
 		health = newHealth;
 	}
 
-	private void DestroyObject()
+	private IEnumerator Destroy()
     {
 		if (particle)
 		{
 			particle.Play();
 			sprite.enabled = false;
 			boxCollider.enabled = false;
-			Destroy(gameObject, particle.main.startLifetime.constantMax);
+			yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
 		}
-		else
-        {
-			Destroy(gameObject);
-        }
+
+		Destroy(gameObject);
     }
 
 }

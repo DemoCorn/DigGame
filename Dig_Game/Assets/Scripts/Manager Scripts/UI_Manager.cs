@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class UI_Manager : MonoBehaviour
 {
+    private GameManager gameManager;
+
     [SerializeField] private GameObject menuPrefab;
     private sians_Inventory_screen menuScript;
 
@@ -13,15 +15,13 @@ public class UI_Manager : MonoBehaviour
     [HideInInspector] public bool onCraftingTable = false;
 
     // Start is called before the first frame update
-    public void Start()
-    {
-        inputs = GameManager.Instance.GetInputs();
-    }
-
-    public void BootUp()
+    void Start()
     {
         GameObject menus = Instantiate(menuPrefab);
+
         menuScript = menus.GetComponent<sians_Inventory_screen>();
+        inputs = GameManager.Instance.GetInputs();
+        gameManager = GameManager.Instance;
     }
 
     // Update is called once per frame
@@ -37,6 +37,11 @@ public class UI_Manager : MonoBehaviour
             {
                 menuScript.OpenCloseMenu(UIMenu.inventory);
             }
+        }
+
+        if (menuScript.mainscreen)
+        {
+            menuScript.healthCog.UpdateHealth(gameManager.GetPlayerHealth(), gameManager.GetPlayerMaxHealth());
         }
     }
 }
