@@ -10,7 +10,7 @@ public class CRManager : MonoBehaviour
 
     [Header("Spawner")]
     public GameObject[] enemies;
-    public EnemySpawnLocations[] enemySpawnLocations;
+    public List<EnemySpawnLocations> enemySpawnLocations;
 
     [Header("Enemy Count")]
     public int enemyCount;
@@ -58,12 +58,10 @@ public class CRManager : MonoBehaviour
     }
     public void SpawnEnemies()
     {
-        //Spawn first enemy
-        Instantiate(enemies[enemySpawnLocations[1].enemyToSpawn], enemySpawnLocations[0].enemySpawnLocation.transform.position, Quaternion.identity, gameObject.transform);
-        //Spawn second enemy
-        Instantiate(enemies[enemySpawnLocations[1].enemyToSpawn], enemySpawnLocations[1].enemySpawnLocation.transform.position, Quaternion.identity, gameObject.transform);
-        //Spawn third enemy
-        Instantiate(enemies[enemySpawnLocations[1].enemyToSpawn], enemySpawnLocations[2].enemySpawnLocation.transform.position, Quaternion.identity, gameObject.transform);
+        foreach (EnemySpawnLocations spawnlocation in enemySpawnLocations)
+        {
+            Instantiate(enemies[spawnlocation.enemyToSpawn], spawnlocation.enemySpawnLocation.transform.position, Quaternion.identity, gameObject.transform);
+        }
 
         //Update EnemyCount
         enemyCount = 3;

@@ -52,7 +52,12 @@ public class Generation_Manager : MonoBehaviour
         List<ScatterRange> scatterRanges = levelScatters[levels.nLevelNumber].scatterAtLevel;
         List<OreRange> oreRanges = oreLevelRanges[levels.nLevelNumber].oreAtLevel;
 
-        for (int i = -30; i <= 100; i++)
+        for (float i = GameManager.Instance.LayerManager.GetLevelHeight().Value; i <= 30; i++)
+        {
+            Instantiate(invisibleWall, new Vector2(levelWidth, i), invisibleWall.transform.rotation);
+        }
+
+        for (float i = GameManager.Instance.LayerManager.GetLevelHeight().Key; i <= GameManager.Instance.LayerManager.GetLevelHeight().Value; i++)
         {
             Instantiate(invisibleWall, new Vector2(-1, i), invisibleWall.transform.rotation);
             Instantiate(invisibleWall, new Vector2(levelWidth, i), invisibleWall.transform.rotation);
