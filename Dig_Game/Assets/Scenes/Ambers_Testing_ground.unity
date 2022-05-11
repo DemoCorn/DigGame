@@ -167,16 +167,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  EquipedUsables:
-  - usable: {fileID: 0}
-    amount: 0
-    cooldown: 0
-  - usable: {fileID: 0}
-    amount: 0
-    cooldown: 0
-  - usable: {fileID: 0}
-    amount: 0
-    cooldown: 0
   blueprints: []
 --- !u!114 &27976917
 MonoBehaviour:
@@ -391,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0827b30f10e47f34a9a93f3d0f51a666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
+  damage: 10
 --- !u!95 &441111762
 Animator:
   serializedVersion: 3
@@ -1176,11 +1166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d16d73aedbd1e740a479da590336226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockDamage: 45
   enemyDamage: 15
   rightAttackOffset: {x: 0.6, y: 0}
   rightAttackSize: {x: 0.2, y: 0.8}
-  stats: {fileID: 0}
-  dAnimator: {fileID: 0}
 --- !u!61 &1862247651
 BoxCollider2D:
   m_ObjectHideFlags: 0
