@@ -31,12 +31,13 @@ public class Generation_Manager : MonoBehaviour
     private GetPrefabSize _prefabSizeScript;
     private HashSet<KeyValuePair<int, int>> reservedSpaces = new HashSet<KeyValuePair<int, int>>();
 
-
-    // Start is called before the first frame update
-    public void Start()
+    public void Generate()
     {
         // Temporary crafting table spawn just to have it
         Instantiate(craftingTable, new Vector3(30.0f, 1.0f, 0.0f), Quaternion.identity);
+
+        // Clear the reserved spaces for level reloads
+        reservedSpaces.Clear();
 
         // local variable set up
         int mineralX;
@@ -51,12 +52,7 @@ public class Generation_Manager : MonoBehaviour
         List<ScatterRange> scatterRanges = levelScatters[levels.nLevelNumber].scatterAtLevel;
         List<OreRange> oreRanges = oreLevelRanges[levels.nLevelNumber].oreAtLevel;
 
-        for (float i = GameManager.Instance.LayerManager.GetLevelHeight().Value; i <= 30; i++)
-        {
-            Instantiate(invisibleWall, new Vector2(levelWidth, i), invisibleWall.transform.rotation);
-        }
-
-        for (float i = GameManager.Instance.LayerManager.GetLevelHeight().Key; i <= GameManager.Instance.LayerManager.GetLevelHeight().Value; i++)
+        for (int i = -30; i <= 100; i++)
         {
             Instantiate(invisibleWall, new Vector2(-1, i), invisibleWall.transform.rotation);
             Instantiate(invisibleWall, new Vector2(levelWidth, i), invisibleWall.transform.rotation);

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MainToBoss : MonoBehaviour
 {
     public GameObject player;
+    public GameObject boss;
 
     public Transform bossStartPosition;
     // Start is called before the first frame update
@@ -24,7 +25,7 @@ public class MainToBoss : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             player.transform.position = bossStartPosition.transform.position;
-            
+            boss.SetActive(true);
         }
     }
 }

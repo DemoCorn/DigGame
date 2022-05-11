@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6083965617564892222}
   - component: {fileID: 6083965617564892161}
   - component: {fileID: 8920918660587793688}
-  - component: {fileID: -4867011367530417061}
   m_Layer: 0
   m_Name: L3FlyingEnemy(Ranged)
   m_TagString: Enemy
@@ -158,25 +157,8 @@ MonoBehaviour:
   particle: {fileID: 0}
   health: 15
   immunityTime: 0
+  spawnNewEnemyChance: 10
   mImmune: 0
---- !u!114 &-4867011367530417061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6083965617564892220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDrops: {fileID: 0}
-  blueprintDrops: {fileID: 0}
-  itemDropByLevel: []
-  blueprintDropByLevel: []
-  dropBlueprints: 0
-  smartDrop: 0
 --- !u!1 &6083965618483121837
 GameObject:
   m_ObjectHideFlags: 0

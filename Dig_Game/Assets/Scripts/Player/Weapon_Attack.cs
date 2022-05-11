@@ -6,8 +6,11 @@ using System;
 public class Weapon_Attack : MonoBehaviour
 {
     [SerializeField] Player_WeaponStats stats;
+    [SerializeField] private GameObject trailRenderer;
     Animator mAnimator;
     Collider2D mHitbox;
+
+    
 
     private void Start()
     {
@@ -26,11 +29,13 @@ public class Weapon_Attack : MonoBehaviour
             mHitbox.enabled = true;
             mAnimator.SetInteger("Class", (int)GameManager.Instance.InventoryManager.getPlayerClass());
             mAnimator.SetBool("PlayAttack", true);
+            trailRenderer.SetActive(true);
         }
         if (mAnimator.GetBool("WeaponAttackDone"))
         {
             mAnimator.SetBool("WeaponAttackDone", false);
             mHitbox.enabled = false;
+            trailRenderer.SetActive(false);
         }
 
         // Check if attack hitbox is active to skip some execution if it's not

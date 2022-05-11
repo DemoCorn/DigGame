@@ -85,6 +85,8 @@ public class EnemyAI : MonoBehaviour
             rb = GetComponent<Rigidbody2D>();
             startingPosition = transform.position;
             canAttack = true;
+
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameManager.Instance.GetSwordCollider(), true);
         }
 
         //Update Path every set amount of seconds
