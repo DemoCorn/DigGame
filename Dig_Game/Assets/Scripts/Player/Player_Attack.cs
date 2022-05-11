@@ -5,14 +5,13 @@ using UnityEngine;
 public class Player_Attack : MonoBehaviour
 {
     // Variables
-    [SerializeField] float enemyDamage = 1.0f; 
+    [SerializeField] float blockDamage = 15.0f;
+    [SerializeField] float enemyDamage = 15.0f; 
 
     private BoxCollider2D mAttackHitbox;
     [SerializeField] Vector2 rightAttackOffset = new Vector2(0.6f, 0.0f);
     [SerializeField] Vector2 rightAttackSize = new Vector2(0.2f, 1.0f);
-    [SerializeField] Player_WeaponStats stats;
 
-    public Animator dAnimator;
     void Start()
     {
         //mAttackHitbox = gameObject.AddComponent<BoxCollider2D>();
@@ -51,15 +50,11 @@ public class Player_Attack : MonoBehaviour
                     }
                     else
                     {
-                        collisionObject.GetComponent<Non_Player_Health>().Hit(stats.GetDig());
+                        collisionObject.GetComponent<Non_Player_Health>().Hit(blockDamage);
                     }
                 }
             }
             mAttackHitbox.enabled = false;
-        }
-        if(mAttackHitbox.enabled == false)
-        {
-            dAnimator.SetBool("EndAnimation", false);
         }
 
     }
@@ -67,6 +62,10 @@ public class Player_Attack : MonoBehaviour
     public void Attack()
     {
         mAttackHitbox.enabled = true;
-        dAnimator.SetBool("PlayAnimation", true);
+    }
+
+    public void Equip(float digChange)
+    {
+        blockDamage += digChange;
     }
 }
