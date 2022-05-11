@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1909495606859961297}
   - component: {fileID: 2415744378453570307}
   - component: {fileID: 8675464163186999549}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: switch
   m_TagString: BreakableBlock
   m_Icon: {fileID: 0}
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 0.9332183, b: 0.495283, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 34054b3e799cb664f8a7656c1590a94e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -122,4 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e530c0bc73a8d74688dd99d72ad7e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 0}
   health: 15
+  immunityTime: 0
+  mImmune: 0
