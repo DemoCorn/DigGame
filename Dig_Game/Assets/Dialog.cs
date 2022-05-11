@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Dialog : MonoBehaviour
@@ -34,7 +35,7 @@ public class Dialog : MonoBehaviour
         {
             //click.Play();
             active = false;
-            dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
+            dialogPanel.GetComponent<Image>().color = Color.white;
             //dialogPanel.SetActive(true);
             StartCoroutine(Type());
             Debug.LogWarning(" vvv This line(35) needs to be updated to stop player movement while the player is in dialog.");
@@ -75,7 +76,8 @@ public class Dialog : MonoBehaviour
         else
         {
             textDisplay.text = "";
-            dialogPanel.GetComponent<>() = Color.clear;
+            dialogPanel.GetComponent<Image>().color = Color.clear;
+            //dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
             //dialogPanel.SetActive(false);
             sprite.color = Color.clear;
             Debug.LogWarning(" vvv This line(77) needs to be updated to allow player movement after they are done in dialog.");
