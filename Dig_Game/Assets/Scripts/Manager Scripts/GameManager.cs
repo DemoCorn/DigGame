@@ -52,7 +52,8 @@ public class GameManager : MonoBehaviour
     public void EquipPlayer(float healthChange, float armorChange, float attackChange, float digChange)
     {
         Player_Health playerHealth = player.GetComponent<Player_Health>();
-        Player_WeaponStats playerAim = player.GetComponentInChildren<Player_WeaponStats>();
+        Player_Attack playerAttack = player.GetComponentInChildren<Player_Attack>();
+        Weapon_Attack weaponAttack = player.GetComponentInChildren<Weapon_Attack>();
 
         if (playerHealth != null)
         {
@@ -63,104 +64,23 @@ public class GameManager : MonoBehaviour
             Debug.LogError("No health script on player");
         }
 
-        if (playerAim != null)
+        if (playerAttack != null)
         {
-            playerAim.Equip(attackChange, digChange);
+            playerAttack.Equip(digChange);
         }
         else
         {
-            Debug.LogError("No player aim script on player");
+            Debug.LogError("No player attack script on player");
         }
-    }
 
-    // Buff and Debuff lines
-    public void BuffPlayer(float healthChange, float armorChange, float attackChange, float digChange, float SpeedChange, float duration = 60.0f)
-    {
-        Player_Health playerHealth = player.GetComponent<Player_Health>();
-        Player_WeaponStats playerAim = player.GetComponentInChildren<Player_WeaponStats>();
-        Player_Movement playerMove = player.GetComponent<Player_Movement>();
-
-        if (playerHealth != null)
+        if (playerAttack != null)
         {
-            playerHealth.Equip(healthChange, armorChange);
+            playerAttack.Equip(attackChange);
         }
         else
         {
-            Debug.LogError("No health script on player");
+            Debug.LogError("No weapon attack script on player");
         }
-
-        if (playerAim != null)
-        {
-            playerAim.Equip(attackChange, digChange);
-        }
-        else
-        {
-            Debug.LogError("No player aim script on player");
-        }
-
-        if (playerMove != null)
-        {
-            playerMove.Equip(SpeedChange);
-        }
-        else
-        {
-            Debug.LogError("No movement script on player");
-        }
-
-        StartCoroutine(DebuffPlayer(healthChange, armorChange, attackChange, digChange, SpeedChange, duration));
-    }
-
-    IEnumerator DebuffPlayer(float healthChange, float armorChange, float attackChange, float digChange, float SpeedChange, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        Player_Health playerHealth = player.GetComponent<Player_Health>();
-        Player_WeaponStats playerAim = player.GetComponentInChildren<Player_WeaponStats>();
-        Player_Movement playerMove = player.GetComponent<Player_Movement>();
-
-        if (playerHealth != null)
-        {
-            playerHealth.Equip(-healthChange, -armorChange);
-        }
-        else
-        {
-            Debug.LogError("No health script on player");
-        }
-
-        if (playerAim != null)
-        {
-            playerAim.Equip(-attackChange, -digChange);
-        }
-        else
-        {
-            Debug.LogError("No player aim script on player");
-        }
-
-        if (playerMove != null)
-        {
-            playerMove.Equip(-SpeedChange);
-        }
-        else
-        {
-            Debug.LogError("No movement script on player");
-        }
-    }
-
-    public void ActivatePlayerRevive(float time)
-    {
-        player.GetComponent<Player_Health>().SetRevive(true);
-        StartCoroutine(DeactivatePlayerRevive(time));
-    }
-
-    IEnumerator DeactivatePlayerRevive(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        player.GetComponent<Player_Health>().SetRevive(false);
-    }
-
-    public void HealPlayer(float heal)
-    {
-        player.GetComponent<Player_Health>().Heal(heal);
     }
 
     // Various get functions
@@ -171,21 +91,6 @@ public class GameManager : MonoBehaviour
     public float GetPlayerMaxHealth()
     {
         return player.GetComponent<Player_Health>().GetMaxHealth();
-    }
-
-    public float GetPlayerAttack()
-    {
-        return player.GetComponentInChildren<Player_WeaponStats>().GetAttack();
-    }
-
-    public float GetPlayerArmor()
-    {
-        return player.GetComponent<Player_Health>().GetDefence();
-    }
-
-    public float GetPlayerDig()
-    {
-        return player.GetComponentInChildren<Player_WeaponStats>().GetDig();
     }
 
     public Vector3 GetCameraPosition()
