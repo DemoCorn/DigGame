@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 4334721582161843171}
   - component: {fileID: 7995089100376837147}
   - component: {fileID: 6364488564281079856}
+  - component: {fileID: -5041837288647374837}
   m_Layer: 0
   m_Name: CRL2FlyingEnemy(Melee) 1
   m_TagString: Untagged
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  damage: 10
+  damage: 40
   attackDelay: 5
   speed: 200
   jumpHeight: 0.5
@@ -213,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDrops: {fileID: 0}
+  itemDrops: {fileID: 11400000, guid: 0563aecf5d4b98343a1f8c6c6f749875, type: 2}
   blueprintDrops: {fileID: 0}
   itemDropByLevel: []
   blueprintDropByLevel: []
@@ -231,6 +232,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766f056dee8abb14a9205ac17c03a5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5041837288647374837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4334721582161843174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e530c0bc73a8d74688dd99d72ad7e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 0}
+  health: 50
+  immunityTime: 1
+  mImmune: 0
 --- !u!1 &4334721583208263504
 GameObject:
   m_ObjectHideFlags: 0

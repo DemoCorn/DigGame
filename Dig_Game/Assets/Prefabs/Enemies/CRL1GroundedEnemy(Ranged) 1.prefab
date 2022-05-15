@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 3197314199104634149}
   - component: {fileID: 855785528277149819}
   - component: {fileID: 688432210036834178}
+  - component: {fileID: 6444950926799468784}
   m_Layer: 0
   m_Name: CRL1GroundedEnemy(Ranged) 1
   m_TagString: Enemy
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  damage: 10
+  damage: 20
   attackDelay: 5
   speed: 200
   jumpHeight: 0.5
@@ -287,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDrops: {fileID: 0}
+  itemDrops: {fileID: 11400000, guid: 55b6ae452777b9e4fb1dcc6f190bce9b, type: 2}
   blueprintDrops: {fileID: 0}
   itemDropByLevel: []
   blueprintDropByLevel: []
@@ -305,3 +306,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766f056dee8abb14a9205ac17c03a5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6444950926799468784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197314199104634152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e530c0bc73a8d74688dd99d72ad7e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 0}
+  health: 30
+  immunityTime: 1
+  mImmune: 0

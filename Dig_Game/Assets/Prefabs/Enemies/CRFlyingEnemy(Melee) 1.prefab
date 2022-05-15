@@ -4988,7 +4988,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  damage: 10
+  damage: 20
   attackDelay: 5
   speed: 200
   jumpHeight: 0.5
@@ -5092,7 +5092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 6700885314272434590}
-  health: 15
+  health: 30
   immunityTime: 1
   mImmune: 0
 --- !u!114 &7715360551412171862
@@ -5107,8 +5107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDrops: {fileID: 0}
-  blueprintDrops: {fileID: 0}
+  itemDrops: {fileID: 11400000, guid: 55b6ae452777b9e4fb1dcc6f190bce9b, type: 2}
+  blueprintDrops: {fileID: 11400000, guid: e0f61dee273d537439c6b8ffc592d560, type: 2}
   itemDropByLevel: []
   blueprintDropByLevel: []
   dropBlueprints: 0
