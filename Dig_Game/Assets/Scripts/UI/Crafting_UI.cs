@@ -18,15 +18,6 @@ public class Crafting_UI : MonoBehaviour
     public GameObject blueprintButton;
     public GameObject blueprintList;
 
-    /*
-    public Text itemNameText;
-    public Text classReqText;
-    public Text hpText;
-    public Text defText;
-    public Text atkText;
-    public Text digText;
-    */
-    // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < slotObjects.Count; i++)
@@ -43,6 +34,7 @@ public class Crafting_UI : MonoBehaviour
         newButton = blueprintButton;
         bpUI = newButton.GetComponent<Blueprint_UI>();
         bpUI.blueprint = blueprints[0];
+        bpUI.index = 0;
         newButton.GetComponentInChildren<Text>().text = bpUI.blueprint.blueprint.result.item.itemName;
 
         for (int i = 1; i < blueprints.Count; i++)
@@ -50,6 +42,7 @@ public class Crafting_UI : MonoBehaviour
             newButton = Instantiate(blueprintButton, blueprintList.transform);
             bpUI = newButton.GetComponent<Blueprint_UI>();
             bpUI.blueprint = blueprints[i];
+            bpUI.index = i;
             newButton.GetComponentInChildren<Text>().text = bpUI.blueprint.blueprint.result.item.itemName;
             newButton.GetComponentInChildren<Button>().interactable = false;
         }
@@ -66,11 +59,32 @@ public class Crafting_UI : MonoBehaviour
         resultSpace.nameText.text = blueprint.result.amount + " " + blueprint.result.item.itemName;
         if (blueprint.result.item is Equipment)
         {
+            Equipment[] CurrentEquiped = GameManager.Instance.InventoryManager.GetEquipment();
             Equipment resultItem = (Equipment)blueprint.result.item;
+            float statchange;
+
             resultSpace.hpText.text = "HP: " + resultItem.healthModifier;
+            statchange = resultItem.healthModifier - CurrentEquiped[(int)resultItem.equipmentType].healthModifier;
+            resultSpace.hpText.text += " (" + (statchange >= 0.0f ? ("+" + statchange.ToString()) : statchange.ToString()) + ")";
+
             resultSpace.defenceText.text = "Def: " + resultItem.armorModifier;
+            statchange = resultItem.armorModifier - CurrentEquiped[(int)resultItem.equipmentType].armorModifier;
+            resultSpace.defenceText.text += " (" + (statchange >= 0.0f ? ("+" + statchange.ToString()) : statchange.ToString()) + ")";
+
             resultSpace.digText.text = "Dig: " + resultItem.digModifier;
+            statchange = resultItem.digModifier - CurrentEquiped[(int)resultItem.equipmentType].digModifier;
+            resultSpace.digText.text += " (" + (statchange >= 0.0f ? ("+" + statchange.ToString()) : statchange.ToString()) + ")";
+
             resultSpace.attackText.text = "Atk: " + resultItem.attackModifier;
+            statchange = resultItem.attackModifier - CurrentEquiped[(int)resultItem.equipmentType].attackModifier;
+            resultSpace.attackText.text += " (" + (statchange >= 0.0f ? ("+" + statchange.ToString()) : statchange.ToString()) + ")";
+        }
+        else
+        {
+            resultSpace.hpText.text = "";
+            resultSpace.defenceText.text = "";
+            resultSpace.digText.text = "";
+            resultSpace.attackText.text = "";
         }
         
 

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9460ce77eff4dc0448097bfe676ef774, type: 3}
+  m_Name: EnemyHighTierDrop
+  m_EditorClassIdentifier: 
+  heapDrop: 0
+  drops:
+  - items:
+      item: {fileID: 11400000, guid: 70d92e0fdb2218f4db5a314d8f8a43af, type: 2}
+      amount: 1
+    percentChance: 0.5
+  - items:
+      item: {fileID: 11400000, guid: f539ace2b6a7aab4d95c50989478e912, type: 2}
+      amount: 1
+    percentChance: 15
+  - items:
+      item: {fileID: 11400000, guid: aa7d6ea8cee2bba4281e7f765e8efa9b, type: 2}
+      amount: 1
+    percentChance: 5
+  - items:
+      item: {fileID: 11400000, guid: e4d842834438bff41b497253203a7c1e, type: 2}
+      amount: 1
+    percentChance: 0.1
+  - items:
+      item: {fileID: 11400000, guid: efb6eee0b6cf3794aa8f3e332391c805, type: 2}
+      amount: 1
+    percentChance: 0.1
+  - items:
+      item: {fileID: 11400000, guid: 1ff66f4cc27c1fa4c9ec3faa065b8c20, type: 2}
+      amount: 1
+    percentChance: 0.0001
+  - items:
+      item: {fileID: 11400000, guid: 02f93042f5bf019419eb49d7334c6dad, type: 2}
+      amount: 1
+    percentChance: 5

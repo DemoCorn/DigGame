@@ -17,13 +17,23 @@ public class Inventory_Manager : MonoBehaviour
     [SerializeField] private Equipment[] noEquipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
     [SerializeField] private Equipment[] equipment = new Equipment[Enum.GetNames(typeof(EquipmentType)).Length];
 
+    [Header("Usables")]
+    public UsableGroup[] EquipedUsables = new UsableGroup[3] {new UsableGroup(null, 0), new UsableGroup(null, 0), new UsableGroup(null, 0) };
+    private int EquipUsableRotation = 0;
+
     [SerializeField] private List<UnlockableBlueprint> blueprints = new List<UnlockableBlueprint>();
 
     private Inputs inputs;
 
+    private ItemNotifyScript itemNotifyScript;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        itemNotifyScript = GameObject.FindWithTag("Player").GetComponent<ItemNotifyScript>();
+        
+
         // Equip the lack of armor and weapon, needed so that Equip works
         for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
         {
@@ -40,8 +50,45 @@ public class Inventory_Manager : MonoBehaviour
         lastClass = playerClass;
     }
 
+    private void Update()
+    {
+        Inputs inputs = GameManager.Instance.InputManager.GetInputs();
+        for (int i = 0; i < EquipedUsables.Length; i++)
+        {
+            if (EquipedUsables[i].usable != null)
+            {
+                if (Input.GetKeyDown(inputs.useUsables[i]) && !EquipedUsables[i].cooldown)
+                {
+                    float cooldownTime = EquipedUsables[i].usable.effect.GetComponent<UsableEffect>().Activate();
+                    EquipedUsables[i].amount--;
+                    if (EquipedUsables[i].amount <= 0)
+                    {
+                        EquipedUsables[i] = new UsableGroup(null, 0);
+                    }
+                    else
+                    {
+                        EquipedUsables[i].cooldown = true;
+                        CooldownStop(i, cooldownTime);
+                    }
+                }
+            }
+        }
+    }
+
     public void EditInventory(ItemGroup groupToAdd)
     {
+        // Check whether an item is in one of the equiped usable slots and if so add it there instead
+        if (groupToAdd.item is Usable && groupToAdd.amount > 0)
+        {
+            foreach(UsableGroup usable in EquipedUsables)
+            {
+                if (usable.usable == (Usable)groupToAdd.item)
+                {
+                    usable.amount += groupToAdd.amount;
+                    return;
+                }
+            }
+        }
         // Check whether an item needs to be added to the dictionary or the value associated with the key just needs to be changed
         int itemPlacement = InventoryHas(groupToAdd.item);
 
@@ -95,6 +142,39 @@ public class Inventory_Manager : MonoBehaviour
     public void Unequip(EquipmentType equipment)
     {
         Equip(noEquipment[(int)equipment]);
+    }
+
+    public void EquipUsable(Usable usableToEquip)
+    {
+        int usablePlacement = InventoryHas(usableToEquip);
+
+        if (usablePlacement != -1)
+        {
+            for (int i = 0; i < EquipedUsables.Length; i++)
+            {
+                if (EquipedUsables[i].usable == null)
+                {
+                    EquipedUsables[i] = new UsableGroup(inventory[usablePlacement]);
+                    EditInventory(new ItemGroup(inventory[usablePlacement].item, -inventory[usablePlacement].amount));
+                    return;
+                }
+            }
+
+            ItemGroup usableItemGroup = new ItemGroup(EquipedUsables[EquipUsableRotation]);
+            EquipedUsables[EquipUsableRotation] = new UsableGroup(inventory[usablePlacement]);
+            EditInventory(usableItemGroup);
+            EditInventory(new ItemGroup(inventory[usablePlacement].item, -inventory[usablePlacement].amount));
+
+            EquipUsableRotation++;
+            if (EquipUsableRotation >= EquipedUsables.Length)
+            {
+                EquipUsableRotation = 0;
+            }
+
+            return;
+        }
+        Debug.LogError("Usable was equiped that does not exist in inventory");
+
     }
 
     public bool Craft(Blueprint blueprint)
@@ -157,6 +237,8 @@ public class Inventory_Manager : MonoBehaviour
         if (addblueprint != null)
         {
             addblueprint.isUnlocked = true;
+            itemNotifyScript.DisplayItemNotificationUI();
+            Debug.Log(addblueprint.blueprint.result.item.name);
         }
         Debug.LogWarning("Blueprint dropped not contained in Inventory_Manager");
     }
@@ -209,6 +291,12 @@ public class Inventory_Manager : MonoBehaviour
         // Save last class
         lastClass = playerClass;
     }
+
+    IEnumerable CooldownStop(int index, float time)
+    {
+        yield return new WaitForSeconds(time);
+        EquipedUsables[index].cooldown = false;
+    }
 }
 
 // This is basically just an Item int pair however those don't show up in the unity editor, this will
@@ -219,6 +307,12 @@ public class ItemGroup
     {
     }
 
+    public ItemGroup(UsableGroup usables)
+    {
+        item = usables.usable;
+        amount = usables.amount;
+    }
+
     public ItemGroup(Item key, int value)
     {
         item = key;
@@ -227,6 +321,29 @@ public class ItemGroup
 
     public Item item;
     public int amount;
+}
+
+[System.Serializable]
+public class UsableGroup
+{
+    public UsableGroup()
+    {
+    }
+
+    public UsableGroup(ItemGroup items)
+    {
+        usable = (Usable)items.item;
+        amount = items.amount;
+    }
+
+    public UsableGroup(Usable key, int value)
+    {
+        usable = key;
+        amount = value;
+    }
+    public Usable usable;
+    public int amount;
+    public bool cooldown = false;
 }
 
 [System.Serializable]

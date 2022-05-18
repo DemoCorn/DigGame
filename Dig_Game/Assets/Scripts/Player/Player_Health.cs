@@ -14,8 +14,9 @@ public class Player_Health : MonoBehaviour
     GameObject nextPlayer;
     CinemachineVirtualCamera vCam;
     private bool isVulnerable = true;
-    bool hasDied;
-    bool hasRetired;
+    public bool hasDied;
+    public bool hasRetired;
+    private bool revive = false;
 
     private void Start()
     {
@@ -37,6 +38,7 @@ public class Player_Health : MonoBehaviour
 
     }
 
+  
     private float IsCollidingWithEnemy()
     {
         List<Collider2D> collisions = new List<Collider2D>();
@@ -61,6 +63,15 @@ public class Player_Health : MonoBehaviour
         isVulnerable = true;
     }
 
+    public void Heal(float HealthUp)
+    {
+        health += HealthUp;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
+
     public float GetHealth()
     {
         return health;
@@ -69,6 +80,16 @@ public class Player_Health : MonoBehaviour
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public float GetDefence()
+    {
+        return armor;
+    }
+
+    public void SetRevive(bool rev)
+    {
+        revive = rev;
     }
 
     public void TakeDamage(float fDamage)
@@ -102,6 +123,11 @@ public class Player_Health : MonoBehaviour
     {
         if (!hasRetired)
         {
+            if (revive)
+            {
+                health = maxHealth / 2;
+                return;
+            }
             // Make player lose Inventory and Equipment
             GameManager.Instance.InventoryManager.DieReset();         
         }
@@ -111,9 +137,9 @@ public class Player_Health : MonoBehaviour
 
         // Set to a new random class
         GameManager.Instance.InventoryManager.RandomizeClass();
-        
+
         // Reset / Respawn player
-        transform.position = startPosition;
+        GameManager.Instance.Reset();
 
     }
 
@@ -123,7 +149,7 @@ public class Player_Health : MonoBehaviour
         {        
             Die(false);
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && hasRetired == true)
         {
             Die(true);
         }

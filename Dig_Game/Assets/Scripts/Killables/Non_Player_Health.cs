@@ -11,10 +11,10 @@ public class Non_Player_Health : MonoBehaviour
 	BoxCollider2D boxCollider;
 	[HideInInspector] public bool mImmune = false;
 
-    private void Awake()
+    private void Start()
     {
 		particle = GetComponentInChildren<ParticleSystem>();
-		sprite = GetComponent<SpriteRenderer>();
+		sprite = GetComponentInChildren<SpriteRenderer>();
 		boxCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -25,7 +25,7 @@ public class Non_Player_Health : MonoBehaviour
 			health -= fDamage;
 			if (health <= 0)
 			{
-				StartCoroutine(Destroy());
+				DestroyObject();
 			}
 			else if(particle)
             {
@@ -46,17 +46,19 @@ public class Non_Player_Health : MonoBehaviour
 		health = newHealth;
 	}
 
-	private IEnumerator Destroy()
+	private void DestroyObject()
     {
 		if (particle)
 		{
 			particle.Play();
 			sprite.enabled = false;
 			boxCollider.enabled = false;
-			yield return new WaitForSeconds(particle.main.startLifetime.constantMax);
+			Destroy(gameObject, particle.main.startLifetime.constantMax);
 		}
-
-		Destroy(gameObject);
+		else
+        {
+			Destroy(gameObject);
+        }
     }
 
 }
