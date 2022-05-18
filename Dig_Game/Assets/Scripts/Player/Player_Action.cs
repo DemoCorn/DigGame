@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Player_Action : MonoBehaviour
 {
-    GameObject weapon;
-    GameObject digTool;
+    [SerializeField] GameObject weapon;
+    [SerializeField] Bomb_Projectile bomb;
+    [SerializeField] GameObject digTool;
+
     void Start()
     {
         UpdateClass();
@@ -14,12 +16,17 @@ public class Player_Action : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       // Inputs inputs = GameManager.Instance.GetInputs();
+        if (Input.GetKeyDown((KeyCode)KeyCode.Mouse3))
+        {
+            Attack();
+        }
     }
 
     public void Attack()
     {
-
+        Debug.Log("bomb throw");
+        Instantiate(bomb, transform.position, transform.rotation);
     }
 
     public void Dig()

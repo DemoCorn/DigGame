@@ -9,7 +9,13 @@ public class Bomb_Projectile : MonoBehaviour
     [SerializeField] float damage = 10.0f;
     [SerializeField] float speed = 4.0f;
     [SerializeField] bool thrown;
-    Vector3 launchOffset;
+    public Vector3 launchOffset;
+
+    public float fieldOfImpact;
+    public float force;
+    public LayerMask layerToHit;
+
+    public GameObject ExplosionEffect;
 
     void Start()
     {
@@ -22,15 +28,14 @@ public class Bomb_Projectile : MonoBehaviour
         Destroy(gameObject, 5); //Destroy automatically after 5 seconds
     }
 
+    private void OnDestroy()
+    {
+        Explode();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Inputs inputs = GameManager.Instance.GetInputs();
-        if (Input.GetKeyDown((KeyCode)inputs.attack))
-        {
-            //Instantiate();
-        }
-
         if (!thrown)
         {
             transform.position += -transform.right * speed * Time.deltaTime;
@@ -39,10 +44,25 @@ public class Bomb_Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+       // Explode();
         var enemy = collision.collider.GetComponent<Non_Player_Health>();
         if(enemy)
         {
             enemy.GetComponent<Non_Player_Health>().Hit(damage);
+            Explode();
         }
+    }
+
+    void Explode()
+    {
+        GameObject ExplosionEffectPlay = Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
+        Destroy(ExplosionEffectPlay, 10);
+        Destroy(gameObject);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, fieldOfImpact);
     }
 }
