@@ -8,7 +8,7 @@ public class BossStart : MonoBehaviour
     public GameObject boss;
     public ParticleSystem particles;
     public GameObject selfCheck;
-    public GameObject darkness;
+    
 
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -19,7 +19,7 @@ public class BossStart : MonoBehaviour
             boss.SetActive(true);
             bossSprite.SetActive(false);
             selfCheck.SetActive(false);
-            darkness.SetActive(true);
+            
         }
     }
 }
