@@ -36,6 +36,11 @@ public class Bomb_Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Inputs inputs = GameManager.Instance.GetInputs();
+        if (Input.GetKeyDown((KeyCode)inputs.attack))
+        {
+           // Instantiate();
+        }
         if (!thrown)
         {
             transform.position += -transform.right * speed * Time.deltaTime;
