@@ -11,6 +11,8 @@ public class Non_Player_Health : MonoBehaviour
 	BoxCollider2D boxCollider;
 	[HideInInspector] public bool mImmune = false;
 
+	public GameObject deathParticle;
+
     private void Start()
     {
 		particle = GetComponentInChildren<ParticleSystem>();
@@ -58,7 +60,10 @@ public class Non_Player_Health : MonoBehaviour
 		else
         {
 			Destroy(gameObject);
-        }
+			deathParticle.SetActive(true);
+
+		}
     }
+
 
 }
