@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 3128125671032768315}
   - component: {fileID: 7207234299778375720}
   - component: {fileID: 4728274537354024826}
+  - component: {fileID: 8784029709184193368}
   m_Layer: 0
   m_Name: FlyingEnemy(Ranged)
   m_TagString: Enemy
@@ -199,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  damage: 10
+  damage: 20
   attackDelay: 5
   speed: 200
   jumpHeight: 0.5
@@ -318,12 +319,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDrops: {fileID: 0}
+  itemDrops: {fileID: 11400000, guid: 55b6ae452777b9e4fb1dcc6f190bce9b, type: 2}
   blueprintDrops: {fileID: 0}
   itemDropByLevel: []
   blueprintDropByLevel: []
   dropBlueprints: 0
   smartDrop: 0
+--- !u!114 &8784029709184193368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3128125671032768262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e530c0bc73a8d74688dd99d72ad7e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 0}
+  health: 20
+  immunityTime: 1
+  mImmune: 0
 --- !u!1 &8551680562514460172
 GameObject:
   m_ObjectHideFlags: 0

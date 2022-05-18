@@ -14,8 +14,8 @@ public class Player_Health : MonoBehaviour
     GameObject nextPlayer;
     CinemachineVirtualCamera vCam;
     private bool isVulnerable = true;
-    bool hasDied;
-    bool hasRetired;
+    public bool hasDied;
+    public bool hasRetired;
     private bool revive = false;
 
     private void Start()
@@ -38,6 +38,7 @@ public class Player_Health : MonoBehaviour
 
     }
 
+  
     private float IsCollidingWithEnemy()
     {
         List<Collider2D> collisions = new List<Collider2D>();
@@ -148,7 +149,7 @@ public class Player_Health : MonoBehaviour
         {        
             Die(false);
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && hasRetired == true)
         {
             Die(true);
         }
