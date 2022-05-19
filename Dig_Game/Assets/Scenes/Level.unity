@@ -339,6 +339,8 @@ MonoBehaviour:
   player: {fileID: 374492762}
   mainCamera: {fileID: 935519405}
   LevelNum: 0
+  PlayerStartPosition: {x: 17, y: 1.5, z: 218}
+  tutorialComplete: 0
 --- !u!114 &28138286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6073,6 +6075,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 178
       objectReference: {fileID: 0}
+    - target: {fileID: 8635237263522344171, guid: 464a3221f1ea2c648a353059ff02e9a3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8912349418678988713, guid: 464a3221f1ea2c648a353059ff02e9a3, type: 3}
       propertyPath: m_RootOrder
       value: 169
@@ -11690,7 +11696,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935519402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -158.82, y: -7.91, z: -10}
+  m_LocalPosition: {x: -24.3, y: 2.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12208,7 +12214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704843301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -158.82, y: -7.91, z: -10}
+  m_LocalPosition: {x: -24.3, y: 2.8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 108096530}
@@ -12314,11 +12320,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3374675329224379041, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -158.82
+      value: -24.3
       objectReference: {fileID: 0}
     - target: {fileID: 3374675329224379041, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.91
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 3374675329224379041, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
       propertyPath: m_LocalPosition.z

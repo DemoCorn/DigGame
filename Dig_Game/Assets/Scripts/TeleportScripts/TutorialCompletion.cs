@@ -21,10 +21,14 @@ public class TutorialCompletion : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (playerCheck.IsTouching(playerCollider))
+        List<Collider2D> collisions = new List<Collider2D>();
+        playerCheck.OverlapCollider(new ContactFilter2D(), collisions);
+
+        if (collisions.Contains(playerCollider))
         {
+            GameManager.Instance.tutorialComplete = true;
             Destroy(gameObject);
         }
     }

@@ -392,7 +392,8 @@ public enum EquipmentType
     head = 1,
     chest = 2,
     legs = 3,
-    gauntlets = 4
+    gauntlets = 4,
+    weapon = 5
 }
 
 public enum PlayerClass
