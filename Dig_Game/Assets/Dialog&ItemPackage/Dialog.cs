@@ -15,6 +15,7 @@ public class Dialog : MonoBehaviour
     public GameObject dialogPanel;
     public string dialogPanelTag;
     public SpriteRenderer sprite;
+    public GameObject barrier;
 
     
     AudioSource click;
@@ -81,6 +82,7 @@ public class Dialog : MonoBehaviour
             dialogPanel.SetActive(false);
             sprite.color = Color.clear;
             Debug.LogWarning(" vvv This line(77) needs to be updated to allow player movement after they are done in dialog.");
+            barrier.SetActive(false);
             //PlayerMovement.canMove = true;
         }
     }
