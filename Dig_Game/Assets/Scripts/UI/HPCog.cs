@@ -7,6 +7,11 @@ public class HPCog : MonoBehaviour
     public float rotationGoal;
     public float initialRotation;
 
+    private void Start()
+    {
+        GameManager.Instance.UIManager.SetCog(this);
+    }
+
     public void UpdateHealth(float currentHealth, float maxHealth)
     {
         float goalRotation = rotationGoal - initialRotation;
