@@ -37,6 +37,8 @@ public class DonutPlatform : MonoBehaviour
 
         Debug.Log("Collision1");
 
+        
+        
         BoxColl = GetComponent<BoxCollider2D>();
     }
 
@@ -75,32 +77,34 @@ public class DonutPlatform : MonoBehaviour
 
         //  Debug.Log(pos);
 
-        if (fallspeed < 0)
-        {
-            //    ObjectMoveUp();
-        }
+       
 
         if (CheckGrounded())
         {
             Debug.Log("Collision");
 
-            StartCoroutine("Fall", falldelay);
+            //StartCoroutine("Fall", falldelay);
+
+            ObjectMoveUp();
+
+
+            //DisableBlock();
 
         }
-        else
-        {
-            GetComponent<Collider2D>().enabled = false;
+        //else
+        //{
+        //    GetComponent<Collider2D>().enabled = false;
 
 
-            //   Debug.Log("destroy");
-            rend.enabled = false;
+        //    Debug.Log("destroy");
+        //    rend.enabled = false;
 
-            rbgd.gravityScale = 0;
+        //    rbgd.gravityScale = 0;
 
-            fallen = true;
+        //    fallen = true;
 
-            Invoke("SpawnNewPlatform", PlatformRespawnTime);
-        }
+        //    Invoke("SpawnNewPlatform", PlatformRespawnTime);
+        //}
     }
 
 
@@ -131,8 +135,10 @@ public class DonutPlatform : MonoBehaviour
     IEnumerator Fall()
     {
 
-        //  Debug.Log("Collision3");
+        
+        Debug.Log("Collision3 FOR FALL");
         yield return new WaitForSeconds(falldelay);
+
 
         rbgd.gravityScale = fallspeed;
 
@@ -158,12 +164,25 @@ public class DonutPlatform : MonoBehaviour
         //Debug.Log(hit.transform.name);
 
         return hit;
-
-
     }
 
 
+    private void DisableBlock()
+    {
+        Debug.Log("Block Disabled");
+        rend.enabled = false;
+        BoxColl.enabled = false;
 
+        
+    }
+
+    private void InstantFall()
+    {
+
+
+        transform.Translate(0, -fallspeed, 0);
+
+    }
 
 
 
