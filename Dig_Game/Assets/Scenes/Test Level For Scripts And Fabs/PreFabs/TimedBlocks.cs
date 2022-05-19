@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class TimedBlocks : MonoBehaviour
 {
     private Renderer rend;
@@ -85,7 +84,6 @@ public class TimedBlocks : MonoBehaviour
 
     public void TimerFunctionINVisible()
     {
-        
         currenttime += Time.deltaTime;
 
         if(currenttime>=InvisibleTime)
