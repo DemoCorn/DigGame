@@ -98,11 +98,10 @@ public class Player_Health : MonoBehaviour
         {
             if (fDamage > 0.0f)
             {
-                health -= fDamage - armor;
+                health -= (fDamage - armor);
 
                 if (health <= 0.0f)
                 {
-                    Debug.Log(health);
                     Die(false);
                     //GameManager.Instance.EndGame(false);
                 }
