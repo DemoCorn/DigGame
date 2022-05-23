@@ -13,6 +13,13 @@ public class DonutPlatform : MonoBehaviour
     [SerializeField] public float fallspeed;
     [SerializeField] public float UpSpeed;
     private BoxCollider2D BoxColl;
+    private float Currenttime;
+    private float AvlTime;
+
+    private float yValue;
+    private float xValue;
+    private float rayDistance;
+    private Vector3 moveVector;
 
     void Start()
     {
@@ -23,12 +30,22 @@ public class DonutPlatform : MonoBehaviour
         rbgd.gravityScale = 0;
         Debug.Log("Collision1");
         BoxColl = GetComponent<BoxCollider2D>();
+        AvlTime = 15f;
+
+        xValue = pos.x;
+        yValue = pos.y;
+        moveVector = new Vector3(xValue, yValue, 0);
     }
 
     private void ObjectMoveUp()
     {
         transform.Translate(0, UpSpeed, 0);
     }
+
+    private void ObjectMoveDown()
+    {
+        transform.Translate(0, -fallspeed, 0);
+    }    
 
     private void SpawnNewPlatform()
     {
@@ -49,10 +66,14 @@ public class DonutPlatform : MonoBehaviour
         //  Debug.Log(pos);
         if (CheckGrounded())
         {
+            
             Debug.Log("Collision");
             //StartCoroutine("Fall", falldelay);
-            ObjectMoveUp();
+            //ObjectMoveUp();
             //DisableBlock();
+            //ObjectMoveDown();
+
+            BeginFalling();
         }
         //else
         //{
@@ -111,5 +132,11 @@ public class DonutPlatform : MonoBehaviour
     private void InstantFall()
     {
         transform.Translate(0, -fallspeed, 0);
+    }
+
+    public void BeginFalling()
+    {
+        Debug.Log("BeginFalling() Activated!");
+        transform.Translate(moveVector * fallspeed * Time.deltaTime);
     }
 }
