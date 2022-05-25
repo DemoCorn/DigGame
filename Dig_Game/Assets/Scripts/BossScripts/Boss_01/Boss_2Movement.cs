@@ -7,6 +7,11 @@ public class Boss_2Movement : MonoBehaviour
     public Transform player;
     public bool isFlipped = false;
 
+    public void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+    }
 
     public void LookAtPlayer()
     {

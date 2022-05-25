@@ -8,14 +8,14 @@ public class Non_Player_Health : MonoBehaviour
 	[SerializeField] float health = 15.0f;
 	[SerializeField] float immunityTime = 0.0f;
 	SpriteRenderer sprite;
-	BoxCollider2D boxCollider;
+	Collider2D boxCollider;
 	[HideInInspector] public bool mImmune = false;
 
     private void Start()
     {
 		particle = GetComponentInChildren<ParticleSystem>();
 		sprite = GetComponentInChildren<SpriteRenderer>();
-		boxCollider = GetComponent<BoxCollider2D>();
+		boxCollider = GetComponent<Collider2D>();
     }
 
 	public void Hit(float fDamage)
@@ -59,6 +59,10 @@ public class Non_Player_Health : MonoBehaviour
         {
 			Destroy(gameObject);
         }
+    }
+	public float GetHealth()
+    {
+		return health;
     }
 
 }

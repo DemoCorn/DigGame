@@ -520,6 +520,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPrefab: {fileID: 1486475501730190030, guid: 1439f9dd466d93044b90ad490c39d34a, type: 3}
   onCraftingTable: 0
+--- !u!1 &81501543 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 195578804491020035, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
+  m_PrefabInstance: {fileID: 1912859173}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &108096529
 GameObject:
   m_ObjectHideFlags: 3
@@ -6193,7 +6198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fdc2b01c08f17489ebc43ce200be96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 374492762}
+  player: {fileID: 0}
   bossStartPosition: {fileID: 644993888}
 --- !u!50 &464133352
 Rigidbody2D:
@@ -11690,7 +11695,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935519402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -158.82, y: -7.91, z: -10}
+  m_LocalPosition: {x: -158.88, y: -7.93, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12208,7 +12213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704843301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -158.82, y: -7.91, z: -10}
+  m_LocalPosition: {x: -158.88, y: -7.93, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 108096530}
@@ -12314,11 +12319,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3374675329224379041, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -158.82
+      value: -158.88
       objectReference: {fileID: 0}
     - target: {fileID: 3374675329224379041, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.91
+      value: -7.93
       objectReference: {fileID: 0}
     - target: {fileID: 3374675329224379041, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12595,6 +12600,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 319784825293488416, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
+      propertyPath: rewards
+      value: 
+      objectReference: {fileID: 81501543}
     - target: {fileID: 319784825704978612, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
       propertyPath: player
       value: 
@@ -12654,14 +12663,10 @@ PrefabInstance:
     - target: {fileID: 319784825704978615, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
       propertyPath: particle
       value: 
-      objectReference: {fileID: 133171354}
-    - target: {fileID: 319784825704978616, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
-      propertyPath: m_Sprite
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 319784825704978616, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
       propertyPath: m_Color.a
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 319784825704978616, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
       propertyPath: m_Color.b
@@ -12677,7 +12682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 319784825704978616, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 319784825704978617, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
       propertyPath: m_IsActive
@@ -12735,14 +12740,34 @@ PrefabInstance:
       propertyPath: levelRanges.Array.data[0].enemyLayer.Array.data[2]
       value: 
       objectReference: {fileID: 7292950571737971555, guid: 9fc351cb3c8cfa44e9df9819ed4ddc57, type: 3}
+    - target: {fileID: 3852931501968550842, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3852931501968550842, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3956706639744772683, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
       propertyPath: darkness
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4065507563080344345, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4065507563080344345, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6731809128262679987, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
       propertyPath: levelRanges.Array.data[0].enemyLayer.Array.data[2]
       value: 
       objectReference: {fileID: 4153310428590662300, guid: 18cd62230ba9ed04cb5c28c7321521c2, type: 3}
+    - target: {fileID: 7103548252186756033, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7112359861342833244, guid: 3b41bb8ef9979ab428a830788b205d38, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -12859,10 +12884,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 563766adae3137d4483d0088dbd44c2e, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
