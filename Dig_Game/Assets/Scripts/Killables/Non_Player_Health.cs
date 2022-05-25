@@ -9,14 +9,14 @@ public class Non_Player_Health : MonoBehaviour
 	[SerializeField] float maxHealth;
 	[SerializeField] float immunityTime = 0.0f;
 	SpriteRenderer sprite;
-	BoxCollider2D boxCollider;
+	Collider2D boxCollider;
 	[HideInInspector] public bool mImmune = false;
 
     private void Start()
     {
 		particle = GetComponentInChildren<ParticleSystem>();
 		sprite = GetComponentInChildren<SpriteRenderer>();
-		boxCollider = GetComponent<BoxCollider2D>();
+		boxCollider = GetComponent<Collider2D>();
 		maxHealth = health;
     }
     private void Update()
@@ -69,6 +69,10 @@ public class Non_Player_Health : MonoBehaviour
         {
 			Destroy(gameObject);
         }
+    }
+	public float GetHealth()
+    {
+		return health;
     }
 
 	void DirtTransparency()
