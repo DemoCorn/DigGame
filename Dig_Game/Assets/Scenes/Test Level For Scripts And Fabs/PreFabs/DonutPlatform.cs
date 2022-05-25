@@ -16,6 +16,7 @@ public class DonutPlatform : MonoBehaviour
     private float Currenttime;
     private float AvlTime;
     [SerializeField] public float TimeToDissaper;
+    [SerializeField] public bool TouchDisapper;
 
     private float yValue;
     private float xValue;
@@ -70,10 +71,16 @@ public class DonutPlatform : MonoBehaviour
     {
         if (Colided == true)
         {
-            Invoke("BeginFalling", falldelay);
-            //BeginFalling();
-            //Invoke("DisableBlock", TimeToDissaper);
-           
+            if (TouchDisapper == false)
+            {
+                Invoke("BeginFalling", falldelay);
+                //BeginFalling();
+                //Invoke("DisableBlock", TimeToDissaper);
+            }
+            else if (TouchDisapper==true)
+            {
+                Invoke("DisableBlock", falldelay);
+            }
         }
         //  Debug.Log(pos);
         if (CheckGrounded())
