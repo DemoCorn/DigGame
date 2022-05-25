@@ -11,4 +11,5 @@ public class Equipment : Item
     public float armorModifier;
     public float attackModifier;
     public float digModifier;
+    public string armorName;
 }
