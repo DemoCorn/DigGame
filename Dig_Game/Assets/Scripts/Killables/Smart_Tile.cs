@@ -11,6 +11,7 @@ public class Smart_Tile : MonoBehaviour
     [SerializeField] private List<Range> levelRanges = new List<Range>();
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Non_Player_Health health;
+    [SerializeField] private Non_Player_Health maxHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,7 @@ public class Smart_Tile : MonoBehaviour
                 if (!overrideLayerHealth)
                 {
                     health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[i].health);
+                    health.SetMaxHealth(levelRanges[levels.nLevelNumber].dirtLayers[i].maxHealth);
                 }
                 rendered = true;
                 break;
@@ -45,6 +47,8 @@ public class Smart_Tile : MonoBehaviour
                 if (!overrideLayerHealth)
                 {
                     health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[0].health);
+                    health.SetMaxHealth(levelRanges[levels.nLevelNumber].dirtLayers[0].maxHealth);
+
                 }
                 rendered = true;
             }
@@ -85,9 +89,11 @@ public class Smart_Tile : MonoBehaviour
         public DirtRange(float hp, List<Sprite> objectSprite)
         {
             health = hp;
+            maxHealth = hp;
             sprite = objectSprite;
         }
         public float health;
+        public float maxHealth;
         public List<Sprite> sprite = new List<Sprite>();
     }
 }

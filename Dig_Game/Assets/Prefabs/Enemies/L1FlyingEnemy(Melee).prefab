@@ -1,5 +1,66 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &894755714869983996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5821961878828431121}
+  - component: {fileID: 5306177758382883804}
+  - component: {fileID: 6711298938975957465}
+  m_Layer: 9
+  m_Name: ContactDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5821961878828431121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894755714869983996}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.115, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3116610461661973768}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5306177758382883804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894755714869983996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0834917e7aca1d54f944320f2fd57aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contact: 0
+--- !u!70 &6711298938975957465
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894755714869983996}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.11040838, y: -0.03840269}
+  m_Size: {x: 1.277648, y: 1.4224302}
+  m_Direction: 0
 --- !u!1 &3116610460359717305
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3116610460359717306}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3116610460916192444}
   - component: {fileID: 3116610460916192445}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +185,7 @@ GameObject:
   - component: {fileID: 3116610461116525758}
   - component: {fileID: 3116610461116525752}
   - component: {fileID: 3116610461116525759}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +287,7 @@ GameObject:
   - component: {fileID: 3116610461485406330}
   - component: {fileID: 3116610461485406331}
   - component: {fileID: 3116610461485406324}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DamageField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +364,7 @@ GameObject:
   - component: {fileID: 3116610461661973770}
   - component: {fileID: 3373431148293682426}
   - component: {fileID: -6344733162787774357}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: L1FlyingEnemy(Melee)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -323,6 +384,7 @@ Transform:
   m_Children:
   - {fileID: 3116610461116525758}
   - {fileID: 3116610460359717306}
+  - {fileID: 5821961878828431121}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

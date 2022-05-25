@@ -6,6 +6,7 @@ public class Non_Player_Health : MonoBehaviour
 {
 	[SerializeField] ParticleSystem particle;
 	[SerializeField] float health = 15.0f;
+	[SerializeField] float maxHealth;
 	[SerializeField] float immunityTime = 0.0f;
 	SpriteRenderer sprite;
 	BoxCollider2D boxCollider;
@@ -16,9 +17,14 @@ public class Non_Player_Health : MonoBehaviour
 		particle = GetComponentInChildren<ParticleSystem>();
 		sprite = GetComponentInChildren<SpriteRenderer>();
 		boxCollider = GetComponent<BoxCollider2D>();
+		maxHealth = health;
+    }
+    private void Update()
+    {
+		DirtTransparency();
     }
 
-	public void Hit(float fDamage)
+    public void Hit(float fDamage)
 	{
 		if (!mImmune)
 		{
@@ -45,6 +51,10 @@ public class Non_Player_Health : MonoBehaviour
     {
 		health = newHealth;
 	}
+	public void SetMaxHealth(float newHealth)
+	{
+		maxHealth = newHealth;
+	}
 
 	private void DestroyObject()
     {
@@ -58,6 +68,15 @@ public class Non_Player_Health : MonoBehaviour
 		else
         {
 			Destroy(gameObject);
+        }
+    }
+
+	void DirtTransparency()
+    {
+		if (gameObject.tag == "BreakableBlock")
+        {
+			float alpha = health / maxHealth;
+			sprite.color = new Color(1f, 1f, 1f, alpha);			
         }
     }
 

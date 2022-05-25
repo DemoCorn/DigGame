@@ -4,18 +4,22 @@ public class DamageField : MonoBehaviour
 {
     public bool contact = false;
     private float enemyDamage;
+    private float contactDamage = 10f;
     private GameObject parent;
     
 
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {  
         GetParent();
         enemyDamage = GetComponentInParent<EnemyStats>().damage;
         if(GetComponentInParent<EnemyStats>().damage <= 0)
         {
             enemyDamage = GetComponentInParent<EnemyProjectiles>().attackDamage;
+        }
+        else if(enemyDamage <= 0)
+        {
+            enemyDamage = contactDamage;
         }
     }
 
