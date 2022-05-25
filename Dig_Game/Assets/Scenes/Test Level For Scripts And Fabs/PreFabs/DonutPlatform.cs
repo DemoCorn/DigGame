@@ -15,11 +15,13 @@ public class DonutPlatform : MonoBehaviour
     private BoxCollider2D BoxColl;
     private float Currenttime;
     private float AvlTime;
+    [SerializeField] public float TimeToDissaper;
 
     private float yValue;
     private float xValue;
     private float rayDistance;
     private Vector3 moveVector;
+    private bool Colided;
 
     void Start()
     {
@@ -34,7 +36,11 @@ public class DonutPlatform : MonoBehaviour
 
         xValue = pos.x;
         yValue = pos.y;
-        moveVector = new Vector3(xValue, yValue, 0);
+       // moveVector = new Vector3(xValue, yValue, 0);
+        moveVector = new Vector3(0, yValue, 0);
+        Colided = false;
+
+
     }
 
     private void ObjectMoveUp()
@@ -45,35 +51,45 @@ public class DonutPlatform : MonoBehaviour
     private void ObjectMoveDown()
     {
         transform.Translate(0, -fallspeed, 0);
-    }    
+    }
 
     private void SpawnNewPlatform()
     {
-        if (fallen == true)
+        //if (fallen == true)
         {
-            //  Debug.Log("Spawned");
+             Debug.Log("Spawned");
             transform.position = pos;
             rend.enabled = true;
             fallen = false;
             // Debug.Log(pos);
             GetComponent<Collider2D>().enabled = true;
-            rbgd.gravityScale = 0;
+           // rbgd.gravityScale = 0;
         }
     }
 
     private void Update()
     {
+        if (Colided == true)
+        {
+            Invoke("BeginFalling", falldelay);
+            //BeginFalling();
+            Invoke("DisableBlock", TimeToDissaper);
+           
+        }
         //  Debug.Log(pos);
         if (CheckGrounded())
         {
-            
-            Debug.Log("Collision");
-            //StartCoroutine("Fall", falldelay);
-            //ObjectMoveUp();
-            //DisableBlock();
-            //ObjectMoveDown();
 
-            BeginFalling();
+            if (Colided == false)
+            {
+                Debug.Log("Collision");
+                //StartCoroutine("Fall", falldelay);
+                //ObjectMoveUp();
+                //DisableBlock();
+                //ObjectMoveDown();
+
+                Colided = true;
+            }
         }
         //else
         //{
@@ -88,7 +104,7 @@ public class DonutPlatform : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-          Debug.Log("Collision2");
+        Debug.Log("Collision2");
         //  Debug.Log("disabled");
         //if (col.collider.CompareTag("Player") == true)
         //{
@@ -122,11 +138,16 @@ public class DonutPlatform : MonoBehaviour
         return hit;
     }
 
+
+
     private void DisableBlock()
     {
         Debug.Log("Block Disabled");
         rend.enabled = false;
         BoxColl.enabled = false;
+        Colided = false;
+
+        Invoke("SpawnNewPlatform", PlatformRespawnTime);
     }
 
     private void InstantFall()
@@ -139,4 +160,10 @@ public class DonutPlatform : MonoBehaviour
         Debug.Log("BeginFalling() Activated!");
         transform.Translate(moveVector * fallspeed * Time.deltaTime);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Hit Detected to block");
+    }
+
 }
