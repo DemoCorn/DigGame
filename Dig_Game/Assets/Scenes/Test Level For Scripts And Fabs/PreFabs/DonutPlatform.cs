@@ -40,7 +40,6 @@ public class DonutPlatform : MonoBehaviour
         moveVector = new Vector3(0, yValue, 0);
         Colided = false;
 
-
     }
 
     private void ObjectMoveUp()
@@ -73,7 +72,7 @@ public class DonutPlatform : MonoBehaviour
         {
             Invoke("BeginFalling", falldelay);
             //BeginFalling();
-            Invoke("DisableBlock", TimeToDissaper);
+            //Invoke("DisableBlock", TimeToDissaper);
            
         }
         //  Debug.Log(pos);
@@ -164,6 +163,8 @@ public class DonutPlatform : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Hit Detected to block");
+
+        DisableBlock();
     }
 
 }
