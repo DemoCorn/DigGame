@@ -89,11 +89,7 @@ public class Player_Movement : MonoBehaviour
     void Update()
     {
         Inputs inputs = GameManager.Instance.GetInputs();
-        // Check win condition
-        if (transform.position.y < GameManager.Instance.LayerManager.GetLevelHeight().Key - 5)
-        {
-            GameManager.Instance.EndGame(true);
-        }
+       
 
         // Find if we should be going in the positive or negative direction
         nDirection = (Convert.ToInt32(Input.GetKey(inputs.right)) - Convert.ToInt32(Input.GetKey(inputs.left)));
