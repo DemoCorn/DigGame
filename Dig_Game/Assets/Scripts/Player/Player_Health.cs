@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
+
 public class Player_Health : MonoBehaviour
 {
     [SerializeField] private float health = 3.0f;
@@ -18,11 +19,16 @@ public class Player_Health : MonoBehaviour
     public bool hasRetired;
     private bool revive = false;
 
+    public GameObject playerHurt;
+
+
     private void Start()
     {
         nextPlayer = gameObject;
         startPosition = gameObject.transform.position;
-        vCam = GameObject.FindGameObjectWithTag("VCam").GetComponent<CinemachineVirtualCamera>(); ;
+        vCam = GameObject.FindGameObjectWithTag("VCam").GetComponent<CinemachineVirtualCamera>();
+
+
     }
 
     // Update is called once per frame
@@ -99,10 +105,10 @@ public class Player_Health : MonoBehaviour
             if (fDamage > 0.0f)
             {
                 health -= fDamage - armor;
+                StartCoroutine("Hurt");
 
                 if (health <= 0.0f)
                 {
-                    Debug.Log(health);
                     Die(false);
                     //GameManager.Instance.EndGame(false);
                 }
@@ -129,7 +135,7 @@ public class Player_Health : MonoBehaviour
                 return;
             }
             // Make player lose Inventory and Equipment
-            GameManager.Instance.InventoryManager.DieReset();         
+            GameManager.Instance.InventoryManager.DieReset();
         }
 
         // Reset Health
@@ -146,7 +152,7 @@ public class Player_Health : MonoBehaviour
     public void TestDeath()
     {
         if (Input.GetKeyDown(KeyCode.X))
-        {        
+        {
             Die(false);
         }
         if (Input.GetKeyDown(KeyCode.R) && hasRetired == true)
@@ -154,5 +160,12 @@ public class Player_Health : MonoBehaviour
             Die(true);
         }
     }
-      
+
+    IEnumerator Hurt()
+    {
+        playerHurt.SetActive(true);
+        yield return new WaitForSeconds(.5f);
+        playerHurt.SetActive(false);
+    }
+
 }
