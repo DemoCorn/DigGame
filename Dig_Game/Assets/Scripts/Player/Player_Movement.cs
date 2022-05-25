@@ -103,20 +103,27 @@ public class Player_Movement : MonoBehaviour
         if (nDirection > 0)
         {
             isFacingLeft = false;
-            animator.SetBool("Run_Left", false);
-            animator.SetBool("Run_Right", true);
+            if (!hasFlipped)
+            {
+                hasFlipped = true;
+                playerModel.Rotate(0f, 180f, 0f);
+            }
+            animator.SetBool("Run", true);
         }
         if (nDirection < 0)
         {
             isFacingLeft = true;
-            animator.SetBool("Run_Right", false);
-            animator.SetBool("Run_Left", true);
+            if (hasFlipped)
+            {
+                hasFlipped = false;
+                playerModel.Rotate(0f, -180f, 0f);
+            }
+            animator.SetBool("Run", true);
 
         }
         if (nDirection == 0)
         {
-            animator.SetBool("Run_Right", false);
-            animator.SetBool("Run_Left", false);
+            animator.SetBool("Run", false);
         }
 
 
