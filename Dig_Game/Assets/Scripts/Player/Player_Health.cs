@@ -107,10 +107,8 @@ public class Player_Health : MonoBehaviour
                 health -= fDamage - armor;
                 StartCoroutine("Hurt");
 
-
                 if (health <= 0.0f)
                 {
-                    Debug.Log(health);
                     Die(false);
                     //GameManager.Instance.EndGame(false);
                 }

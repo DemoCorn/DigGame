@@ -7,6 +7,7 @@ public class UI_Manager : MonoBehaviour
 {
     [SerializeField] private GameObject menuPrefab;
     private sians_Inventory_screen menuScript;
+    private HPCog cog;
 
     private Inputs inputs;
 
@@ -38,6 +39,12 @@ public class UI_Manager : MonoBehaviour
                 menuScript.OpenCloseMenu(UIMenu.inventory);
             }
         }
+        cog.UpdateHealth(GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetPlayerMaxHealth());
+    }
+
+    public void SetCog(HPCog setCog)
+    {
+        cog = setCog;
     }
 }
 

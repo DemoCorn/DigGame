@@ -9,9 +9,6 @@ public class Inventory_UI : MonoBehaviour
     [SerializeField] private List<GameObject> slotObjects = new List<GameObject>();
     private List<InventorySpace> inventoryButtons = new List<InventorySpace>();
 
-    [SerializeField] private GameObject[] equipmentObjects = new GameObject[Enum.GetNames(typeof(EquipmentType)).Length];
-    private InventorySpace[] equipmentSlots = new InventorySpace[Enum.GetNames(typeof(EquipmentType)).Length];
-
     [SerializeField] private Text descriptionBox;
     [SerializeField] private Vector3 descriptionBoxOffset;
     int currentHoverIndex = -1;
