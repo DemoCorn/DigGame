@@ -18,14 +18,17 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private BoxCollider2D hitbox;
     [SerializeField] private LayerMask platformLayerMask;
     [SerializeField] private Animator animator;
+    private Transform playerModel;
 
-    public bool isFacingLeft;
+    public bool isFacingLeft = false;
+    public bool hasFlipped = false;
     private int nDirection = 0;
     private bool isJumping = false;
     private bool maintainJump = false;
 
-    void Start()
+    private void Awake()
     {
+        playerModel = transform.Find("Player");
     }
 
     private void FixedUpdate()
@@ -111,15 +114,15 @@ public class Player_Movement : MonoBehaviour
         {
             isFacingLeft = true;
             animator.SetBool("Run_Right", false);
-            animator.SetBool("Run_Left", true);            
+            animator.SetBool("Run_Left", true);
+
         }
         if (nDirection == 0)
         {
             animator.SetBool("Run_Right", false);
             animator.SetBool("Run_Left", false);
         }
-        
-        
+
 
         // Jump Code
         if (Input.GetKeyDown(inputs.jump) && isGrounded)
