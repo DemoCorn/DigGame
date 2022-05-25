@@ -16,11 +16,13 @@ public class Bomb_Projectile : MonoBehaviour
     public LayerMask layerToHit;
 
     public GameObject ExplosionEffect;
+    private GameObject player;
 
     void Start()
     {
         if (thrown) 
         {
+
             var direction = -transform.right + Vector3.up;
             GetComponent<Rigidbody2D>().AddForce(direction * speed, ForceMode2D.Impulse);
         }
@@ -36,11 +38,6 @@ public class Bomb_Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Inputs inputs = GameManager.Instance.GetInputs();
-        if (Input.GetKeyDown((KeyCode)inputs.attack))
-        {
-           // Instantiate();
-        }
         if (!thrown)
         {
             transform.position += -transform.right * speed * Time.deltaTime;
@@ -49,17 +46,23 @@ public class Bomb_Projectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-       // Explode();
-        var enemy = collision.collider.GetComponent<Non_Player_Health>();
-        if(enemy)
+        if(collision.gameObject.GetComponent<Non_Player_Health>() != null)
         {
-            enemy.GetComponent<Non_Player_Health>().Hit(damage);
             Explode();
         }
     }
 
     void Explode()
     {
+        Collider2D[] objects = Physics2D.OverlapCircleAll(transform.position, fieldOfImpact, layerToHit);
+
+        foreach(Collider2D obj in objects)
+        {
+            if (obj.GetComponent<Non_Player_Health>() != null)
+            {
+                obj.GetComponent<Non_Player_Health>().Hit(damage);
+            }
+        }
         GameObject ExplosionEffectPlay = Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
         Destroy(ExplosionEffectPlay, 10);
         Destroy(gameObject);

@@ -18,8 +18,8 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private BoxCollider2D hitbox;
     [SerializeField] private LayerMask platformLayerMask;
     [SerializeField] private Animator animator;
-    
 
+    public bool isFacingLeft;
     private int nDirection = 0;
     private bool isJumping = false;
     private bool maintainJump = false;
@@ -94,28 +94,28 @@ public class Player_Movement : MonoBehaviour
         // Find if we should be going in the positive or negative direction
         nDirection = (Convert.ToInt32(Input.GetKey(inputs.right)) - Convert.ToInt32(Input.GetKey(inputs.left)));
 
+
+        // Update direction facing
         //Animation
         if (nDirection > 0)
         {
+            isFacingLeft = false;
+            animator.SetBool("Run_Left", false);
             animator.SetBool("Run_Right", true);
-        }
-        else
-        {
-            animator.SetBool("Run_Right", false);
         }
         if (nDirection < 0)
         {
-            animator.SetBool("Run_Left", true);
+            isFacingLeft = true;
+            animator.SetBool("Run_Right", false);
+            animator.SetBool("Run_Left", true);            
         }
-        else
+        if (nDirection == 0)
         {
+            animator.SetBool("Run_Right", false);
             animator.SetBool("Run_Left", false);
         }
-
-       
-
-
-
+        
+        
 
         // Jump Code
         if (Input.GetKeyDown(inputs.jump) && isGrounded)
