@@ -51,6 +51,12 @@ public class Non_Player_Health : MonoBehaviour
     {
 		health = newHealth;
 	}
+
+	public float GetHealth()
+    {
+		return health;
+    }
+
 	public void SetMaxHealth(float newHealth)
 	{
 		maxHealth = newHealth;
