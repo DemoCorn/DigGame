@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3859351546730884346}
   - component: {fileID: 1840794256756524751}
   - component: {fileID: 7967123090138448233}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4901,6 +4901,7 @@ Transform:
   - {fileID: 1649159166527938323}
   - {fileID: 3175729724532955773}
   - {fileID: 3859351546730884346}
+  - {fileID: 7307113051680982000}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5366,6 +5367,67 @@ CapsuleCollider2D:
   m_Offset: {x: 0.5018791, y: 0.041823015}
   m_Size: {x: 0.58367836, y: 1.4081932}
   m_Direction: 0
+--- !u!1 &8493929950362176269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7307113051680982000}
+  - component: {fileID: 7062747109637369789}
+  - component: {fileID: 2680556441779664884}
+  m_Layer: 9
+  m_Name: ContactDamage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7307113051680982000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493929950362176269}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.115, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7198606299500459606}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7062747109637369789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493929950362176269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0834917e7aca1d54f944320f2fd57aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  contact: 0
+--- !u!70 &2680556441779664884
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493929950362176269}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.11040838, y: -0.03840269}
+  m_Size: {x: 1.277648, y: 1.4224302}
+  m_Direction: 0
 --- !u!1001 &2371703479896017695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5376,6 +5438,10 @@ PrefabInstance:
     - target: {fileID: 1918472664403027762, guid: 98c4b675b6c911d4687884395462a004, type: 3}
       propertyPath: m_Name
       value: EnemyRear
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918472664403027762, guid: 98c4b675b6c911d4687884395462a004, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3894213148923171852, guid: 98c4b675b6c911d4687884395462a004, type: 3}
       propertyPath: m_RootOrder
@@ -5442,6 +5508,10 @@ PrefabInstance:
     - target: {fileID: 1553453538665501961, guid: d99e087498211d747b2cc748e0609c08, type: 3}
       propertyPath: m_Name
       value: Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553453538665501961, guid: d99e087498211d747b2cc748e0609c08, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1553453538665501961, guid: d99e087498211d747b2cc748e0609c08, type: 3}
       propertyPath: m_TagString
