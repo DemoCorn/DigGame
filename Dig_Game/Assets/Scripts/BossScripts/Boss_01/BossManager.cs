@@ -8,11 +8,11 @@ public class BossManager : MonoBehaviour
     public GameObject boss2;
 
     //values for the phase 1 health bar
-    private float maxBoss1Health;
-    private float currentBoss1Health;
+    public float maxBoss1Health;
+    public float currentBoss1Health;
     //values for the phase 2 health bar
-    private float maxBoss2Health;
-    private float currentBoss2Health;
+    public float maxBoss2Health;
+    public float currentBoss2Health;
 
     public BossHealthBar healthBar;
     public BossHealthBar healthBar2;
@@ -29,7 +29,9 @@ public class BossManager : MonoBehaviour
     {
 
         rewardRoom = GameObject.Find("RewardRoom").gameObject;
-        rewards = GameObject.Find("Rewards").gameObject;
+        
+
+        
 
         maxBoss1Health = 150;
         maxBoss2Health = 150;
