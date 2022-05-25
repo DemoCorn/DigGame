@@ -17,16 +17,33 @@ public class Bomb_Projectile : MonoBehaviour
 
     public GameObject ExplosionEffect;
     private GameObject player;
+    bool isFacingLeft;
+
 
     void Start()
     {
+        isFacingLeft = GameObject.FindWithTag("Player").GetComponent<Player_Movement>().isFacingLeft;
         if (thrown) 
         {
-
-            var direction = -transform.right + Vector3.up;
-            GetComponent<Rigidbody2D>().AddForce(direction * speed, ForceMode2D.Impulse);
+            if(isFacingLeft)
+            { 
+                var direction = -transform.right + Vector3.up;
+                GetComponent<Rigidbody2D>().AddForce(direction * speed, ForceMode2D.Impulse);
+            }
+            else
+            {
+                var direction = transform.right + Vector3.up;
+                GetComponent<Rigidbody2D>().AddForce(direction * speed, ForceMode2D.Impulse);
+            }
         }
-        transform.Translate(launchOffset);
+        if (isFacingLeft)
+        {
+            transform.Translate(launchOffset);
+        }
+        else
+        {
+            transform.Translate(-launchOffset.x, launchOffset.y, launchOffset.z);
+        }
         Destroy(gameObject, 5); //Destroy automatically after 5 seconds
     }
 
@@ -38,10 +55,7 @@ public class Bomb_Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!thrown)
-        {
-            transform.position += -transform.right * speed * Time.deltaTime;
-        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

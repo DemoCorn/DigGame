@@ -22,8 +22,10 @@ public class GameManager : MonoBehaviour
 
     [Header("Misc")]
     [SerializeField] int LevelNum;
+    [SerializeField] Vector3 PlayerStartPosition;
 
     private bool isWinning = false;
+    public bool tutorialComplete = false; 
 
     void Awake()
     {
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
@@ -43,6 +45,11 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<Camera>();
+
+        if (tutorialComplete)
+        {
+            player.transform.position = PlayerStartPosition;
+        }
 
         GenerationManager.Generate();
         UIManager.BootUp();
@@ -206,6 +213,11 @@ public class GameManager : MonoBehaviour
     public int GetLevelNum()
     {
         return LevelNum;
+    }
+
+    public Collider2D GetPlayerCollider()
+    {
+        return player.GetComponent<Collider2D>();
     }
 
     public Collider2D GetSwordCollider()

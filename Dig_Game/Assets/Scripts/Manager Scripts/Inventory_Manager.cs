@@ -166,15 +166,22 @@ public class Inventory_Manager : MonoBehaviour
             EditInventory(new ItemGroup(inventory[usablePlacement].item, -inventory[usablePlacement].amount));
 
             EquipUsableRotation++;
-            if (EquipUsableRotation >= EquipedUsables.Length)
-            {
-                EquipUsableRotation = 0;
-            }
+            EquipUsableRotation %= EquipedUsables.Length;
 
             return;
         }
         Debug.LogError("Usable was equiped that does not exist in inventory");
 
+    }
+
+    public void UnequipUsable(int slot)
+    {
+        if (EquipedUsables[slot].usable != null)
+        {
+            ItemGroup usableItemGroup = new ItemGroup(EquipedUsables[slot]);
+            EquipedUsables[slot] = new UsableGroup(null, 0);
+            EditInventory(usableItemGroup);
+        }
     }
 
     public bool Craft(Blueprint blueprint)
@@ -264,6 +271,11 @@ public class Inventory_Manager : MonoBehaviour
     {
         return equipment;
     }
+
+    public UsableGroup[] GetUsable()
+    {
+        return EquipedUsables;
+    }    
 
     public ref List<UnlockableBlueprint> GetBlueprints()
     {
@@ -392,7 +404,8 @@ public enum EquipmentType
     head = 1,
     chest = 2,
     legs = 3,
-    gauntlets = 4
+    gauntlets = 4,
+    weapon = 5
 }
 
 public enum PlayerClass
