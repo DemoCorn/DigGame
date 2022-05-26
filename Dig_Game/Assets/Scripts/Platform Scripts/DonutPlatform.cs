@@ -137,7 +137,7 @@ public class DonutPlatform : MonoBehaviour
     private bool CheckGrounded()
     {
         Debug.Log("ground check!");
-        RaycastHit2D hit = Physics2D.BoxCast(BoxColl.bounds.center, BoxColl.bounds.size, 0f, Vector2.up, 0.5f);
+        RaycastHit2D hit = Physics2D.BoxCast(BoxColl.bounds.center, BoxColl.bounds.size, 0f, Vector2.up, 0.2f);
         //if (!hit)
         //    Debug.Log("HIT none");
         //Debug.Log(hit.transform.name);
@@ -164,7 +164,7 @@ public class DonutPlatform : MonoBehaviour
     public void BeginFalling()
     {
         Debug.Log("BeginFalling() Activated!");
-        transform.Translate(moveVector * fallspeed * Time.deltaTime);
+        transform.Translate(moveVector * -fallspeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
