@@ -288,6 +288,12 @@ public class Inventory_Manager : MonoBehaviour
         {
             Unequip(equipment[i].equipmentType);
         }
+
+        for (int i = 0; i < 3; ++i)
+        {
+            EquipedUsables[i] = new UsableGroup(null, 0);
+        }
+
         inputs = GameManager.Instance.GetInputs();
 
         inventory.Clear();

@@ -339,6 +339,8 @@ MonoBehaviour:
   player: {fileID: 847358377}
   mainCamera: {fileID: 935519405}
   LevelNum: 0
+  PlayerStartPosition: {x: 0, y: 2, z: 0}
+  tutorialComplete: 0
 --- !u!114 &28138286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5633,11 +5635,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &374492762 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3374675329224379049, guid: 1e0a923a822131c44b8c2bf406304742, type: 3}
-  m_PrefabInstance: {fileID: 1848959716}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &409539403
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5683,7 +5680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2354372529873269610, guid: 464a3221f1ea2c648a353059ff02e9a3, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2354372529873269610, guid: 464a3221f1ea2c648a353059ff02e9a3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12109,7 +12106,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5131502078635550389, guid: cd3e99c1c90622142aa30c53c14789f3, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5131502078635550389, guid: cd3e99c1c90622142aa30c53c14789f3, type: 3}
       propertyPath: m_LocalPosition.x
