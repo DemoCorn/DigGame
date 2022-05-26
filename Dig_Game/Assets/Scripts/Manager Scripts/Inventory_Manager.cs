@@ -144,6 +144,17 @@ public class Inventory_Manager : MonoBehaviour
         Equip(noEquipment[(int)equipment]);
     }
 
+    public void ReEquip()
+    {
+        foreach (Equipment eq in equipment)
+        {
+            float fHealth = eq.healthModifier;
+            float fArmor = eq.armorModifier;
+            float fDamage = eq.attackModifier;
+            float fDig = eq.digModifier;
+        }
+    }
+
     public void EquipUsable(Usable usableToEquip)
     {
         int usablePlacement = InventoryHas(usableToEquip);
