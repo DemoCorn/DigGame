@@ -200,6 +200,9 @@ MonoBehaviour:
   armor: 0
   immunityTime: 10
   hitbox: {fileID: 250381845}
+  hasDied: 0
+  hasRetired: 0
+  playerHurt: {fileID: 0}
 --- !u!114 &250381848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,10 +218,14 @@ MonoBehaviour:
   speed: 5
   jumpPower: 20
   gravity: -0.1
+  holdJumpMultiplier: 1.5
   hitbox: {fileID: 250381845}
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  animator: {fileID: 0}
+  isFacingLeft: 0
+  hasFlipped: 0
 --- !u!114 &250381849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,7 +351,17 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  testBlueprint: {fileID: 11400000, guid: d7a6c1125dad5724985facff84e3bcb6, type: 2}
+  EquipedUsables:
+  - usable: {fileID: 0}
+    amount: 0
+    cooldown: 0
+  - usable: {fileID: 0}
+    amount: 0
+    cooldown: 0
+  - usable: {fileID: 0}
+    amount: 0
+    cooldown: 0
+  blueprints: []
 --- !u!114 &367534864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,12 +462,12 @@ MonoBehaviour:
   puzzlePrefabs:
   - prefabAtLevel:
     - prefabAtLayer:
-      - prefab: {fileID: 3948868517110026090, guid: cdc54f1db0bbb624fac198c4f3060bcf, type: 3}
+      - prefab: {fileID: 5701731721407160328, guid: ef5989c18b1fbc042ba74675a1e1a31d, type: 3}
         chance: 50
       lowestPrefabAmount: 2
       highestPrefabAmount: 2
     - prefabAtLayer:
-      - prefab: {fileID: 8031348622080125276, guid: e54bee4b9e681534da6ad8091643d68b, type: 3}
+      - prefab: {fileID: 5701731721407160328, guid: ef5989c18b1fbc042ba74675a1e1a31d, type: 3}
         chance: 50
       lowestPrefabAmount: 2
       highestPrefabAmount: 2
@@ -471,6 +488,9 @@ MonoBehaviour:
         chance: 100
       lowestPrefabAmount: 1
       highestPrefabAmount: 1
+  maxRoomSpawnAttempts: 500
+  craftingTable: {fileID: 0}
+  invisibleWall: {fileID: 0}
 --- !u!114 &367534867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,9 +507,12 @@ MonoBehaviour:
   InventoryManager: {fileID: 367534863}
   LayerManager: {fileID: 367534864}
   GenerationManager: {fileID: 367534866}
+  UIManager: {fileID: 0}
   player: {fileID: 250381844}
   mainCamera: {fileID: 1350863432}
   LevelNum: 0
+  PlayerStartPosition: {x: 0, y: 0, z: 0}
+  tutorialComplete: 0
 --- !u!4 &367534868
 Transform:
   m_ObjectHideFlags: 0
@@ -1442,10 +1465,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d16d73aedbd1e740a479da590336226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockDamage: 15
   enemyDamage: 15
   rightAttackOffset: {x: 0.6, y: 0}
   rightAttackSize: {x: 0.2, y: 0.8}
+  stats: {fileID: 0}
+  dAnimator: {fileID: 0}
 --- !u!1 &1752644065
 GameObject:
   m_ObjectHideFlags: 0
