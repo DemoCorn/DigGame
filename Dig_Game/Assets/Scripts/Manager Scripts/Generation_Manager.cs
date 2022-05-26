@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class Generation_Manager : MonoBehaviour
 {
@@ -159,6 +160,7 @@ public class Generation_Manager : MonoBehaviour
                 {
                     randomRoom = j;
                     _prefabSizeScript = prefabRange.prefabAtLayer[randomRoom].prefab.GetComponent<GetPrefabSize>();
+                    Assert.IsNotNull(_prefabSizeScript);
                     Debug.Log("Generated prefab: " + randomRoom + " from list");
                     break;
                 }
