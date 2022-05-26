@@ -152,6 +152,8 @@ public class Inventory_Manager : MonoBehaviour
             float fArmor = eq.armorModifier;
             float fDamage = eq.attackModifier;
             float fDig = eq.digModifier;
+
+            GameManager.Instance.EquipPlayer(fHealth, fArmor, fDamage, fDig);
         }
     }
 

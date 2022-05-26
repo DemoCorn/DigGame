@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-
     [Header("Other Managers")]
     public Input_Manager InputManager;
     public Inventory_Manager InventoryManager;
