@@ -17,6 +17,8 @@ public class Generation_Manager : MonoBehaviour
 
     [Header("Large generation prefabs")]
     [Tooltip("Room prefabs that will spawn in a given level")]
+    public List<LevelPrefab> retirementPrefabs;
+    [Tooltip("Room prefabs that will spawn in a given level")]
     public List<LevelPrefab> puzzlePrefabs;
     [Tooltip("Room prefabs that will spawn in a given level")]
     public List<LevelPrefab> treasurePrefabs;
@@ -67,6 +69,7 @@ public class Generation_Manager : MonoBehaviour
         for (int i = 0; i < levels.layerRange.Count; i++)
         {
             // Generate large prefabs
+            GenerateRooms(retirementPrefabs[levels.nLevelNumber].prefabAtLevel[i], levels, i);
             GenerateRooms(puzzlePrefabs[levels.nLevelNumber].prefabAtLevel[i], levels, i);
             GenerateRooms(treasurePrefabs[levels.nLevelNumber].prefabAtLevel[i], levels, i);
 
