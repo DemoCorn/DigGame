@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         }
 
         GenerationManager.Generate();
-        //InventoryManager.ReEquip();
+        InventoryManager.ReEquip();
         UIManager.BootUp();
     }
 

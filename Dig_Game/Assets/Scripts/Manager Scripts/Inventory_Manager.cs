@@ -148,12 +148,15 @@ public class Inventory_Manager : MonoBehaviour
     {
         foreach (Equipment eq in equipment)
         {
-            float fHealth = eq.healthModifier;
-            float fArmor = eq.armorModifier;
-            float fDamage = eq.attackModifier;
-            float fDig = eq.digModifier;
+            if (eq != null)
+            {
+                float fHealth = eq.healthModifier;
+                float fArmor = eq.armorModifier;
+                float fDamage = eq.attackModifier;
+                float fDig = eq.digModifier;
 
-            GameManager.Instance.EquipPlayer(fHealth, fArmor, fDamage, fDig);
+                GameManager.Instance.EquipPlayer(fHealth, fArmor, fDamage, fDig);
+            }
         }
     }
 
