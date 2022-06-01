@@ -59,10 +59,12 @@ public class Smart_Tile : MonoBehaviour
                 if (!overrideLayerHealth)
                 {
                     health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[levels.layerRange.Count - 1].health);
+                    health.SetMaxHealth(levelRanges[levels.nLevelNumber].dirtLayers[levels.layerRange.Count - 1].health);
                 }
                 rendered = true;
             }
         }
+        maxHealth = health;
     }
 
     [System.Serializable]
