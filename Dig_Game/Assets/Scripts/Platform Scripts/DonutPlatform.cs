@@ -23,6 +23,7 @@ public class DonutPlatform : MonoBehaviour
     private float rayDistance;
     private Vector3 moveVector;
     private bool Colided;
+    private GameObject playerForTransform;
 
     void Start()
     {
@@ -40,6 +41,8 @@ public class DonutPlatform : MonoBehaviour
        // moveVector = new Vector3(xValue, yValue, 0);
         moveVector = new Vector3(0, yValue, 0);
         Colided = false;
+
+        playerForTransform = GameObject.FindGameObjectsWithTag("Player")[0];
 
     }
 
@@ -77,7 +80,7 @@ public class DonutPlatform : MonoBehaviour
                 //BeginFalling();
                 //Invoke("DisableBlock", TimeToDissaper);
             }
-            else if (TouchDisapper==true)
+            else if (TouchDisapper == true)
             {
                 Invoke("DisableBlock", falldelay);
             }
@@ -94,6 +97,8 @@ public class DonutPlatform : MonoBehaviour
                 //DisableBlock();
                 //ObjectMoveDown();
 
+                playerForTransform.gameObject.transform.SetParent(gameObject.transform, true);
+
                 Colided = true;
             }
         }
@@ -106,6 +111,11 @@ public class DonutPlatform : MonoBehaviour
         //    fallen = true;
         //    Invoke("SpawnNewPlatform", PlatformRespawnTime);
         //}
+
+        else if(CheckGrounded()==false)
+        {
+            playerForTransform.gameObject.transform.parent = null;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
