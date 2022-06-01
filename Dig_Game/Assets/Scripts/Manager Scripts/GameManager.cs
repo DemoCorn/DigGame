@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
-
     [Header("Other Managers")]
     public Input_Manager InputManager;
     public Inventory_Manager InventoryManager;
@@ -17,8 +16,8 @@ public class GameManager : MonoBehaviour
     public UI_Manager UIManager;
 
     [Header("Objects")]
-    [SerializeField] GameObject player;
-    [SerializeField] Camera mainCamera;
+    GameObject player;
+    Camera mainCamera;
 
     [Header("Misc")]
     [SerializeField] int LevelNum;
@@ -52,6 +51,7 @@ public class GameManager : MonoBehaviour
         }
 
         GenerationManager.Generate();
+        InventoryManager.ReEquip();
         UIManager.BootUp();
     }
 

@@ -144,6 +144,22 @@ public class Inventory_Manager : MonoBehaviour
         Equip(noEquipment[(int)equipment]);
     }
 
+    public void ReEquip()
+    {
+        foreach (Equipment eq in equipment)
+        {
+            if (eq != null)
+            {
+                float fHealth = eq.healthModifier;
+                float fArmor = eq.armorModifier;
+                float fDamage = eq.attackModifier;
+                float fDig = eq.digModifier;
+
+                GameManager.Instance.EquipPlayer(fHealth, fArmor, fDamage, fDig);
+            }
+        }
+    }
+
     public void EquipUsable(Usable usableToEquip)
     {
         int usablePlacement = InventoryHas(usableToEquip);
@@ -288,6 +304,12 @@ public class Inventory_Manager : MonoBehaviour
         {
             Unequip(equipment[i].equipmentType);
         }
+
+        for (int i = 0; i < 3; ++i)
+        {
+            EquipedUsables[i] = new UsableGroup(null, 0);
+        }
+
         inputs = GameManager.Instance.GetInputs();
 
         inventory.Clear();
