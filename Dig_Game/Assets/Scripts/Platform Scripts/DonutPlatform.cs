@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DonutPlatform : MonoBehaviour
 {
-    private Rigidbody2D rbgd;
+    //private Rigidbody2D rbgd;
     [SerializeField] public float falldelay;
     private Vector2 pos;
     [SerializeField] public float PlatformRespawnTime;
@@ -26,11 +26,11 @@ public class DonutPlatform : MonoBehaviour
 
     void Start()
     {
-        rbgd = GetComponent<Rigidbody2D>();
+       // rbgd = GetComponent<Rigidbody2D>();
         pos = transform.position;
         rend = GetComponent<Renderer>();
         fallen = false;
-        rbgd.gravityScale = 0;
+       // rbgd.gravityScale = 0;
         Debug.Log("Collision1");
         BoxColl = GetComponent<BoxCollider2D>();
         AvlTime = 15f;
@@ -123,7 +123,7 @@ public class DonutPlatform : MonoBehaviour
     {
         Debug.Log("Collision3 FOR FALL");
         yield return new WaitForSeconds(falldelay);
-        rbgd.gravityScale = fallspeed;
+      //  rbgd.gravityScale = fallspeed;
         yield return 0;
     }
 
