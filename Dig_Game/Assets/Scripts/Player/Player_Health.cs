@@ -19,15 +19,34 @@ public class Player_Health : MonoBehaviour
     public bool hasRetired;
     private bool revive = false;
 
+    //player damage feedback
     public GameObject playerHurt;
-
+    private Material matWhite;
+    private Material matDefault;
+    private SpriteRenderer headSR;
+    private SpriteRenderer bodySR;
+    private SpriteRenderer leftLegSR;
+    private SpriteRenderer rightLegSR;
+    public GameObject Head;
+    public GameObject Body;
+    public GameObject leftLeg;
+    public GameObject rightLeg;
 
     private void Start()
     {
         nextPlayer = gameObject;
         startPosition = gameObject.transform.position;
         vCam = GameObject.FindGameObjectWithTag("VCam").GetComponent<CinemachineVirtualCamera>();
+        
+        //player damage feedback
+        headSR = Head.GetComponent<SpriteRenderer>();
+        bodySR = Body.GetComponent<SpriteRenderer>();
+        leftLegSR = leftLeg.GetComponent<SpriteRenderer>();
+        rightLegSR = rightLeg.GetComponent<SpriteRenderer>();
 
+        matWhite = Resources.Load("trans", typeof(Material)) as Material;
+        
+        matDefault = headSR.material;
 
     }
 
@@ -44,7 +63,7 @@ public class Player_Health : MonoBehaviour
 
     }
 
-  
+
     private float IsCollidingWithEnemy()
     {
         List<Collider2D> collisions = new List<Collider2D>();
@@ -107,8 +126,10 @@ public class Player_Health : MonoBehaviour
                 health -= fDamage - armor;
                 StartCoroutine("Hurt");
 
+
                 if (health <= 0.0f)
                 {
+                    Debug.Log(health);
                     Die(false);
                     //GameManager.Instance.EndGame(false);
                 }
@@ -163,9 +184,18 @@ public class Player_Health : MonoBehaviour
 
     IEnumerator Hurt()
     {
+        headSR.material = matWhite;
+        bodySR.material = matWhite;
+        leftLegSR.material = matWhite;
+        rightLegSR.material = matWhite;
+        Debug.Log("gagaga");
         playerHurt.SetActive(true);
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.1f);
         playerHurt.SetActive(false);
+        headSR.material = matDefault;
+        bodySR.material = matDefault;
+        leftLegSR.material = matDefault;
+        rightLegSR.material = matDefault;
     }
 
 }
