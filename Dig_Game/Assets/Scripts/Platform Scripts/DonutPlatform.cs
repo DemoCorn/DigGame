@@ -23,14 +23,15 @@ public class DonutPlatform : MonoBehaviour
     private float rayDistance;
     private Vector3 moveVector;
     private bool Colided;
+    private GameObject playerForTransform;
 
     void Start()
     {
-       // rbgd = GetComponent<Rigidbody2D>();
+        //rbgd = GetComponent<Rigidbody2D>();
         pos = transform.position;
         rend = GetComponent<Renderer>();
         fallen = false;
-       // rbgd.gravityScale = 0;
+        //rbgd.gravityScale = 0;
         Debug.Log("Collision1");
         BoxColl = GetComponent<BoxCollider2D>();
         AvlTime = 15f;
@@ -40,6 +41,8 @@ public class DonutPlatform : MonoBehaviour
        // moveVector = new Vector3(xValue, yValue, 0);
         moveVector = new Vector3(0, yValue, 0);
         Colided = false;
+
+        playerForTransform = GameObject.FindGameObjectsWithTag("Player")[0];
 
     }
 
@@ -77,7 +80,7 @@ public class DonutPlatform : MonoBehaviour
                 //BeginFalling();
                 //Invoke("DisableBlock", TimeToDissaper);
             }
-            else if (TouchDisapper==true)
+            else if (TouchDisapper == true)
             {
                 Invoke("DisableBlock", falldelay);
             }
@@ -94,6 +97,8 @@ public class DonutPlatform : MonoBehaviour
                 //DisableBlock();
                 //ObjectMoveDown();
 
+                playerForTransform.gameObject.transform.SetParent(gameObject.transform, true);
+
                 Colided = true;
             }
         }
@@ -106,6 +111,11 @@ public class DonutPlatform : MonoBehaviour
         //    fallen = true;
         //    Invoke("SpawnNewPlatform", PlatformRespawnTime);
         //}
+
+        else if(CheckGrounded()==false)
+        {
+            playerForTransform.gameObject.transform.parent = null;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -123,7 +133,7 @@ public class DonutPlatform : MonoBehaviour
     {
         Debug.Log("Collision3 FOR FALL");
         yield return new WaitForSeconds(falldelay);
-      //  rbgd.gravityScale = fallspeed;
+        //rbgd.gravityScale = fallspeed;
         yield return 0;
     }
 
@@ -137,7 +147,7 @@ public class DonutPlatform : MonoBehaviour
     private bool CheckGrounded()
     {
         Debug.Log("ground check!");
-        RaycastHit2D hit = Physics2D.BoxCast(BoxColl.bounds.center, BoxColl.bounds.size, 0f, Vector2.up, 0.5f);
+        RaycastHit2D hit = Physics2D.BoxCast(BoxColl.bounds.center, BoxColl.bounds.size, 0f, Vector2.up, 0.2f);
         //if (!hit)
         //    Debug.Log("HIT none");
         //Debug.Log(hit.transform.name);
@@ -164,7 +174,7 @@ public class DonutPlatform : MonoBehaviour
     public void BeginFalling()
     {
         Debug.Log("BeginFalling() Activated!");
-        transform.Translate(moveVector * fallspeed * Time.deltaTime);
+        transform.Translate(moveVector * -fallspeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
