@@ -74,7 +74,7 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
-    private float Angle360(Vector2 p1, Vector2 p2, Vector2 o = default(Vector2))
+    private float Angle360(Vector2 p1, Vector2 p2)
     {
         double xDiff = p2.x - p1.x;
         double yDiff = p2.y - p1.y;
