@@ -202,6 +202,7 @@ Transform:
   - {fileID: 3164728381292875296}
   - {fileID: 3164728382809775986}
   - {fileID: 3797907118491217216}
+  - {fileID: 581398758028139953}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -218,7 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  damage: 45
+  damage: 30
   attackDelay: 5
   speed: 200
   jumpHeight: 0.5
@@ -353,6 +354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
   health: 60
+  maxHealth: 0
   immunityTime: 1
   mImmune: 0
 --- !u!70 &-8007522777520993452
@@ -431,7 +433,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3164728382286816649}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &1727565513708623075
 ParticleSystem:

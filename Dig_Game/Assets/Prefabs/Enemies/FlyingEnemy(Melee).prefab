@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
-  health: 30
+  health: 15
+  maxHealth: 0
   immunityTime: 1
   mImmune: 0
 --- !u!1001 &7698573689989598223
@@ -23,6 +24,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3249857084633908368, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
+      propertyPath: damage
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4726175178057269504, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy(Melee)
@@ -70,6 +75,10 @@ PrefabInstance:
     - target: {fileID: 4726175178057269511, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4901612094387386613, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7715360551412171862, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
       propertyPath: itemDropByLevel.Array.size

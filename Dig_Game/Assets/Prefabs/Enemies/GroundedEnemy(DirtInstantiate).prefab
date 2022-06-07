@@ -975,7 +975,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 5
+        scalar: 15
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -4917,7 +4917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 663e035ead3cd2e4bb33f7c8706ddc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 4
   damage: 10
   attackDelay: 5
   speed: 200
@@ -5022,7 +5022,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 1840794256756524751}
-  health: 30
+  health: 4
+  maxHealth: 0
   immunityTime: 1
   mImmune: 0
 --- !u!114 &8516390487037133810
