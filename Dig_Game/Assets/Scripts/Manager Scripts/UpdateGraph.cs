@@ -5,6 +5,8 @@ using UnityEngine;
  
 public class UpdateGraph : MonoBehaviour
 {
+    public static UpdateGraph updateGraphInstance;
+
     AstarPath pathFinder;
     float updateTimer = 5.0f;
 
@@ -19,7 +21,14 @@ public class UpdateGraph : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("UpdateScan", 0, 0.5f);
+        if (updateGraphInstance != null && updateGraphInstance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            updateGraphInstance = this;
+        }
     }
 
     // Update is called once per frame
@@ -41,11 +50,6 @@ public class UpdateGraph : MonoBehaviour
         }
     }
 
-    private void UpdateScan()
-    {
-        pathFinder.Scan(pathFinder.graphs[0]);
-    }
-
     public IEnumerator MainGraphScan()
     {
         yield return new WaitForSeconds(0.5f);
@@ -62,5 +66,20 @@ public class UpdateGraph : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         pathFinder.Scan(pathFinder.graphs[2]);
+    }
+
+    public void SwitchToMainGameGraph()
+    {
+        currentPlayerLocation = PlayerLocationStates.mainGame;
+    }
+
+    public void SwitchToTutorialGraph()
+    {
+        currentPlayerLocation = PlayerLocationStates.tutorialLevel;
+    }
+
+    public void SwitchToBossLevelGraph()
+    {
+        currentPlayerLocation = PlayerLocationStates.bossRoom;
     }
 }
