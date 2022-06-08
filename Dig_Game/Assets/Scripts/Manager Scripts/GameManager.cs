@@ -201,6 +201,11 @@ public class GameManager : MonoBehaviour
         return player.GetComponentInChildren<Player_WeaponStats>().GetDig();
     }
 
+    public Vector3 GetPlayerPosition()
+    {
+        return player.transform.position;
+    }
+
     public Vector3 GetCameraPosition()
     {
         return mainCamera.transform.position;
