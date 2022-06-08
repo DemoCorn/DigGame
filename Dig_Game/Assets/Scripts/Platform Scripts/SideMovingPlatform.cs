@@ -8,7 +8,6 @@ public class SideMovingPlatform : MonoBehaviour
     private float xValue;
     [SerializeField] private float yValueEndPosition;
     [SerializeField] private float xValueEndPosition;
-    private float rayDistance;
     private Vector3 moveVector;
     private GameObject playerForTransform;
     private Vector2 posi;
@@ -28,29 +27,23 @@ public class SideMovingPlatform : MonoBehaviour
         posi = transform.position;
         xValue = posi.x;
         yValue = posi.y;
+        if (xValue < 0)
+        {
+            xValue = xValue * (-1);
+        }
         moveVector = new Vector3(xValue, 0, 0);
         StartPosition = posi;
         state = false;
         playerForTransform = GameObject.FindGameObjectsWithTag("Player")[0];
         Collided = false;
+        BoxColl = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         posi = transform.position;
-        //if (CheckGrounded()&&Collided ==false)
-        //{
-        //    playerForTransform.gameObject.transform.SetParent(gameObject.transform, true);
-        //    Collided = true;
-        //}
-        //else if ((CheckGrounded() == false) && Collided == true)
-        //{
-        //    playerForTransform.gameObject.transform.parent = null;
-        //    Collided = false;
-        //}
 
-      
         if (state == false)
         {
             transform.Translate(moveVector * moveSpeed * Time.deltaTime);
@@ -68,6 +61,18 @@ public class SideMovingPlatform : MonoBehaviour
                 state = false;
             }
 
+        }
+
+        if (CheckGrounded() && Collided == false)
+        {
+            Debug.Log("Collided with moving platform");
+            playerForTransform.gameObject.transform.SetParent(gameObject.transform, true);
+            Collided = true;
+        }
+        else if ((CheckGrounded() == false) && Collided == true)
+        {
+            playerForTransform.gameObject.transform.parent = null;
+            Collided = false;
         }
     }
 

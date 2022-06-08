@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 7528126021354553554}
   - component: {fileID: 1133151959214509438}
   - component: {fileID: 1707369824962123487}
+  - component: {fileID: 5460481890773562477}
   m_Layer: 9
   m_Name: CRGroundedEnemy (Goblin) 1
   m_TagString: Enemy
@@ -339,7 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  damage: 20
+  damage: 10
   attackDelay: 5
   speed: 200
   jumpHeight: 0.5
@@ -443,7 +444,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
-  health: 30
+  health: 25
+  maxHealth: 0
   immunityTime: 1
   mImmune: 0
 --- !u!114 &1133151959214509438
@@ -471,10 +473,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDrops: {fileID: 11400000, guid: 55b6ae452777b9e4fb1dcc6f190bce9b, type: 2}
-  blueprintDrops: {fileID: 11400000, guid: e0f61dee273d537439c6b8ffc592d560, type: 2}
+  blueprintDrops: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
   itemDropByLevel: []
   blueprintDropByLevel: []
   dropBlueprints: 0
+  smartDrop: 0
+--- !u!114 &5460481890773562477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8242631668678976406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDrops: {fileID: 0}
+  blueprintDrops: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
+  itemDropByLevel: []
+  blueprintDropByLevel: []
+  dropBlueprints: 1
   smartDrop: 0
 --- !u!1 &8242631669381506517
 GameObject:

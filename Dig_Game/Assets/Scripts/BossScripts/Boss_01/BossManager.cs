@@ -23,8 +23,6 @@ public class BossManager : MonoBehaviour
     public Non_Player_Health boss1Health;
     public Non_Player_Health boss2Health;
 
-    public Player_WeaponStats attackStat;
-
     public GameObject skullIndicator;
 
     public Image healthColor1;
@@ -53,7 +51,7 @@ public class BossManager : MonoBehaviour
     public void Update()
     {
         //checking the players gear stats
-        if ( attackStat.GetAttack() <= 23 )
+        if (GameManager.Instance.GetPlayerAttack() <= 23 )
         {
             skullIndicator.SetActive(true);
             healthColor1.color = new Color32(103, 0, 191, 255);
