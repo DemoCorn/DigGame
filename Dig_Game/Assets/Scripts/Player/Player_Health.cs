@@ -187,15 +187,25 @@ public class Player_Health : MonoBehaviour
         headSR.material = matWhite;
         bodySR.material = matWhite;
         leftLegSR.material = matWhite;
-        rightLegSR.material = matWhite;
-        Debug.Log("gagaga");
-        playerHurt.SetActive(true);
+        rightLegSR.material = matWhite;       
+       // playerHurt.SetActive(true);
         yield return new WaitForSeconds(.1f);
-        playerHurt.SetActive(false);
+        //playerHurt.SetActive(false);
         headSR.material = matDefault;
         bodySR.material = matDefault;
         leftLegSR.material = matDefault;
         rightLegSR.material = matDefault;
+        yield return new WaitForSeconds(.1f);
+        headSR.material = matWhite;
+        bodySR.material = matWhite;
+        leftLegSR.material = matWhite;
+        rightLegSR.material = matWhite;
+        yield return new WaitForSeconds(.1f);
+        headSR.material = matDefault;
+        bodySR.material = matDefault;
+        leftLegSR.material = matDefault;
+        rightLegSR.material = matDefault;
+        
     }
 
 }

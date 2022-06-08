@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1404129955255825360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9173436636773904728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDrops: {fileID: 0}
+  blueprintDrops: {fileID: 0}
+  itemDropByLevel: []
+  blueprintDropByLevel: []
+  dropBlueprints: 0
+  smartDrop: 0
 --- !u!1001 &5985772458790603888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7,6 +25,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6609575030378649339, guid: 9749b57598f93ef4f8922b761277c648, type: 3}
+      propertyPath: blueprintDrops
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
+    - target: {fileID: -6609575030378649339, guid: 9749b57598f93ef4f8922b761277c648, type: 3}
+      propertyPath: dropBlueprints
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 855785528277149819, guid: 9749b57598f93ef4f8922b761277c648, type: 3}
+      propertyPath: dropBlueprints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3197314199104634152, guid: 9749b57598f93ef4f8922b761277c648, type: 3}
       propertyPath: m_Name
       value: L1GroundedEnemy(Ranged)
@@ -57,3 +87,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9749b57598f93ef4f8922b761277c648, type: 3}
+--- !u!1 &9173436636773904728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3197314199104634152, guid: 9749b57598f93ef4f8922b761277c648, type: 3}
+  m_PrefabInstance: {fileID: 5985772458790603888}
+  m_PrefabAsset: {fileID: 0}

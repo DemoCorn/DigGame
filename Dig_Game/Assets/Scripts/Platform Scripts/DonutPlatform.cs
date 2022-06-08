@@ -67,8 +67,6 @@ public class DonutPlatform : MonoBehaviour
             if (TouchDisapper == false)
             {
                 Invoke("BeginFalling", falldelay);
-                //BeginFalling();
-                //Invoke("DisableBlock", TimeToDissaper);
             }
             else if (TouchDisapper == true)
             {
@@ -81,27 +79,11 @@ public class DonutPlatform : MonoBehaviour
 
             if (Colided == false)
             {
-                //  Debug.Log("Collision");
-                //StartCoroutine("Fall", falldelay);
-                //ObjectMoveUp();
-                //DisableBlock();
-                //ObjectMoveDown();
                 playerForTransform.gameObject.transform.SetParent(gameObject.transform, true);
 
                 Colided = true;
             }
         }
-        //else
-        //{
-        //    GetComponent<Collider2D>().enabled = false;
-        //    Debug.Log("destroy");
-        //    rend.enabled = false;
-        //    rbgd.gravityScale = 0;
-        //    fallen = true;
-        //    Invoke("SpawnNewPlatform", PlatformRespawnTime);
-        //}
-
-        // LPC: This is a massive waste of resources considering you already ran this function and could just use else, which you did this properly before if your commented out lines are trust worthy
         else
         { 
             playerForTransform.gameObject.transform.parent = null;

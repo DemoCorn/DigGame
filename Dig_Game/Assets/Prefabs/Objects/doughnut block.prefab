@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8330911818511258466}
   - component: {fileID: 8823921635519136602}
   - component: {fileID: -7394892211935740385}
-  - component: {fileID: 1635577322949417022}
+  - component: {fileID: -3210204765668171298}
   m_Layer: 3
   m_Name: doughnut block
   m_TagString: Untagged
@@ -110,7 +110,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1635577322949417022
+--- !u!114 &-3210204765668171298
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,9 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd902a3cd056ea14eb25dde8e7c8234b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  falldelay: 0
+  falldelay: 1
   PlatformRespawnTime: 0
-  fallspeed: 0
+  fallspeed: 0.5
   UpSpeed: 0
   TimeToDissaper: 0
   TouchDisapper: 0
