@@ -12,24 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766f056dee8abb14a9205ac17c03a5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &9179782787550700409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 773676137017668932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemDrops: {fileID: 0}
-  blueprintDrops: {fileID: 0}
-  itemDropByLevel: []
-  blueprintDropByLevel: []
-  dropBlueprints: 0
-  smartDrop: 0
 --- !u!1001 &2438122923611009602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116,10 +98,14 @@ PrefabInstance:
     - target: {fileID: 4728274537354024826, guid: ec509a5699c697746938bd46cda6953e, type: 3}
       propertyPath: blueprintDrops
       value: 
-      objectReference: {fileID: 11400000, guid: e0f61dee273d537439c6b8ffc592d560, type: 2}
+      objectReference: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
+    - target: {fileID: 4728274537354024826, guid: ec509a5699c697746938bd46cda6953e, type: 3}
+      propertyPath: dropBlueprints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7207234299778375720, guid: ec509a5699c697746938bd46cda6953e, type: 3}
       propertyPath: health
-      value: 30
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8551680562514460172, guid: ec509a5699c697746938bd46cda6953e, type: 3}
       propertyPath: m_Layer

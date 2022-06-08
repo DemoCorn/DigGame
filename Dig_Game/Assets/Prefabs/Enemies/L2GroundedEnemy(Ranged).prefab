@@ -16,6 +16,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.058376312, y: -0.0028173923}
   m_Size: {x: 1.0020828, y: 1.6104255}
   m_Direction: 0
+--- !u!114 &3261859164737668076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7425951381939367892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDrops: {fileID: 0}
+  blueprintDrops: {fileID: 0}
+  itemDropByLevel: []
+  blueprintDropByLevel: []
+  dropBlueprints: 0
+  smartDrop: 0
 --- !u!1001 &5540862257289513564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23,6 +41,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4549854305716653109, guid: a497f3a12effcde46a4682d20680f4e5, type: 3}
+      propertyPath: blueprintDrops
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
+    - target: {fileID: -4549854305716653109, guid: a497f3a12effcde46a4682d20680f4e5, type: 3}
+      propertyPath: dropBlueprints
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3164728382286816648, guid: a497f3a12effcde46a4682d20680f4e5, type: 3}
       propertyPath: m_Name
       value: L2GroundedEnemy(Ranged)
@@ -69,6 +95,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3164728382286816649, guid: a497f3a12effcde46a4682d20680f4e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641204358412164369, guid: a497f3a12effcde46a4682d20680f4e5, type: 3}
+      propertyPath: dropBlueprints
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

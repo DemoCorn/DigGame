@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
-  health: 30
+  health: 5
+  maxHealth: 0
   immunityTime: 1
   mImmune: 0
 --- !u!1001 &7698573689989598223
@@ -23,6 +24,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3249857084633908368, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
+      propertyPath: damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3885575426850656403, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
+      propertyPath: blueprintDrops
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
+    - target: {fileID: 3885575426850656403, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
+      propertyPath: dropBlueprints
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4726175178057269504, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
       propertyPath: m_Name
       value: FlyingEnemy(Melee)
@@ -71,6 +84,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4901612094387386613, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7715360551412171862, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
+      propertyPath: dropBlueprints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7715360551412171862, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
       propertyPath: itemDropByLevel.Array.size
       value: 1
@@ -83,7 +104,8 @@ PrefabInstance:
       propertyPath: itemDropByLevel.Array.data[0].itemAtLayer.Array.data[0]
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4901612094387386613, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: df5b1a7ae8422074fb8cbb9317e450c0, type: 3}
 --- !u!1 &3116610461661973775 stripped
 GameObject:

@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 5465895834166714994}
   - component: {fileID: 892660497394563889}
   - component: {fileID: 7413801536807401610}
+  - component: {fileID: -808324645178643021}
   m_Layer: 9
   m_Name: CRL3FlyingEnemy(Ranged) 1
   m_TagString: Enemy
@@ -99,6 +100,7 @@ Transform:
   - {fileID: 7239867845366383044}
   - {fileID: 7239867845245387966}
   - {fileID: 9117968165679808578}
+  - {fileID: 571490759576473457}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -115,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  damage: 60
+  damage: 35
   attackDelay: 5
   speed: 200
   jumpHeight: 0.5
@@ -220,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
   health: 15
+  maxHealth: 0
   immunityTime: 1
   mImmune: 0
 --- !u!114 &892660497394563889
@@ -235,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDrops: {fileID: 11400000, guid: cb59aecfcb90bb74fab7983dd1f14530, type: 2}
-  blueprintDrops: {fileID: 0}
+  blueprintDrops: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
   itemDropByLevel: []
   blueprintDropByLevel: []
   dropBlueprints: 0
@@ -252,6 +255,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766f056dee8abb14a9205ac17c03a5c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-808324645178643021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239867844565103446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDrops: {fileID: 0}
+  blueprintDrops: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
+  itemDropByLevel: []
+  blueprintDropByLevel: []
+  dropBlueprints: 1
+  smartDrop: 0
 --- !u!1 &7239867845245387961
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +449,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7239867844565103447}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &2654138416346870726
 ParticleSystem:
