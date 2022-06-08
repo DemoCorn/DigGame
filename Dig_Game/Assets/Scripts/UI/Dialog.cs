@@ -13,6 +13,7 @@ public class Dialog : MonoBehaviour
 
     //public GameObject continueButton;
     public GameObject dialogPanel;
+    public GameObject dialogPanelPressQ;
     public string dialogPanelTag;
     public SpriteRenderer sprite;
     public GameObject barrier;
@@ -26,6 +27,7 @@ public class Dialog : MonoBehaviour
     {
         //click = GameObject.FindWithTag("Click").GetComponent<AudioSource>();
         dialogPanel = GameObject.FindWithTag("GrandpaDialog");
+        dialogPanelPressQ = GameObject.FindWithTag("PressQ");
         textDisplay = dialogPanel.GetComponentInChildren<TextMeshProUGUI>();
         InvokeRepeating("FindVariables", 0.3f, 0.1f);
     }
@@ -37,6 +39,7 @@ public class Dialog : MonoBehaviour
             //click.Play();
             active = false;
             dialogPanel.GetComponent<Image>().color = Color.white;
+            dialogPanelPressQ.GetComponent<Text>().color = Color.white;
             //dialogPanel.SetActive(true);
             StartCoroutine(Type());
             Debug.LogWarning(" vvv This line(35) needs to be updated to stop player movement while the player is in dialog.");
@@ -46,10 +49,11 @@ public class Dialog : MonoBehaviour
 
     private void Update()
     {
-        if (textDisplay.text == sentences[index] && Input.GetKeyDown(KeyCode.Q))
-        {
-            NextSentence();
-        }
+        if (Input.GetKeyDown(KeyCode.Backspace))
+            QuickExitDialog();
+
+        if (textDisplay.text == sentences[index] && Input.GetKeyDown(KeyCode.Q))        
+            NextSentence();        
     }
 
     
@@ -66,7 +70,7 @@ public class Dialog : MonoBehaviour
     {
         next = false;
 
-        //click.Play();
+        
 
         if (index < sentences.Length - 1)
         {
@@ -78,6 +82,7 @@ public class Dialog : MonoBehaviour
         {
             textDisplay.text = "";
             dialogPanel.GetComponent<Image>().color = Color.clear;
+            dialogPanelPressQ.GetComponent<Text>().color = Color.clear;
             //dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
             dialogPanel.SetActive(false);
             sprite.color = Color.clear;
@@ -92,5 +97,17 @@ public class Dialog : MonoBehaviour
         dialogPanel = GameObject.FindWithTag("GrandpaDialog");
         //dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
         textDisplay = dialogPanel.GetComponentInChildren<TextMeshProUGUI>();
+    }
+
+    public void QuickExitDialog()
+    {
+        textDisplay.text = "";
+        dialogPanel.GetComponent<Image>().color = Color.clear;
+        dialogPanelPressQ.GetComponent<Text>().color = Color.clear;
+        //dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
+        dialogPanel.SetActive(false);
+        sprite.color = Color.clear;
+        Debug.LogWarning(" vvv This line(77) needs to be updated to allow player movement after they are done in dialog.");
+        barrier.SetActive(false);
     }
 }
