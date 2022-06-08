@@ -9,7 +9,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject menuPrefab;
     private sians_Inventory_screen menuScript;
     private HPCog cog;
-    public  List<Transform> compassLocations = new List<Transform>();
+    private  List<Transform> compassLocations = new List<Transform>();
     private GameObject compassCenter;
 
     private Inputs inputs;
