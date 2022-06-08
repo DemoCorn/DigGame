@@ -31,8 +31,8 @@ public class Inventory_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        itemNotifyScript = GameObject.FindWithTag("Player").GetComponent<ItemNotifyScript>();
-        
+        itemNotifyScript = GameObject.FindWithTag("Player").GetComponentInChildren<ItemNotifyScript>();
+
 
         // Equip the lack of armor and weapon, needed so that Equip works
         for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
