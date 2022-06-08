@@ -34,7 +34,6 @@ public class DonutPlatform : MonoBehaviour
         moveVector = new Vector3(0, yValue, 0);
 
         playerForTransform = GameManager.Instance.GetPlayerTransform();
-        Debug.Log(playerForTransform.name);
     }
 
     private void ObjectMoveUp()
@@ -80,14 +79,11 @@ public class DonutPlatform : MonoBehaviour
 
             if (Colided == false)
             {
-                //Debug.Log("Collision");
                 playerForTransform.gameObject.transform.SetParent(gameObject.transform, true);
 
                 Colided = true;
             }
         }
-   
-       
         else
         { 
             playerForTransform.gameObject.transform.parent = null;
