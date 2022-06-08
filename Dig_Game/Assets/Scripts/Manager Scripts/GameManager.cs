@@ -80,6 +80,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //use to grab the Player for transformation
+    public GameObject GetPlayerTransform()
+    {
+        return player;
+    }    
+
     // Buff and Debuff lines
     public void BuffPlayer(float healthChange, float armorChange, float attackChange, float digChange, float SpeedChange, float duration = 60.0f)
     {
@@ -193,6 +199,11 @@ public class GameManager : MonoBehaviour
     public float GetPlayerDig()
     {
         return player.GetComponentInChildren<Player_WeaponStats>().GetDig();
+    }
+
+    public Vector3 GetPlayerPosition()
+    {
+        return player.transform.position;
     }
 
     public Vector3 GetCameraPosition()

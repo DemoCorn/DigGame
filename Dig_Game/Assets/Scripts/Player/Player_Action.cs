@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player_Action : MonoBehaviour
+public class Player_Action : UsableEffect
 {
     [SerializeField] GameObject weapon;
     [SerializeField] Bomb_Projectile bomb;
     [SerializeField] GameObject digTool;
+    float cooldownTime = 60.0f;
+
+    private int bombsAmmo = 0;
 
     void Start()
     {
@@ -16,17 +19,17 @@ public class Player_Action : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // Inputs inputs = GameManager.Instance.GetInputs();
-        if (Input.GetKeyDown((KeyCode)KeyCode.Mouse3))
-        {
-            Attack();
-        }
+    }
+
+    override public float Activate()
+    {
+        Attack();
+        return cooldownTime;
     }
 
     public void Attack()
     {
-        Debug.Log("bomb throw");
-        Instantiate(bomb, transform.position, transform.rotation);
+        Instantiate(bomb, transform.position, transform.rotation);        
     }
 
     public void Dig()
@@ -47,5 +50,10 @@ public class Player_Action : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void AddBomb(int bomb)
+    {
+        bombsAmmo += bomb;
     }
 }
