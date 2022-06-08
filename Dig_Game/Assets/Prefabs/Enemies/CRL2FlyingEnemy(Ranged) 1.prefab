@@ -5027,6 +5027,7 @@ GameObject:
   - component: {fileID: 6848655640098058822}
   - component: {fileID: 2620215378602529290}
   - component: {fileID: -63546351584951872}
+  - component: {fileID: 4155486884307055682}
   m_Layer: 9
   m_Name: CRL2FlyingEnemy(Ranged) 1
   m_TagString: Enemy
@@ -5186,7 +5187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDrops: {fileID: 11400000, guid: 0563aecf5d4b98343a1f8c6c6f749875, type: 2}
-  blueprintDrops: {fileID: 0}
+  blueprintDrops: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
   itemDropByLevel: []
   blueprintDropByLevel: []
   dropBlueprints: 0
@@ -5236,6 +5237,24 @@ CapsuleCollider2D:
   m_Offset: {x: -0.058376312, y: -0.0028173923}
   m_Size: {x: 1.0020828, y: 1.6104255}
   m_Direction: 0
+--- !u!114 &4155486884307055682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7140899775106217213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDrops: {fileID: 0}
+  blueprintDrops: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
+  itemDropByLevel: []
+  blueprintDropByLevel: []
+  dropBlueprints: 1
+  smartDrop: 0
 --- !u!1 &7225482023454739555
 GameObject:
   m_ObjectHideFlags: 0

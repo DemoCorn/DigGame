@@ -4878,6 +4878,7 @@ GameObject:
   - component: {fileID: 7198606299500459602}
   - component: {fileID: 8790011785552155921}
   - component: {fileID: 8516390487037133810}
+  - component: {fileID: -1785119872747044400}
   m_Layer: 9
   m_Name: GroundedEnemy(DirtInstantiate)
   m_TagString: Enemy
@@ -5039,7 +5040,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDrops: {fileID: 11400000, guid: 55b6ae452777b9e4fb1dcc6f190bce9b, type: 2}
-  blueprintDrops: {fileID: 11400000, guid: e0f61dee273d537439c6b8ffc592d560, type: 2}
+  blueprintDrops: {fileID: 11400000, guid: cd6710a78e1491749a05cd7af5f6c57a, type: 2}
+  itemDropByLevel: []
+  blueprintDropByLevel: []
+  dropBlueprints: 1
+  smartDrop: 0
+--- !u!114 &-1785119872747044400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7198606299500459605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDrops: {fileID: 11400000, guid: 55b6ae452777b9e4fb1dcc6f190bce9b, type: 2}
+  blueprintDrops: {fileID: 0}
   itemDropByLevel: []
   blueprintDropByLevel: []
   dropBlueprints: 0
