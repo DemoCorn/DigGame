@@ -4,46 +4,37 @@ using UnityEngine;
 
 public class DonutPlatform : MonoBehaviour
 {
-    //private Rigidbody2D rbgd;
-    [SerializeField] public float falldelay;
+    [SerializeField] float falldelay;
+    //this Variable is for the storing the initial postion of the block
     private Vector2 pos;
-    [SerializeField] public float PlatformRespawnTime;
+    [SerializeField] float PlatformRespawnTime;
     private Renderer rend;
-    private bool fallen;
-    [SerializeField] public float fallspeed;
-    [SerializeField] public float UpSpeed;
+    private bool fallen=false;
+    [SerializeField] float fallspeed;
+    [SerializeField] float UpSpeed;
     private BoxCollider2D BoxColl;
     private float Currenttime;
-    private float AvlTime;
-    [SerializeField] public float TimeToDissaper;
-    [SerializeField] public bool TouchDisapper;
+    [SerializeField] float TimeToDissaper;
+    [SerializeField]  bool TouchDisapper;
 
     private float yValue;
     private float xValue;
     private float rayDistance;
     private Vector3 moveVector;
-    private bool Colided;
+    private bool Colided=false;
     private GameObject playerForTransform;
 
     void Start()
     {
-        //rbgd = GetComponent<Rigidbody2D>();
         pos = transform.position;
         rend = GetComponent<Renderer>();
-        fallen = false;
-        //rbgd.gravityScale = 0;
-        Debug.Log("Collision1");
         BoxColl = GetComponent<BoxCollider2D>();
-        AvlTime = 15f;
-
         xValue = pos.x;
         yValue = pos.y;
-       // moveVector = new Vector3(xValue, yValue, 0);
         moveVector = new Vector3(0, yValue, 0);
-        Colided = false;
 
-        playerForTransform = GameObject.FindGameObjectsWithTag("Player")[0];
-
+        playerForTransform = GameManager.Instance.GetPlayerTransform();
+        Debug.Log(playerForTransform.name);
     }
 
     private void ObjectMoveUp()
@@ -60,25 +51,23 @@ public class DonutPlatform : MonoBehaviour
     {
         //if (fallen == true)
         {
-             Debug.Log("Spawned");
+            // Debug.Log("Spawned");
             transform.position = pos;
             rend.enabled = true;
             fallen = false;
             // Debug.Log(pos);
             GetComponent<Collider2D>().enabled = true;
-           // rbgd.gravityScale = 0;
         }
     }
 
     private void Update()
     {
+        // LPC: This is not the proper way to check boolean values
         if (Colided == true)
         {
             if (TouchDisapper == false)
             {
                 Invoke("BeginFalling", falldelay);
-                //BeginFalling();
-                //Invoke("DisableBlock", TimeToDissaper);
             }
             else if (TouchDisapper == true)
             {
@@ -91,62 +80,37 @@ public class DonutPlatform : MonoBehaviour
 
             if (Colided == false)
             {
-                Debug.Log("Collision");
-                //StartCoroutine("Fall", falldelay);
-                //ObjectMoveUp();
-                //DisableBlock();
-                //ObjectMoveDown();
-
+                //Debug.Log("Collision");
                 playerForTransform.gameObject.transform.SetParent(gameObject.transform, true);
 
                 Colided = true;
             }
         }
-        //else
-        //{
-        //    GetComponent<Collider2D>().enabled = false;
-        //    Debug.Log("destroy");
-        //    rend.enabled = false;
-        //    rbgd.gravityScale = 0;
-        //    fallen = true;
-        //    Invoke("SpawnNewPlatform", PlatformRespawnTime);
-        //}
-
-        else if(CheckGrounded()==false)
-        {
+   
+       
+        else
+        { 
             playerForTransform.gameObject.transform.parent = null;
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        Debug.Log("Collision2");
-        //  Debug.Log("disabled");
-        //if (col.collider.CompareTag("Player") == true)
-        //{
-        //    Debug.Log("Collision");
-        //    Invoke("Fall", falldelay);
-        //}
-    }
-
-    IEnumerator Fall()
-    {
-        Debug.Log("Collision3 FOR FALL");
-        yield return new WaitForSeconds(falldelay);
-        //rbgd.gravityScale = fallspeed;
-        yield return 0;
-    }
-
-    IEnumerator waitbeforeSpawn()
-    {
-        yield return new WaitForSeconds(PlatformRespawnTime);
-        // Debug.Log("spawning");
-    }
+    // LPC: This function, litterally does nothing
+    //void OnCollisionEnter2D(Collision2D col)
+    //{
+        
+    //    //  Debug.Log("disabled");
+    //    //if (col.collider.CompareTag("Player") == true)
+    //    //{
+    //    //    Debug.Log("Collision");
+    //    //    Invoke("Fall", falldelay);
+    //    //}
+    //}
 
 
+    //Function checks for Collision with the block and the player 
     private bool CheckGrounded()
     {
-        Debug.Log("ground check!");
+      //  Debug.Log("ground check!");
         RaycastHit2D hit = Physics2D.BoxCast(BoxColl.bounds.center, BoxColl.bounds.size, 0f, Vector2.up, 0.2f);
         //if (!hit)
         //    Debug.Log("HIT none");
@@ -154,11 +118,9 @@ public class DonutPlatform : MonoBehaviour
         return hit;
     }
 
-
-
     private void DisableBlock()
     {
-        Debug.Log("Block Disabled");
+       // Debug.Log("Block Disabled");
         rend.enabled = false;
         BoxColl.enabled = false;
         Colided = false;
@@ -166,20 +128,15 @@ public class DonutPlatform : MonoBehaviour
         Invoke("SpawnNewPlatform", PlatformRespawnTime);
     }
 
-    private void InstantFall()
-    {
-        transform.Translate(0, -fallspeed, 0);
-    }
-
     public void BeginFalling()
     {
-        Debug.Log("BeginFalling() Activated!");
+      //  Debug.Log("BeginFalling() Activated!");
         transform.Translate(moveVector * -fallspeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Hit Detected to block");
+         Debug.Log("Hit Detected to block");
 
         DisableBlock();
     }
