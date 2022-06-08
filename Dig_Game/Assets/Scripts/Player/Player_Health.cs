@@ -123,7 +123,8 @@ public class Player_Health : MonoBehaviour
         {
             if (fDamage > 0.0f)
             {
-                health -= fDamage - armor;
+                float damage = fDamage - armor;
+                health -= damage < 1.0f ? damage : 1.0f;
                 StartCoroutine("Hurt");
 
 
