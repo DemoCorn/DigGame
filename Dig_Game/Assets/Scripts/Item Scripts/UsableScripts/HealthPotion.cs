@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthPotion : UsableEffect
 {
     public float heal = 25.0f;
-    float cooldownTime = 60.0f;
+    public float cooldownTime = 1.0f;
 
     override public float Activate()
     {

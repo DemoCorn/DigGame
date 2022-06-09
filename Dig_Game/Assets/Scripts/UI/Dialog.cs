@@ -18,19 +18,13 @@ public class Dialog : MonoBehaviour
     public SpriteRenderer sprite;
     public GameObject barrier;
 
+    private Image dialogImage = null;
+    private Text dialogText = null;
+
+    private IEnumerator GrandpaDialog;
     
-    AudioSource click;
     bool active = true;
     bool next = false;
-
-    private void Start()
-    {
-        //click = GameObject.FindWithTag("Click").GetComponent<AudioSource>();
-        dialogPanel = GameObject.FindWithTag("GrandpaDialog");
-        dialogPanelPressQ = GameObject.FindWithTag("PressQ");
-        textDisplay = dialogPanel.GetComponentInChildren<TextMeshProUGUI>();
-        InvokeRepeating("FindVariables", 0.3f, 0.1f);
-    }
   
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,22 +32,47 @@ public class Dialog : MonoBehaviour
         {
             //click.Play();
             active = false;
-            dialogPanel.GetComponent<Image>().color = Color.white;
-            dialogPanelPressQ.GetComponent<Text>().color = Color.white;
+            dialogImage.color = Color.white;
+            dialogText.color = Color.white;
             //dialogPanel.SetActive(true);
-            StartCoroutine(Type());
-            Debug.LogWarning(" vvv This line(35) needs to be updated to stop player movement while the player is in dialog.");
-            //PlayerMovement.canMove = false;            
+            GrandpaDialog = Type();
+            StartCoroutine(GrandpaDialog);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && !active)
+        {
+            //click.Play();
+            active = true;
+            StopCoroutine(GrandpaDialog);
+            dialogImage.color = Color.clear;
+            dialogText.color = Color.clear;
+            textDisplay.text = "";
+
+            //dialogPanel.SetActive(true);
         }
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backspace))
-            QuickExitDialog();
+        if (dialogImage != null && dialogText != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Backspace))
+                QuickExitDialog();
 
-        if (textDisplay.text == sentences[index] && Input.GetKeyDown(KeyCode.Q))        
-            NextSentence();        
+            if (textDisplay.text == sentences[index] && Input.GetKeyDown(KeyCode.Q))
+                NextSentence();
+        }
+        else if(GameManager.Instance.UIManager.loaded)
+        {
+            dialogPanel = GameObject.FindWithTag("GrandpaDialog");
+            dialogPanelPressQ = GameObject.FindWithTag("PressQ");
+            textDisplay = dialogPanel.GetComponentInChildren<TextMeshProUGUI>();
+            dialogImage = dialogPanel.GetComponent<Image>();
+            dialogText = dialogPanelPressQ.GetComponent<Text>();
+        }     
     }
 
     
@@ -81,29 +100,20 @@ public class Dialog : MonoBehaviour
         else
         {
             textDisplay.text = "";
-            dialogPanel.GetComponent<Image>().color = Color.clear;
-            dialogPanelPressQ.GetComponent<Text>().color = Color.clear;
+            dialogImage.color = Color.clear;
+            dialogText.color = Color.clear;
             //dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
             dialogPanel.SetActive(false);
             sprite.color = Color.clear;
-            Debug.LogWarning(" vvv This line(77) needs to be updated to allow player movement after they are done in dialog.");
             barrier.SetActive(false);
-            //PlayerMovement.canMove = true;
         }
-    }
-
-    public void FindVariables()
-    {
-        dialogPanel = GameObject.FindWithTag("GrandpaDialog");
-        //dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
-        textDisplay = dialogPanel.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void QuickExitDialog()
     {
         textDisplay.text = "";
-        dialogPanel.GetComponent<Image>().color = Color.clear;
-        dialogPanelPressQ.GetComponent<Text>().color = Color.clear;
+        dialogImage.color = Color.clear;
+        dialogText.color = Color.clear;
         //dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
         dialogPanel.SetActive(false);
         sprite.color = Color.clear;

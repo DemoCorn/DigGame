@@ -5,22 +5,13 @@ using UnityEngine.UI;
 
 public class ItemNotifyScript : MonoBehaviour
 {
-    public GameObject itemNotifyIcon;
-    public GameObject itemNotifyPanel;
-    public GameObject itemNotifyPanelImage;
-    public GameObject itemNotifyPanelText;
-    public Text blueprintNameText;
+    [HideInInspector] public GameObject itemNotifyIcon = null;
+    [HideInInspector] public GameObject itemNotifyPanel = null;
+    [HideInInspector] public GameObject itemNotifyPanelImage = null;
+    [HideInInspector] public GameObject itemNotifyPanelText = null;
+    [HideInInspector] public Text blueprintNameText = null;
 
-    private Animation iconAnimation;
-
-    private void Start()
-    {
-        iconAnimation = GetComponent<Animation>();
-        itemNotifyPanel = GameObject.FindWithTag("PickupPanel");
-        itemNotifyPanelImage = GameObject.FindWithTag("IPPImage");
-        itemNotifyPanelText = GameObject.FindWithTag("IPPText");
-        blueprintNameText = itemNotifyPanel.GetComponentInChildren<Text>();
-    }
+    private Animation iconAnimation = null;
 
     public void DisplayItemNotificationUI()
     {
@@ -29,6 +20,15 @@ public class ItemNotifyScript : MonoBehaviour
 
     public void ShowIcon() 
     { 
+        if (iconAnimation == null)
+        {
+            iconAnimation = GetComponent<Animation>();
+            itemNotifyPanel = GameObject.FindWithTag("PickupPanel");
+            itemNotifyPanelImage = GameObject.FindWithTag("IPPImage");
+            itemNotifyPanelText = GameObject.FindWithTag("IPPText");
+            blueprintNameText = itemNotifyPanel.GetComponentInChildren<Text>();
+        }
+
         itemNotifyIcon.GetComponent<Image>().color = Color.white;
         itemNotifyPanel.GetComponent<Image>().color = Color.white;
         itemNotifyPanelImage.GetComponent<Image>().color = Color.white;

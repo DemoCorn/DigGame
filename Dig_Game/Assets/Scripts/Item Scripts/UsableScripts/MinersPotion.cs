@@ -10,7 +10,7 @@ public class MinersPotion : UsableEffect
 
     override public float Activate()
     {
-        GameManager.Instance.BuffPlayer(0.0f, 0.0f, 0.0f, minerBoost, 0.0f, activeTime);
+        GameManager.Instance.BuffPlayer(0.0f, 0.0f, 0.0f, minerBoost, 0.0f, 10.0f);
         return cooldownTime;
     }
 }

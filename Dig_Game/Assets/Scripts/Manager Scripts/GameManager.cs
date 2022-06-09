@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         }
 
         GenerationManager.Generate();
-        InventoryManager.ReEquip();
+        InventoryManager.BootUp();
         UIManager.BootUp();
     }
 
@@ -125,7 +125,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DebuffPlayer(float healthChange, float armorChange, float attackChange, float digChange, float SpeedChange, float delay)
     {
+        Debug.Log(delay);
         yield return new WaitForSeconds(delay);
+        Debug.Log(delay);
 
         Player_Health playerHealth = player.GetComponent<Player_Health>();
         Player_WeaponStats playerAim = player.GetComponentInChildren<Player_WeaponStats>();
@@ -206,6 +208,11 @@ public class GameManager : MonoBehaviour
         return player.transform.position;
     }
 
+    public GameObject GetPlayer()
+    {
+        return player;
+    }
+
     public Vector3 GetCameraPosition()
     {
         return mainCamera.transform.position;
@@ -244,6 +251,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ResetLevel(int nScene)
     {
+        UIManager.loaded = false;
         AsyncOperation load = SceneManager.LoadSceneAsync(nScene, LoadSceneMode.Single);
 
         while (!load.isDone)
