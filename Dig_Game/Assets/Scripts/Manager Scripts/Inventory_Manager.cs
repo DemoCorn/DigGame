@@ -263,7 +263,7 @@ public class Inventory_Manager : MonoBehaviour
         if (addblueprint != null)
         {
             addblueprint.isUnlocked = true;
-            itemNotifyScript.DisplayItemNotificationUI();
+            itemNotifyScript.DisplayBlueprint(blueprint);
             Debug.Log(addblueprint.blueprint.result.item.name);
         }
         Debug.LogWarning("Blueprint dropped not contained in Inventory_Manager");

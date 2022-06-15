@@ -26,10 +26,7 @@ public class Weapon_Attack : MonoBehaviour
 
         if (Input.GetKeyDown((KeyCode) inputs.attack))
         {
-            mHitbox.enabled = true;
-            mAnimator.SetInteger("Class", (int)GameManager.Instance.InventoryManager.getPlayerClass());
-            mAnimator.SetBool("PlayAttack", true);
-            trailRenderer.SetActive(true);
+            Attack();
         }
         if (mAnimator.GetBool("WeaponAttackDone"))
         {
@@ -56,5 +53,13 @@ public class Weapon_Attack : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Attack()
+    {
+        mHitbox.enabled = true;
+        mAnimator.SetInteger("Class", (int)GameManager.Instance.InventoryManager.getPlayerClass());
+        mAnimator.SetBool("PlayAttack", true);
+        trailRenderer.SetActive(true);
     }
 }
