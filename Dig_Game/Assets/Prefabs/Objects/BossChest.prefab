@@ -4988,6 +4988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 7411387955776200617}
   health: 15
+  maxHealth: 0
   immunityTime: 0
   mImmune: 0
 --- !u!114 &2864326233852943595
@@ -5002,9 +5003,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDrops: {fileID: 11400000, guid: e81821eda93fa1d449d423c4121ac19e, type: 2}
-  blueprintDrops: {fileID: 0}
+  itemDrops: {fileID: 0}
+  blueprintDrops: {fileID: 11400000, guid: e271213d70c4161428bc8062a5456b7d, type: 2}
   itemDropByLevel: []
   blueprintDropByLevel: []
-  dropBlueprints: 0
+  dropBlueprints: 1
   smartDrop: 0
