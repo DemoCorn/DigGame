@@ -115,7 +115,7 @@ public class Dialog : MonoBehaviour
         dialogImage.color = Color.clear;
         dialogText.color = Color.clear;
         //dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
-        dialogPanel.SetActive(false);
+        //dialogPanel.SetActive(false);
         sprite.color = Color.clear;
         Debug.LogWarning(" vvv This line(77) needs to be updated to allow player movement after they are done in dialog.");
         barrier.SetActive(false);
