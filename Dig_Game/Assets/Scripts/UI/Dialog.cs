@@ -26,7 +26,7 @@ public class Dialog : MonoBehaviour
     private void Start()
     {
         //click = GameObject.FindWithTag("Click").GetComponent<AudioSource>();
-        dialogPanel = GameObject.FindWithTag("GrandpaDialog");
+        dialogPanel = GameObject.FindWithTag(dialogPanelTag);
         dialogPanelPressQ = GameObject.FindWithTag("PressQ");
         textDisplay = dialogPanel.GetComponentInChildren<TextMeshProUGUI>();
         InvokeRepeating("FindVariables", 0.3f, 0.1f);
@@ -105,7 +105,7 @@ public class Dialog : MonoBehaviour
         dialogPanel.GetComponent<Image>().color = Color.clear;
         dialogPanelPressQ.GetComponent<Text>().color = Color.clear;
         //dialogPanel.GetComponent<SpriteRenderer>().color = Color.white;
-        dialogPanel.SetActive(false);
+        //dialogPanel.SetActive(false);
         sprite.color = Color.clear;
         Debug.LogWarning(" vvv This line(77) needs to be updated to allow player movement after they are done in dialog.");
         barrier.SetActive(false);
