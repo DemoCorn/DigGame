@@ -10700,6 +10700,7 @@ GameObject:
   - component: {fileID: 363498788709375983}
   - component: {fileID: 3369516918429658542}
   - component: {fileID: 3873045424940749556}
+  - component: {fileID: 7876563439569985082}
   m_Layer: 5
   m_Name: Crafting Button
   m_TagString: Untagged
@@ -10821,6 +10822,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7876563439569985082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862771537032037936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab2f146910826e4382234b01bb3b66f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GreyOut: {fileID: 21300000, guid: 71211faef17fb0f428fb3dd97d3cc198, type: 3}
+  Normal: {fileID: 21300000, guid: 7be36518ac4dcc14da78f964e927d481, type: 3}
 --- !u!1 &1887841399546033507
 GameObject:
   m_ObjectHideFlags: 0
