@@ -5,18 +5,21 @@ using UnityEngine.UI;
 //this script is for greying out the buttons
 public class CraftingButtonGreyOut : MonoBehaviour
 {
-    
-  //public CanvasRenderer Button;
-    public SpriteRenderer Button;
+
+    ////public CanvasRenderer Button;
+    //  public SpriteRenderer Button;
     //the grey out state of the button
-  public  Sprite GreyOut;
+    public Sprite GreyOut;
     //the state of the button when its near the craft button 
-  public Sprite Normal;
+    public Sprite Normal;
+
+  private Image Button;
+
 
     private void Start()
     {
         //Button = GameObject.GetComponent<Image>();
-
+        Button= this.GetComponent<Image>();
     }
 
     private void Update()
