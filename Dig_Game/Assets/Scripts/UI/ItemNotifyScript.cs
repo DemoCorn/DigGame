@@ -37,7 +37,7 @@ public class ItemNotifyScript : MonoBehaviour
         iconAnimation = itemNotifyIcon.GetComponent<Animation>();
         iconAnimation.Play();
         Debug.Log("Pickup On");
-        Invoke("SetIconandPanelInactive", 1.0f);
+        Invoke("SetIconandPanelInactive", 2.5f);
 
         
     }

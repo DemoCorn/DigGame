@@ -52,7 +52,7 @@ public class UpdateGraph : MonoBehaviour
 
     public IEnumerator MainGraphScan()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         pathFinder.Scan(pathFinder.graphs[0]);
     }
 
