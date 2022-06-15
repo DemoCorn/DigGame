@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5821961878828431121}
-  - component: {fileID: 5306177758382883804}
-  - component: {fileID: 6711298938975957465}
   m_Layer: 9
   m_Name: ContactDamage
   m_TagString: Untagged
@@ -30,24 +28,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3116610461661973768}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5306177758382883804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894755714869983996}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.11040838, y: -0.03840269}
-  m_Size: {x: 1.277648, y: 1.4224302}
-  m_Direction: 0
 --- !u!1 &3116610460359717305
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,11 +474,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e530c0bc73a8d74688dd99d72ad7e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 4573711280810154170}
+  particle: {fileID: 0}
   health: 30
+  maxHealth: 0
   immunityTime: 1
   mImmune: 0
-  deathParticle: {fileID: 636444080428538753, guid: caa13e306881c354f85a541d996a1fc4, type: 3}
+  popup: {fileID: 0}
 --- !u!114 &-6344733162787774357
 MonoBehaviour:
   m_ObjectHideFlags: 0

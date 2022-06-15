@@ -4,42 +4,37 @@ using UnityEngine;
 
 public class Player_Equipment_Choice : MonoBehaviour
 {
-    [SerializeField] List<GameObject> equipment = new List<GameObject>();
-    [SerializeField] int currentlyEquiped = 0;
+    [SerializeField] GameObject[] equipment = new GameObject[2];
+
+    Weapon_Attack weapon;
+    Player_Attack dig;
+
     // Start is called before the first frame update
     void Start()
     {
-        SwapEquipment(currentlyEquiped);
+        equipment[0].SetActive(true);
+        equipment[1].SetActive(false);
+
+        dig = equipment[0].GetComponent<Player_Attack>();
+        weapon = equipment[1].GetComponent<Weapon_Attack>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0.0f)
-        {
-            SwapEquipment(currentlyEquiped + 1);
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0.0f)
-        {
-            SwapEquipment(currentlyEquiped - 1);
-        }
-    }
+        Inputs inputs = GameManager.Instance.GetInputs();
 
-    public void SwapEquipment(int equipmentIndex)
-    {
-        if (equipmentIndex >= equipment.Count)
+        if (Input.GetKeyDown((KeyCode)inputs.dig))
         {
-            equipmentIndex = 0;
+            equipment[0].SetActive(true);
+            equipment[1].SetActive(false);
+            dig.Attack();
         }
-        if (equipmentIndex < 0)
+        if (Input.GetKeyDown((KeyCode)inputs.attack))
         {
-            equipmentIndex = equipment.Count - 1;
+            equipment[1].SetActive(true);
+            equipment[0].SetActive(false);
+            weapon.Attack();
         }
-
-        for (int i = 0; i < equipment.Count; i++)
-        {
-            equipment[i].SetActive(i == equipmentIndex);
-        }
-        currentlyEquiped = equipmentIndex;
     }
 }
