@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 
 public class UI_Manager : MonoBehaviour
 {
+    [HideInInspector] public bool loaded = false;
     [SerializeField] private GameObject menuPrefab;
     private sians_Inventory_screen menuScript;
     private HPCog cog;
@@ -13,6 +15,8 @@ public class UI_Manager : MonoBehaviour
     private GameObject compassCenter;
 
     private Inputs inputs;
+
+    private UnityEvent UILoaded;
 
     [HideInInspector] public bool onCraftingTable = false;
 
@@ -25,8 +29,11 @@ public class UI_Manager : MonoBehaviour
     public void BootUp()
     {
         GameObject menus = Instantiate(menuPrefab);
+        loaded = true;
+
         menuScript = menus.GetComponent<sians_Inventory_screen>();
         compassCenter = menus.GetComponent<UIEssentials>().CompassCenter;
+        compassLocations.Clear();
     }
 
     // Update is called once per frame

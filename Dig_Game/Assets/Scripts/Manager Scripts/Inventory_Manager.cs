@@ -31,9 +31,6 @@ public class Inventory_Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        itemNotifyScript = GameObject.FindWithTag("Player").GetComponentInChildren<ItemNotifyScript>();
-
-
         // Equip the lack of armor and weapon, needed so that Equip works
         for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
         {
@@ -48,6 +45,12 @@ public class Inventory_Manager : MonoBehaviour
         playerClass = (PlayerClass)(int)UnityEngine.Random.Range(1, System.Enum.GetValues(typeof(PlayerClass)).Length);
         // Remember last class so it won't repeat upon death
         lastClass = playerClass;
+    }
+
+    public void BootUp()
+    {
+        ReEquip();
+        itemNotifyScript = GameManager.Instance.GetPlayer().GetComponentInChildren<ItemNotifyScript>();
     }
 
     private void Update()
@@ -68,7 +71,7 @@ public class Inventory_Manager : MonoBehaviour
                     else
                     {
                         EquipedUsables[i].cooldown = true;
-                        CooldownStop(i, cooldownTime);
+                        StartCoroutine(CooldownStop(i, cooldownTime));
                     }
                 }
             }
@@ -326,7 +329,7 @@ public class Inventory_Manager : MonoBehaviour
         lastClass = playerClass;
     }
 
-    IEnumerable CooldownStop(int index, float time)
+    IEnumerator CooldownStop(int index, float time)
     {
         yield return new WaitForSeconds(time);
         EquipedUsables[index].cooldown = false;

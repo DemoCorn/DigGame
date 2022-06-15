@@ -8,7 +8,6 @@ public class FireRetire : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("PLayer on campfire");
             collision.GetComponent<Player_Health>().hasRetired = true;
         }
     }
@@ -16,7 +15,6 @@ public class FireRetire : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("PLayer off campfire");
             collision.GetComponent<Player_Health>().hasRetired = false;
         }
     }
