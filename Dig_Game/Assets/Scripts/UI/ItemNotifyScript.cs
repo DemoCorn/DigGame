@@ -13,12 +13,12 @@ public class ItemNotifyScript : MonoBehaviour
 
     private Animation iconAnimation = null;
 
-    public void DisplayItemNotificationUI()
+    public void DisplayBlueprint(Blueprint bp)
     {
-        ShowIcon();     
+        ShowIcon("Gained Blueprint: " + bp.result.item.itemName);
     }
 
-    public void ShowIcon() 
+    public void ShowIcon(string message) 
     { 
         if (iconAnimation == null)
         {
@@ -32,6 +32,7 @@ public class ItemNotifyScript : MonoBehaviour
         itemNotifyIcon.GetComponent<Image>().color = Color.white;
         itemNotifyPanel.GetComponent<Image>().color = Color.white;
         itemNotifyPanelImage.GetComponent<Image>().color = Color.white;
+        itemNotifyPanelText.GetComponent<Text>().text = message;
         itemNotifyPanelText.GetComponent<Text>().color = Color.white;
 
         iconAnimation = itemNotifyIcon.GetComponent<Animation>();
