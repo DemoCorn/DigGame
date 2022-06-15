@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Non_Player_Health : MonoBehaviour
 {
@@ -12,7 +14,9 @@ public class Non_Player_Health : MonoBehaviour
 	Collider2D colliderObject;
 	[HideInInspector] public bool mImmune = false;
 
-    private void Start()
+	[SerializeField] private GameObject popup;
+
+	private void Start()
     {
 		particle = GetComponentInChildren<ParticleSystem>();
 		sprite = GetComponentInChildren<SpriteRenderer>();
@@ -28,6 +32,7 @@ public class Non_Player_Health : MonoBehaviour
 	{
 		if (!mImmune)
 		{
+			ShowDamage( fDamage.ToString());
 			health -= fDamage;
 			if (health <= 0)
 			{
@@ -35,6 +40,7 @@ public class Non_Player_Health : MonoBehaviour
 			}
 			else if(particle)
             {
+				
 				particle.Play();
             }
 			mImmune = true;
@@ -42,6 +48,14 @@ public class Non_Player_Health : MonoBehaviour
 		}
 	}
 
+	void ShowDamage(string text)
+    {
+		if(popup)
+        {
+			GameObject prefab = Instantiate(popup, transform.position, Quaternion.identity);
+			prefab.GetComponentInChildren<TextMeshPro>().text = text;
+        }
+    }
 	private void StopImmunity()
     {
 		mImmune = false;
