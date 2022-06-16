@@ -23,6 +23,10 @@ public class DonutPlatform : MonoBehaviour
     private Vector3 moveVector;
     private bool Colided=false;
     private GameObject playerForTransform;
+    private int counter = 0;
+    bool isgroundedcollect;
+    Player_Movement movementofplayer;
+    
 
     void Start()
     {
@@ -34,6 +38,9 @@ public class DonutPlatform : MonoBehaviour
         moveVector = new Vector3(0, yValue, 0);
 
         playerForTransform = GameManager.Instance.GetPlayerTransform();
+
+        movementofplayer = GameObject.Find("Player 2").GetComponent<Player_Movement>();
+        isgroundedcollect = movementofplayer.getGrounded();
     }
 
     private void ObjectMoveUp()
@@ -76,16 +83,19 @@ public class DonutPlatform : MonoBehaviour
         //  Debug.Log(pos);
         if (CheckGrounded())
         {
-
+            Debug.Log("CheckGrounded: " + CheckGrounded());
+           
             if (Colided == false)
             {
                 playerForTransform.gameObject.transform.SetParent(gameObject.transform, true);
-
+                Debug.Log("chECKGROUNDED playertransform set to platform");
                 Colided = true;
             }
         }
         else
-        { 
+        {
+            
+            Debug.Log("CheckGrounded: " + CheckGrounded());
             playerForTransform.gameObject.transform.parent = null;
         }
     }
@@ -110,7 +120,7 @@ public class DonutPlatform : MonoBehaviour
         RaycastHit2D hit = Physics2D.BoxCast(BoxColl.bounds.center, BoxColl.bounds.size, 0f, Vector2.up, 0.2f);
         //if (!hit)
         //    Debug.Log("HIT none");
-        //Debug.Log(hit.transform.name);
+        //Debug.Log(hit.transform.name);       
         return hit;
     }
 
@@ -122,6 +132,8 @@ public class DonutPlatform : MonoBehaviour
         Colided = false;
 
         Invoke("SpawnNewPlatform", PlatformRespawnTime);
+        playerForTransform.gameObject.transform.parent = null;
+        counter = 0;
     }
 
     public void BeginFalling()
@@ -135,6 +147,13 @@ public class DonutPlatform : MonoBehaviour
          Debug.Log("Hit Detected to block");
 
         DisableBlock();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+
     }
 
 }
