@@ -59,7 +59,7 @@ public class Player_Health : MonoBehaviour
             TakeDamage(nDamageTaken);
         }
 
-        TestDeath();
+        //TestDeath();
 
     }
 
