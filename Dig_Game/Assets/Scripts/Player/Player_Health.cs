@@ -59,7 +59,7 @@ public class Player_Health : MonoBehaviour
             TakeDamage(nDamageTaken);
         }
 
-        //TestDeath();
+        TestDeath();
 
     }
 
@@ -173,10 +173,12 @@ public class Player_Health : MonoBehaviour
 
     public void TestDeath()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.X))
         {
             Die(false);
         }
+        */
         if (Input.GetKeyDown(KeyCode.R) && hasRetired == true)
         {
             Die(true);
