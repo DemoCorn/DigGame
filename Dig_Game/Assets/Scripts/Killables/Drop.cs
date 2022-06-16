@@ -89,7 +89,6 @@ public class Drop : MonoBehaviour
                         if (chance <= blueprint.percentChance)
                         {
                             GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
-                            itemNotifyScript.DisplayItemNotificationUI();
                         }
                         else
                         {
