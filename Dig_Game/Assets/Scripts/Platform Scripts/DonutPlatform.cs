@@ -85,7 +85,13 @@ public class DonutPlatform : MonoBehaviour
             }
         }
         else
+<<<<<<< Updated upstream
         { 
+=======
+        {
+            
+            //Debug.Log("CheckGrounded: " + CheckGrounded());
+>>>>>>> Stashed changes
             playerForTransform.gameObject.transform.parent = null;
         }
     }

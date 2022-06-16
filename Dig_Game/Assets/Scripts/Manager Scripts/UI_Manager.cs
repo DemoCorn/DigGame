@@ -9,6 +9,7 @@ public class UI_Manager : MonoBehaviour
 {
     [HideInInspector] public bool loaded = false;
     [SerializeField] private GameObject menuPrefab;
+    private GameObject menus;
     private sians_Inventory_screen menuScript;
     private HPCog cog;
     private  List<Transform> compassLocations = new List<Transform>();
@@ -28,7 +29,7 @@ public class UI_Manager : MonoBehaviour
 
     public void BootUp()
     {
-        GameObject menus = Instantiate(menuPrefab);
+        menus = Instantiate(menuPrefab);
         loaded = true;
 
         menuScript = menus.GetComponent<sians_Inventory_screen>();
@@ -94,6 +95,18 @@ public class UI_Manager : MonoBehaviour
     public void RegisterCompassLocation(Transform pos)
     {
         compassLocations.Add(pos);
+    }
+
+    public GameObject AddToCanvas(GameObject gameObject, Vector3 position)
+    {
+        Transform createdTransform = Instantiate(gameObject).transform;
+        GameObject createdObject = createdTransform.gameObject;
+
+        createdTransform.parent = menus.transform;
+
+        createdTransform.localPosition = position;
+
+        return createdObject;
     }
 }
 

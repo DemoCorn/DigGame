@@ -25,7 +25,7 @@ public class Inventory_Manager : MonoBehaviour
 
     private Inputs inputs;
 
-    private ItemNotifyScript itemNotifyScript;
+    public ItemNotifyScript itemNotifyScript;
 
 
     // Start is called before the first frame update

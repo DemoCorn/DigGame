@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: DigDamage
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2109960741858299843, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
+      propertyPath: ItemNotifyMessenger
+      value: 
+      objectReference: {fileID: 1901758295}
     - target: {fileID: 4768739381286906188, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
@@ -673,6 +677,7 @@ MonoBehaviour:
     isUnlocked: 1
   - blueprint: {fileID: 11400000, guid: 248fc780b25c0304cb224cde8680dd72, type: 2}
     isUnlocked: 0
+  itemNotifyScript: {fileID: 0}
 --- !u!114 &28138288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12612,6 +12617,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1901758295 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7881811805678285917, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
+  m_PrefabInstance: {fileID: 1544349}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1912859173
 PrefabInstance:
   m_ObjectHideFlags: 0
