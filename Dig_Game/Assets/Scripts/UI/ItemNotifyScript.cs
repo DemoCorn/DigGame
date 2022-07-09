@@ -19,8 +19,7 @@ public class ItemNotifyScript : MonoBehaviour
         //ShowIcon("Gained Blueprint: " + bp.result.item.itemName);
         GameObject messenger = GameManager.Instance.UIManager.AddToCanvas(ItemNotifyMessenger, new Vector3(506.0f, 362.0f, 90.0f));
 
-        ItemNotifyMessenger messengerScript = messenger.GetComponentInChildren<ItemNotifyMessenger>();
-        messengerScript.itemNotifyIcon = itemNotifyIcon.GetComponent<Image>();
+        ItemNotifyMessenger messengerScript = messenger.GetComponent<ItemNotifyMessenger>();
         messengerScript.ShowIcon("Gained Blueprint: " + bp.result.item.itemName);
     }
 
