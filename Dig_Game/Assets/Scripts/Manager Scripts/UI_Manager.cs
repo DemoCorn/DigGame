@@ -20,7 +20,8 @@ public class UI_Manager : MonoBehaviour
     private Inputs inputs;
     private UnityEvent UILoaded;
 
-    public GameObject ItemNotifyMessenger;
+    [SerializeField] private GameObject ItemNotifyMessenger;
+    [SerializeField] private float NotificationSpacing = 150.0f;
     private List<int> usedMessengerSlots = new List<int>();
 
     [HideInInspector] public bool onCraftingTable = false;
@@ -132,7 +133,7 @@ public class UI_Manager : MonoBehaviour
         }
         Assert.AreNotEqual(nID, -1, "Too many notifications triggered at once");
 
-        GameObject messenger = GameManager.Instance.UIManager.AddToCanvas(ItemNotifyMessenger, new Vector3(506.0f, 362.0f - (150.0f * nID), 90.0f));
+        GameObject messenger = GameManager.Instance.UIManager.AddToCanvas(ItemNotifyMessenger, new Vector3(506.0f, 362.0f - (NotificationSpacing * nID), 90.0f));
 
         ItemNotifyMessenger messengerScript = messenger.GetComponent<ItemNotifyMessenger>();
         messengerScript.nID = nID;
