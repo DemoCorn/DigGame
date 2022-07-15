@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: DigDamage
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2109960741858299843, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
+      propertyPath: ItemNotifyMessenger
+      value: 
+      objectReference: {fileID: 9136782139260891201, guid: 624d4e0d4f4fb824bad68a0e3905aeb6, type: 3}
     - target: {fileID: 4768739381286906188, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
@@ -567,13 +571,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   EquipedUsables:
-  - usable: {fileID: 0}
+  - usable: {fileID: 11400000, guid: f539ace2b6a7aab4d95c50989478e912, type: 2}
     amount: 0
     cooldown: 0
-  - usable: {fileID: 0}
+  - usable: {fileID: 11400000, guid: b6d9366d88781da4db897c336b82dfb0, type: 2}
     amount: 0
     cooldown: 0
-  - usable: {fileID: 0}
+  - usable: {fileID: 11400000, guid: 0eb105c10b2c50c498e3a9961b72592c, type: 2}
     amount: 0
     cooldown: 0
   blueprints:
@@ -708,6 +712,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loaded: 0
   menuPrefab: {fileID: 1486475501730190030, guid: 1439f9dd466d93044b90ad490c39d34a, type: 3}
+  ItemNotifyMessenger: {fileID: 9136782139260891201, guid: 624d4e0d4f4fb824bad68a0e3905aeb6, type: 3}
+  NotificationSpacing: 150
   onCraftingTable: 0
 --- !u!1 &108096529
 GameObject:

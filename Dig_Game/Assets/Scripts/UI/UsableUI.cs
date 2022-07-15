@@ -24,24 +24,10 @@ public class UsableUI : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            if (usables[i].amount > 0)
-            {
-                usableButtons[i].slotImage.sprite = usables[i].usable.itemSprite;
-                usableButtons[i].slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-                usableButtons[i].amountText.text = usables[i].amount.ToString();
-            }
-            else
-            {
-                usableButtons[i].slotImage.sprite = null;
-                usableButtons[i].slotImage.color = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-                usableButtons[i].amountText.text = "";
-            }
+            usableButtons[i].slotImage.sprite = usables[i].usable.itemSprite;
+            usableButtons[i].slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            usableButtons[i].amountText.text = usables[i].amount.ToString();
         }
-    }
-
-    public void Unequip(int SlotNum)
-    {
-        GameManager.Instance.InventoryManager.UnequipUsable(SlotNum);
     }
 
     public class UsableSpace
