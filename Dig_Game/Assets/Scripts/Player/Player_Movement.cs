@@ -164,4 +164,9 @@ public class Player_Movement : MonoBehaviour
     {
         speed += movementChange;
     }
+    
+ public bool getGrounded()
+    {
+        return isGrounded;
+    }
 }

@@ -107,7 +107,7 @@ public class EnemyAI : MonoBehaviour
             Attack();
         }
 
-        Debug.Log(behaviour);
+        //Debug.Log(behaviour);
     }
     void FixedUpdate()
     {

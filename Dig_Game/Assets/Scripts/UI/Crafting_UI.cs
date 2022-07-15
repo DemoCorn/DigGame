@@ -114,7 +114,10 @@ public class Crafting_UI : MonoBehaviour
 
     public void Craft()
     {
-        GameManager.Instance.InventoryManager.Craft(currentBlueprint);
+        if (GameManager.Instance.UIManager.onCraftingTable == true)
+        {
+            GameManager.Instance.InventoryManager.Craft(currentBlueprint);
+        }
     }
 
     public class CraftingSlot

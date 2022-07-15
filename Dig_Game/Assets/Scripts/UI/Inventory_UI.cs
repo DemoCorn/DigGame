@@ -58,10 +58,6 @@ public class Inventory_UI : MonoBehaviour
             {
                 GameManager.Instance.InventoryManager.Equip((Equipment)inventory[slotNum].item);
             }
-            if (inventory[slotNum].item is Usable)
-            {
-                GameManager.Instance.InventoryManager.EquipUsable((Usable)inventory[slotNum].item);
-            }
         }
     }
 
