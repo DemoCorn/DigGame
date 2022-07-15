@@ -64,7 +64,6 @@ public class TimedBlocks : MonoBehaviour
 
     public void InVisibleNONInteractable()
     {
-        Debug.Log("activated Invisible block");
         rend.enabled = false;
         GetComponent<Collider2D>().enabled = false;
     }
@@ -75,7 +74,6 @@ public class TimedBlocks : MonoBehaviour
 
         if (currenttime >= AppearTime)
         {
-            Debug.Log("visible");
             InVisibleNONInteractable();
             isvisible = false;
             currenttime = 0;
@@ -88,7 +86,7 @@ public class TimedBlocks : MonoBehaviour
 
         if(currenttime>=InvisibleTime)
         {
-            Debug.Log("Invisible");
+            //Debug.Log("Invisible");
             VisibleInteractable();
             isvisible = true;
             currenttime = 0;

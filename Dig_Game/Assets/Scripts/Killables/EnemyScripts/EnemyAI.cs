@@ -82,6 +82,7 @@ public class EnemyAI : MonoBehaviour
             damageField.SetActive(false);
             behaviour = BehaviourStates.Roam;
             seeker = GetComponent<Seeker>();
+            path = GameObject.Find("A *").GetComponent<Path>();
             rb = GetComponent<Rigidbody2D>();
             startingPosition = transform.position;
             canAttack = true;
@@ -94,7 +95,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void Update()
     { 
-        /**Flip**/{
+        {
             EnemyGFX();
             SetSpawnOffset();
         }
@@ -104,7 +105,9 @@ public class EnemyAI : MonoBehaviour
         if (canAttack == true && TargetInAttackRange())
         {
             Attack();
-        } 
+        }
+
+        //Debug.Log(behaviour);
     }
     void FixedUpdate()
     {
@@ -191,7 +194,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     //PathFinding Behavior
-    private GameObject GetPlayer()
+    private GameObject GetPlayer() // Is finding player
     {
         player = GameObject.FindWithTag("Player");
         
@@ -309,7 +312,7 @@ public class EnemyAI : MonoBehaviour
         canAttack = true;
         if(waitTimer >= attackDelay)
         {
-        waitTimer = 0f;
+            waitTimer = 0f;
         }
     }
 
@@ -326,22 +329,22 @@ public class EnemyAI : MonoBehaviour
     //Flip GFX && Damage field spawn location
     private void EnemyGFX()
     {
-        if (target.position.x >= 0.01f)
+        if (target.position.x >= transform.position.x)
         {
             enemyGFX.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        else if (target.position.x <= -0.01f)
+        else if (target.position.x <= -transform.position.x)
         {
             enemyGFX.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
     private void SetSpawnOffset()
     {
-        if (target.position.x >= 0.01f)
+        if (target.position.x >= transform.position.x)
         {
             spawnOffset.transform.position = new Vector3(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y, 0);
         }
-        else if (target.position.x <= -0.01f)
+        else if (target.position.x <= -transform.position.x)
         {
             spawnOffset.transform.position = new Vector3(gameObject.transform.position.x - 0.5f, gameObject.transform.position.y, 0);            
         }

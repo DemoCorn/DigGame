@@ -2,17 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
+using UnityEngine.Assertions;
 
 
 public class UI_Manager : MonoBehaviour
 {
+    [HideInInspector] public bool loaded = false;
     [SerializeField] private GameObject menuPrefab;
+    private GameObject menus;
     private sians_Inventory_screen menuScript;
     private HPCog cog;
+
     private  List<Transform> compassLocations = new List<Transform>();
     private GameObject compassCenter;
 
     private Inputs inputs;
+    private UnityEvent UILoaded;
+
+    [SerializeField] private GameObject ItemNotifyMessenger;
+    [SerializeField] private float NotificationSpacing = 150.0f;
+    private List<int> usedMessengerSlots = new List<int>();
 
     [HideInInspector] public bool onCraftingTable = false;
 
@@ -24,9 +34,12 @@ public class UI_Manager : MonoBehaviour
 
     public void BootUp()
     {
-        GameObject menus = Instantiate(menuPrefab);
+        menus = Instantiate(menuPrefab);
+        loaded = true;
+
         menuScript = menus.GetComponent<sians_Inventory_screen>();
         compassCenter = menus.GetComponent<UIEssentials>().CompassCenter;
+        compassLocations.Clear();
     }
 
     // Update is called once per frame
@@ -87,6 +100,49 @@ public class UI_Manager : MonoBehaviour
     public void RegisterCompassLocation(Transform pos)
     {
         compassLocations.Add(pos);
+    }
+
+    public GameObject AddToCanvas(GameObject gameObject, Vector3 position)
+    {
+        Transform createdTransform = Instantiate(gameObject).transform;
+        GameObject createdObject = createdTransform.gameObject;
+
+        createdTransform.parent = menus.transform;
+
+        createdTransform.localPosition = position;
+
+        return createdObject;
+    }
+
+    public void DisplayBlueprint(Blueprint bp)
+    {
+        MessengerCreation("Gained Blueprint: " + bp.result.item.itemName);
+    }
+
+    private void MessengerCreation(string message)
+    {
+        int nID = -1;
+        for (int i = 0; i < 20; i++)
+        {
+            if (usedMessengerSlots.IndexOf(i) == -1)
+            {
+                nID = i;
+                usedMessengerSlots.Add(nID);
+                break;
+            }
+        }
+        Assert.AreNotEqual(nID, -1, "Too many notifications triggered at once");
+
+        GameObject messenger = GameManager.Instance.UIManager.AddToCanvas(ItemNotifyMessenger, new Vector3(506.0f, 362.0f - (NotificationSpacing * nID), 90.0f));
+
+        ItemNotifyMessenger messengerScript = messenger.GetComponent<ItemNotifyMessenger>();
+        messengerScript.nID = nID;
+        messengerScript.ShowIcon(message);
+    }
+
+    public void MessengerDelete(int nID)
+    {
+        usedMessengerSlots.Remove(nID);
     }
 }
 

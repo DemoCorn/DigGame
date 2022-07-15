@@ -9,6 +9,7 @@ public class Inputs
     public string left;
     public string right;
     public string jump;
+    public int dig;
     public int attack;
     public string inventoryOpen;
     public string[] useUsables = new string[3];
@@ -39,7 +40,8 @@ public class Input_Manager : MonoBehaviour
             inputs.left = "a";
             inputs.right = "d";
             inputs.jump = "space";
-            inputs.attack = ((int)KeyCode.Mouse0);
+            inputs.dig = ((int)KeyCode.Mouse0);
+            inputs.attack = ((int)KeyCode.Mouse1);
             inputs.inventoryOpen = "e";
             inputs.useUsables[0] = "1";
             inputs.useUsables[1] = "2";

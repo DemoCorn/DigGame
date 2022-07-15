@@ -25,15 +25,10 @@ public class Inventory_Manager : MonoBehaviour
 
     private Inputs inputs;
 
-    private ItemNotifyScript itemNotifyScript;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        itemNotifyScript = GameObject.FindWithTag("Player").GetComponentInChildren<ItemNotifyScript>();
-
-
         // Equip the lack of armor and weapon, needed so that Equip works
         for (int i = 0; i < Enum.GetNames(typeof(EquipmentType)).Length; i++)
         {
@@ -50,6 +45,11 @@ public class Inventory_Manager : MonoBehaviour
         lastClass = playerClass;
     }
 
+    public void BootUp()
+    {
+        ReEquip();
+    }
+
     private void Update()
     {
         Inputs inputs = GameManager.Instance.InputManager.GetInputs();
@@ -59,16 +59,12 @@ public class Inventory_Manager : MonoBehaviour
             {
                 if (Input.GetKeyDown(inputs.useUsables[i]) && !EquipedUsables[i].cooldown)
                 {
-                    float cooldownTime = EquipedUsables[i].usable.effect.GetComponent<UsableEffect>().Activate();
-                    EquipedUsables[i].amount--;
-                    if (EquipedUsables[i].amount <= 0)
+                    if (EquipedUsables[i].amount > 0)
                     {
-                        EquipedUsables[i] = new UsableGroup(null, 0);
-                    }
-                    else
-                    {
+                        float cooldownTime = EquipedUsables[i].usable.effect.GetComponent<UsableEffect>().Activate();
+                        EquipedUsables[i].amount--;
                         EquipedUsables[i].cooldown = true;
-                        CooldownStop(i, cooldownTime);
+                        StartCoroutine(CooldownStop(i, cooldownTime));
                     }
                 }
             }
@@ -160,6 +156,7 @@ public class Inventory_Manager : MonoBehaviour
         }
     }
 
+/*
     public void EquipUsable(Usable usableToEquip)
     {
         int usablePlacement = InventoryHas(usableToEquip);
@@ -199,6 +196,7 @@ public class Inventory_Manager : MonoBehaviour
             EditInventory(usableItemGroup);
         }
     }
+*/
 
     public bool Craft(Blueprint blueprint)
     {
@@ -260,8 +258,9 @@ public class Inventory_Manager : MonoBehaviour
         if (addblueprint != null)
         {
             addblueprint.isUnlocked = true;
-            itemNotifyScript.DisplayItemNotificationUI();
+            GameManager.Instance.UIManager.DisplayBlueprint(blueprint);
             Debug.Log(addblueprint.blueprint.result.item.name);
+            return;
         }
         Debug.LogWarning("Blueprint dropped not contained in Inventory_Manager");
     }
@@ -326,7 +325,7 @@ public class Inventory_Manager : MonoBehaviour
         lastClass = playerClass;
     }
 
-    IEnumerable CooldownStop(int index, float time)
+    IEnumerator CooldownStop(int index, float time)
     {
         yield return new WaitForSeconds(time);
         EquipedUsables[index].cooldown = false;
