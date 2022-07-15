@@ -11,7 +11,7 @@ public class ItemNotifyMessenger : MonoBehaviour
 
     [HideInInspector] public Image itemNotifyIcon = null;
 
-    private Animation iconAnimation = null;
+    [HideInInspector] public int nID;
 
     public void ShowIcon(string message)
     {
@@ -21,15 +21,12 @@ public class ItemNotifyMessenger : MonoBehaviour
         itemNotifyPanelText.GetComponent<Text>().text = message;
         itemNotifyPanelText.GetComponent<Text>().color = Color.white;
 
-        iconAnimation = itemNotifyIcon.GetComponent<Animation>();
-        iconAnimation.Play();
-        Debug.Log("Pickup On");
         Invoke("SetIconandPanelInactive", 2.5f);
     }
 
     public void SetIconandPanelInactive()
     {
-        GameManager.Instance.InventoryManager.itemNotifyScript.MessengerDelete();
+        GameManager.Instance.UIManager.MessengerDelete(nID);
         Destroy(gameObject);
     }
 }

@@ -25,8 +25,6 @@ public class Inventory_Manager : MonoBehaviour
 
     private Inputs inputs;
 
-    public ItemNotifyScript itemNotifyScript;
-
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +48,6 @@ public class Inventory_Manager : MonoBehaviour
     public void BootUp()
     {
         ReEquip();
-        itemNotifyScript = GameManager.Instance.GetPlayer().GetComponentInChildren<ItemNotifyScript>();
     }
 
     private void Update()
@@ -62,14 +59,10 @@ public class Inventory_Manager : MonoBehaviour
             {
                 if (Input.GetKeyDown(inputs.useUsables[i]) && !EquipedUsables[i].cooldown)
                 {
-                    float cooldownTime = EquipedUsables[i].usable.effect.GetComponent<UsableEffect>().Activate();
-                    EquipedUsables[i].amount--;
-                    if (EquipedUsables[i].amount <= 0)
+                    if (EquipedUsables[i].amount > 0)
                     {
-                        EquipedUsables[i] = new UsableGroup(null, 0);
-                    }
-                    else
-                    {
+                        float cooldownTime = EquipedUsables[i].usable.effect.GetComponent<UsableEffect>().Activate();
+                        EquipedUsables[i].amount--;
                         EquipedUsables[i].cooldown = true;
                         StartCoroutine(CooldownStop(i, cooldownTime));
                     }
@@ -163,6 +156,7 @@ public class Inventory_Manager : MonoBehaviour
         }
     }
 
+/*
     public void EquipUsable(Usable usableToEquip)
     {
         int usablePlacement = InventoryHas(usableToEquip);
@@ -202,6 +196,7 @@ public class Inventory_Manager : MonoBehaviour
             EditInventory(usableItemGroup);
         }
     }
+*/
 
     public bool Craft(Blueprint blueprint)
     {
@@ -263,8 +258,9 @@ public class Inventory_Manager : MonoBehaviour
         if (addblueprint != null)
         {
             addblueprint.isUnlocked = true;
-            itemNotifyScript.DisplayBlueprint(blueprint);
+            GameManager.Instance.UIManager.DisplayBlueprint(blueprint);
             Debug.Log(addblueprint.blueprint.result.item.name);
+            return;
         }
         Debug.LogWarning("Blueprint dropped not contained in Inventory_Manager");
     }
