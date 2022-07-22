@@ -107,7 +107,7 @@ public class BossManager : MonoBehaviour
         {
             if (bossPhase3 == null)
             {
-                Debug.Log("You Win");
+                
                 healthBarUI.SetActive(false);
                 rewardRoom.SetActive(false);
                 rewards.SetActive(true);
