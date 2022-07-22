@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class TestUsable : UsableEffect
 {
+    public new float cooldownTime = 0.0f;
     override public float Activate()
     {
         Debug.LogWarning("Test");
-        return 0.0f;
+        return cooldownTime;
     }
 }

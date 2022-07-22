@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeathPreventPotion : UsableEffect
 {
     float activeTime = 60.0f;
-    float cooldownTime = 60.0f;
+    public new float  cooldownTime = 60.0f;
 
     override public float Activate()
     {

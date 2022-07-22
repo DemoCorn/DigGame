@@ -9,6 +9,7 @@ public class BossStart : MonoBehaviour
     public ParticleSystem particles;
     public GameObject selfCheck;
     public GameObject canvas;
+    public GameObject bossMinion1;
 
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -20,7 +21,7 @@ public class BossStart : MonoBehaviour
             bossSprite.SetActive(false);
             selfCheck.SetActive(false);
             canvas.SetActive(true);
-            
+            bossMinion1.SetActive(true);
         }
     }
 }
