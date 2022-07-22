@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: DigDamage
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1915349852, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
+      propertyPath: WeaponDamage
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2109960741858299843, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
       propertyPath: ItemNotifyMessenger
       value: 
@@ -204,11 +208,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4768739382955033343, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 210.2
+      value: -158.86
       objectReference: {fileID: 0}
     - target: {fileID: 4768739382955033343, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -70.7
+      value: -7.72
       objectReference: {fileID: 0}
     - target: {fileID: 4768739382955033343, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2022,7 +2026,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1409604295}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!199 &781368209
 ParticleSystemRenderer:
@@ -6986,7 +6990,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935519402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 210.2, y: -70.7, z: -10}
+  m_LocalPosition: {x: -158.86, y: -7.72, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7158,14 +7162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdf7b6b47473704b94af0148d2d7b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 1430504235}
-  sword: []
-  weapon: {fileID: 0}
---- !u!212 &1430504235 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 4768739382525432571, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
-  m_PrefabInstance: {fileID: 1544349}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1430504236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7498,7 +7494,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704843301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 210.2, y: -70.7, z: -10}
+  m_LocalPosition: {x: -158.86, y: -7.72, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 108096530}
