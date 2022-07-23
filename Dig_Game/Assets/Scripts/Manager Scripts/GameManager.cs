@@ -173,6 +173,11 @@ public class GameManager : MonoBehaviour
         player.GetComponent<Player_Health>().SetRevive(false);
     }
 
+    public void RetirePlayer()
+    {
+        player.GetComponent<Player_Health>().Die(true);
+    }
+
     public void HealPlayer(float heal)
     {
         player.GetComponent<Player_Health>().Heal(heal);
