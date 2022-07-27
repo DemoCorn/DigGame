@@ -50,6 +50,7 @@ public class Weapon_Attack : MonoBehaviour
                 if (collisionObject.GetComponent<Non_Player_Health>() != null && collisionObject.tag == "Enemy")
                 {
                     collisionObject.GetComponent<Non_Player_Health>().Hit(stats.GetAttack());
+                    CinemachineShakeCam.Instance.ShakeCamera(.7f, .05f);
                 }
             }
         }
