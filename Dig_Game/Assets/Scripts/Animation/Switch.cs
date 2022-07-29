@@ -14,8 +14,8 @@ public class Switch : MonoBehaviour
     public SpriteResolver rightLeg;
     public SpriteResolver weapon;
     public SpriteResolver pickaxe;
-    public SpriteResolver gauntlet;
-
+    public SpriteResolver gauntletOnWeapon;
+    public SpriteResolver gauntletOnPickaxe;
 
     // Start is called before the first frame update
     void Start()
@@ -42,8 +42,8 @@ public class Switch : MonoBehaviour
             rightLeg.SetCategoryAndLabel("RightLeg", equipment[3].armorName);
             weapon.SetCategoryAndLabel("Weapon", equipment[5].armorName);
             pickaxe.SetCategoryAndLabel("Pickaxe", equipment[0].armorName);
-            gauntlet.SetCategoryAndLabel("Gauntlet", equipment[4].armorName);
-
+            gauntletOnWeapon.SetCategoryAndLabel("Gauntlet", equipment[4].armorName);
+            gauntletOnPickaxe.SetCategoryAndLabel("Gauntlet", equipment[4].armorName); 
 
         // foreach(var resolver in FindObjectsOfType<SpriteResolver>())
         // {

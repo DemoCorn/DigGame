@@ -6,7 +6,11 @@ public class AttackPotion : UsableEffect
 {
     public float attackBoost = 10.0f;
     float activeTime = 60.0f;
-    public new float cooldownTime = 60.0f;
+
+    AttackPotion()
+    {
+        cooldownTime = 60.0f;
+    }
 
     override public float Activate()
     {

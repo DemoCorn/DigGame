@@ -181,12 +181,13 @@ public class Player_Health : MonoBehaviour
         */
         if (Input.GetKeyDown(KeyCode.R) && hasRetired == true)
         {
-            Die(true);
+            GameManager.Instance.UIManager.SetRetireScreen();
         }
     }
 
     IEnumerator Hurt()
     {
+        CinemachineShakeCam.Instance.ShakeCamera(.8f, .4f);
         headSR.material = matWhite;
         bodySR.material = matWhite;
         leftLegSR.material = matWhite;

@@ -13,6 +13,12 @@ public class Player_Attack : MonoBehaviour
     [SerializeField] Player_WeaponStats stats;
 
     public Animator dAnimator;
+
+    
+    [SerializeField] private float attackRateWhenHolding = 0.1f;
+    private float nextAttackTime = 0;
+    
+    
     void Start()
     {
         //mAttackHitbox = gameObject.AddComponent<BoxCollider2D>();
@@ -24,11 +30,17 @@ public class Player_Attack : MonoBehaviour
     {
         Inputs inputs = GameManager.Instance.GetInputs();
 
-        if (Input.GetKeyDown((KeyCode)inputs.attack))
+        if (Input.GetKeyDown((KeyCode)inputs.dig))
         {
             Attack();
         }
+        if (Time.time > nextAttackTime && Input.GetKey((KeyCode)inputs.dig))
+        {            
+            Attack();
+            nextAttackTime = Time.time + attackRateWhenHolding;
+        }
 
+      
 
         // Check if attack hitbox is active to skip some execution if it's not
         if (mAttackHitbox.enabled)
@@ -52,6 +64,7 @@ public class Player_Attack : MonoBehaviour
                     else
                     {
                         collisionObject.GetComponent<Non_Player_Health>().Hit(stats.GetDig());
+                        CinemachineShakeCam.Instance.ShakeCamera(.5f, .03f);
                     }
                 }
             }
@@ -68,5 +81,6 @@ public class Player_Attack : MonoBehaviour
     {
         mAttackHitbox.enabled = true;
         dAnimator.SetBool("PlayAnimation", true);
+        
     }
 }
