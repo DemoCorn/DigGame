@@ -64,6 +64,7 @@ public class Player_Attack : MonoBehaviour
                     else
                     {
                         collisionObject.GetComponent<Non_Player_Health>().Hit(stats.GetDig());
+                        CinemachineShakeCam.Instance.ShakeCamera(.5f, .03f);
                     }
                 }
             }

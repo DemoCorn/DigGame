@@ -68,9 +68,9 @@ public class BossManager : MonoBehaviour
 
         rewardRoom = GameObject.Find("RewardRoom").gameObject;
         
-        maxBoss1Health = 200;
-        maxBoss2Health = 200;
-        maxBoss3Health = 200;
+        maxBoss1Health = boss1Health.GetHealth();
+        maxBoss2Health = boss2Health.GetHealth();
+        maxBoss3Health = boss3Health.GetHealth();
 
         currentBoss1Health = maxBoss1Health;
         healthBar1.setBossMaxHealth(maxBoss1Health);
