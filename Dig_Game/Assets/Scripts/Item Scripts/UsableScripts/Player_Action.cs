@@ -5,8 +5,11 @@ using UnityEngine;
 public class Player_Action : UsableEffect
 {
     [SerializeField] Bomb_Projectile bomb;
-    public new float cooldownTime = 1.0f;
-    private int bombsAmmo = 0;
+
+    Player_Action()
+    {
+        cooldownTime = 1.0f;
+    }
 
     override public float Activate()
     {

@@ -4,4 +4,5 @@ using UnityEngine;
 public class UIEssentials : MonoBehaviour
 {
     public GameObject CompassCenter;
+    public GameObject RetireConfirm;
 }

@@ -17,6 +17,8 @@ public class UI_Manager : MonoBehaviour
     private  List<Transform> compassLocations = new List<Transform>();
     private GameObject compassCenter;
 
+    private GameObject retireScreen;
+
     private Inputs inputs;
     private UnityEvent UILoaded;
 
@@ -37,27 +39,33 @@ public class UI_Manager : MonoBehaviour
         menus = Instantiate(menuPrefab);
         loaded = true;
 
+        UIEssentials ui = menus.GetComponent<UIEssentials>();
+
         menuScript = menus.GetComponent<sians_Inventory_screen>();
-        compassCenter = menus.GetComponent<UIEssentials>().CompassCenter;
+        compassCenter = ui.CompassCenter;
+        retireScreen = ui.RetireConfirm;
         compassLocations.Clear();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(inputs.inventoryOpen))
+        if (GameManager.Instance.isMainLevel)
         {
-            if (onCraftingTable)
+            if (Input.GetKeyDown(inputs.inventoryOpen))
             {
-                menuScript.OpenCloseMenu(UIMenu.equipment);
+                if (onCraftingTable)
+                {
+                    menuScript.OpenCloseMenu(UIMenu.equipment);
+                }
+                else
+                {
+                    menuScript.OpenCloseMenu(UIMenu.inventory);
+                }
             }
-            else
-            {
-                menuScript.OpenCloseMenu(UIMenu.inventory);
-            }
+            cog.UpdateHealth(GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetPlayerMaxHealth());
+            DrawClosestPoint();
         }
-        cog.UpdateHealth(GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetPlayerMaxHealth());
-        DrawClosestPoint();
     }
 
     private void DrawClosestPoint()
@@ -83,6 +91,11 @@ public class UI_Manager : MonoBehaviour
         {
             compassCenter.transform.eulerAngles = new Vector3(0.0f, 0.0f, Angle360(playerPos, position));
         }
+    }
+
+    public void SetRetireScreen()
+    {
+        retireScreen.SetActive(!retireScreen.activeSelf);
     }
 
     private float Angle360(Vector2 p1, Vector2 p2)

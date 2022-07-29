@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] int LevelNum;
     [SerializeField] Vector3 PlayerStartPosition;
 
+    [HideInInspector] public bool isMainLevel = false;
+
     private bool isWinning = false;
     public bool tutorialComplete = false; 
 
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     public void ManagerLoad()
     {
+        isMainLevel = true;
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<Camera>();
 
@@ -171,6 +174,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         player.GetComponent<Player_Health>().SetRevive(false);
+    }
+
+    public void RetirePlayer()
+    {
+        player.GetComponent<Player_Health>().Die(true);
     }
 
     public void HealPlayer(float heal)
