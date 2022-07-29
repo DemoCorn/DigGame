@@ -50,19 +50,22 @@ public class UI_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(inputs.inventoryOpen))
+        if (GameManager.Instance.isMainLevel)
         {
-            if (onCraftingTable)
+            if (Input.GetKeyDown(inputs.inventoryOpen))
             {
-                menuScript.OpenCloseMenu(UIMenu.equipment);
+                if (onCraftingTable)
+                {
+                    menuScript.OpenCloseMenu(UIMenu.equipment);
+                }
+                else
+                {
+                    menuScript.OpenCloseMenu(UIMenu.inventory);
+                }
             }
-            else
-            {
-                menuScript.OpenCloseMenu(UIMenu.inventory);
-            }
+            cog.UpdateHealth(GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetPlayerMaxHealth());
+            DrawClosestPoint();
         }
-        cog.UpdateHealth(GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetPlayerMaxHealth());
-        DrawClosestPoint();
     }
 
     private void DrawClosestPoint()

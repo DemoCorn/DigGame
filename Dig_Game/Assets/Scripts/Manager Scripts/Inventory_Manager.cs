@@ -51,19 +51,22 @@ public class Inventory_Manager : MonoBehaviour
 
     private void Update()
     {
-        Inputs inputs = GameManager.Instance.InputManager.GetInputs();
-        for (int i = 0; i < EquipedUsables.Length; i++)
+        if (GameManager.Instance.isMainLevel)
         {
-            if (EquipedUsables[i].usable != null)
+            Inputs inputs = GameManager.Instance.InputManager.GetInputs();
+            for (int i = 0; i < EquipedUsables.Length; i++)
             {
-                if (Input.GetKeyDown(inputs.useUsables[i]) && !EquipedUsables[i].cooldown)
+                if (EquipedUsables[i].usable != null)
                 {
-                    if (EquipedUsables[i].amount > 0)
+                    if (Input.GetKeyDown(inputs.useUsables[i]) && !EquipedUsables[i].cooldown)
                     {
-                        float cooldownTime = EquipedUsables[i].usable.effect.GetComponent<UsableEffect>().Activate();
-                        EquipedUsables[i].amount--;
-                        EquipedUsables[i].cooldown = true;
-                        StartCoroutine(CooldownStop(i, cooldownTime));
+                        if (EquipedUsables[i].amount > 0)
+                        {
+                            float cooldownTime = EquipedUsables[i].usable.effect.GetComponent<UsableEffect>().Activate();
+                            EquipedUsables[i].amount--;
+                            EquipedUsables[i].cooldown = true;
+                            StartCoroutine(CooldownStop(i, cooldownTime));
+                        }
                     }
                 }
             }
