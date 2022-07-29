@@ -83,19 +83,19 @@ public class DonutPlatform : MonoBehaviour
         //  Debug.Log(pos);
         if (CheckGrounded())
         {
-            Debug.Log("CheckGrounded: " + CheckGrounded());
+            //Debug.Log("CheckGrounded: " + CheckGrounded());
            
             if (Colided == false)
             {
                 playerForTransform.gameObject.transform.SetParent(gameObject.transform, true);
-                Debug.Log("chECKGROUNDED playertransform set to platform");
+                //Debug.Log("chECKGROUNDED playertransform set to platform");
                 Colided = true;
             }
         }
         else
         {
             
-            Debug.Log("CheckGrounded: " + CheckGrounded());
+            //Debug.Log("CheckGrounded: " + CheckGrounded());
             playerForTransform.gameObject.transform.parent = null;
         }
     }
