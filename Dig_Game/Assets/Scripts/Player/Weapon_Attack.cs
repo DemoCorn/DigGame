@@ -10,7 +10,8 @@ public class Weapon_Attack : MonoBehaviour
     Animator mAnimator;
     Collider2D mHitbox;
 
-    
+    [SerializeField] private float attackRateWhenHolding = 0.1f;
+    private float nextAttackTime = 0;
 
     private void Start()
     {
@@ -28,6 +29,12 @@ public class Weapon_Attack : MonoBehaviour
         {
             Attack();
         }
+        if (Time.time > nextAttackTime && Input.GetKey((KeyCode)inputs.attack))
+        {
+            Attack();
+            nextAttackTime = Time.time + attackRateWhenHolding;
+        }
+
         if (mAnimator.GetBool("WeaponAttackDone"))
         {
             mAnimator.SetBool("WeaponAttackDone", false);
