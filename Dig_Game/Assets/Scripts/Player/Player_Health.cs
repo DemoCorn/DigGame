@@ -181,7 +181,7 @@ public class Player_Health : MonoBehaviour
         */
         if (Input.GetKeyDown(KeyCode.R) && hasRetired == true)
         {
-            Die(true);
+            GameManager.Instance.UIManager.SetRetireScreen();
         }
     }
 

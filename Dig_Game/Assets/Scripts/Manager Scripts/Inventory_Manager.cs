@@ -19,7 +19,6 @@ public class Inventory_Manager : MonoBehaviour
 
     [Header("Usables")]
     public UsableGroup[] EquipedUsables = new UsableGroup[3] {new UsableGroup(null, 0), new UsableGroup(null, 0), new UsableGroup(null, 0) };
-    private int EquipUsableRotation = 0;
 
     [SerializeField] private List<UnlockableBlueprint> blueprints = new List<UnlockableBlueprint>();
 
@@ -52,19 +51,22 @@ public class Inventory_Manager : MonoBehaviour
 
     private void Update()
     {
-        Inputs inputs = GameManager.Instance.InputManager.GetInputs();
-        for (int i = 0; i < EquipedUsables.Length; i++)
+        if (GameManager.Instance.isMainLevel)
         {
-            if (EquipedUsables[i].usable != null)
+            Inputs inputs = GameManager.Instance.InputManager.GetInputs();
+            for (int i = 0; i < EquipedUsables.Length; i++)
             {
-                if (Input.GetKeyDown(inputs.useUsables[i]) && !EquipedUsables[i].cooldown)
+                if (EquipedUsables[i].usable != null)
                 {
-                    if (EquipedUsables[i].amount > 0)
+                    if (Input.GetKeyDown(inputs.useUsables[i]) && !EquipedUsables[i].cooldown)
                     {
-                        float cooldownTime = EquipedUsables[i].usable.effect.GetComponent<UsableEffect>().Activate();
-                        EquipedUsables[i].amount--;
-                        EquipedUsables[i].cooldown = true;
-                        StartCoroutine(CooldownStop(i, cooldownTime));
+                        if (EquipedUsables[i].amount > 0)
+                        {
+                            float cooldownTime = EquipedUsables[i].usable.effect.GetComponent<UsableEffect>().Activate();
+                            EquipedUsables[i].amount--;
+                            EquipedUsables[i].cooldown = true;
+                            StartCoroutine(CooldownStop(i, cooldownTime));
+                        }
                     }
                 }
             }
@@ -155,48 +157,6 @@ public class Inventory_Manager : MonoBehaviour
             }
         }
     }
-
-/*
-    public void EquipUsable(Usable usableToEquip)
-    {
-        int usablePlacement = InventoryHas(usableToEquip);
-
-        if (usablePlacement != -1)
-        {
-            for (int i = 0; i < EquipedUsables.Length; i++)
-            {
-                if (EquipedUsables[i].usable == null)
-                {
-                    EquipedUsables[i] = new UsableGroup(inventory[usablePlacement]);
-                    EditInventory(new ItemGroup(inventory[usablePlacement].item, -inventory[usablePlacement].amount));
-                    return;
-                }
-            }
-
-            ItemGroup usableItemGroup = new ItemGroup(EquipedUsables[EquipUsableRotation]);
-            EquipedUsables[EquipUsableRotation] = new UsableGroup(inventory[usablePlacement]);
-            EditInventory(usableItemGroup);
-            EditInventory(new ItemGroup(inventory[usablePlacement].item, -inventory[usablePlacement].amount));
-
-            EquipUsableRotation++;
-            EquipUsableRotation %= EquipedUsables.Length;
-
-            return;
-        }
-        Debug.LogError("Usable was equiped that does not exist in inventory");
-
-    }
-
-    public void UnequipUsable(int slot)
-    {
-        if (EquipedUsables[slot].usable != null)
-        {
-            ItemGroup usableItemGroup = new ItemGroup(EquipedUsables[slot]);
-            EquipedUsables[slot] = new UsableGroup(null, 0);
-            EditInventory(usableItemGroup);
-        }
-    }
-*/
 
     public bool Craft(Blueprint blueprint)
     {

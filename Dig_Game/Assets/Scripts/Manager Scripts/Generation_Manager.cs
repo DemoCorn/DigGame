@@ -9,7 +9,9 @@ public class Generation_Manager : MonoBehaviour
 
     
     public GameObject dirtObj;
-    
+    public string EnvironmentObjectName = "mainLevel";
+    GameObject mainLevel;
+
     [Header("Small generation prefabs")]
     [Tooltip("Ore that will spawn in a given level")]
     public List<LevelOre> oreLevelRanges;
@@ -39,6 +41,8 @@ public class Generation_Manager : MonoBehaviour
         // Clear the reserved spaces for level reloads
         reservedSpaces.Clear();
 
+        mainLevel = new GameObject(EnvironmentObjectName);
+
         // local variable set up
         int mineralX;
         int mineralY;
@@ -54,13 +58,13 @@ public class Generation_Manager : MonoBehaviour
 
         for (float i = GameManager.Instance.LayerManager.GetLevelHeight().Value; i <= 30; i++)
         {
-            Instantiate(invisibleWall, new Vector2(levelWidth, i), invisibleWall.transform.rotation);
+            Instantiate(invisibleWall, new Vector2(levelWidth, i), invisibleWall.transform.rotation, mainLevel.transform);
         }
 
         for (float i = GameManager.Instance.LayerManager.GetLevelHeight().Key; i <= GameManager.Instance.LayerManager.GetLevelHeight().Value; i++)
         {
-            Instantiate(invisibleWall, new Vector2(-1, i), invisibleWall.transform.rotation);
-            Instantiate(invisibleWall, new Vector2(levelWidth, i), invisibleWall.transform.rotation);
+            Instantiate(invisibleWall, new Vector2(-1, i), invisibleWall.transform.rotation, mainLevel.transform);
+            Instantiate(invisibleWall, new Vector2(levelWidth, i), invisibleWall.transform.rotation, mainLevel.transform);
         }
 
         // loop to generate layers
@@ -83,7 +87,7 @@ public class Generation_Manager : MonoBehaviour
                     if (!CheckReserved(scatterX, scatterY))
                     {
                         ReserveSpace(scatterX, scatterY);
-                        Instantiate(scatterType.scatterObject, new Vector2(scatterX, scatterY), scatterType.scatterObject.transform.rotation);
+                        Instantiate(scatterType.scatterObject, new Vector2(scatterX, scatterY), scatterType.scatterObject.transform.rotation, mainLevel.transform);
                         GenerateScatter(scatterType, scatterX, scatterY);
                     }
                     else
@@ -108,7 +112,7 @@ public class Generation_Manager : MonoBehaviour
                     if (!CheckReserved(mineralX, mineralY))
                     {
                         ReserveSpace(mineralX, mineralY);
-                        Instantiate(ore.ore, new Vector2(mineralX, mineralY), ore.ore.transform.rotation);
+                        Instantiate(ore.ore, new Vector2(mineralX, mineralY), ore.ore.transform.rotation, mainLevel.transform);
                     }
                     else
                     {
@@ -125,7 +129,7 @@ public class Generation_Manager : MonoBehaviour
                 {
                     if (!CheckReserved((int) xPos, (int) yPos))
                     {
-                        Instantiate(dirtObj, new Vector2(xPos, yPos), dirtObj.transform.rotation);
+                        Instantiate(dirtObj, new Vector2(xPos, yPos), dirtObj.transform.rotation, mainLevel.transform);
                     }
                 }
             }
@@ -235,7 +239,7 @@ public class Generation_Manager : MonoBehaviour
                             ReserveSpace((int)prefabPosX + x, (int)prefabPosY + y);
                         }
                     }
-                    Instantiate(prefabRange.prefabAtLayer[randomRoom].prefab, new Vector3(prefabPosX, prefabPosY, 0), prefabRange.prefabAtLayer[randomRoom].prefab.transform.rotation);
+                    Instantiate(prefabRange.prefabAtLayer[randomRoom].prefab, new Vector3(prefabPosX, prefabPosY, 0), prefabRange.prefabAtLayer[randomRoom].prefab.transform.rotation, mainLevel.transform);
                 }
             } while (reserved);
         }
@@ -262,7 +266,7 @@ public class Generation_Manager : MonoBehaviour
             if (!CheckReserved(xPosition + 1, yPosition) && xPosition + 1 < levelWidth && xPosition + 1 >= 0)
             {
                 ReserveSpace(xPosition + 1, yPosition);
-                Instantiate(scatter.scatterObject, new Vector2(xPosition + 1, yPosition), scatter.scatterObject.transform.rotation);
+                Instantiate(scatter.scatterObject, new Vector2(xPosition + 1, yPosition), scatter.scatterObject.transform.rotation, mainLevel.transform);
                 GenerateScatter(scatter, xPosition + 1, yPosition, iteration + 1);
             }
 
@@ -270,7 +274,7 @@ public class Generation_Manager : MonoBehaviour
             if (!CheckReserved(xPosition - 1, yPosition) && xPosition - 1 < levelWidth && xPosition - 1 >= 0)
             {
                 ReserveSpace(xPosition - 1, yPosition);
-                Instantiate(scatter.scatterObject, new Vector2(xPosition - 1, yPosition), scatter.scatterObject.transform.rotation);
+                Instantiate(scatter.scatterObject, new Vector2(xPosition - 1, yPosition), scatter.scatterObject.transform.rotation, mainLevel.transform);
                 GenerateScatter(scatter, xPosition - 1, yPosition, iteration + 1);
             }
 
@@ -278,7 +282,7 @@ public class Generation_Manager : MonoBehaviour
             if (!CheckReserved(xPosition, yPosition + 1) && yPosition + 1 < height.Value && yPosition + 1 >= height.Key)
             {
                 ReserveSpace(xPosition, yPosition + 1);
-                Instantiate(scatter.scatterObject, new Vector2(xPosition, yPosition + 1), scatter.scatterObject.transform.rotation);
+                Instantiate(scatter.scatterObject, new Vector2(xPosition, yPosition + 1), scatter.scatterObject.transform.rotation, mainLevel.transform);
                 GenerateScatter(scatter, xPosition, yPosition + 1, iteration + 1);
             }
 
@@ -286,7 +290,7 @@ public class Generation_Manager : MonoBehaviour
             if (!CheckReserved(xPosition, yPosition - 1) && yPosition - 1 < height.Value && yPosition - 1 >= height.Key)
             {
                 ReserveSpace(xPosition, yPosition - 1);
-                Instantiate(scatter.scatterObject, new Vector2(xPosition, yPosition - 1), scatter.scatterObject.transform.rotation);
+                Instantiate(scatter.scatterObject, new Vector2(xPosition, yPosition - 1), scatter.scatterObject.transform.rotation, mainLevel.transform);
                 GenerateScatter(scatter, xPosition, yPosition - 1, iteration + 1);
             }
         }

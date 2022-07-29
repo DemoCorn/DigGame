@@ -89,6 +89,7 @@ public class Drop : MonoBehaviour
                         if (chance <= blueprint.percentChance)
                         {
                             GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
+                            break;
                         }
                         else
                         {
@@ -104,6 +105,7 @@ public class Drop : MonoBehaviour
                     if (chance <= drop.percentChance)
                     {
                         GameManager.Instance.InventoryManager.EditInventory(drop.items);
+                        break;
                     }
                     else
                     {

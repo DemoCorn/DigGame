@@ -5,8 +5,11 @@ using UnityEngine;
 public class DeathPreventPotion : UsableEffect
 {
     float activeTime = 60.0f;
-    public new float  cooldownTime = 60.0f;
 
+    DeathPreventPotion()
+    {
+        cooldownTime = 60.0f;
+    }
     override public float Activate()
     {
         GameManager.Instance.ActivatePlayerRevive(activeTime);
