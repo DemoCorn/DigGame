@@ -15,7 +15,7 @@ public class ShootProjectile : MonoBehaviour
     {
         cooldownTimer = 0;
         SpawnProjectile();
-        spawnPosition = GameObject.FindGameObjectWithTag("Boss").transform;
+        //spawnPosition = GameObject.FindGameObjectWithTag("Boss").transform;
     }
 
     // Update is called once per frame

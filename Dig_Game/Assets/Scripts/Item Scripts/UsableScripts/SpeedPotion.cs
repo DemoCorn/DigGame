@@ -6,7 +6,7 @@ public class SpeedPotion : UsableEffect
 {
     public float speedBoost = 5.0f;
     float activeTime = 60.0f;
-    float cooldownTime = 60.0f;
+    public new float cooldownTime = 60.0f;
 
     override public float Activate()
     {

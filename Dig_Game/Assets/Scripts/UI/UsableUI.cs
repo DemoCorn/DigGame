@@ -7,26 +7,55 @@ public class UsableUI : MonoBehaviour
 {
     [SerializeField] private List<GameObject> usableSlot = new List<GameObject>();
     private List<UsableSpace> usableButtons = new List<UsableSpace>();
+    UsableGroup[] usables;
+    float[] usableCooldowns = new float[3];
 
     // Start is called before the first frame update
     void Start()
     {
+        usables = GameManager.Instance.InventoryManager.GetUsable();
         for (int i = 0; i < usableSlot.Count; i++)
         {
-            usableButtons.Add(new UsableSpace(usableSlot[i].GetComponentInChildren<Image>(), usableSlot[i].GetComponentInChildren<Text>(), i));
+            usableCooldowns[i] = 0.0f;
+            usableButtons.Add(new UsableSpace(usableSlot[i].GetComponentInChildren<Image>(), 
+                                              usableSlot[i].GetComponentInChildren<Text>(), 
+                                              usableSlot[i].GetComponent<Slider>(), 
+                                              usables[i].usable.effect.GetComponent<UsableEffect>(), 
+                                              i));
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            usableButtons[i].slotImage.sprite = usables[i].usable.itemSprite;
+            usableButtons[i].slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+            usableButtons[i].amountText.text = usables[i].amount.ToString();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        UsableGroup[] usables = GameManager.Instance.InventoryManager.GetUsable();
-
         for (int i = 0; i < 3; i++)
         {
-            usableButtons[i].slotImage.sprite = usables[i].usable.itemSprite;
-            usableButtons[i].slotImage.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
             usableButtons[i].amountText.text = usables[i].amount.ToString();
+            if (usables[i].cooldown && usableCooldowns[i] == 0.0f)
+            {
+                usableCooldowns[i] = usableButtons[i].effect.cooldownTime;
+                usableButtons[i].slider.value = 1;
+            }
+            else if (usableCooldowns[i] > 0.0f)
+            {
+                usableCooldowns[i] -= Time.deltaTime;
+
+                usableButtons[i].slider.value = usableCooldowns[i] / usableButtons[i].effect.cooldownTime;
+                if (usableCooldowns[i] < 0.0f)
+                {
+                    usableCooldowns[i] = 0.0f;
+                }
+            }
+            else
+            {
+                usableButtons[i].slider.value = 0;
+            }
         }
     }
 
@@ -36,15 +65,19 @@ public class UsableUI : MonoBehaviour
         {
         }
 
-        public UsableSpace(Image image, Text text, int index)
+        public UsableSpace(Image image, Text text, Slider slide, UsableEffect eff, int index)
         {
             slotImage = image;
             amountText = text;
+            slider = slide;
+            effect = eff;
             buttonIndex = index;
         }
 
         public Image slotImage;
         public Text amountText;
+        public Slider slider;
+        public UsableEffect effect;
         public int buttonIndex;
     }
 }
