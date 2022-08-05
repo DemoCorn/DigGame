@@ -40,22 +40,13 @@ public class Drop : MonoBehaviour
 
         if (dropBlueprints)
         {
-            for (int i = 0; i < blueprintDrops.drops.Count; i++)
-            {
-                if (GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprintDrops.drops[i].blueprint))
-                {
-
-                    blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
-                    i--;
-                }
-            }
+            heapDrop = blueprintDrops.heapDrop;
+            CorrectBlueprint();
 
             if (blueprintDrops.drops.Count == 0)
             {
                 Destroy(gameObject);
             }
-
-            heapDrop = blueprintDrops.heapDrop;
         }
         else
         {
@@ -65,14 +56,7 @@ public class Drop : MonoBehaviour
         if (heapDrop)
         {
             maxChance = 0.0f;
-            if (dropBlueprints)
-            {
-                foreach (BlueprintTable blueprint in blueprintDrops.drops)
-                {
-                    maxChance += blueprint.percentChance;
-                }
-            }
-            else
+            if (!dropBlueprints)
             {
                 foreach (DropTable drop in itemDrops.drops)
                 {
@@ -92,6 +76,8 @@ public class Drop : MonoBehaviour
             // Iterate through all drops and generate a random number to see if they get added to the inventory
             if (dropBlueprints)
             {
+                CorrectBlueprint();
+
                 if (blueprintDrops.drops.Count != 0)
                 {
                     foreach (BlueprintTable blueprint in blueprintDrops.drops)
@@ -116,8 +102,6 @@ public class Drop : MonoBehaviour
                     {
                         GameManager.Instance.InventoryManager.EditInventory(drop.items);
                         ShowIndicator((drop.items.item.itemName + " +1").ToString());
-                        //ShowIndicatorSprite(drop.items.item.itemSprite);
-                        break;
                     }
                     else
                     {
@@ -126,8 +110,31 @@ public class Drop : MonoBehaviour
                 }
             }
         }
+    }
 
-        //Notify player what they've picked up. 
+    void CorrectBlueprint()
+    {
+        for (int i = 0; i < blueprintDrops.drops.Count; i++)
+        {
+            if (GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprintDrops.drops[i].blueprint))
+            {
+
+                blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
+                i--;
+            }
+        }
+
+        if (heapDrop)
+        {
+            maxChance = 0.0f;
+            if (dropBlueprints)
+            {
+                foreach (BlueprintTable blueprint in blueprintDrops.drops)
+                {
+                    maxChance += blueprint.percentChance;
+                }
+            }
+        }
     }
 
     void SmartDropSetup()
