@@ -144,8 +144,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 0}
   health: 15
+  maxHealth: 0
   immunityTime: 0
   mImmune: 0
+  popup: {fileID: 0}
 --- !u!1 &4074778553775935881
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +370,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.94493365, b: 0, a: 1}
+      maxColor: {r: 1, g: 0.6781032, b: 0.36470592, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
