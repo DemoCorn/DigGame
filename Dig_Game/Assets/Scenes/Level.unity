@@ -134,10 +134,6 @@ PrefabInstance:
       propertyPath: m_labelHash
       value: 0.000000001606707
       objectReference: {fileID: 0}
-    - target: {fileID: 1915349852, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
-      propertyPath: DigDamage
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4768739382019036276, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
       propertyPath: m_Name
       value: Player
@@ -230,17 +226,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2334501038319023696, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
   m_PrefabInstance: {fileID: 1544349}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1544352 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4768739382955033342, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
-  m_PrefabInstance: {fileID: 1544349}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1544353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90f9ef11a8999234cb8cf9284705aad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1544353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4768739382955033335, guid: d99ec801a49f4364789a684167d3e5dd, type: 3}
@@ -6745,7 +6730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9a890de9370eb45a5b511b76b2eb73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1544352}
   jumpDust: {fileID: 1359042003}
   jumpPoint: {fileID: 1544351}
   landingDust: {fileID: 1993847691}
@@ -7613,7 +7597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 793706478d0f3904080144c4241e7ebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pm: {fileID: 1544352}
   footsteps: {fileID: 1544354}
 --- !u!4 &1843164526
 Transform:
