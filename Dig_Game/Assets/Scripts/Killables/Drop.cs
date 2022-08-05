@@ -32,7 +32,7 @@ public class Drop : MonoBehaviour
         target = GameObject.FindGameObjectWithTag("Player");
 
         itemNotifyScript = GetComponent<ItemNotifyScript>();
-
+        
         if (smartDrop)
         {
             SmartDropSetup();
@@ -96,7 +96,7 @@ public class Drop : MonoBehaviour
                 {
                     foreach (BlueprintTable blueprint in blueprintDrops.drops)
                     {
-                        if (chance <= blueprint.percentChance)
+                        if (chance <= blueprint.percentChance && GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprint.blueprint))
                         {
                             GameManager.Instance.InventoryManager.AddBlueprint(blueprint.blueprint);
                             break;
