@@ -13,7 +13,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private float holdJumpMultiplier = 1.5f;
 
     private float mVerticalVelocity = 0.0f;
-    public bool isGrounded = false;
+    private bool isGrounded = false;
 
     [SerializeField] private BoxCollider2D hitbox;
     [SerializeField] private LayerMask platformLayerMask;
