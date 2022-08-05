@@ -32,6 +32,7 @@ public class Switch : MonoBehaviour
         Equipment[] equipment = GameManager.Instance.InventoryManager.GetEquipment();
         
 
+
         
 
             //Get specific equipment sprite
