@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Drop : MonoBehaviour
 {
@@ -19,9 +20,13 @@ public class Drop : MonoBehaviour
     //Item Notification
     private ItemNotifyScript itemNotifyScript;
 
+    //Indicator for usable/ore drop
+    private GameObject indicatorPrefab;
 
     private void Start()
     {
+        indicatorPrefab = (GameObject)Resources.Load("Item_Ore IndicatorParent");
+
         itemNotifyScript = GetComponent<ItemNotifyScript>();
 
         if (smartDrop)
@@ -35,6 +40,7 @@ public class Drop : MonoBehaviour
             {
                 if (GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprintDrops.drops[i].blueprint))
                 {
+                    
                     blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
                     i--;
                 }
@@ -104,7 +110,8 @@ public class Drop : MonoBehaviour
                 {
                     if (chance <= drop.percentChance)
                     {
-                        GameManager.Instance.InventoryManager.EditInventory(drop.items);
+                        GameManager.Instance.InventoryManager.EditInventory(drop.items);                      
+                        ShowIndicator((drop.items.item.itemName + " +1").ToString());
                         break;
                     }
                     else
@@ -142,6 +149,16 @@ public class Drop : MonoBehaviour
                     break;
                 }
             }
+        }
+    }
+
+    void ShowIndicator(string text)
+    {
+        if(indicatorPrefab)
+        {
+            GameObject prefab = Instantiate(indicatorPrefab, transform.position, Quaternion.identity);
+            prefab.GetComponentInChildren<TextMeshPro>().text = text;
+            
         }
     }
 
