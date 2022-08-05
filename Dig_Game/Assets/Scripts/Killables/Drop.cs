@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Drop : MonoBehaviour
 {
@@ -19,9 +20,17 @@ public class Drop : MonoBehaviour
     //Item Notification
     private ItemNotifyScript itemNotifyScript;
 
+    //Indicator for usable/ore drop
+    private GameObject indicatorPrefab;
+    private GameObject indicatorSpritePrefab;
+    private GameObject target;
 
     private void Start()
     {
+        indicatorPrefab = (GameObject)Resources.Load("Item_Ore IndicatorParent");
+        indicatorSpritePrefab = (GameObject)Resources.Load("IndicatorSpriteParent");
+        target = GameObject.FindGameObjectWithTag("Player");
+
         itemNotifyScript = GetComponent<ItemNotifyScript>();
 
         if (smartDrop)
@@ -35,6 +44,7 @@ public class Drop : MonoBehaviour
             {
                 if (GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprintDrops.drops[i].blueprint))
                 {
+                    
                     blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
                     i--;
                 }
@@ -104,7 +114,9 @@ public class Drop : MonoBehaviour
                 {
                     if (chance <= drop.percentChance)
                     {
-                        GameManager.Instance.InventoryManager.EditInventory(drop.items);
+                        GameManager.Instance.InventoryManager.EditInventory(drop.items);                      
+                        ShowIndicator((drop.items.item.itemName + " +1").ToString());
+                        //ShowIndicatorSprite(drop.items.item.itemSprite);
                         break;
                     }
                     else
@@ -144,6 +156,26 @@ public class Drop : MonoBehaviour
             }
         }
     }
+
+    void ShowIndicator(string text)
+    {
+        if(indicatorPrefab)
+        {
+            GameObject prefab = Instantiate(indicatorPrefab, target.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+            prefab.GetComponentInChildren<TextMeshPro>().text = text;
+            
+        }
+    }
+    /* void ShowIndicatorSprite(Sprite itemSprite)
+    {
+        if(indicatorSpritePrefab)
+        {
+            GameObject Imageprefab = Instantiate(indicatorSpritePrefab, target.transform.position + new Vector3(-.1f,.2f,0), Quaternion.identity);
+            Imageprefab.GetComponentInChildren<SpriteRenderer>().sprite = itemSprite;
+        }
+    }
+    */
+
 
     [System.Serializable]
     public class ItemDropByLayer
