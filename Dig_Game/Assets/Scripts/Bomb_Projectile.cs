@@ -6,7 +6,7 @@ using System;
 
 public class Bomb_Projectile : MonoBehaviour
 {
-    [SerializeField] float damage = 10.0f;
+    [SerializeField] float damage = 50.0f;
     [SerializeField] float speed = 4.0f;
     [SerializeField] bool thrown;
     public Vector3 launchOffset;

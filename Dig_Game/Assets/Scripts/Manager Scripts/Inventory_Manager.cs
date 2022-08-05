@@ -264,6 +264,11 @@ public class Inventory_Manager : MonoBehaviour
             Unequip(equipment[i].equipmentType);
         }
 
+        foreach (UsableGroup use in EquipedUsables)
+        {
+            use.amount = 0;
+        }
+
         inputs = GameManager.Instance.GetInputs();
 
         inventory.Clear();

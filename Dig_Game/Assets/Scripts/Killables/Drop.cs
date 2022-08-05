@@ -102,6 +102,7 @@ public class Drop : MonoBehaviour
                     {
                         GameManager.Instance.InventoryManager.EditInventory(drop.items);
                         ShowIndicator((drop.items.item.itemName + " +1").ToString());
+                        break;
                     }
                     else
                     {
