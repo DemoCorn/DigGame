@@ -214,6 +214,11 @@ public class GameManager : MonoBehaviour
         return player.transform.position;
     }
 
+    public Player_Movement GetPlayerMovement()
+    {
+        return playerComponents.move;
+    }
+
     public GameObject GetPlayer()
     {
         return player;

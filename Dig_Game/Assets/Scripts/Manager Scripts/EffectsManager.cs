@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EffectsManager : MonoBehaviour
 {
-    public Player_Movement pm;
-
     public GameObject jumpDust;
     public Transform jumpPoint;
     public GameObject landingDust;
@@ -18,14 +16,14 @@ public class EffectsManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && pm.getGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && GameManager.Instance.GetPlayerMovement().getGrounded())
         {
             jumpDust.transform.position = jumpPoint.position;
             jumpDust.SetActive(true);
         }
 
 
-        if (pm.getGrounded())
+        if (GameManager.Instance.GetPlayerMovement().getGrounded())
         {
             firstLoop = true;
 
@@ -38,7 +36,7 @@ public class EffectsManager : MonoBehaviour
             highV = false;
         }
 
-        if (!pm.getGrounded() && firstLoop)
+        if (!GameManager.Instance.GetPlayerMovement().getGrounded() && firstLoop)
         {
             firstLoop = false;
 
@@ -48,7 +46,7 @@ public class EffectsManager : MonoBehaviour
 
     void DistanceCheck()
     {
-        if (!pm.getGrounded())
+        if (!GameManager.Instance.GetPlayerMovement().getGrounded())
         {
             highV = true;
         }
