@@ -22,10 +22,14 @@ public class Drop : MonoBehaviour
 
     //Indicator for usable/ore drop
     private GameObject indicatorPrefab;
+    private GameObject indicatorSpritePrefab;
+    private GameObject target;
 
     private void Start()
     {
         indicatorPrefab = (GameObject)Resources.Load("Item_Ore IndicatorParent");
+        indicatorSpritePrefab = (GameObject)Resources.Load("IndicatorSpriteParent");
+        target = GameObject.FindGameObjectWithTag("Player");
 
         itemNotifyScript = GetComponent<ItemNotifyScript>();
 
@@ -112,6 +116,7 @@ public class Drop : MonoBehaviour
                     {
                         GameManager.Instance.InventoryManager.EditInventory(drop.items);                      
                         ShowIndicator((drop.items.item.itemName + " +1").ToString());
+                        //ShowIndicatorSprite(drop.items.item.itemSprite);
                         break;
                     }
                     else
@@ -156,11 +161,21 @@ public class Drop : MonoBehaviour
     {
         if(indicatorPrefab)
         {
-            GameObject prefab = Instantiate(indicatorPrefab, transform.position, Quaternion.identity);
+            GameObject prefab = Instantiate(indicatorPrefab, target.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
             prefab.GetComponentInChildren<TextMeshPro>().text = text;
             
         }
     }
+    /* void ShowIndicatorSprite(Sprite itemSprite)
+    {
+        if(indicatorSpritePrefab)
+        {
+            GameObject Imageprefab = Instantiate(indicatorSpritePrefab, target.transform.position + new Vector3(-.1f,.2f,0), Quaternion.identity);
+            Imageprefab.GetComponentInChildren<SpriteRenderer>().sprite = itemSprite;
+        }
+    }
+    */
+
 
     [System.Serializable]
     public class ItemDropByLayer
