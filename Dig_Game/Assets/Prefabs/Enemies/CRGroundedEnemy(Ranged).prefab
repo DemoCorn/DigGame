@@ -49,7 +49,7 @@ PrefabInstance:
       objectReference: {fileID: 7713762607583121178, guid: 2324002c4ed6fe54ea7b0d1121f9e519, type: 3}
     - target: {fileID: 1651169903064416091, guid: 25929933278459447a564c6793849cb6, type: 3}
       propertyPath: health
-      value: 25
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 1651169903064416091, guid: 25929933278459447a564c6793849cb6, type: 3}
       propertyPath: particle
@@ -130,10 +130,10 @@ PrefabInstance:
     - target: {fileID: 7054264329917358609, guid: 25929933278459447a564c6793849cb6, type: 3}
       propertyPath: blueprintDrops
       value: 
-      objectReference: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
+      objectReference: {fileID: 11400000, guid: 512aef9814c188f459fc3c62dee9bc9c, type: 2}
     - target: {fileID: 7054264329917358609, guid: 25929933278459447a564c6793849cb6, type: 3}
       propertyPath: dropBlueprints
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8541570395704594404, guid: 25929933278459447a564c6793849cb6, type: 3}
       propertyPath: m_Layer
@@ -141,9 +141,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8866031279668849546, guid: 25929933278459447a564c6793849cb6, type: 3}
       propertyPath: damage
-      value: 15
+      value: 50
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2797425177291551203, guid: 25929933278459447a564c6793849cb6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 25929933278459447a564c6793849cb6, type: 3}
 --- !u!1 &3188068599224919519 stripped
 GameObject:

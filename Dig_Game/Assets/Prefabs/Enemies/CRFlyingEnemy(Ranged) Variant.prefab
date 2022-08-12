@@ -21,7 +21,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -1917309918516684231, guid: ec509a5699c697746938bd46cda6953e, type: 3}
       propertyPath: damage
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -1917309918516684231, guid: ec509a5699c697746938bd46cda6953e, type: 3}
       propertyPath: health
@@ -106,10 +106,10 @@ PrefabInstance:
     - target: {fileID: 4728274537354024826, guid: ec509a5699c697746938bd46cda6953e, type: 3}
       propertyPath: blueprintDrops
       value: 
-      objectReference: {fileID: 11400000, guid: 0ea5dbbf6a26626418df3a7229943a25, type: 2}
+      objectReference: {fileID: 11400000, guid: 512aef9814c188f459fc3c62dee9bc9c, type: 2}
     - target: {fileID: 4728274537354024826, guid: ec509a5699c697746938bd46cda6953e, type: 3}
       propertyPath: dropBlueprints
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5359969017504163994, guid: ec509a5699c697746938bd46cda6953e, type: 3}
       propertyPath: m_RootOrder
@@ -139,7 +139,8 @@ PrefabInstance:
       propertyPath: health
       value: 35
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1666971711960474827, guid: ec509a5699c697746938bd46cda6953e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ec509a5699c697746938bd46cda6953e, type: 3}
 --- !u!1 &773676137017668932 stripped
 GameObject:
