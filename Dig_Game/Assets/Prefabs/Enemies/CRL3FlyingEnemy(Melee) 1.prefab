@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  damage: 20
+  damage: 60
   attackDelay: 5
   speed: 200
   jumpHeight: 0.5
@@ -188,10 +188,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDrops: {fileID: 11400000, guid: cb59aecfcb90bb74fab7983dd1f14530, type: 2}
-  blueprintDrops: {fileID: 0}
+  blueprintDrops: {fileID: 11400000, guid: a1e796b3071000d46bad4d6b6ccc80dc, type: 2}
   itemDropByLevel: []
   blueprintDropByLevel: []
-  dropBlueprints: 0
+  dropBlueprints: 1
   smartDrop: 0
 --- !u!114 &265629596824488310
 MonoBehaviour:

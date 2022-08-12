@@ -29,7 +29,7 @@ public class Drop : MonoBehaviour
     {
         indicatorPrefab = (GameObject)Resources.Load("Item_Ore IndicatorParent");
         indicatorSpritePrefab = (GameObject)Resources.Load("IndicatorSpriteParent");
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Indicator");
 
         itemNotifyScript = GetComponent<ItemNotifyScript>();
 
@@ -101,7 +101,8 @@ public class Drop : MonoBehaviour
                     if (chance <= drop.percentChance)
                     {
                         GameManager.Instance.InventoryManager.EditInventory(drop.items);
-                        ShowIndicator((drop.items.item.itemName + " +1").ToString());
+                        ShowIndicator((drop.items.item.itemName + " x1").ToString());
+                        ShowIndicatorSprite(drop.items.item.itemSprite);
                         break;
                     }
                     else
@@ -169,20 +170,20 @@ public class Drop : MonoBehaviour
     {
         if (indicatorPrefab)
         {
-            GameObject prefab = Instantiate(indicatorPrefab, target.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+            GameObject prefab = Instantiate(indicatorPrefab, target.transform.position + new Vector3(1, 0, 0), Quaternion.identity, target.transform);
             prefab.GetComponentInChildren<TextMeshPro>().text = text;
 
         }
     }
-    /* void ShowIndicatorSprite(Sprite itemSprite)
+     void ShowIndicatorSprite(Sprite itemSprite)
     {
         if(indicatorSpritePrefab)
         {
-            GameObject Imageprefab = Instantiate(indicatorSpritePrefab, target.transform.position + new Vector3(-.1f,.2f,0), Quaternion.identity);
+            GameObject Imageprefab = Instantiate(indicatorSpritePrefab, target.transform.position + new Vector3(-0.5f,0f,0), Quaternion.identity, target.transform);
             Imageprefab.GetComponentInChildren<SpriteRenderer>().sprite = itemSprite;
         }
     }
-    */
+    
 
 
     [System.Serializable]
