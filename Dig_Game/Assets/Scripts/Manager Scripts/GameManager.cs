@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Layer_Manager LayerManager;
     public Generation_Manager GenerationManager;
     public UI_Manager UIManager;
+    public AudioManager AudioManager;
 
     [Header("Objects")]
     GameObject player;
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
         GenerationManager.Generate();
         InventoryManager.BootUp();
         UIManager.BootUp();
+        AudioManager.Setup();
         isMainLevel = true;
     }
 
