@@ -125,8 +125,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 2126993429222086023}
   health: 0.00001
+  maxHealth: 0
   immunityTime: 0
   mImmune: 0
+  popup: {fileID: 0}
 --- !u!1 &8121507963484810691
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +351,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.4528302, g: 0.24395727, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4943,7 +4945,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6dec37bab06f73346ad943d1062224e3, type: 2}
+  - {fileID: 2100000, guid: 73d0ac063e8f3e6469146375faacc345, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
