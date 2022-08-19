@@ -416,76 +416,55 @@ MonoBehaviour:
   - oreAtLevel:
     - oreAtLayer:
       - ore: {fileID: 2797143980870222208, guid: a2cd7a56fb8d6d04498b0ae21d8a5120, type: 3}
-        lowestOreAmount: 20
-        highestOreAmount: 30
+        lowestOreAmount: 87
+        highestOreAmount: 100
       - ore: {fileID: 3218875986603706194, guid: 478ed484bb1111949879caf617ab8e1b, type: 3}
         lowestOreAmount: 20
         highestOreAmount: 30
-      - ore: {fileID: 2797143980870222208, guid: 66dfc7df60dd16945a43454a322ea369, type: 3}
-        lowestOreAmount: 15
-        highestOreAmount: 25
-      - ore: {fileID: 2797143980870222208, guid: 349c1b26831674b44ba51030070937de, type: 3}
-        lowestOreAmount: 5
-        highestOreAmount: 10
     - oreAtLayer:
-      - ore: {fileID: 2797143980870222208, guid: 66dfc7df60dd16945a43454a322ea369, type: 3}
-        lowestOreAmount: 20
-        highestOreAmount: 30
       - ore: {fileID: 3218875986603706194, guid: 478ed484bb1111949879caf617ab8e1b, type: 3}
         lowestOreAmount: 20
         highestOreAmount: 30
       - ore: {fileID: 2797143980870222208, guid: 349c1b26831674b44ba51030070937de, type: 3}
-        lowestOreAmount: 15
-        highestOreAmount: 25
-      - ore: {fileID: 2797143980870222208, guid: 4e499100c1040fe4e9fb2b2ec356080c, type: 3}
-        lowestOreAmount: 5
-        highestOreAmount: 10
-      - ore: {fileID: 2797143980870222208, guid: 1e7c23fc6ae6fb447810d823203bee17, type: 3}
+        lowestOreAmount: 30
+        highestOreAmount: 40
+    - oreAtLayer:
+      - ore: {fileID: 3218875986603706194, guid: 478ed484bb1111949879caf617ab8e1b, type: 3}
+        lowestOreAmount: 20
+        highestOreAmount: 30
+      - ore: {fileID: 2797143980870222208, guid: 288108c273d3dbb45ab384ef7d7222fd, type: 3}
         lowestOreAmount: 15
         highestOreAmount: 20
-    - oreAtLayer:
-      - ore: {fileID: 2797143980870222208, guid: 349c1b26831674b44ba51030070937de, type: 3}
-        lowestOreAmount: 20
-        highestOreAmount: 30
-      - ore: {fileID: 3218875986603706194, guid: 478ed484bb1111949879caf617ab8e1b, type: 3}
-        lowestOreAmount: 20
-        highestOreAmount: 30
-      - ore: {fileID: 2797143980870222208, guid: 4e499100c1040fe4e9fb2b2ec356080c, type: 3}
-        lowestOreAmount: 15
-        highestOreAmount: 25
-      - ore: {fileID: 2797143980870222208, guid: 288108c273d3dbb45ab384ef7d7222fd, type: 3}
-        lowestOreAmount: 5
-        highestOreAmount: 10
   levelScatters:
   - scatterAtLevel:
     - scatterAtLayer:
-      - scatterObject: {fileID: 2797143980870222208, guid: a2cd7a56fb8d6d04498b0ae21d8a5120, type: 3}
-        scatterChance: 100
-        scatterChanceDegredation: 50
-        lowestScatterAmount: 1
-        highestScatterAmount: 1
+      - scatterObject: {fileID: 2797143980870222208, guid: 66dfc7df60dd16945a43454a322ea369, type: 3}
+        scatterChance: 85
+        scatterChanceDegredation: 30
+        lowestScatterAmount: 3
+        highestScatterAmount: 3
       - scatterObject: {fileID: 1044155829553452034, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
         scatterChance: 50
         scatterChanceDegredation: 75
-        lowestScatterAmount: 1
-        highestScatterAmount: 1
+        lowestScatterAmount: 5
+        highestScatterAmount: 5
     - scatterAtLayer:
       - scatterObject: {fileID: 2797143980870222208, guid: 66dfc7df60dd16945a43454a322ea369, type: 3}
-        scatterChance: 100
-        scatterChanceDegredation: 50
-        lowestScatterAmount: 1
-        highestScatterAmount: 1
+        scatterChance: 65
+        scatterChanceDegredation: 30
+        lowestScatterAmount: 2
+        highestScatterAmount: 2
       - scatterObject: {fileID: 1044155829553452034, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
         scatterChance: 50
         scatterChanceDegredation: 75
-        lowestScatterAmount: 1
-        highestScatterAmount: 1
+        lowestScatterAmount: 3
+        highestScatterAmount: 3
     - scatterAtLayer:
-      - scatterObject: {fileID: 2797143980870222208, guid: 349c1b26831674b44ba51030070937de, type: 3}
-        scatterChance: 100
-        scatterChanceDegredation: 50
-        lowestScatterAmount: 1
-        highestScatterAmount: 1
+      - scatterObject: {fileID: 2797143980870222208, guid: 4e499100c1040fe4e9fb2b2ec356080c, type: 3}
+        scatterChance: 45
+        scatterChanceDegredation: 30
+        lowestScatterAmount: 10
+        highestScatterAmount: 10
       - scatterObject: {fileID: 1044155829553452034, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
         scatterChance: 50
         scatterChanceDegredation: 75
