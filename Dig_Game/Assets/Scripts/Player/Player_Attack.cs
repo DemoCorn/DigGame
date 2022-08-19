@@ -30,10 +30,6 @@ public class Player_Attack : MonoBehaviour
     {
         Inputs inputs = GameManager.Instance.GetInputs();
 
-        if (Input.GetKeyDown((KeyCode)inputs.dig))
-        {
-            Attack();
-        }
         if (Time.time > nextAttackTime && Input.GetKey((KeyCode)inputs.dig))
         {            
             Attack();

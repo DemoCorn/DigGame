@@ -6,7 +6,8 @@ using System;
 
 public class Bomb_Projectile : MonoBehaviour
 {
-    [SerializeField] float damage = 10.0f;
+    [SerializeField] float enemyDamage = 200.0f;
+    [SerializeField] float blockDamage = 4000.0f;
     [SerializeField] float speed = 4.0f;
     [SerializeField] bool thrown;
     public Vector3 launchOffset;
@@ -74,7 +75,14 @@ public class Bomb_Projectile : MonoBehaviour
         {
             if (obj.GetComponent<Non_Player_Health>() != null)
             {
-                obj.GetComponent<Non_Player_Health>().Hit(damage);
+                if (obj.tag == "Enemy")
+                {
+                    obj.GetComponent<Non_Player_Health>().Hit(enemyDamage * (1 - (Vector3.Distance(transform.position, obj.transform.position) / fieldOfImpact)));
+                }
+                else
+                {
+                    obj.GetComponent<Non_Player_Health>().Hit(blockDamage * (1 - (Vector3.Distance(transform.position, obj.transform.position) / fieldOfImpact)));
+                }
             }
         }
         GameObject ExplosionEffectPlay = Instantiate(ExplosionEffect, transform.position, Quaternion.identity);

@@ -264,9 +264,9 @@ public class Inventory_Manager : MonoBehaviour
             Unequip(equipment[i].equipmentType);
         }
 
-        for (int i = 0; i < 3; ++i)
+        foreach (UsableGroup use in EquipedUsables)
         {
-            EquipedUsables[i] = new UsableGroup(null, 0);
+            use.amount = 0;
         }
 
         inputs = GameManager.Instance.GetInputs();

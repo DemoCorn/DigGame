@@ -29,7 +29,7 @@ public class Drop : MonoBehaviour
     {
         indicatorPrefab = (GameObject)Resources.Load("Item_Ore IndicatorParent");
         indicatorSpritePrefab = (GameObject)Resources.Load("IndicatorSpriteParent");
-        target = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Indicator");
 
         itemNotifyScript = GetComponent<ItemNotifyScript>();
 
@@ -40,22 +40,13 @@ public class Drop : MonoBehaviour
 
         if (dropBlueprints)
         {
-            for (int i = 0; i < blueprintDrops.drops.Count; i++)
-            {
-                if (GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprintDrops.drops[i].blueprint))
-                {
-                    
-                    blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
-                    i--;
-                }
-            }
+            heapDrop = blueprintDrops.heapDrop;
+            CorrectBlueprint();
 
             if (blueprintDrops.drops.Count == 0)
             {
                 Destroy(gameObject);
             }
-
-            heapDrop = blueprintDrops.heapDrop;
         }
         else
         {
@@ -65,14 +56,7 @@ public class Drop : MonoBehaviour
         if (heapDrop)
         {
             maxChance = 0.0f;
-            if (dropBlueprints)
-            {
-                foreach (BlueprintTable blueprint in blueprintDrops.drops)
-                {
-                    maxChance += blueprint.percentChance;
-                }
-            }
-            else
+            if (!dropBlueprints)
             {
                 foreach (DropTable drop in itemDrops.drops)
                 {
@@ -92,6 +76,8 @@ public class Drop : MonoBehaviour
             // Iterate through all drops and generate a random number to see if they get added to the inventory
             if (dropBlueprints)
             {
+                CorrectBlueprint();
+
                 if (blueprintDrops.drops.Count != 0)
                 {
                     foreach (BlueprintTable blueprint in blueprintDrops.drops)
@@ -114,9 +100,9 @@ public class Drop : MonoBehaviour
                 {
                     if (chance <= drop.percentChance)
                     {
-                        GameManager.Instance.InventoryManager.EditInventory(drop.items);                      
-                        ShowIndicator((drop.items.item.itemName + " +1").ToString());
-                        //ShowIndicatorSprite(drop.items.item.itemSprite);
+                        GameManager.Instance.InventoryManager.EditInventory(drop.items);
+                        ShowIndicator((drop.items.item.itemName + " x1").ToString());
+                        ShowIndicatorSprite(drop.items.item.itemSprite);
                         break;
                     }
                     else
@@ -126,8 +112,31 @@ public class Drop : MonoBehaviour
                 }
             }
         }
+    }
 
-        //Notify player what they've picked up. 
+    void CorrectBlueprint()
+    {
+        for (int i = 0; i < blueprintDrops.drops.Count; i++)
+        {
+            if (GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprintDrops.drops[i].blueprint))
+            {
+
+                blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
+                i--;
+            }
+        }
+
+        if (heapDrop)
+        {
+            maxChance = 0.0f;
+            if (dropBlueprints)
+            {
+                foreach (BlueprintTable blueprint in blueprintDrops.drops)
+                {
+                    maxChance += blueprint.percentChance;
+                }
+            }
+        }
     }
 
     void SmartDropSetup()
@@ -159,22 +168,22 @@ public class Drop : MonoBehaviour
 
     void ShowIndicator(string text)
     {
-        if(indicatorPrefab)
+        if (indicatorPrefab)
         {
-            GameObject prefab = Instantiate(indicatorPrefab, target.transform.position + new Vector3(1, 0, 0), Quaternion.identity);
+            GameObject prefab = Instantiate(indicatorPrefab, target.transform.position + new Vector3(1, 0, 0), Quaternion.identity, target.transform);
             prefab.GetComponentInChildren<TextMeshPro>().text = text;
-            
+
         }
     }
-    /* void ShowIndicatorSprite(Sprite itemSprite)
+     void ShowIndicatorSprite(Sprite itemSprite)
     {
         if(indicatorSpritePrefab)
         {
-            GameObject Imageprefab = Instantiate(indicatorSpritePrefab, target.transform.position + new Vector3(-.1f,.2f,0), Quaternion.identity);
+            GameObject Imageprefab = Instantiate(indicatorSpritePrefab, target.transform.position + new Vector3(-0.5f,0f,0), Quaternion.identity, target.transform);
             Imageprefab.GetComponentInChildren<SpriteRenderer>().sprite = itemSprite;
         }
     }
-    */
+    
 
 
     [System.Serializable]

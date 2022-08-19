@@ -124,7 +124,7 @@ public class Player_Health : MonoBehaviour
             if (fDamage > 0.0f)
             {
                 float damage = fDamage - armor;
-                health -= damage < 1.0f ? damage : 1.0f;
+                health -= damage < 1.0f ? 1.0f : damage;
                 StartCoroutine("Hurt");
 
 
@@ -167,7 +167,7 @@ public class Player_Health : MonoBehaviour
         GameManager.Instance.InventoryManager.RandomizeClass();
 
         // Reset / Respawn player
-        GameManager.Instance.Reset();
+        GameManager.Instance.EndGame(hasRetired);
 
     }
 

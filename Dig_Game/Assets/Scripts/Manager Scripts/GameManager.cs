@@ -14,9 +14,11 @@ public class GameManager : MonoBehaviour
     public Layer_Manager LayerManager;
     public Generation_Manager GenerationManager;
     public UI_Manager UIManager;
+    public AudioManager AudioManager;
 
     [Header("Objects")]
     GameObject player;
+    PlayerComponents playerComponents;
     Camera mainCamera;
 
     [Header("Misc")]
@@ -26,14 +28,13 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public bool isMainLevel = false;
 
     private bool isWinning = false;
-    public bool tutorialComplete = false; 
+    public bool tutorialComplete = false;
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            ManagerLoad();
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -44,9 +45,14 @@ public class GameManager : MonoBehaviour
 
     public void ManagerLoad()
     {
-        isMainLevel = true;
         player = GameObject.FindGameObjectsWithTag("Player")[0];
         mainCamera = GameObject.FindGameObjectsWithTag("MainCamera")[0].GetComponent<Camera>();
+
+        playerComponents = new PlayerComponents(
+            player.GetComponent<Player_Health>(),
+            player.GetComponentInChildren<Player_WeaponStats>(),
+            player.GetComponent<Player_Movement>(),
+            player.GetComponent<Collider2D>());
 
         if (tutorialComplete)
         {
@@ -56,26 +62,25 @@ public class GameManager : MonoBehaviour
         GenerationManager.Generate();
         InventoryManager.BootUp();
         UIManager.BootUp();
+        AudioManager.Setup();
+        isMainLevel = true;
     }
 
     // Changes stats for different player scripts
     public void EquipPlayer(float healthChange, float armorChange, float attackChange, float digChange)
     {
-        Player_Health playerHealth = player.GetComponent<Player_Health>();
-        Player_WeaponStats playerAim = player.GetComponentInChildren<Player_WeaponStats>();
-
-        if (playerHealth != null)
+        if (playerComponents.health != null)
         {
-            playerHealth.Equip(healthChange, armorChange);
+            playerComponents.health.Equip(healthChange, armorChange);
         }
         else
         {
             Debug.LogError("No health script on player");
         }
 
-        if (playerAim != null)
+        if (playerComponents.aim != null)
         {
-            playerAim.Equip(attackChange, digChange);
+            playerComponents.aim.Equip(attackChange, digChange);
         }
         else
         {
@@ -92,31 +97,27 @@ public class GameManager : MonoBehaviour
     // Buff and Debuff lines
     public void BuffPlayer(float healthChange, float armorChange, float attackChange, float digChange, float SpeedChange, float duration = 60.0f)
     {
-        Player_Health playerHealth = player.GetComponent<Player_Health>();
-        Player_WeaponStats playerAim = player.GetComponentInChildren<Player_WeaponStats>();
-        Player_Movement playerMove = player.GetComponent<Player_Movement>();
-
-        if (playerHealth != null)
+        if (playerComponents.health != null)
         {
-            playerHealth.Equip(healthChange, armorChange);
+            playerComponents.health.Equip(healthChange, armorChange);
         }
         else
         {
             Debug.LogError("No health script on player");
         }
 
-        if (playerAim != null)
+        if (playerComponents.aim != null)
         {
-            playerAim.Equip(attackChange, digChange);
+            playerComponents.aim.Equip(attackChange, digChange);
         }
         else
         {
             Debug.LogError("No player aim script on player");
         }
 
-        if (playerMove != null)
+        if (playerComponents.move != null)
         {
-            playerMove.Equip(SpeedChange);
+            playerComponents.move.Equip(SpeedChange);
         }
         else
         {
@@ -128,35 +129,29 @@ public class GameManager : MonoBehaviour
 
     IEnumerator DebuffPlayer(float healthChange, float armorChange, float attackChange, float digChange, float SpeedChange, float delay)
     {
-        Debug.Log(delay);
         yield return new WaitForSeconds(delay);
-        Debug.Log(delay);
 
-        Player_Health playerHealth = player.GetComponent<Player_Health>();
-        Player_WeaponStats playerAim = player.GetComponentInChildren<Player_WeaponStats>();
-        Player_Movement playerMove = player.GetComponent<Player_Movement>();
-
-        if (playerHealth != null)
+        if (playerComponents.health != null)
         {
-            playerHealth.Equip(-healthChange, -armorChange);
+            playerComponents.health.Equip(-healthChange, -armorChange);
         }
         else
         {
             Debug.LogError("No health script on player");
         }
 
-        if (playerAim != null)
+        if (playerComponents.aim != null)
         {
-            playerAim.Equip(-attackChange, -digChange);
+            playerComponents.aim.Equip(-attackChange, -digChange);
         }
         else
         {
             Debug.LogError("No player aim script on player");
         }
 
-        if (playerMove != null)
+        if (playerComponents.move != null)
         {
-            playerMove.Equip(-SpeedChange);
+            playerComponents.move.Equip(-SpeedChange);
         }
         else
         {
@@ -166,54 +161,64 @@ public class GameManager : MonoBehaviour
 
     public void ActivatePlayerRevive(float time)
     {
-        player.GetComponent<Player_Health>().SetRevive(true);
+        playerComponents.health.SetRevive(true);
         StartCoroutine(DeactivatePlayerRevive(time));
     }
 
     IEnumerator DeactivatePlayerRevive(float delay)
     {
         yield return new WaitForSeconds(delay);
-        player.GetComponent<Player_Health>().SetRevive(false);
+        playerComponents.health.SetRevive(false);
     }
 
     public void RetirePlayer()
     {
-        player.GetComponent<Player_Health>().Die(true);
+        playerComponents.health.Die(true);
     }
 
     public void HealPlayer(float heal)
     {
-        player.GetComponent<Player_Health>().Heal(heal);
+        playerComponents.health.Heal(heal);
     }
 
     // Various get functions
     public float GetPlayerHealth()
     {
-        return player.GetComponent<Player_Health>().GetHealth();
+        return playerComponents.health.GetHealth();
     }
     public float GetPlayerMaxHealth()
     {
-        return player.GetComponent<Player_Health>().GetMaxHealth();
+        return playerComponents.health.GetMaxHealth();
     }
 
     public float GetPlayerAttack()
     {
-        return player.GetComponentInChildren<Player_WeaponStats>().GetAttack();
+        return playerComponents.aim.GetAttack();
     }
 
     public float GetPlayerArmor()
     {
-        return player.GetComponent<Player_Health>().GetDefence();
+        return playerComponents.health.GetDefence();
     }
 
     public float GetPlayerDig()
     {
-        return player.GetComponentInChildren<Player_WeaponStats>().GetDig();
+        return playerComponents.aim.GetDig();
+    }
+
+    public void PlayerTakeDamage(float dmg)
+    {
+        playerComponents.health.TakeDamage(dmg);
     }
 
     public Vector3 GetPlayerPosition()
     {
         return player.transform.position;
+    }
+
+    public Player_Movement GetPlayerMovement()
+    {
+        return playerComponents.move;
     }
 
     public GameObject GetPlayer()
@@ -243,18 +248,18 @@ public class GameManager : MonoBehaviour
 
     public Collider2D GetPlayerCollider()
     {
-        return player.GetComponent<Collider2D>();
+        return playerComponents.collider;
     }
 
     public Collider2D GetSwordCollider()
     {
-        return player.transform.Find("Aim/Weapon").GetComponent<Player_WeaponStats>().GetWeaponHitbox();
+        return playerComponents.aim.GetWeaponHitbox();
     }
 
     // Scene Control Functions
     public void Reset()
     {
-        StartCoroutine("ResetLevel", 0);
+        StartCoroutine("ResetLevel", 1);
     }
 
     private IEnumerator ResetLevel(int nScene)
@@ -275,10 +280,23 @@ public class GameManager : MonoBehaviour
     public void EndGame(bool Winning)
     {
         isWinning = Winning;
-        SceneManager.LoadScene("End Screen");
+        isMainLevel = false;
+        SceneManager.LoadScene(2);
     }
-    public void RestartGame()
+
+    private class PlayerComponents
     {
-        SceneManager.LoadScene("Level");
+        public PlayerComponents(Player_Health hp, Player_WeaponStats ws, Player_Movement mov, Collider2D col)
+        {
+            health = hp;
+            aim = ws;
+            move = mov;
+            collider = col;
+        }
+
+        public Player_Health health;
+        public Player_WeaponStats aim;
+        public Player_Movement move;
+        public Collider2D collider;
     }
 }
