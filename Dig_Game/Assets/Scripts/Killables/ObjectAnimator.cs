@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakableBarrelScript : MonoBehaviour
+public class ObjectAnimator : MonoBehaviour
 {
     [SerializeField] private GameObject healthBox;
 
