@@ -10,6 +10,8 @@ public class ShootProjectile : MonoBehaviour
     public float cooldownTimer;
     public float cooldownRequirement;
 
+    [SerializeField] private Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,11 @@ public class ShootProjectile : MonoBehaviour
         {
             SpawnProjectile();
             cooldownTimer = 0;
+            anim.SetBool("Attacking", true);
+        }
+        else
+        {
+            anim.SetBool("Attacking", false);
         }
 
     }
