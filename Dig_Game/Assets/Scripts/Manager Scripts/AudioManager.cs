@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource footsteps;
+    private List<AudioSource> sources = new List<AudioSource>();
     
-    private void Update()
+    public void Setup()
     {
-        if (GameManager.Instance.GetPlayerMovement().getGrounded() && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
-        {
-            footsteps.enabled = true;
-        }
+        sources.Clear();
+    }
 
-        else
+    public int Register(AudioSource source)
+    {
+        sources.Add(source);
+        return sources.Count - 1;
+    }
+
+    public void SetSource(int index, bool set)
+    {
+        if (sources.Count > index)
         {
-            footsteps.enabled = false;
+            sources[index].enabled = set;
         }
     }
 
