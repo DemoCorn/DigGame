@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using UnityEngine.Events;
 using UnityEngine.Assertions;
+using TMPro;
+using UnityEngine.UI;
 
 
 public class UI_Manager : MonoBehaviour
@@ -28,9 +30,14 @@ public class UI_Manager : MonoBehaviour
 
     [HideInInspector] public bool onCraftingTable = false;
 
+    private GameObject indicatorPrefab;
+    private GameObject indicatorSpritePrefab;
+
     // Start is called before the first frame update
     public void Start()
     {
+        indicatorPrefab = (GameObject)Resources.Load("Item_Ore IndicatorParent");
+        indicatorSpritePrefab = (GameObject)Resources.Load("IndicatorSpriteParent");
         inputs = GameManager.Instance.GetInputs();
     }
 
@@ -127,6 +134,24 @@ public class UI_Manager : MonoBehaviour
         return createdObject;
     }
 
+    public void ShowItemPickup(Item item)
+    {
+        Text((item.itemName + " x1").ToString());
+        Sprite(item.itemSprite);
+        Debug.Log("test");
+    }
+    void Text(string text)
+    {
+        
+        GameObject popup = AddToCanvas(indicatorPrefab, new Vector3(-1108.5f, -543.8f, 90.0f));
+        popup.GetComponentInChildren<TextMeshPro>().text = text;
+    }
+    void Sprite(Sprite sprite)
+    {
+        GameObject popupSprite = AddToCanvas(indicatorSpritePrefab, new Vector3(-1107.237f, -543.781f, 90.0f));
+        popupSprite.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
+    }
+
     public void DisplayBlueprint(Blueprint bp)
     {
         MessengerCreation("Gained Blueprint: " + bp.result.item.itemName);
@@ -146,7 +171,7 @@ public class UI_Manager : MonoBehaviour
         }
         Assert.AreNotEqual(nID, -1, "Too many notifications triggered at once");
 
-        GameObject messenger = GameManager.Instance.UIManager.AddToCanvas(ItemNotifyMessenger, new Vector3(506.0f, 362.0f - (NotificationSpacing * nID), 90.0f));
+        GameObject messenger = AddToCanvas(ItemNotifyMessenger, new Vector3(506.0f, 362.0f - (NotificationSpacing * nID), 90.0f));
 
         ItemNotifyMessenger messengerScript = messenger.GetComponent<ItemNotifyMessenger>();
         messengerScript.nID = nID;
