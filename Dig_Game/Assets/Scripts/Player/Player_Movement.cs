@@ -7,6 +7,8 @@ public class Player_Movement : MonoBehaviour
 {
 
     // Member Classes
+    [SerializeField] private AudioSource footsteps;
+    private int footstepsID = -1;
     [SerializeField] private float speed = 10.0f;
     [SerializeField] private float jumpPower = 100.0f;
     [SerializeField] private float gravity = -0.5f;
@@ -29,6 +31,11 @@ public class Player_Movement : MonoBehaviour
     private void Awake()
     {
         playerModel = transform.Find("Player");
+    }
+
+    private void Start()
+    {
+        footstepsID = GameManager.Instance.AudioManager.Register(footsteps);
     }
 
     private void FixedUpdate()
@@ -85,6 +92,7 @@ public class Player_Movement : MonoBehaviour
             nDirection = 0;
         }
 
+        GameManager.Instance.AudioManager.SetSource(footstepsID, nDirection != 0 && isGrounded);
         // Apply movement
         transform.Translate(speed * nDirection * Time.fixedDeltaTime, mVerticalVelocity * Time.fixedDeltaTime, 0.0f);
     }
@@ -96,7 +104,6 @@ public class Player_Movement : MonoBehaviour
 
         // Find if we should be going in the positive or negative direction
         nDirection = (Convert.ToInt32(Input.GetKey(inputs.right)) - Convert.ToInt32(Input.GetKey(inputs.left)));
-
 
         // Update direction facing
         //Animation
