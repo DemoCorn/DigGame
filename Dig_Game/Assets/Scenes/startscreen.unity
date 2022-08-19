@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 272589401}
   - component: {fileID: 272589400}
   - component: {fileID: 272589399}
+  - component: {fileID: 272589406}
   m_Layer: 0
   m_Name: GM
   m_TagString: Untagged
@@ -668,6 +669,7 @@ MonoBehaviour:
   LayerManager: {fileID: 272589401}
   GenerationManager: {fileID: 272589403}
   UIManager: {fileID: 272589399}
+  AudioManager: {fileID: 272589406}
   LevelNum: 0
   PlayerStartPosition: {x: 0, y: 2, z: 0}
   isMainLevel: 0
@@ -686,6 +688,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &272589406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272589398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793706478d0f3904080144c4241e7ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &314437759
 GameObject:
   m_ObjectHideFlags: 0
