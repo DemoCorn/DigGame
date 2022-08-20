@@ -9,6 +9,8 @@ public class Smart_Tile : MonoBehaviour
 
     [SerializeField] private bool overrideLayerHealth = false;
     [SerializeField] private List<Range> levelRanges = new List<Range>();
+    [SerializeField] private ParticleSystem.MainModule particle;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Non_Player_Health health;
     [SerializeField] private Non_Player_Health maxHealth;
@@ -25,14 +27,7 @@ public class Smart_Tile : MonoBehaviour
         {
             if (gameObject.transform.position.y + offset <= levels.layerRange[i].highest && gameObject.transform.position.y + offset >= levels.layerRange[i].lowest)
             {
-                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
-                spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[i].sprite[Random.Range(0, levelRanges[levels.nLevelNumber].dirtLayers[i].sprite.Count)];
-                if (!overrideLayerHealth)
-                {
-                    health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[i].health);
-                    health.SetMaxHealth(levelRanges[levels.nLevelNumber].dirtLayers[i].maxHealth);
-                }
-                rendered = true;
+                rendered = TileSet(levels, i);
                 break;
             }
         }
@@ -42,29 +37,29 @@ public class Smart_Tile : MonoBehaviour
         {
             if (gameObject.transform.position.y <= levels.layerRange[0].highest && gameObject.transform.position.y >= levels.layerRange[0].lowest)
             {
-                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
-                spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[0].sprite[Random.Range(0, levelRanges[levels.nLevelNumber].dirtLayers[0].sprite.Count)];
-                if (!overrideLayerHealth)
-                {
-                    health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[0].health);
-                    health.SetMaxHealth(levelRanges[levels.nLevelNumber].dirtLayers[0].maxHealth);
-
-                }
-                rendered = true;
+                rendered = TileSet(levels, 0);
             }
             else if (gameObject.transform.position.y <= levels.layerRange[levels.layerRange.Count - 1].highest && gameObject.transform.position.y >= levels.layerRange[levels.layerRange.Count - 1].lowest)
             {
-                spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
-                spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[levels.layerRange.Count - 1].sprite[Random.Range(0, levelRanges[levels.nLevelNumber].dirtLayers[levels.layerRange.Count - 1].sprite.Count)];
-                if (!overrideLayerHealth)
-                {
-                    health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[levels.layerRange.Count - 1].health);
-                    health.SetMaxHealth(levelRanges[levels.nLevelNumber].dirtLayers[levels.layerRange.Count - 1].health);
-                }
-                rendered = true;
+                rendered = TileSet(levels, levels.layerRange.Count - 1);
             }
         }
         maxHealth = health;
+    }
+
+    private bool TileSet(LevelRange levels, int index)
+    {
+        spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
+        spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[index].sprite[Random.Range(0, levelRanges[levels.nLevelNumber].dirtLayers[index].sprite.Count)];
+        audioSource.clip = levelRanges[levels.nLevelNumber].dirtLayers[index].audio;
+        particle.startColor = levelRanges[levels.nLevelNumber].dirtLayers[index].effectColour;
+
+        if (!overrideLayerHealth)
+        {
+            health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[index].health);
+            health.SetMaxHealth(levelRanges[levels.nLevelNumber].dirtLayers[index].maxHealth);
+        }
+        return true;
     }
 
     [System.Serializable]
@@ -88,14 +83,18 @@ public class Smart_Tile : MonoBehaviour
         {
         }
 
-        public DirtRange(float hp, List<Sprite> objectSprite)
+        public DirtRange(float hp, AudioClip audi, Color effect, List<Sprite> objectSprite)
         {
             health = hp;
             maxHealth = hp;
+            audio = audi;
+            effectColour = effect;
             sprite = objectSprite;
         }
         public float health;
         public float maxHealth;
+        public AudioClip audio;
+        public Color effectColour;
         public List<Sprite> sprite = new List<Sprite>();
     }
 }
