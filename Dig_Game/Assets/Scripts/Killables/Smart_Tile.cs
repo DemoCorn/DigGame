@@ -9,7 +9,7 @@ public class Smart_Tile : MonoBehaviour
 
     [SerializeField] private bool overrideLayerHealth = false;
     [SerializeField] private List<Range> levelRanges = new List<Range>();
-    [SerializeField] private ParticleSystem.MainModule particle;
+    [SerializeField] private ParticleSystem particle;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Non_Player_Health health;
@@ -52,7 +52,8 @@ public class Smart_Tile : MonoBehaviour
         spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
         spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[index].sprite[Random.Range(0, levelRanges[levels.nLevelNumber].dirtLayers[index].sprite.Count)];
         audioSource.clip = levelRanges[levels.nLevelNumber].dirtLayers[index].audio;
-        particle.startColor = levelRanges[levels.nLevelNumber].dirtLayers[index].effectColour;
+        ParticleSystem.MainModule main = particle.main;
+        main.startColor = levelRanges[levels.nLevelNumber].dirtLayers[index].effectColour;
 
         if (!overrideLayerHealth)
         {

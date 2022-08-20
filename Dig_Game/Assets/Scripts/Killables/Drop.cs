@@ -76,7 +76,10 @@ public class Drop : MonoBehaviour
             // Iterate through all drops and generate a random number to see if they get added to the inventory
             if (dropBlueprints)
             {
-                CorrectBlueprint();
+                if (CorrectBlueprint())
+                {
+                    chance = Random.Range(0.0f, maxChance);
+                }
 
                 if (blueprintDrops.drops.Count != 0)
                 {
@@ -114,19 +117,20 @@ public class Drop : MonoBehaviour
         }
     }
 
-    void CorrectBlueprint()
+    bool CorrectBlueprint()
     {
+        bool returnValue = false;
         for (int i = 0; i < blueprintDrops.drops.Count; i++)
         {
             if (GameManager.Instance.InventoryManager.BlueprintUnlocked(blueprintDrops.drops[i].blueprint))
             {
-
                 blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
                 i--;
+                returnValue = true;
             }
         }
 
-        if (heapDrop)
+        if (heapDrop && returnValue)
         {
             maxChance = 0.0f;
             if (dropBlueprints)
@@ -137,6 +141,11 @@ public class Drop : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            returnValue = false;
+        }
+        return returnValue;
     }
 
     void SmartDropSetup()
