@@ -13,7 +13,7 @@ public class ParalaxBackground : MonoBehaviour
         lastCameraPosition = cameraTransform.position;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
         transform.position += deltaMovement;
