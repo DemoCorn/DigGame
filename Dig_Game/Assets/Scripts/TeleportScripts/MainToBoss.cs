@@ -5,6 +5,7 @@ using UnityEngine;
 public class MainToBoss : MonoBehaviour
 {
     public GameObject player;
+    [SerializeField] private GameObject camConfiner;
 
     public Transform bossStartPosition;
     // Start is called before the first frame update
@@ -24,6 +25,7 @@ public class MainToBoss : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             player.transform.position = bossStartPosition.transform.position;
+            Destroy(camConfiner);
             
         }
     }
