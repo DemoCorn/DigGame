@@ -12,7 +12,8 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private GameObject menuPrefab;
     private GameObject menus;
     private sians_Inventory_screen menuScript;
-    private HPCog cog;
+    //private HPCog cog;
+    private HPBar bar;
 
     private  List<Transform> compassLocations = new List<Transform>();
     private GameObject compassCenter;
@@ -63,7 +64,8 @@ public class UI_Manager : MonoBehaviour
                     menuScript.OpenCloseMenu(UIMenu.inventory);
                 }
             }
-            cog.UpdateHealth(GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetPlayerMaxHealth());
+            //cog.UpdateHealth(GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetPlayerMaxHealth());
+            bar.UpdateHealth(GameManager.Instance.GetPlayerHealth(), GameManager.Instance.GetPlayerMaxHealth());
             DrawClosestPoint();
         }
     }
@@ -107,7 +109,12 @@ public class UI_Manager : MonoBehaviour
 
     public void SetCog(HPCog setCog)
     {
-        cog = setCog;
+        //cog = setCog;
+    }
+
+    public void SetBar(HPBar setBar)
+    {
+        bar = setBar;
     }
 
     public void RegisterCompassLocation(Transform pos)
