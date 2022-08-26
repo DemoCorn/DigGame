@@ -126,7 +126,7 @@ public class Drop : MonoBehaviour
             {
                 blueprintDrops.drops.Remove(blueprintDrops.drops[i]);
                 i--;
-                returnValue = true;
+                returnValue = true && heapDrop;
             }
         }
 
@@ -140,10 +140,6 @@ public class Drop : MonoBehaviour
                     maxChance += blueprint.percentChance;
                 }
             }
-        }
-        else
-        {
-            returnValue = false;
         }
         return returnValue;
     }
