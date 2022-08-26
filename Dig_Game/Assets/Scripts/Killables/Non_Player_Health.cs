@@ -7,6 +7,7 @@ using TMPro;
 public class Non_Player_Health : MonoBehaviour
 {
 	[SerializeField] ParticleSystem particle;
+	[SerializeField] AudioSource sound;
 	[SerializeField] float health = 15.0f;
 	[SerializeField] float maxHealth;
 	[SerializeField] float immunityTime = 0.3f;
@@ -14,15 +15,18 @@ public class Non_Player_Health : MonoBehaviour
 	Collider2D colliderObject;
 	[HideInInspector] public bool mImmune = false;
 
-	[SerializeField] private GameObject popup;
+	private GameObject enemyDamagePopup;
 
 	private void Start()
     {
 		particle = GetComponentInChildren<ParticleSystem>();
+		sound = GetComponentInChildren<AudioSource>();
 		sprite = GetComponentInChildren<SpriteRenderer>();
 		colliderObject = GetComponent<Collider2D>();
 		maxHealth = health;
-    }
+		enemyDamagePopup = (GameObject)Resources.Load("EnemyDamagePopup");
+
+	}
     private void Update()
     {
 		DirtTransparency();
@@ -50,9 +54,9 @@ public class Non_Player_Health : MonoBehaviour
 
 	void ShowDamage(string text)
     {
-		if(popup)
+		if(enemyDamagePopup)
         {
-			GameObject prefab = Instantiate(popup, transform.position, Quaternion.identity);
+			GameObject prefab = Instantiate(enemyDamagePopup, transform.position, Quaternion.identity);
 			prefab.GetComponentInChildren<TextMeshPro>().text = text;
         }
     }
@@ -81,6 +85,12 @@ public class Non_Player_Health : MonoBehaviour
 		if (particle)
 		{
 			particle.Play();
+
+			if (sound)
+            {
+				sound.Play();
+			}
+			
 			sprite.enabled = false;
 			colliderObject.enabled = false;
 			Destroy(gameObject, particle.main.startLifetime.constantMax);

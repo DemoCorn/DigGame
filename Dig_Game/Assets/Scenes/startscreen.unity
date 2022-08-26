@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 272589401}
   - component: {fileID: 272589400}
   - component: {fileID: 272589399}
+  - component: {fileID: 272589406}
   m_Layer: 0
   m_Name: GM
   m_TagString: Untagged
@@ -289,18 +290,6 @@ MonoBehaviour:
     isUnlocked: 0
   - blueprint: {fileID: 11400000, guid: 1aa23da9a2258dc45bf336ae276ab0e7, type: 2}
     isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: 5743b142bf68af445b690014b8a48ba6, type: 2}
-    isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: 1fe7bfaf7ac8e5646a2e9a2e99f74c46, type: 2}
-    isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: 03f04fad9726bff4ca9147d89861b8e4, type: 2}
-    isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: 17c314af41e8b2b41bf47557f862ae4b, type: 2}
-    isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: 059caf9dfed2b7b4c96915061becb74f, type: 2}
-    isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: 5b6355b847a37cf4abe96c6e3ce09bbd, type: 2}
-    isUnlocked: 0
   - blueprint: {fileID: 11400000, guid: 13e5023bdcb6bc94c9cce0ec0ebe1b9c, type: 2}
     isUnlocked: 0
   - blueprint: {fileID: 11400000, guid: ff21c07ef94360d42a269043927611b4, type: 2}
@@ -338,18 +327,6 @@ MonoBehaviour:
   - blueprint: {fileID: 11400000, guid: 3150515c99f798743ba374927315348a, type: 2}
     isUnlocked: 0
   - blueprint: {fileID: 11400000, guid: d4f4ef42e5c2ab8438c66deab5b60344, type: 2}
-    isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: d97b415fd415ae444854c9b3d7517fc6, type: 2}
-    isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: 2f8c671d8c7fc6440b03a9fb191d75a5, type: 2}
-    isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: 7c3cdc4bd9ab8cd449c940c4c3f2c018, type: 2}
-    isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: effa04f8af2cec541b0e9f1a424bc6bf, type: 2}
-    isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: 6a8b960330f7b4a4c886434fbf0b3041, type: 2}
-    isUnlocked: 0
-  - blueprint: {fileID: 11400000, guid: 035f171ebee6ce14dab801bb307ccdd0, type: 2}
     isUnlocked: 0
   - blueprint: {fileID: 11400000, guid: 73ac812e7a64ffa4ea60fcf4d8023347, type: 2}
     isUnlocked: 0
@@ -416,76 +393,55 @@ MonoBehaviour:
   - oreAtLevel:
     - oreAtLayer:
       - ore: {fileID: 2797143980870222208, guid: a2cd7a56fb8d6d04498b0ae21d8a5120, type: 3}
-        lowestOreAmount: 20
-        highestOreAmount: 30
+        lowestOreAmount: 87
+        highestOreAmount: 100
       - ore: {fileID: 3218875986603706194, guid: 478ed484bb1111949879caf617ab8e1b, type: 3}
         lowestOreAmount: 20
         highestOreAmount: 30
-      - ore: {fileID: 2797143980870222208, guid: 66dfc7df60dd16945a43454a322ea369, type: 3}
-        lowestOreAmount: 15
-        highestOreAmount: 25
-      - ore: {fileID: 2797143980870222208, guid: 349c1b26831674b44ba51030070937de, type: 3}
-        lowestOreAmount: 5
-        highestOreAmount: 10
     - oreAtLayer:
-      - ore: {fileID: 2797143980870222208, guid: 66dfc7df60dd16945a43454a322ea369, type: 3}
-        lowestOreAmount: 20
-        highestOreAmount: 30
       - ore: {fileID: 3218875986603706194, guid: 478ed484bb1111949879caf617ab8e1b, type: 3}
         lowestOreAmount: 20
         highestOreAmount: 30
       - ore: {fileID: 2797143980870222208, guid: 349c1b26831674b44ba51030070937de, type: 3}
-        lowestOreAmount: 15
-        highestOreAmount: 25
-      - ore: {fileID: 2797143980870222208, guid: 4e499100c1040fe4e9fb2b2ec356080c, type: 3}
-        lowestOreAmount: 5
-        highestOreAmount: 10
-      - ore: {fileID: 2797143980870222208, guid: 1e7c23fc6ae6fb447810d823203bee17, type: 3}
+        lowestOreAmount: 30
+        highestOreAmount: 40
+    - oreAtLayer:
+      - ore: {fileID: 3218875986603706194, guid: 478ed484bb1111949879caf617ab8e1b, type: 3}
+        lowestOreAmount: 20
+        highestOreAmount: 30
+      - ore: {fileID: 2797143980870222208, guid: 288108c273d3dbb45ab384ef7d7222fd, type: 3}
         lowestOreAmount: 15
         highestOreAmount: 20
-    - oreAtLayer:
-      - ore: {fileID: 2797143980870222208, guid: 349c1b26831674b44ba51030070937de, type: 3}
-        lowestOreAmount: 20
-        highestOreAmount: 30
-      - ore: {fileID: 3218875986603706194, guid: 478ed484bb1111949879caf617ab8e1b, type: 3}
-        lowestOreAmount: 20
-        highestOreAmount: 30
-      - ore: {fileID: 2797143980870222208, guid: 4e499100c1040fe4e9fb2b2ec356080c, type: 3}
-        lowestOreAmount: 15
-        highestOreAmount: 25
-      - ore: {fileID: 2797143980870222208, guid: 288108c273d3dbb45ab384ef7d7222fd, type: 3}
-        lowestOreAmount: 5
-        highestOreAmount: 10
   levelScatters:
   - scatterAtLevel:
     - scatterAtLayer:
-      - scatterObject: {fileID: 2797143980870222208, guid: a2cd7a56fb8d6d04498b0ae21d8a5120, type: 3}
-        scatterChance: 100
-        scatterChanceDegredation: 50
-        lowestScatterAmount: 1
-        highestScatterAmount: 1
+      - scatterObject: {fileID: 2797143980870222208, guid: 66dfc7df60dd16945a43454a322ea369, type: 3}
+        scatterChance: 85
+        scatterChanceDegredation: 30
+        lowestScatterAmount: 3
+        highestScatterAmount: 3
       - scatterObject: {fileID: 1044155829553452034, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
         scatterChance: 50
         scatterChanceDegredation: 75
-        lowestScatterAmount: 1
-        highestScatterAmount: 1
+        lowestScatterAmount: 5
+        highestScatterAmount: 5
     - scatterAtLayer:
       - scatterObject: {fileID: 2797143980870222208, guid: 66dfc7df60dd16945a43454a322ea369, type: 3}
-        scatterChance: 100
-        scatterChanceDegredation: 50
-        lowestScatterAmount: 1
-        highestScatterAmount: 1
+        scatterChance: 65
+        scatterChanceDegredation: 30
+        lowestScatterAmount: 2
+        highestScatterAmount: 2
       - scatterObject: {fileID: 1044155829553452034, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
         scatterChance: 50
         scatterChanceDegredation: 75
-        lowestScatterAmount: 1
-        highestScatterAmount: 1
+        lowestScatterAmount: 3
+        highestScatterAmount: 3
     - scatterAtLayer:
-      - scatterObject: {fileID: 2797143980870222208, guid: 349c1b26831674b44ba51030070937de, type: 3}
-        scatterChance: 100
-        scatterChanceDegredation: 50
-        lowestScatterAmount: 1
-        highestScatterAmount: 1
+      - scatterObject: {fileID: 2797143980870222208, guid: 4e499100c1040fe4e9fb2b2ec356080c, type: 3}
+        scatterChance: 45
+        scatterChanceDegredation: 30
+        lowestScatterAmount: 10
+        highestScatterAmount: 10
       - scatterObject: {fileID: 1044155829553452034, guid: d4961af66b618ab479cbfc4687a6262b, type: 3}
         scatterChance: 50
         scatterChanceDegredation: 75
@@ -499,12 +455,12 @@ MonoBehaviour:
       lowestPrefabAmount: 1
       highestPrefabAmount: 1
     - prefabAtLayer:
-      - prefab: {fileID: 6310938225849675311, guid: d2246c9c977ed954abfa16509dfc79fd, type: 3}
+      - prefab: {fileID: 5833129108595754739, guid: d891e51dbff76ad40a2e41b84fa6c52f, type: 3}
         chance: 100
       lowestPrefabAmount: 1
       highestPrefabAmount: 1
     - prefabAtLayer:
-      - prefab: {fileID: 6310938225849675311, guid: d2246c9c977ed954abfa16509dfc79fd, type: 3}
+      - prefab: {fileID: 8451713712908513240, guid: f78f1807db809524b98cdb9867a0c230, type: 3}
         chance: 100
       lowestPrefabAmount: 1
       highestPrefabAmount: 1
@@ -668,6 +624,7 @@ MonoBehaviour:
   LayerManager: {fileID: 272589401}
   GenerationManager: {fileID: 272589403}
   UIManager: {fileID: 272589399}
+  AudioManager: {fileID: 272589406}
   LevelNum: 0
   PlayerStartPosition: {x: 0, y: 2, z: 0}
   isMainLevel: 0
@@ -686,6 +643,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &272589406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272589398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 793706478d0f3904080144c4241e7ebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &314437759
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +745,7 @@ GameObject:
   - component: {fileID: 400935810}
   - component: {fileID: 400935809}
   - component: {fileID: 400935808}
+  - component: {fileID: 400935811}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -848,6 +818,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &400935811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400935807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &441248816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1503,6 +1505,133 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1370211631}
   m_CullTransparentMesh: 1
+--- !u!1 &1678663086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1678663088}
+  - component: {fileID: 1678663087}
+  m_Layer: 0
+  m_Name: Music Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1678663087
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678663086}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0a1b7e31303041f4a9ac469d59e19fb4, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1678663088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678663086}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1685777265
 GameObject:
   m_ObjectHideFlags: 0
