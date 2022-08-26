@@ -15,7 +15,7 @@ public class Non_Player_Health : MonoBehaviour
 	Collider2D colliderObject;
 	[HideInInspector] public bool mImmune = false;
 
-	[SerializeField] private GameObject popup;
+	private GameObject enemyDamagePopup;
 
 	private void Start()
     {
@@ -24,7 +24,9 @@ public class Non_Player_Health : MonoBehaviour
 		sprite = GetComponentInChildren<SpriteRenderer>();
 		colliderObject = GetComponent<Collider2D>();
 		maxHealth = health;
-    }
+		enemyDamagePopup = (GameObject)Resources.Load("EnemyDamagePopup");
+
+	}
     private void Update()
     {
 		DirtTransparency();
@@ -52,9 +54,9 @@ public class Non_Player_Health : MonoBehaviour
 
 	void ShowDamage(string text)
     {
-		if(popup)
+		if(enemyDamagePopup)
         {
-			GameObject prefab = Instantiate(popup, transform.position, Quaternion.identity);
+			GameObject prefab = Instantiate(enemyDamagePopup, transform.position, Quaternion.identity);
 			prefab.GetComponentInChildren<TextMeshPro>().text = text;
         }
     }
