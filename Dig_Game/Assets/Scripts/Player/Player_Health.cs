@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using TMPro;
 
 
 public class Player_Health : MonoBehaviour
@@ -32,6 +33,10 @@ public class Player_Health : MonoBehaviour
     public GameObject leftLeg;
     public GameObject rightLeg;
 
+    
+    private GameObject playerDamagepopup;
+    private GameObject healPopup;
+
     private void Start()
     {
         nextPlayer = gameObject;
@@ -48,6 +53,9 @@ public class Player_Health : MonoBehaviour
         
         matDefault = headSR.material;
 
+        
+        playerDamagepopup = (GameObject)Resources.Load("PlayerDamagePopup");
+        healPopup = (GameObject)Resources.Load("HealPopup");
     }
 
     // Update is called once per frame
@@ -90,6 +98,7 @@ public class Player_Health : MonoBehaviour
 
     public void Heal(float HealthUp)
     {
+        ShowHeal(HealthUp.ToString());
         health += HealthUp;
         if (health > maxHealth)
         {
@@ -124,6 +133,7 @@ public class Player_Health : MonoBehaviour
             if (fDamage > 0.0f)
             {
                 float damage = fDamage - armor;
+                ShowDamage(fDamage.ToString());
                 health -= damage < 1.0f ? 1.0f : damage;
                 StartCoroutine("Hurt");
 
@@ -138,6 +148,22 @@ public class Player_Health : MonoBehaviour
                 isVulnerable = false;
                 Invoke("TurnOffImmunity", immunityTime);
             }
+        }
+    }
+    void ShowDamage(string text)
+    {
+        if (playerDamagepopup)
+        {
+            GameObject prefab = Instantiate(playerDamagepopup, transform.position, Quaternion.identity);
+            prefab.GetComponentInChildren<TextMeshPro>().text = text;
+        }
+    }
+    void ShowHeal(string text)
+    {
+        if (healPopup)
+        {
+            GameObject prefab = Instantiate(healPopup, transform.position, Quaternion.identity);
+            prefab.GetComponentInChildren<TextMeshPro>().text = text;
         }
     }
 
