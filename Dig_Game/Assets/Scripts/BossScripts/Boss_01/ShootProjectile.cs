@@ -9,6 +9,9 @@ public class ShootProjectile : MonoBehaviour
 
     public float cooldownTimer;
     public float cooldownRequirement;
+    private bool hasShot = false;
+
+    [SerializeField] private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +27,11 @@ public class ShootProjectile : MonoBehaviour
         cooldownTimer += Time.deltaTime;
         if (cooldownTimer >= cooldownRequirement)
         {
+            hasShot = true;
             SpawnProjectile();
             cooldownTimer = 0;
         }
+        
 
     }
     public void SpawnProjectile()
