@@ -5,19 +5,52 @@ using UnityEngine;
 public class ParticleManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public ParticleSystem mParticle;
-    public Transform mtransform;
+
+    static ParticleManager instance;
+   
+    public static ParticleManager Instance
+    {
+        get
+        {
+            if(instance == null)
+            {
+                instance = new ParticleManager();
+            }
+            return instance;
+        }
+    }
+
+    public List<ParticleSystem> ps;
+    ParticleSystem.Particle[] particles;
+
+    public GameObject player;
     void Start()
     {
-
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        //for testing
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Instantiate(mParticle, mtransform.position, Quaternion.identity);
-        }
+            Instantiate(ps[0], player.transform.position, Quaternion.identity);
+        }   
+    }
+
+    void effect1()
+    {
+        Instantiate(ps[0], player.transform.position, Quaternion.identity);
+    }
+
+    void effect2()
+    {
+        Instantiate(ps[1], player.transform.position, Quaternion.identity);
+    }
+
+    void effect3()
+    {
+        Instantiate(ps[2], player.transform.position, Quaternion.identity);
     }
 }

@@ -13,6 +13,7 @@ public class HealthPotion : UsableEffect
     override public float Activate()
     {
         GameManager.Instance.HealPlayer(heal);
+
         return cooldownTime;
     }
 }
