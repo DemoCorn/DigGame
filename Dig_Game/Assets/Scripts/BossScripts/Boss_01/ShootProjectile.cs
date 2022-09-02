@@ -9,6 +9,7 @@ public class ShootProjectile : MonoBehaviour
 
     public float cooldownTimer;
     public float cooldownRequirement;
+    private bool hasShot = false;
 
     [SerializeField] private Animator anim;
 
@@ -26,14 +27,11 @@ public class ShootProjectile : MonoBehaviour
         cooldownTimer += Time.deltaTime;
         if (cooldownTimer >= cooldownRequirement)
         {
+            hasShot = true;
             SpawnProjectile();
             cooldownTimer = 0;
-            anim.SetBool("Attacking", true);
         }
-        else
-        {
-            anim.SetBool("Attacking", false);
-        }
+        
 
     }
     public void SpawnProjectile()

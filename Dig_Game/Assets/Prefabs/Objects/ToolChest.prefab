@@ -9698,7 +9698,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5183687207672776288}
-  - {fileID: 7102543273785272205}
   m_Father: {fileID: 2456414078872251235}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9793,11 +9792,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 1292890730577016980}
   sound: {fileID: 0}
-  health: 15
+  health: 0.1
   maxHealth: 0
   immunityTime: 0
   mImmune: 0
-  popup: {fileID: 0}
 --- !u!114 &5486134917964829568
 MonoBehaviour:
   m_ObjectHideFlags: 0
