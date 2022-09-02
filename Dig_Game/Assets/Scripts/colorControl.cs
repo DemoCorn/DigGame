@@ -6,7 +6,8 @@ public class colorControl : MonoBehaviour
 {
     // Start is called before the first frame update
     public float totalTime;
-    private bool active;
+    public bool active;
+    public bool leave;
     [SerializeField][Range(0f, 1f)] float t;
     private SpriteRenderer mask_render;
     private SpriteRenderer black_render;
@@ -20,6 +21,7 @@ public class colorControl : MonoBehaviour
     void Start()
     {
         active = false;
+        leave = false;
         root = GameObject.Find("Big Mask");
         root2 = GameObject.Find("Black");
         mask_render = root.GetComponent<SpriteRenderer>();
@@ -30,18 +32,25 @@ public class colorControl : MonoBehaviour
         newBlack = new Color32(0, 0, 0, 0);
         t = 0;
         timeSpan = 0;
-        totalTime = 10;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(active)
+        if(active && !leave)
         {
             timeSpan += Time.deltaTime;
             t = Mathf.Lerp(0, 1, timeSpan / totalTime);
             mask_render.color = Color.Lerp(oldMask, newMask, t);
             black_render.color = Color.Lerp(oldBlack, newBlack,t);
+        }
+
+        if(!active && leave)
+        {
+            timeSpan += Time.deltaTime;
+            t = Mathf.Lerp(0, 1, timeSpan / totalTime);
+            mask_render.color = Color.Lerp(newMask, oldMask, t);
+            black_render.color = Color.Lerp(newBlack, oldBlack, t);
         }
     }
 
@@ -49,7 +58,19 @@ public class colorControl : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            leave = false;
             active = true;
+            timeSpan = 0;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            leave = true;
+            active = false;
+            timeSpan = 0;
         }
     }
 }
