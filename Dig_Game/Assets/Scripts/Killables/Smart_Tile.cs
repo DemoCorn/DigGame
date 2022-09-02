@@ -52,8 +52,8 @@ public class Smart_Tile : MonoBehaviour
         spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
         spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[index].sprite[Random.Range(0, levelRanges[levels.nLevelNumber].dirtLayers[index].sprite.Count)];
         audioSource.clip = levelRanges[levels.nLevelNumber].dirtLayers[index].audio;
-        //ParticleSystem.MainModule main = particle.main;
-        //main.startColor = levelRanges[levels.nLevelNumber].dirtLayers[index].effectColour;
+        ParticleSystem.MainModule main = particle.main;
+        main.startColor = levelRanges[levels.nLevelNumber].dirtLayers[index].effectColour;
 
         if (!overrideLayerHealth)
         {
