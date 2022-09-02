@@ -11,7 +11,7 @@ public class Hit_Rear_Enemy : MonoBehaviour
     {
         //Debug.Log(collision.name);
         isHit = true;
-        //Debug.Log("REAR HIT");
+        Debug.Log("REAR HIT");
 
         health.mImmune = false;
     }
