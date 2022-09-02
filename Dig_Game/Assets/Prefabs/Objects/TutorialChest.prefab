@@ -411,7 +411,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
+      scalar: 0.2
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -4943,7 +4943,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 2100000, guid: 00b32972eadef5e45b1251e737845a0c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5120,7 +5120,6 @@ MonoBehaviour:
   maxHealth: 0
   immunityTime: 0
   mImmune: 0
-  popup: {fileID: 0}
 --- !u!114 &2891447613083638161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5138,7 +5137,7 @@ MonoBehaviour:
   itemDropByLevel: []
   blueprintDropByLevel:
   - blueprintAtLayer:
-    - {fileID: 11400000, guid: e4044e9f9e331e3499de3839258898d6, type: 2}
+    - {fileID: 11400000, guid: 4ba49c9ea67ae5342b8d9e05d6edec0d, type: 2}
   dropBlueprints: 1
   smartDrop: 0
 --- !u!1 &2385219972762731076
