@@ -71,7 +71,7 @@ public class Player_Health : MonoBehaviour
 
     }
 
-
+    
     private float IsCollidingWithEnemy()
     {
         List<Collider2D> collisions = new List<Collider2D>();
@@ -87,7 +87,7 @@ public class Player_Health : MonoBehaviour
                 return collision.gameObject.GetComponent<Enemy_Damage>().damage;
             }
         }
-
+        
         return 0.0f;
     }
 
@@ -196,6 +196,8 @@ public class Player_Health : MonoBehaviour
         GameManager.Instance.EndGame(hasRetired);
 
     }
+    
+
 
     public void TestDeath()
     {
@@ -237,5 +239,6 @@ public class Player_Health : MonoBehaviour
         rightLegSR.material = matDefault;
         
     }
+
 
 }
