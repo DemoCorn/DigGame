@@ -5088,7 +5088,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.4
+      scalar: 0.2
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -9620,7 +9620,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 2100000, guid: 00b32972eadef5e45b1251e737845a0c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9698,7 +9698,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5183687207672776288}
-  - {fileID: 7102543273785272205}
   m_Father: {fileID: 2456414078872251235}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9793,11 +9792,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 1292890730577016980}
   sound: {fileID: 0}
-  health: 15
+  health: 0.1
   maxHealth: 0
   immunityTime: 0
   mImmune: 0
-  popup: {fileID: 0}
 --- !u!114 &5486134917964829568
 MonoBehaviour:
   m_ObjectHideFlags: 0
