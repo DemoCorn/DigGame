@@ -91,7 +91,7 @@ public class UI_Manager : MonoBehaviour
 
         if (closestIndex != -1)
         {
-            compassCenter.transform.eulerAngles = new Vector3(0.0f, 0.0f, Angle360(playerPos, position));
+            //compassCenter.transform.eulerAngles = new Vector3(0.0f, 0.0f, Angle360(playerPos, position));
         }
     }
 

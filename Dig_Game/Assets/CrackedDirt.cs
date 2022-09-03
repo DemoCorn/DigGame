@@ -4,40 +4,30 @@ using UnityEngine;
 
 public class CrackedDirt : MonoBehaviour
 {
-    public float dirtHealth;
-    
-    public Sprite currentSprite;
-    public Sprite[] crackedDirts;
+    [SerializeField] Sprite currentSprite;
+    [SerializeField] List<Sprite> crackedDirts = new List<Sprite>();
+    [SerializeField] List<float> crackPercentage = new List<float>();
 
-    private SpriteRenderer rend;
+    [SerializeField] SpriteRenderer rend;
 
     private void Start()
     {
-        rend.color = new Color(0f, 0f, 0f);
-        rend = gameObject.GetComponent<SpriteRenderer>();
+        rend.color = new Color(0f, 0f, 0f, 0f);
     }
 
     // Update is called once per frame
-    void Update()
+    public void SetCracks(float health, float maxHealth)
     {
-        dirtHealth = GetComponentInParent<Player_Health>().GetHealth();
+        float crackPercent = health / maxHealth;
 
-        if(dirtHealth <= 100 && dirtHealth >= 66)
+        for (int i = crackPercentage.Count -1; i >= 0; i--)
         {
-            rend.color = new Color(1.0f, 1.0f, 1.0f);
-            currentSprite = crackedDirts[1];            
+            if (crackPercent <= crackPercentage[i])
+            {
+                rend.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+                rend.sprite = crackedDirts[i];
+                break;
+            }
         }
-
-        if (dirtHealth <= 66 && dirtHealth >= 33)
-        {
-            currentSprite = crackedDirts[2];
-        }
-
-        if (dirtHealth <= 33 && dirtHealth >= 0)
-        {
-            currentSprite = crackedDirts[3];
-        }
-
-        gameObject.GetComponent<SpriteRenderer>().sprite = currentSprite;
     }
 }

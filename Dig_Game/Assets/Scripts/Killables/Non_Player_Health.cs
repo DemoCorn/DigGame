@@ -14,6 +14,7 @@ public class Non_Player_Health : MonoBehaviour
 	SpriteRenderer sprite;
 	Collider2D colliderObject;
 	[HideInInspector] public bool mImmune = false;
+	[SerializeField] CrackedDirt cracks = null;
 
 	private GameObject enemyDamagePopup;
 
@@ -44,9 +45,14 @@ public class Non_Player_Health : MonoBehaviour
 			}
 			else if(particle)
             {
-				
 				particle.Play();
             }
+
+			if (cracks != null)
+            {
+				cracks.SetCracks(health, maxHealth);
+            }
+
 			mImmune = true;
 			Invoke("StopImmunity", immunityTime);
 		}
@@ -103,11 +109,13 @@ public class Non_Player_Health : MonoBehaviour
 
 	void DirtTransparency()
     {
+		/*
 		if (gameObject.tag == "BreakableBlock")
         {
 			float alpha = health / maxHealth;
 			sprite.color = new Color(1f, 1f, 1f, alpha);			
         }
+		*/
     }
 
 }
