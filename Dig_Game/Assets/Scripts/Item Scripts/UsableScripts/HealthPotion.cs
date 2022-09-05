@@ -12,8 +12,9 @@ public class HealthPotion : UsableEffect
     }
     override public float Activate()
     {
+        Debug.Log("use health potion!");
         GameManager.Instance.HealPlayer(heal);
-
+        ParticleManager.Instance.effect1();
         return cooldownTime;
     }
 }

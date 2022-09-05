@@ -23,7 +23,8 @@ public class ParticleManager : MonoBehaviour
     public List<ParticleSystem> ps;
     ParticleSystem.Particle[] particles;
 
-    public GameObject player;
+    GameObject player;
+
     void Start()
     {
         player = GameObject.Find("Player");
@@ -39,17 +40,17 @@ public class ParticleManager : MonoBehaviour
         }   
     }
 
-    void effect1()
+    public void effect1()
     {
         Instantiate(ps[0], player.transform.position, Quaternion.identity);
     }
 
-    void effect2()
+    public void effect2()
     {
         Instantiate(ps[1], player.transform.position, Quaternion.identity);
     }
 
-    void effect3()
+    public void effect3()
     {
         Instantiate(ps[2], player.transform.position, Quaternion.identity);
     }
