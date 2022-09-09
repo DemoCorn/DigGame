@@ -4,43 +4,37 @@ using UnityEngine;
 
 public class Smart_Enemies : MonoBehaviour
 {
-    /*
-    [SerializeField] private int jaggedRange = 2;
 
     [SerializeField] private bool overrideLayerHealth = false;
     [SerializeField] private List<Range> levelRanges = new List<Range>();
-    [SerializeField] private ParticleSystem particle;
-    [SerializeField] private AudioSource audioSource;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Non_Player_Health health;
+    [SerializeField] private Enemy_Damage damage;
 
     // Start is called before the first frame update
     void Start()
     {
         LevelRange levels = GameManager.Instance.LayerManager.GetLevelRange();
 
-        for (int i = 0; i < levelRanges[levels.nLevelNumber].dirtLayers.Count; i++)
+        for (int i = 0; i < levelRanges[levels.nLevelNumber].enemyLayers.Count; i++)
         {
             if (gameObject.transform.position.y <= levels.layerRange[i].highest && gameObject.transform.position.y >= levels.layerRange[i].lowest)
             {
-                TileSet(levels, i);
+                StatSet(levels, i);
                 break;
             }
         }
     }
 
-    private bool TileSet(LevelRange levels, int index)
+    private bool StatSet(LevelRange levels, int index)
     {
-        spriteRenderer.color = new Color(1.0f, 1.0f, 1.0f);
-        spriteRenderer.sprite = levelRanges[levels.nLevelNumber].dirtLayers[index].sprite[Random.Range(0, levelRanges[levels.nLevelNumber].dirtLayers[index].sprite.Count)];
-        audioSource.clip = levelRanges[levels.nLevelNumber].dirtLayers[index].audio;
-        ParticleSystem.MainModule main = particle.main;
-        main.startColor = levelRanges[levels.nLevelNumber].dirtLayers[index].effectColour;
+        spriteRenderer.color = levelRanges[levels.nLevelNumber].enemyLayers[index].enemyColour;
+        damage.damage = levelRanges[levels.nLevelNumber].enemyLayers[index].damage;
 
         if (!overrideLayerHealth)
         {
-            health.SetHealth(levelRanges[levels.nLevelNumber].dirtLayers[index].health);
-            health.SetMaxHealth(levelRanges[levels.nLevelNumber].dirtLayers[index].maxHealth);
+            health.SetHealth(levelRanges[levels.nLevelNumber].enemyLayers[index].health);
+            health.SetMaxHealth(levelRanges[levels.nLevelNumber].enemyLayers[index].health);
         }
         return true;
     }
@@ -52,21 +46,21 @@ public class Smart_Enemies : MonoBehaviour
         {
         }
 
-        public Range(List<DirtRange> dirtRange)
+        public Range(List<EnemyRange> dirtRange)
         {
-            dirtLayers = dirtRange;
+            enemyLayers = dirtRange;
         }
-        public List<DirtRange> dirtLayers = new List<DirtRange>();
+        public List<EnemyRange> enemyLayers = new List<EnemyRange>();
     }
 
     [System.Serializable]
-    public class DirtRange
+    public class EnemyRange
     {
-        public DirtRange()
+        public EnemyRange()
         {
         }
 
-        public DirtRange(float hp, float dmg, Color colour)
+        public EnemyRange(float hp, float dmg, Color colour)
         {
             health = hp;
             damage = dmg;
@@ -76,5 +70,4 @@ public class Smart_Enemies : MonoBehaviour
         public float damage;
         public Color enemyColour;
     }
-    */
 }
