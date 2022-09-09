@@ -14,8 +14,9 @@ public class DefencePotion : UsableEffect
 
     override public float Activate()
     {
+        Debug.Log("use Defence potion!");
         GameManager.Instance.BuffPlayer(0.0f, defenceBoost, 0.0f, 0.0f, 0.0f, activeTime);
-        ParticleManager.Instance.effect2();
+        ParticleManager.instance.effect2();
         return cooldownTime;
     }
 }

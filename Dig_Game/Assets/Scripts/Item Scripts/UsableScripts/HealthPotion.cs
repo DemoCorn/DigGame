@@ -14,7 +14,7 @@ public class HealthPotion : UsableEffect
     {
         Debug.Log("use health potion!");
         GameManager.Instance.HealPlayer(heal);
-        ParticleManager.Instance.effect1();
+        ParticleManager.instance.effect1();
         return cooldownTime;
     }
 }

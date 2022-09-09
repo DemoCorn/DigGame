@@ -6,24 +6,25 @@ public class ParticleManager : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    static ParticleManager instance;
-   
-    public static ParticleManager Instance
-    {
-        get
-        {
-            if(instance == null)
-            {
-                instance = new ParticleManager();
-            }
-            return instance;
-        }
-    }
+    public static ParticleManager instance { get; set; }
+
 
     public List<ParticleSystem> ps;
     ParticleSystem.Particle[] particles;
 
     GameObject player;
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -34,15 +35,15 @@ public class ParticleManager : MonoBehaviour
     void Update()
     {
         //for testing
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Instantiate(ps[0], player.transform.position, Quaternion.identity);
-        }   
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    Instantiate(ps[0], player.transform.position, Quaternion.identity);
+        //}   
     }
 
     public void effect1()
     {
-        Instantiate(ps[0], player.transform.position, Quaternion.identity);
+        Instantiate(this.ps[0], player.transform.position, Quaternion.identity);
     }
 
     public void effect2()
