@@ -28,10 +28,6 @@ public class Non_Player_Health : MonoBehaviour
 		enemyDamagePopup = (GameObject)Resources.Load("EnemyDamagePopup");
 
 	}
-    private void Update()
-    {
-		DirtTransparency();
-    }
 
     public void Hit(float fDamage)
 	{
@@ -60,7 +56,7 @@ public class Non_Player_Health : MonoBehaviour
 
 	void ShowDamage(string text)
     {
-		if(enemyDamagePopup)
+		if(enemyDamagePopup && gameObject.tag == "Enemy")
         {
 			GameObject prefab = Instantiate(enemyDamagePopup, transform.position, Quaternion.identity);
 			prefab.GetComponentInChildren<TextMeshPro>().text = text;
@@ -96,7 +92,12 @@ public class Non_Player_Health : MonoBehaviour
             {
 				sound.Play();
 			}
-			
+
+			if (cracks != null)
+			{
+				cracks.DestroyCracks();
+			}
+
 			sprite.enabled = false;
 			colliderObject.enabled = false;
 			Destroy(gameObject, particle.main.startLifetime.constantMax);
@@ -105,17 +106,6 @@ public class Non_Player_Health : MonoBehaviour
         {
 			Destroy(gameObject);
         }
-    }
-
-	void DirtTransparency()
-    {
-		/*
-		if (gameObject.tag == "BreakableBlock")
-        {
-			float alpha = health / maxHealth;
-			sprite.color = new Color(1f, 1f, 1f, alpha);			
-        }
-		*/
     }
 
 }
