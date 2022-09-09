@@ -17,7 +17,7 @@ public class PatrolState : EnemyBaseState
             enemy.enemyAnimState = 1;
             enemy.MoveToTarget();
         }
-
+        
         if (Mathf.Abs(enemy.transform.position.x - enemy.targetPoint.position.x) < 0.01f)
         {
             enemy.TransitionToState(enemy.patrolState);
