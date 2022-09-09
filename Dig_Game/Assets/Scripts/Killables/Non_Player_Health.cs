@@ -15,6 +15,7 @@ public class Non_Player_Health : MonoBehaviour
 	SpriteRenderer sprite;
 	Collider2D colliderObject;
 	[HideInInspector] public bool mImmune = false;
+	[SerializeField] CrackedDirt cracks = null;
 
 	private GameObject enemyDamagePopup;
 
