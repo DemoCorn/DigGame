@@ -13,10 +13,15 @@ public class Weapon_Attack : MonoBehaviour
     [SerializeField] private float attackRateWhenHolding = 0.1f;
     private float nextAttackTime = 0;
 
+    [SerializeField] private AudioSource attackSFX;
+    private bool soundBool = false;
+    
+
     private void Start()
     {
         mAnimator = GetComponent<Animator>();
         mHitbox = GetComponent<Collider2D>();
+        attackSFX = GetComponentInChildren<AudioSource>();
         mHitbox.enabled = false;
     }
 
@@ -28,6 +33,7 @@ public class Weapon_Attack : MonoBehaviour
         if (Input.GetKeyDown((KeyCode) inputs.attack))
         {
             Attack();
+            soundBool = true;
         }
         if (Time.time > nextAttackTime && Input.GetKey((KeyCode)inputs.attack))
         {
@@ -41,10 +47,18 @@ public class Weapon_Attack : MonoBehaviour
             mHitbox.enabled = false;
             trailRenderer.SetActive(false);
         }
+        
+
 
         // Check if attack hitbox is active to skip some execution if it's not
         if (mHitbox.enabled)
         {
+
+            if (soundBool)
+            {
+                attackSFX.Play();
+                soundBool = false;
+            }
             List<Collider2D> collisions = new List<Collider2D>();
 
             int nCollisionCount = mHitbox.OverlapCollider(new ContactFilter2D(), collisions);
@@ -58,6 +72,7 @@ public class Weapon_Attack : MonoBehaviour
                 {
                     collisionObject.GetComponent<Non_Player_Health>().Hit(stats.GetAttack());
                     CinemachineShakeCam.Instance.ShakeCamera(.8f, .05f);
+                    
                 }
             }
         }
@@ -69,5 +84,6 @@ public class Weapon_Attack : MonoBehaviour
         mAnimator.SetInteger("Class", (int)GameManager.Instance.InventoryManager.getPlayerClass());
         mAnimator.SetBool("PlayAttack", true);
         trailRenderer.SetActive(true);
+        
     }
 }

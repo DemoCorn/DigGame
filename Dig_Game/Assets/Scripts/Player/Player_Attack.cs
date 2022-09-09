@@ -14,6 +14,9 @@ public class Player_Attack : MonoBehaviour
 
     public Animator dAnimator;
 
+    [SerializeField] private AudioSource attackSFX;
+    
+
     
     [SerializeField] private float attackRateWhenHolding = 0.1f;
     private float nextAttackTime = 0;
@@ -23,6 +26,7 @@ public class Player_Attack : MonoBehaviour
     {
         //mAttackHitbox = gameObject.AddComponent<BoxCollider2D>();
         mAttackHitbox = gameObject.GetComponent<BoxCollider2D>();
+        attackSFX = GetComponentInChildren<AudioSource>();
         mAttackHitbox.enabled = false;
     }
 
@@ -56,6 +60,7 @@ public class Player_Attack : MonoBehaviour
                     if (collisionObject.tag == "Enemy")
                     {
                         collisionObject.GetComponent<Non_Player_Health>().Hit(enemyDamage);
+                        
                     }
                     else
                     {
@@ -78,5 +83,6 @@ public class Player_Attack : MonoBehaviour
         mAttackHitbox.enabled = true;
         dAnimator.SetBool("PlayAnimation", true);
         
+
     }
 }
