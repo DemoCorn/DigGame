@@ -33,7 +33,8 @@ public class Player_Health : MonoBehaviour
     public GameObject leftLeg;
     public GameObject rightLeg;
 
-    
+    [SerializeField] AudioSource damageSFX;
+
     private GameObject playerDamagepopup;
     private GameObject healPopup;
 
@@ -71,7 +72,7 @@ public class Player_Health : MonoBehaviour
 
     }
 
-
+    
     private float IsCollidingWithEnemy()
     {
         List<Collider2D> collisions = new List<Collider2D>();
@@ -87,9 +88,11 @@ public class Player_Health : MonoBehaviour
                 return collision.gameObject.GetComponent<Enemy_Damage>().damage;
             }
         }
-
+        
         return 0.0f;
     }
+
+    
 
     private void TurnOffImmunity()
     {
@@ -133,10 +136,10 @@ public class Player_Health : MonoBehaviour
             if (fDamage > 0.0f)
             {
                 float damage = fDamage - armor;
-                ShowDamage(fDamage.ToString());
+                ShowDamage(damage.ToString());
                 health -= damage < 1.0f ? 1.0f : damage;
                 StartCoroutine("Hurt");
-
+                damageSFX.Play();
 
                 if (health <= 0.0f)
                 {
@@ -196,6 +199,8 @@ public class Player_Health : MonoBehaviour
         GameManager.Instance.EndGame(hasRetired);
 
     }
+    
+
 
     public void TestDeath()
     {
@@ -237,5 +242,6 @@ public class Player_Health : MonoBehaviour
         rightLegSR.material = matDefault;
         
     }
+
 
 }
