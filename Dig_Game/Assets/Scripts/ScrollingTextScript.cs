@@ -5,9 +5,9 @@ using TMPro;
 
 public class ScrollingTextScript : MonoBehaviour
 {
-    float speed = 100.0f;
-    float textPosBegin = -948.96f;
-    float boundaryTextEnd = 1245.47f;
+    [SerializeField] float speed = 50.0f;
+    float textPosBegin = -1273.286f;
+    float boundaryTextEnd = 1276.64f;
 
     RectTransform myGorectTransform;
     [SerializeField]
@@ -26,7 +26,7 @@ public class ScrollingTextScript : MonoBehaviour
     {
         while(myGorectTransform.localPosition.y< boundaryTextEnd)
         {
-            myGorectTransform.Translate(Vector3.up * speed * Time.deltaTime);
+            myGorectTransform.Translate(Vector3.up * speed * Time.deltaTime );
             yield return null;
         }
     }
