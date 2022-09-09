@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CrackedDirt : MonoBehaviour
 {
-    [SerializeField] Sprite currentSprite;
     [SerializeField] List<Sprite> crackedDirts = new List<Sprite>();
     [SerializeField] List<float> crackPercentage = new List<float>();
 
