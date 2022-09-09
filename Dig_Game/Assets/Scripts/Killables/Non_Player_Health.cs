@@ -7,7 +7,8 @@ using TMPro;
 public class Non_Player_Health : MonoBehaviour
 {
 	[SerializeField] ParticleSystem particle;
-	[SerializeField] AudioSource sound;
+	//[SerializeField] AudioSource deathSFX;
+	[SerializeField] AudioSource hitSFX;
 	[SerializeField] float health = 15.0f;
 	[SerializeField] float maxHealth;
 	[SerializeField] float immunityTime = 0.3f;
@@ -20,7 +21,7 @@ public class Non_Player_Health : MonoBehaviour
 	private void Start()
     {
 		particle = GetComponentInChildren<ParticleSystem>();
-		sound = GetComponentInChildren<AudioSource>();
+		hitSFX = GetComponentInChildren<AudioSource>();
 		sprite = GetComponentInChildren<SpriteRenderer>();
 		colliderObject = GetComponent<Collider2D>();
 		maxHealth = health;
@@ -36,6 +37,11 @@ public class Non_Player_Health : MonoBehaviour
 	{
 		if (!mImmune)
 		{
+            if (hitSFX)
+            {
+				hitSFX.Play();
+			}
+			
 			ShowDamage( fDamage.ToString());
 			health -= fDamage;
 			if (health <= 0)
@@ -86,11 +92,11 @@ public class Non_Player_Health : MonoBehaviour
 		{
 			particle.Play();
 
-			if (sound)
-            {
-				sound.Play();
-			}
-			
+			//if (deathSFX)
+			//{
+			//	deathSFX.Play();
+			//}
+			//deathSFX.Play();
 			sprite.enabled = false;
 			colliderObject.enabled = false;
 			Destroy(gameObject, particle.main.startLifetime.constantMax);
