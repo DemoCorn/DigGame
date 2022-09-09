@@ -54,7 +54,7 @@ public class Non_Player_Health : MonoBehaviour
 
 	void ShowDamage(string text)
     {
-		if(enemyDamagePopup)
+		if(enemyDamagePopup && gameObject.tag == "Enemy")
         {
 			GameObject prefab = Instantiate(enemyDamagePopup, transform.position, Quaternion.identity);
 			prefab.GetComponentInChildren<TextMeshPro>().text = text;
