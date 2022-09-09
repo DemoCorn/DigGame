@@ -19,13 +19,10 @@ public class CrackedDirt : MonoBehaviour
     {
         float crackPercent = health / maxHealth;
 
-        Debug.Log(crackPercent);
-
         for (int i = crackPercentage.Count -1; i >= 0; i--)
         {
             if (crackPercent <= crackPercentage[i])
             {
-                Debug.Log(i);
                 rend.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
                 rend.sprite = crackedDirts[i];
                 break;

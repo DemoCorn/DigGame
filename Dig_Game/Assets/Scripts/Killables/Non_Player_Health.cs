@@ -20,7 +20,7 @@ public class Non_Player_Health : MonoBehaviour
 	private GameObject enemyDamagePopup;
 
 	private void Start()
-    {
+	{
 		particle = GetComponentInChildren<ParticleSystem>();
 		hitSFX = GetComponentInChildren<AudioSource>();
 		sprite = GetComponentInChildren<SpriteRenderer>();
@@ -29,10 +29,6 @@ public class Non_Player_Health : MonoBehaviour
 		enemyDamagePopup = (GameObject)Resources.Load("EnemyDamagePopup");
 
 	}
-    private void Update()
-    {
-		DirtTransparency();
-    }
 
     public void Hit(float fDamage)
 	{
@@ -54,6 +50,12 @@ public class Non_Player_Health : MonoBehaviour
 				
 				particle.Play();
             }
+			
+			if (cracks != null)
+			{
+				cracks.SetCracks(health, maxHealth);
+			}
+
 			mImmune = true;
 			Invoke("StopImmunity", immunityTime);
 		}
@@ -98,6 +100,12 @@ public class Non_Player_Health : MonoBehaviour
 			//	deathSFX.Play();
 			//}
 			//deathSFX.Play();
+
+			if (cracks != null)
+			{
+				cracks.DestroyCracks();
+			}
+
 			sprite.enabled = false;
 			colliderObject.enabled = false;
 			Destroy(gameObject, particle.main.startLifetime.constantMax);
@@ -107,14 +115,4 @@ public class Non_Player_Health : MonoBehaviour
 			Destroy(gameObject);
         }
     }
-
-	void DirtTransparency()
-    {
-		if (gameObject.tag == "BreakableBlock")
-        {
-			float alpha = health / maxHealth;
-			sprite.color = new Color(1f, 1f, 1f, alpha);			
-        }
-    }
-
 }
