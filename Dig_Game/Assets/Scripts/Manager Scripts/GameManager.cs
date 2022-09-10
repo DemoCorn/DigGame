@@ -256,6 +256,11 @@ public class GameManager : MonoBehaviour
         return playerComponents.aim.GetWeaponHitbox();
     }
 
+    public void TextCrawl()
+    {
+        SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
+    }
+
     // Scene Control Functions
     public void Reset()
     {
