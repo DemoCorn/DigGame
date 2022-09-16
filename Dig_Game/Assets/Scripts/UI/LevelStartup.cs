@@ -8,4 +8,9 @@ public class LevelStartup : MonoBehaviour
     {
         GameManager.Instance.TextCrawl();
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

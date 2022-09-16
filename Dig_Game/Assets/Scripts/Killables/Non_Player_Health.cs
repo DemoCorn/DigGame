@@ -28,10 +28,6 @@ public class Non_Player_Health : MonoBehaviour
 		enemyDamagePopup = (GameObject)Resources.Load("EnemyDamagePopup");
 
 	}
-    private void Update()
-    {
-		DirtTransparency();
-    }
 
     public void Hit(float fDamage)
 	{
@@ -55,6 +51,7 @@ public class Non_Player_Health : MonoBehaviour
             }
 			mImmune = true;
 			Invoke("StopImmunity", immunityTime);
+			DirtTransparency();
 		}
 	}
 
