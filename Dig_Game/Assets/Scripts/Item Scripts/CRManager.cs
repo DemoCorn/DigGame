@@ -10,7 +10,6 @@ public class CRManager : MonoBehaviour
     private bool hasBeenActivated = false;
 
     [Header("Spawner")]
-    public GameObject[] enemies;
     public List<GameObject> enemySpawnLocations;
 
     [Header("Enemy Count")]
@@ -38,6 +37,7 @@ public class CRManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Open Gate
         if(hasBeenActivated == true && enemyCount <= 0)
         {
             StartCoroutine(FadeIn(casualMusic, 1.0f));
@@ -82,7 +82,7 @@ public class CRManager : MonoBehaviour
         }
 
         //Update EnemyCount
-        enemyCount = 3;
+        enemyCount = enemySpawnLocations.Count;
     }
 
     //Music fade in and out
