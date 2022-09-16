@@ -136,7 +136,7 @@ public class Player_Health : MonoBehaviour
             if (fDamage > 0.0f)
             {
                 float damage = fDamage - armor;
-                ShowDamage(damage.ToString());
+                ShowDamage((damage < 1.0f ? 1.0f : damage).ToString());
                 health -= damage < 1.0f ? 1.0f : damage;
                 StartCoroutine("Hurt");
                 damageSFX.Play();
