@@ -10,7 +10,7 @@ public class CRManager : MonoBehaviour
 
     [Header("Spawner")]
     public GameObject[] enemies;
-    public List<EnemySpawnLocations> enemySpawnLocations;
+    public List<GameObject> enemySpawnLocations;
 
     [Header("Enemy Count")]
     public int enemyCount;
@@ -20,7 +20,11 @@ public class CRManager : MonoBehaviour
 
     void Start()
     {
-        
+        foreach (GameObject spawnlocation in enemySpawnLocations)
+        {
+            spawnlocation.SetActive(false);
+        }
+
     }
 
     // Update is called once per frame
@@ -58,9 +62,9 @@ public class CRManager : MonoBehaviour
     }
     public void SpawnEnemies()
     {
-        foreach (EnemySpawnLocations spawnlocation in enemySpawnLocations)
+        foreach (GameObject spawnlocation in enemySpawnLocations)
         {
-            Instantiate(enemies[spawnlocation.enemyToSpawn], spawnlocation.enemySpawnLocation.transform.position, Quaternion.identity, gameObject.transform);
+            spawnlocation.SetActive(true);
         }
 
         //Update EnemyCount
