@@ -107,7 +107,7 @@ public class CRManager : MonoBehaviour
 
         audioSource.Play();
 
-        while (audioSource.volume < 1.0f)
+        while (audioSource.volume < 0.4f);
         {
             audioSource.volume += startVolume * Time.deltaTime / FadeTime;
 
