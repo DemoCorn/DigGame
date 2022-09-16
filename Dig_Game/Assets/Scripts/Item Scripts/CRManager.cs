@@ -37,13 +37,28 @@ public class CRManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Open Gate
-        if(hasBeenActivated == true && enemyCount <= 0)
-        {
-            StartCoroutine(FadeIn(casualMusic, 1.0f));
-            StartCoroutine(FadeOut(combatMusic, 1.0f));
+        
 
-            gameObject.SetActive(false);
+        //Open Gate
+        if(hasBeenActivated == true)
+        {
+            for (int i = 0; i < enemySpawnLocations.Count; i++)
+            {
+                if (!enemySpawnLocations[i])
+                {
+                    enemySpawnLocations.RemoveAt(i);
+                    enemyCount--;
+                    i--;
+                }
+            }
+
+            if (enemyCount <= 0)
+            {
+                StartCoroutine(FadeIn(casualMusic, 1.0f));
+                StartCoroutine(FadeOut(combatMusic, 1.0f));
+
+                gameObject.SetActive(false);
+            }
         }
     }
 
