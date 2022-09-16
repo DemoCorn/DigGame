@@ -9,6 +9,11 @@ public class LevelStartup : MonoBehaviour
         GameManager.Instance.TextCrawl();
     }
 
+    public void ResetLevel()
+    {
+        GameManager.Instance.Reset();
+    }
+
     public void Quit()
     {
         Application.Quit();
