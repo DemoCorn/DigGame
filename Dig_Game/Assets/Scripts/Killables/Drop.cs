@@ -25,11 +25,14 @@ public class Drop : MonoBehaviour
     private GameObject indicatorSpritePrefab;
     private GameObject target;
 
+    [SerializeField] AudioSource collectSFX;
+
     private void Start()
     {
         indicatorPrefab = (GameObject)Resources.Load("Item_Ore IndicatorParent");
         indicatorSpritePrefab = (GameObject)Resources.Load("IndicatorSpriteParent");
         target = GameObject.FindGameObjectWithTag("Indicator");
+        
 
         itemNotifyScript = GetComponent<ItemNotifyScript>();
 
@@ -114,6 +117,12 @@ public class Drop : MonoBehaviour
                     }
                 }
             }
+            if (collectSFX)
+            {
+                collectSFX.Play();
+                Debug.Log("The sound has played");
+            }
+
         }
     }
 
