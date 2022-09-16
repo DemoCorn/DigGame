@@ -5,7 +5,6 @@ using UnityEngine;
 public class ExitCave : MonoBehaviour
 {
     public AudioSource caveSound;
-    public AudioSource music;
 
     public bool caveOn = false;
 
@@ -19,14 +18,14 @@ public class ExitCave : MonoBehaviour
             if (caveOn)
             {
                 caveOn = false;
-                StartCoroutine(FadeIn(caveSound, 2.0f));
+                StartCoroutine(FadeIn(caveSound, 1.0f));
                 
             }
 
             else
             {
                 caveOn = true;
-                StartCoroutine(FadeOut(caveSound, 2.0f));
+                StartCoroutine(FadeOut(caveSound, 1.0f));
             }
 
         }
@@ -49,7 +48,9 @@ public class ExitCave : MonoBehaviour
 
     public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
     {
-        float startVolume = audioSource.volume;
+        float startVolume = 1.0f;
+
+        audioSource.Play();
 
         while (audioSource.volume < 1.0f)
         {
@@ -58,7 +59,7 @@ public class ExitCave : MonoBehaviour
             yield return null;
         }
 
-        audioSource.Stop();
+        //audioSource.Stop();
         audioSource.volume = startVolume;
     }
 }
