@@ -5,15 +5,61 @@ using UnityEngine;
 public class ExitCave : MonoBehaviour
 {
     public AudioSource caveSound;
-    public AudioSource music;
 
-    
-    private void OnTriggerEnter2D(Collider2D collider)
+    public bool caveOn = false;
+
+    private void OnTriggerEnter2D(Collider2D player)
     {
-        Debug.Log("Entered trigger");
+        if (player.gameObject.tag == "Player")
+        {
+            GameManager.Instance.tutorialComplete = true;
+            //music.Play();
 
-        music.Play();
+            if (caveOn)
+            {
+                caveOn = false;
+                StartCoroutine(FadeIn(caveSound, 1.0f));
+                
+            }
 
-        StartCoroutine(AudioFadeOut.FadeOut(caveSound, 1.0f));
+            else
+            {
+                caveOn = true;
+                StartCoroutine(FadeOut(caveSound, 1.0f));
+            }
+
+        }
+    }
+
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0.0f)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+
+    public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = 1.0f;
+
+        audioSource.Play();
+
+        while (audioSource.volume < 1.0f)
+        {
+            audioSource.volume += startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        //audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 }
