@@ -20,9 +20,11 @@ public class Bomb_Projectile : MonoBehaviour
     private GameObject player;
     bool isFacingLeft;
 
+    
 
     void Start()
     {
+        
         isFacingLeft = GameObject.FindWithTag("Player").GetComponent<Player_Movement>().isFacingLeft;
         if (thrown) 
         {
@@ -88,6 +90,8 @@ public class Bomb_Projectile : MonoBehaviour
         GameObject ExplosionEffectPlay = Instantiate(ExplosionEffect, transform.position, Quaternion.identity);
         Destroy(ExplosionEffectPlay, 10);
         Destroy(gameObject);
+        CinemachineShakeCam.Instance.ShakeCamera(3f, .5f);
+
     }
 
     private void OnDrawGizmosSelected()
