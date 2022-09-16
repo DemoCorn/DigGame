@@ -6,6 +6,6 @@ public class LevelStartup : MonoBehaviour
 {
     public void Startup()
     {
-        GameManager.Instance.Reset();
+        GameManager.Instance.TextCrawl();
     }
 }

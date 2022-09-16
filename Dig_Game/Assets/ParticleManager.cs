@@ -8,6 +8,7 @@ public class ParticleManager : MonoBehaviour
 
     public static ParticleManager instance { get; set; }
 
+    [SerializeField] AudioSource useSFX;
 
     public List<ParticleSystem> ps;
     ParticleSystem.Particle[] particles;
@@ -24,6 +25,7 @@ public class ParticleManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        useSFX = GetComponentInChildren<AudioSource>();
     }
 
     void Start()
@@ -44,11 +46,19 @@ public class ParticleManager : MonoBehaviour
     public void effect1()
     {
         Instantiate(this.ps[0], player.transform.position, Quaternion.identity);
+        if (useSFX)
+        {
+            useSFX.Play();
+        }
     }
 
     public void effect2()
     {
         Instantiate(ps[1], player.transform.position, Quaternion.identity);
+        if (useSFX)
+        {
+            useSFX.Play();
+        }
     }
 
     public void effect3()
