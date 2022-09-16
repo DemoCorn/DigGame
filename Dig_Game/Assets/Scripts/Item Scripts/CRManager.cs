@@ -10,7 +10,6 @@ public class CRManager : MonoBehaviour
     private bool hasBeenActivated = false;
 
     [Header("Spawner")]
-    public GameObject[] enemies;
     public List<GameObject> enemySpawnLocations;
 
     [Header("Enemy Count")]
@@ -38,12 +37,28 @@ public class CRManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(hasBeenActivated == true && enemyCount <= 0)
-        {
-            StartCoroutine(FadeIn(casualMusic, 1.0f));
-            StartCoroutine(FadeOut(combatMusic, 1.0f));
+        
 
-            gameObject.SetActive(false);
+        //Open Gate
+        if(hasBeenActivated == true)
+        {
+            for (int i = 0; i < enemySpawnLocations.Count; i++)
+            {
+                if (!enemySpawnLocations[i])
+                {
+                    enemySpawnLocations.RemoveAt(i);
+                    enemyCount--;
+                    i--;
+                }
+            }
+
+            if (enemyCount <= 0)
+            {
+                StartCoroutine(FadeIn(casualMusic, 1.0f));
+                StartCoroutine(FadeOut(combatMusic, 1.0f));
+
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -82,7 +97,7 @@ public class CRManager : MonoBehaviour
         }
 
         //Update EnemyCount
-        enemyCount = 3;
+        enemyCount = enemySpawnLocations.Count;
     }
 
     //Music fade in and out
