@@ -6,7 +6,6 @@ public class MainToBoss : MonoBehaviour
 {
     public GameObject player;
     [SerializeField] private GameObject camConfiner;
-    [SerializeField] private GameObject Backgrounds;
 
     public Transform bossStartPosition;
     // Start is called before the first frame update
@@ -27,7 +26,7 @@ public class MainToBoss : MonoBehaviour
         {
             player.transform.position = bossStartPosition.transform.position;
             Destroy(camConfiner);
-            Backgrounds.SetActive(false);
+            
         }
     }
 }
