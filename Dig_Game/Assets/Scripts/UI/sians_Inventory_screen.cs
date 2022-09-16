@@ -77,4 +77,9 @@ public class sians_Inventory_screen : MonoBehaviour
         settingstab.SetActive(false);
         Equipmentscreen.SetActive(true);
     }
+
+    public void StartScreen()
+    {
+        GameManager.Instance.StartScreen();
+    }
 }
