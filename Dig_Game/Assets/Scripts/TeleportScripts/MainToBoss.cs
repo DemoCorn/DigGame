@@ -26,6 +26,7 @@ public class MainToBoss : MonoBehaviour
         {
             player.transform.position = bossStartPosition.transform.position;
             Destroy(camConfiner);
+            backgrounds.SetActive(false);
             
         }
     }
