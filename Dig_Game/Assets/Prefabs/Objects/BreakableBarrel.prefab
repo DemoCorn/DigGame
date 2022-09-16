@@ -130,7 +130,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0ef4a1e4b530f9649be0c90f8815cef2, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cdaa79776efdf1348b6ea62f2997212e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 1471789809408828291}
   - component: {fileID: 3679575003019112957}
   - component: {fileID: 4579514910674271399}
+  - component: {fileID: 2065284710696701176}
   m_Layer: 0
   m_Name: HealthBox
   m_TagString: Enemy
@@ -321,3 +322,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBox: {fileID: 6223081175792305939}
   brokenBarrel: {fileID: 645986826349801895}
+--- !u!114 &2065284710696701176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6223081175792305939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f72838377f1a6340ab71e9eb121ef54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemDrops: {fileID: 11400000, guid: a95b3041bd44a76448e0bbc81b9e46c0, type: 2}
+  blueprintDrops: {fileID: 0}
+  itemDropByLevel: []
+  blueprintDropByLevel: []
+  dropBlueprints: 0
+  smartDrop: 0
+  collectSFX: {fileID: 0}
