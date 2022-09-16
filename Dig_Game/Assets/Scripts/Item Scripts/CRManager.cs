@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class CRManager : MonoBehaviour
@@ -18,6 +19,11 @@ public class CRManager : MonoBehaviour
     [Header("Treasure")]
     public RewardBoxes[] rewardBoxes;
 
+    //etai
+    public AudioSource casualMusic;
+    public AudioSource combatMusic;
+
+
     void Start()
     {
         foreach (GameObject spawnlocation in enemySpawnLocations)
@@ -25,6 +31,8 @@ public class CRManager : MonoBehaviour
             spawnlocation.SetActive(false);
         }
 
+        casualMusic = GameObject.Find("Music Player").GetComponent<AudioSource>();
+        combatMusic = GameObject.Find("Combat Player").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,6 +40,9 @@ public class CRManager : MonoBehaviour
     {
         if(hasBeenActivated == true && enemyCount <= 0)
         {
+            StartCoroutine(FadeIn(casualMusic, 1.0f));
+            StartCoroutine(FadeOut(combatMusic, 1.0f));
+
             gameObject.SetActive(false);
         }
     }
@@ -58,7 +69,10 @@ public class CRManager : MonoBehaviour
             }
             //Set hasBeenActivated to true, so the function does not call again;spawning more enemies in the process. 
             hasBeenActivated = true;
-        
+
+        //begin combat music
+        StartCoroutine(FadeOut(casualMusic, 1.0f));
+        StartCoroutine(FadeIn(combatMusic, 1.0f));
     }
     public void SpawnEnemies()
     {
@@ -69,6 +83,39 @@ public class CRManager : MonoBehaviour
 
         //Update EnemyCount
         enemyCount = 3;
+    }
+
+    //Music fade in and out
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0.0f)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+
+    public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = 1.0f;
+
+        audioSource.Play();
+
+        while (audioSource.volume < 1.0f)
+        {
+            audioSource.volume += startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        //audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 }
 
