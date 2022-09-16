@@ -33,7 +33,8 @@ public class Player_Health : MonoBehaviour
     public GameObject leftLeg;
     public GameObject rightLeg;
 
-    
+    [SerializeField] AudioSource damageSFX;
+
     private GameObject playerDamagepopup;
     private GameObject healPopup;
 
@@ -135,10 +136,10 @@ public class Player_Health : MonoBehaviour
             if (fDamage > 0.0f)
             {
                 float damage = fDamage - armor;
-                ShowDamage(fDamage.ToString());
+                ShowDamage(damage.ToString());
                 health -= damage < 1.0f ? 1.0f : damage;
                 StartCoroutine("Hurt");
-
+                damageSFX.Play();
 
                 if (health <= 0.0f)
                 {

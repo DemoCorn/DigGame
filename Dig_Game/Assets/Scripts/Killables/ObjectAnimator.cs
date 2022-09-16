@@ -8,7 +8,6 @@ public class ObjectAnimator : MonoBehaviour
 
     [SerializeField] private Animator brokenBarrel;
     private bool isDestroyed = false;
-    
 
 
     // Update is called once per frame
