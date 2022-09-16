@@ -27,31 +27,11 @@ public class Dialog : MonoBehaviour
     public bool active;
     public bool done;
     public bool begin;
-
-    //private void Start()
-    //{
-    //    if (GameManager.Instance.UIManager.loaded)
-    //    {
-    //        Debug.Log("enter 1s");
-    //        root = GameObject.Find("DialogParent");
-    //        dialogPanel = root.transform.Find("DialogPanel").gameObject;
-    //        dialogPanelPressQ = root.transform.Find("DialogPanel/Press Q").gameObject;
-
-    //        textDisplay = dialogPanel.GetComponentInChildren<TextMeshProUGUI>();
-    //        dialogImage = dialogPanel.GetComponent<Image>();
-    //        dialogText = dialogPanelPressQ.GetComponent<Text>();
-    //        dialogImage.color = Color.white;
-    //        dialogText.color = Color.white;
-    //        dialogPanel.SetActive(false);
-    //        dialogPanelPressQ.SetActive(false);
-    //        begin = false;
-    //        active = false;
-    //        done = false;
-    //    }
-    //}
+    public bool start;
 
     void Start()
     {
+        start = false;
         StartCoroutine(LateStart(1));
     }
 
@@ -76,6 +56,7 @@ public class Dialog : MonoBehaviour
             begin = false;
             active = false;
             done = false;
+            start = true;
         }
     }
 
@@ -101,10 +82,6 @@ public class Dialog : MonoBehaviour
 
     private void Update()
     {
-      
-
-
-
         if (active && !begin && !done)
         {
             if (dialogPanel.activeInHierarchy)
@@ -129,8 +106,11 @@ public class Dialog : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && active && !done)
             QuickExitDialog();
 
-        if (textDisplay.text == sentences[index] && Input.GetKeyDown(KeyCode.Q) && !done && active)
-            NextSentence();
+        if (start)
+        {
+            if (textDisplay.text == sentences[index] && Input.GetKeyDown(KeyCode.Q) && !done && active)
+                NextSentence();
+        }
     }
 
 
