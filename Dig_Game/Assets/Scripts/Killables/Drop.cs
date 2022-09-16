@@ -32,7 +32,7 @@ public class Drop : MonoBehaviour
         indicatorPrefab = (GameObject)Resources.Load("Item_Ore IndicatorParent");
         indicatorSpritePrefab = (GameObject)Resources.Load("IndicatorSpriteParent");
         target = GameObject.FindGameObjectWithTag("Indicator");
-        collectSFX = GetComponentInChildren<AudioSource>();
+        
 
         itemNotifyScript = GetComponent<ItemNotifyScript>();
 
