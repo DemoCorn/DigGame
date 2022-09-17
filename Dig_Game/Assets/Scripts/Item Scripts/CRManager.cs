@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class CRManager : MonoBehaviour
@@ -9,7 +10,7 @@ public class CRManager : MonoBehaviour
     private bool hasBeenActivated = false;
 
     [Header("Spawner")]
-    public List<GameObject> enemySpawns;
+    public List<GameObject> enemySpawnLocations;
 
     [Header("Enemy Count")]
     public int enemyCount;
@@ -17,20 +18,47 @@ public class CRManager : MonoBehaviour
     [Header("Treasure")]
     public RewardBoxes[] rewardBoxes;
 
+    //etai
+    public AudioSource casualMusic;
+    public AudioSource combatMusic;
+
+
     void Start()
     {
-        foreach (GameObject spawnlocation in enemySpawns)
+        foreach (GameObject spawnlocation in enemySpawnLocations)
         {
             spawnlocation.SetActive(false);
         }
+
+        casualMusic = GameObject.Find("Music Player").GetComponent<AudioSource>();
+        combatMusic = GameObject.Find("Combat Player").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(hasBeenActivated == true && enemyCount <= 0)
+        
+
+        //Open Gate
+        if(hasBeenActivated == true)
         {
-            gameObject.SetActive(false);
+            for (int i = 0; i < enemySpawnLocations.Count; i++)
+            {
+                if (!enemySpawnLocations[i])
+                {
+                    enemySpawnLocations.RemoveAt(i);
+                    enemyCount--;
+                    i--;
+                }
+            }
+
+            if (enemyCount <= 0)
+            {
+                StartCoroutine(FadeIn(casualMusic, 1.0f));
+                StartCoroutine(FadeOut(combatMusic, 1.0f));
+
+                gameObject.SetActive(false);
+            }
         }
     }
 
@@ -56,17 +84,53 @@ public class CRManager : MonoBehaviour
             }
             //Set hasBeenActivated to true, so the function does not call again;spawning more enemies in the process. 
             hasBeenActivated = true;
-        
+
+        //begin combat music
+        StartCoroutine(FadeOut(casualMusic, 1.0f));
+        StartCoroutine(FadeIn(combatMusic, 1.0f));
     }
     public void SpawnEnemies()
     {
-        foreach (GameObject spawnlocation in enemySpawns)
+        foreach (GameObject spawnlocation in enemySpawnLocations)
         {
             spawnlocation.SetActive(true);
         }
 
         //Update EnemyCount
-        enemyCount = enemySpawns.Count;
+        enemyCount = enemySpawnLocations.Count;
+    }
+
+    //Music fade in and out
+    public static IEnumerator FadeOut(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = audioSource.volume;
+
+        while (audioSource.volume > 0.0f)
+        {
+            audioSource.volume -= startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        audioSource.Stop();
+        audioSource.volume = startVolume;
+    }
+
+    public static IEnumerator FadeIn(AudioSource audioSource, float FadeTime)
+    {
+        float startVolume = 1.0f;
+
+        audioSource.Play();
+
+        while (audioSource.volume < 0.4f);
+        {
+            audioSource.volume += startVolume * Time.deltaTime / FadeTime;
+
+            yield return null;
+        }
+
+        //audioSource.Stop();
+        audioSource.volume = startVolume;
     }
 }
 
